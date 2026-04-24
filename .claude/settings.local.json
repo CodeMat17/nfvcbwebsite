@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -I http://localhost:3000/about)",
+      "Bash(curl -s -H \"RSC: 1\" http://localhost:3000/about)",
+      "PowerShell(taskkill /PID 4708 /F)",
+      "PowerShell(taskkill /PID 7988 /F)",
+      "WebFetch(domain:www.remita.net)",
+      "WebFetch(domain:api.remita.net)",
+      "WebFetch(domain:remitademo.net)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:codeflarelimited.com)",
+      "WebFetch(domain:documenter.getpostman.com)",
+      "WebFetch(domain:support.remita.net)"
+    ]
+  }
+}

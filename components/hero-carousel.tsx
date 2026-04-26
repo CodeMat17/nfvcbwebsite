@@ -17,7 +17,7 @@ const slides = [
     ctaSecondary: { label: "Submit a Film", href: "/industry" },
     accent: "#009f3b",
     gradient: "from-[#001506] via-[#002b0e] to-[#001506]",
-    image: "https://picsum.photos/seed/nfvcb-mandate/1200/600",
+    image: "",
   },
   {
     badge: "Film Classification",
@@ -28,6 +28,7 @@ const slides = [
     ctaSecondary: { label: "Ratings Guide", href: "/policy#categories" },
     accent: "#fea600",
     gradient: "from-[#1a0e00] via-[#2b1800] to-[#001506]",
+    image: '/classification_symbols/symbol_G.jpg'
   },
   {
     badge: "Licensing",
@@ -38,7 +39,7 @@ const slides = [
     ctaSecondary: { label: "Industry Info", href: "/industry" },
     accent: "#009f3b",
     gradient: "from-[#001506] via-[#003d14] to-[#001506]",
-    image: "https://picsum.photos/seed/nfvcb-licensing/1200/600",
+    image: "/shaibu.jpeg",
   },
   {
     badge: "Enforcement",
@@ -131,11 +132,11 @@ export function HeroCarousel() {
       {/* Background image or logo watermark */}
       {slide.image ? (
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <Image src={slide.image} alt="" fill className="object-cover opacity-30" />
+          <Image src={slide.image} alt="" fill className="object-cover opacity-80" />
           <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
         </div>
       ) : (
-        <div className="absolute inset-0 flex items-center justify-end pr-10 opacity-[0.05] pointer-events-none" aria-hidden>
+        <div className="absolute inset-0 flex items-center justify-end pr-10 opacity-[0.1] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" width={280} height={280} className="object-contain" />
         </div>
       )}
@@ -165,7 +166,7 @@ export function HeroCarousel() {
           initial="enter"
           animate="center"
           exit="exit"
-          className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 mb-2"
+          className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 mb-4"
         >
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 12 }}
@@ -222,7 +223,7 @@ export function HeroCarousel() {
       </button>
       <button
         onClick={() => { go(index + 1, 1); startTimer(); }}
-        className="absolute right-8 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm"
+        className="absolute right-8 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm pb-2"
         aria-label="Next slide"
       >
         <ChevronRight className="h-4 w-4" />

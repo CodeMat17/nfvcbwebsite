@@ -58,20 +58,23 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
         productionCompany: "Zuma Film Productions",
       },
       {
-        title: "Abubakar's Dream",
+        title: "The Witch and the Seer",
         duration: "1hr 38min",
-        producer: "Maryam Usman",
-        director: "Saddiq Balewa",
-        majorCast: "Ali Nuhu, Rahama Sadau, Adam A. Zango",
-        rating: "G",
+        producer: "Chimamanda Augustine",
+        director: "Uhuru Uhuru",
+        majorCast:
+          "Prince Iyke Olisa, Chimamanda Augustine, Pretty Ella Nzoiwu, Oyoko Precious, Uhuru Rabbai, etc",
+        rating: "15",
         previewLocation: "NFVCB Kano Zonal Office",
-        language: "Hausa",
-        consumerAdvice: "Suitable for all audiences",
+        language: "English",
+        consumerAdvice: "Suitable for 15 years and above audiences",
         dateOfApproval: "2026-03-06",
-        productionCompany: "Kannywood Studios",
+        productionCompany: "Chimamanda Augustine Studios",
         featured: true,
-        trailerUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-        juryNote: "A triumphant family story rooted in northern Nigerian heritage. Outstanding storytelling, strong cultural values, and a G-rated experience that unites audiences of all ages.",
+        trailerUrl:
+          "https://www.youtube.com/embed/g-EUd57kDC8?si=aCP3R8GmAGz1UBcg",
+        juryNote:
+          "A gripping clash between ancient mysticism and human courage set against a richly textured Nigerian backdrop. Director Uhuru Uhuru delivers taut, atmospheric storytelling with strong performances from Prince Iyke Olisa and the ensemble cast. The supernatural themes are handled with cultural authenticity, earning its 15 classification for mature content and sustained tension.",
       },
       {
         title: "The Lagos Connection",
@@ -121,7 +124,8 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
         rating: "12A",
         previewLocation: "NFVCB Lagos Zonal Office",
         language: "Yoruba",
-        consumerAdvice: "Mild scenes; children under 12 require adult accompaniment",
+        consumerAdvice:
+          "Mild scenes; children under 12 require adult accompaniment",
         dateOfApproval: "2026-03-13",
         productionCompany: "Sunstep Media",
       },
@@ -220,7 +224,8 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
         rating: "PG",
         previewLocation: "NFVCB Kano Zonal Office",
         language: "Hausa",
-        consumerAdvice: "Suitable for family viewing; parental guidance advised",
+        consumerAdvice:
+          "Suitable for family viewing; parental guidance advised",
         dateOfApproval: "2026-02-04",
         productionCompany: "Tambawal Films",
       },
@@ -470,6 +475,8 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
   },
 ];
 
-export function getApprovedMoviesPost(slug: string): ApprovedMoviesPost | undefined {
+export function getApprovedMoviesPost(
+  slug: string,
+): ApprovedMoviesPost | undefined {
   return approvedMoviesPosts.find((p) => p.slug === slug);
 }

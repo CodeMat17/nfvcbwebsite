@@ -223,13 +223,6 @@ const zones = [
         address: "Rooms 23/24 Federal Secretariat Complex, Independence Layout, Enugu State",
         state: "Enugu",
       },
-      {
-        name: "Abakaliki Centre",
-        coordinator: "Ejike Nwodo",
-        phone: "08056304024",
-        address: "Old Office Of The Head Of Service, New Secretariat Complex, Nnorom Street, P.M.B 100, Abakaliki, Ebonyi State",
-        state: "Abakaliki",
-      },
     ],
   },
   {
@@ -240,8 +233,8 @@ const zones = [
     offices: [
       {
         name: "SS Zonal Office",
-        coordinator: "Francis Oseloka",
-        phone: "08030832045",
+        coordinator: "Ernest Irehie",
+        phone: "08127943130",
         address: "Federal Secretariat Complex, Aba/PH Road, Opposite Presidential Hotel, 2nd Floor, Right Wing, RM 209, Port Harcourt, Rivers State",
         state: "Port Harcourt",
       },
@@ -254,8 +247,8 @@ const zones = [
       },
       {
         name: "Benin Centre",
-        coordinator: "Eniye Asomba",
-        phone: "08034009119",
+        coordinator: "Fred Elakhe",
+        phone: "08034718097",
         address: "First Floor, Federal Secretariat Complex, Aduwawa Road, Benin City, Edo State",
         state: "Benin City",
       },
@@ -359,16 +352,7 @@ export default function ZonesPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
         {/* Zone stats */}
-        <AnimatedSection>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-8">
-            {["North West", "North East", "North Central", "South West", "South East", "South South"].map((zone) => (
-              <div key={zone} className="text-center p-3 rounded-xl bg-muted/40 border border-border">
-                <div className="text-[#009f3b] text-xl font-bold mb-1">●</div>
-                <p className="text-xs text-muted-foreground leading-snug">{zone}</p>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
+    
 
         {zones.map((zone) => (
           <AnimatedSection key={zone.name}>

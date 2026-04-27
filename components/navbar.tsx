@@ -181,7 +181,7 @@ export function Navbar() {
               alt="NFVCB Logo"
               width={44}
               height={44}
-              className="rounded"
+               className="rounded"
               priority
             />
             <div className="hidden sm:block">

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Film, Clapperboard, Receipt } from "lucide-react";
+import { Film, Clapperboard, Receipt, MonitorPlay, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Film Classification Symbols — G, PG, 12, 15, 18, RE",
@@ -272,7 +272,119 @@ export default function ClassificationsPage() {
         </StaggerContainer>
 
         {/* ══════════════════════════════════════════
-            SECTION 4 — CLASSIFICATION SYMBOLS
+            SECTION 4 — ONLINE CLASSIFICATION (DIGITAL DISTRIBUTION)
+        ══════════════════════════════════════════ */}
+        <AnimatedSection className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-1 h-6 rounded-full bg-[#009f3b]" aria-hidden />
+            <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
+              Online Classification — Films for Digital Distribution
+            </h2>
+          </div>
+          <p className="text-sm text-muted-foreground mb-6 max-w-3xl">
+            The NFVCB has introduced a faster, more convenient classification service that enables
+            producers of films and video works meant for online distribution to classify their
+            content from the comfort of their offices or studios.
+          </p>
+        </AnimatedSection>
+
+        <AnimatedSection className="mb-14">
+          <div className="rounded-2xl border border-[#009f3b]/25 bg-[#009f3b]/5 px-6 py-6 space-y-8">
+
+            {/* Step 1 */}
+            <div className="flex gap-4">
+              <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-black text-[#009f3b]">1</span>
+              </div>
+              <div>
+                <p className="text-sm font-black text-foreground mb-1">Send an Application Letter</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  Submit an application on your company letterhead stating the following about the film(s) or video work:
+                </p>
+                <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                  <li>Title, genre, running time and synopsis</li>
+                  <li>Major cast and crew list</li>
+                  <li>Copyright authorisation</li>
+                  <li>Names of the producer and director</li>
+                  <li>Name of the producer or production company to appear on the certificate</li>
+                  <li>Guild or association the producer and/or director are affiliated to</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex gap-4">
+              <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-black text-[#009f3b]">2</span>
+              </div>
+              <div className="w-full">
+                <p className="text-sm font-black text-foreground mb-1">Upload Your Film &amp; Submit</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                  Upload your film via <span className="font-semibold text-foreground">Google Drive</span> or{" "}
+                  <span className="font-semibold text-foreground">WeTransfer</span>, then send the link together with
+                  your application letter to the email address of your nearest NFVCB office.
+                  Always copy <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-[#009f3b] hover:underline">nfvcbonline@gmail.com</a> regardless of location.
+                </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {[
+                    { zone: "Abuja (HQ)", email: "verification@nfvcb.gov.ng" },
+                    { zone: "Lagos", email: "lagosverification@nfvcb.gov.ng" },
+                    { zone: "Ibadan", email: "ibadanverification@nfvcb.gov.ng" },
+                    { zone: "Benin", email: "beninverification@nfvcb.gov.ng" },
+                    { zone: "North West", email: "nwverification@nfvcb.gov.ng" },
+                    { zone: "North East", email: "neverification@nfvcb.gov.ng" },
+                    { zone: "North Central", email: "ncverification@nfvcb.gov.ng" },
+                    { zone: "South South", email: "ssverification@nfvcb.gov.ng" },
+                    { zone: "South East", email: "severification@nfvcb.gov.ng" },
+                  ].map(({ zone, email }) => (
+                    <div key={zone} className="rounded-xl border border-border bg-background px-4 py-3 flex items-start gap-3">
+                      <Mail className="h-4 w-4 text-[#009f3b] mt-0.5 shrink-0" aria-hidden />
+                      <div className="min-w-0">
+                        <p className="text-xs font-black text-foreground">{zone}</p>
+                        <a href={`mailto:${email}`} className="text-xs text-[#009f3b] hover:underline break-all">{email}</a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex gap-4">
+              <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-black text-[#009f3b]">3</span>
+              </div>
+              <div>
+                <p className="text-sm font-black text-foreground mb-1">Make Payment &amp; Receive Your Certificate</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Pay a flat rate of{" "}
+                  <span className="font-black text-foreground">₦50,000</span> for films of 1–120 minutes via the{" "}
+                  <span className="font-semibold text-foreground">Remita</span> federal government payment platform.
+                  Forward the payment receipt to the zonal/centre email where the film was submitted and copy{" "}
+                  <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-[#009f3b] hover:underline">nfvcbonline@gmail.com</a>.
+                  Once payment is confirmed your film will be classified and approved within{" "}
+                  <span className="font-black text-foreground">24 hours</span>, and the certificate sent to your email.
+                </p>
+              </div>
+            </div>
+
+            {/* Legal notice */}
+            <div className="rounded-xl border border-red-500/25 bg-red-500/5 px-5 py-4 flex gap-3 items-start">
+              <MonitorPlay className="h-5 w-5 text-red-500 shrink-0 mt-0.5" aria-hidden />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <span className="font-black text-red-500">IMPORTANT: </span>
+                It is <span className="font-bold text-foreground">illegal</span> to distribute or exhibit any film or
+                video work not classified by the NFVCB. It is also illegal to distribute films and video works if you
+                are not a licensed distributor. Visit{" "}
+                <a href="https://www.nfvcb.gov.ng" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#009f3b] hover:underline">www.nfvcb.gov.ng</a>{" "}
+                or any of our state or zonal offices for more details.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* ══════════════════════════════════════════
+            SECTION 5 — CLASSIFICATION SYMBOLS
         ══════════════════════════════════════════ */}
         <AnimatedSection className="mb-8">
           <div className="flex items-center gap-3 mb-2">

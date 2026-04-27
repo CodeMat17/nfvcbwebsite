@@ -176,11 +176,7 @@ export function Footer() {
               <p className="text-xs text-white/30 mt-1">
                 Federal Republic of Nigeria — All Rights Reserved
               </p>
-              <div className="flex gap-3 mt-2 justify-end">
-                <Link href="/privacy" className="text-xs text-white/40 hover:text-white/60 transition-colors">Privacy Policy</Link>
-                <Link href="/terms" className="text-xs text-white/40 hover:text-white/60 transition-colors">Terms of Use</Link>
-                <Link href="/sitemap" className="text-xs text-white/40 hover:text-white/60 transition-colors">Sitemap</Link>
-              </div>
+             
             </div>
           </div>
         </div>

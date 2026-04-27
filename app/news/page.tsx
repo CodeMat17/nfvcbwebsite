@@ -75,7 +75,7 @@ export default function NewsPage() {
             Featured Story
           </h2>
           <Link href={`/news/${featured.slug}`} className="group block">
-            <Card className="overflow-hidden hover:shadow-2xl transition-all duration-400 hover:-translate-y-1">
+            <Card className="overflow-hidden hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 pt-0">
               <div className="grid lg:grid-cols-2">
                 <div className="relative h-64 lg:h-auto min-h-56 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
                   {featured.image ? (
@@ -136,7 +136,7 @@ export default function NewsPage() {
             {rest.map((item) => (
               <StaggerItem key={item.slug}>
                 <Link href={`/news/${item.slug}`} className="group block h-full">
-                  <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30">
+                  <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
                     <div className="relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
                       {item.image ? (
                         <Image

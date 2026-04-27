@@ -139,14 +139,20 @@ export default async function NewsDetailPage({ params }: Props) {
 
               {/* Article body */}
               <article
-                className="prose prose-sm sm:prose max-w-none dark:prose-invert prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground"
+                className="prose prose-sm sm:prose max-w-none dark:prose-invert
+                  prose-headings:text-foreground prose-p:text-muted-foreground
+                  prose-p:leading-relaxed prose-strong:text-foreground
+                  prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg
+                  prose-pre:overflow-x-auto prose-pre:max-w-full
+                  prose-table:block prose-table:overflow-x-auto prose-table:w-full
+                  [&_*]:max-w-full [&_*]:break-words overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: item.content }}
               />
 
               {/* Share */}
               <div className="mt-10 pt-6 border-t border-border">
                 <p className="text-sm text-muted-foreground mb-3">Share this article:</p>
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   {["Twitter/X", "Facebook", "WhatsApp", "LinkedIn"].map((platform) => (
                     <button
                       key={platform}

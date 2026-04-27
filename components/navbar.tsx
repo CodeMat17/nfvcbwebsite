@@ -49,7 +49,8 @@ const navLinks = [
   { label: "Zones & Centres", href: "/zones" },
   { label: "Approved Movies", href: "/approved-movies" },
   { label: "News", href: "/news" },
-  { label: "Classifications", href: "/classifications" },
+  { label: "Classification", href: "/classification" },
+  { label: "FAQs", href: "/faqs" },
 ];
 
 function ThemeToggle() {

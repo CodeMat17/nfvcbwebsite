@@ -61,27 +61,16 @@ const services = [
 ];
 
 const forms = [
-  { name: "Film Submission Application Form", type: "Classification", size: "PDF" },
-  { name: "Music Video Submission Form", type: "Classification", size: "PDF" },
-  { name: "Skit / Short Video Submission Form", type: "Classification", size: "PDF" },
-  { name: "Video Game Submission Form", type: "Classification", size: "PDF" },
-  { name: "National Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Regional Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Suburban / State Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Community / LGA Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Exhibition Premises License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Community Exhibition Premises License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Mobile Exhibition Application Form", type: "Licensing", size: "PDF" },
-  { name: "Regional Mobile Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "National Mobile Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Online Exhibitor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "National Distributor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Regional Distributor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Suburban / State Distributor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Community / LGA Distributor License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Online Distributor (YouTube) License Application Form", type: "Licensing", size: "PDF" },
-  { name: "Film Import Permit Application Form", type: "Permits", size: "PDF" },
-  { name: "Film Export Permit Application Form", type: "Permits", size: "PDF" },
+  { name: "Application for Censorship and Approval for Exhibition", type: "Classification", href: "/forms/downloadable/Application for classification and approval for exhibition.pdf" },
+  { name: "Application for Exemption from Censorship", type: "Classification", href: "/forms/downloadable/Application for exemption.pdf" },
+  { name: "Application for Registration of Film/Video Work", type: "Classification", href: "/forms/downloadable/Application for the registration of film and video work.pdf" },
+  { name: "Application for License as a Distributor/Exhibitor", type: "Licensing", href: "/forms/downloadable/Application for distributor and exhibitor.pdf" },
+  { name: "Application for License of Premises", type: "Licensing", href: "/forms/downloadable/Application for license of premises.pdf" },
+  { name: "Application for Exportation of Films and Video Works", type: "Permits", href: "/forms/downloadable/Application for exportation.pdf" },
+  { name: "Notice of Appeal", type: "Permits", href: "/forms/downloadable/Noticeofappeal.pdf" },
+  { name: "Industry Information", type: "Reference", href: "/forms/downloadable/industry_information.pdf" },
+  { name: "National Film and Video Censors Board Act", type: "Reference", href: "/forms/downloadable/NFVCB Act CAP N40.pdf" },
+  { name: "NFVCB Regulations 2008", type: "Reference", href: "/forms/downloadable/NFVCB Regulations 2008.pdf" },
 ];
 
 const submissionProcess = [
@@ -186,13 +175,15 @@ export default function IndustryPage() {
             Download the appropriate form for your submission or application. All forms are in PDF format.
           </p>
 
-          {(["Classification", "Licensing", "Permits"] as const).map((category) => {
+          {(["Classification", "Licensing", "Permits", "Reference"] as const).map((category) => {
             const categoryForms = forms.filter((f) => f.type === category);
             const badgeColor =
               category === "Classification"
                 ? "bg-[#009f3b]/10 text-[#009f3b]"
                 : category === "Licensing"
                 ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                : category === "Reference"
+                ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
                 : "bg-[#fea600]/10 text-[#fea600]";
 
             return (
@@ -202,16 +193,20 @@ export default function IndustryPage() {
                   <span className="text-xs text-muted-foreground">{categoryForms.length} form{categoryForms.length !== 1 ? "s" : ""}</span>
                 </div>
                 <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                  {categoryForms.map(({ name }) => (
+                  {categoryForms.map(({ name, href }) => (
                     <StaggerItem key={name}>
                       <Card className="group p-5 flex flex-col gap-4 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200 h-full">
                         <div className="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-950/40 flex items-center justify-center shrink-0">
                           <span className="text-[10px] font-bold text-red-600 dark:text-red-400">PDF</span>
                         </div>
                         <p className="text-sm font-medium text-foreground leading-snug flex-1">{name}</p>
-                        <button className="flex items-center gap-1.5 text-xs text-primary font-semibold group-hover:underline w-fit mt-auto">
+                        <a
+                          href={href}
+                          download
+                          className="flex items-center gap-1.5 text-xs text-primary font-semibold group-hover:underline w-fit mt-auto"
+                        >
                           <Download className="h-3.5 w-3.5" /> Download
-                        </button>
+                        </a>
                       </Card>
                     </StaggerItem>
                   ))}

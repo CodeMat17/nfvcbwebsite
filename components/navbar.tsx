@@ -50,6 +50,7 @@ const navLinks = [
   { label: "Approved Movies", href: "/approved-movies" },
   { label: "News", href: "/news" },
   { label: "Classification", href: "/classification" },
+  { label: "Payment", href: "/payment" },
   { label: "FAQs", href: "/faqs" },
 ];
 
@@ -185,9 +186,9 @@ export function Navbar() {
             />
             <div className="hidden sm:block">
               <div className=" font-bold text-primary leading-tight">NFVCB</div>
-              <div className="lg:hidden xl:block text-sm text-muted-foreground leading-tight">
+              {/* <div className="lg:hidden xl:block text-sm text-muted-foreground leading-tight">
                 National Film & Video Censors Board
-              </div>
+              </div> */}
             </div>
           </Link>
 

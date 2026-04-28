@@ -8,11 +8,11 @@ const footerLinks = {
     { label: "Vision & Goals", href: "/about#vision" },
     { label: "Philosophy", href: "/about#philosophy" },
     { label: "Management Team", href: "/management" },
-    { label: "Departments & Units", href: "/departments" },
+    { label: "Departments", href: "/departments" },
   ],
   "Services": [
     { label: "Industry Information", href: "/industry" },
-    { label: "Distributor Licensing", href: "/industry/licensing" },
+    { label: "Licensing", href: "/industry/licensing" },
     { label: "Film Classification", href: "/industry#classification" },
     { label: "Service Charter", href: "/service-charter" },
     { label: "8-Point Action Plan", href: "/action-plan" },
@@ -161,7 +161,7 @@ export function Footer() {
                   { label: "18", src: "/classification_symbols/symbol_18.jpg" },
                   { label: "RE", src: "/classification_symbols/symbol_RE.jpg" },
                 ].map(({ label, src }) => (
-                  <Link key={label} href="/classifications" title={`${label} Classification`}>
+                  <Link key={label} href="/classification" title={`${label} Classification`}>
                     <div className="relative w-9 h-9 rounded overflow-hidden border border-white/20 hover:border-white/50 transition-colors">
                       <Image src={src} alt={`${label} classification`} fill className="object-contain" sizes="36px" />
                     </div>

@@ -44,9 +44,9 @@ const principalOfficers = [
     image: "/management_staff/vp.webp",
   },
   {
-    name: "Hon. Hannatu Musawa",
+    name: "Hon. Hannatu Musawa, Esq.",
     title: "Honourable Minister",
-    subtitle: "Ministry of Art, Culture and the Creative Economy",
+    subtitle: "Ministry of Arts, Culture, Tourism and Creative Economy",
     image: "/management_staff/minister.webp",
   },
 ];
@@ -67,23 +67,80 @@ const dgAchievements = [
 // Ordered: Directors → Heads → Ag. Heads → Zonal Coordinators
 const seniorManagement = [
   // Directors
-  { name: "Deborah A. Malgwi", position: "Director, Film Censorship & Classification", image: "/management_staff/fcc.webp" },
-  { name: "Francis Nzekwu Esq.", position: "Director, Planning Research & Statistics", image: "/management_staff/prs.jpg" },
-  { name: "Peace Ononobi", position: "Director, Service Innovation Department", image: "/management_staff/sid.jpeg" },
-  { name: "Onwumere Ogbonna", position: "Director, Corporate Affairs", image: "/management_staff/ca.webp" },
-  { name: "Etuechere Martins", position: "Director, Special Duties", image: "/management_staff/sd.jpeg" },
-  // Heads
-  { name: "Hasina D. Nasir", position: "Head, Legal Services", image: "/management_staff/lg.jpg" },
-  { name: "Isaac Adeyemi", position: "Head of Finance & Account", image: "/management_staff/accounts.jpeg" },
+  {
+    name: "Deborah A. Malgwi",
+    position: "Director, Film Censorship & Classification",
+    image: "/management_staff/fcc.webp",
+  },
+  {
+    name: "Peace Ononobi",
+    position: "Director, Service Innovation Department",
+    image: "/management_staff/sid.jpeg",
+  },
+  {
+    name: "Onwumere Ogbonna",
+    position: "Director, Corporate Affairs",
+    image: "/management_staff/ca.webp",
+  },
+  {
+    name: "Francis Nzekwu Esq.",
+    position: "Director, Planning Research & Statistics",
+    image: "/management_staff/prs.jpg",
+  },
+
+  {
+    name: "Etuechere Martins",
+    position: "Director, Operations",
+    image: "/management_staff/sd.jpeg",
+  },
+  {
+    name: "Olaoye Samuel",
+    position: "Ag. Head, Administrative Department",
+    image: "/management_staff/admin.jpeg",
+  },
+  {
+    name: "Hasina D. Nasir",
+    position: "Head, Legal Services",
+    image: "/management_staff/lg.jpg",
+  },
+  {
+    name: "Isaac Adeyemi",
+    position: "Head of Finance & Account",
+    image: "/management_staff/accounts.jpeg",
+  },
   // Ag. Heads
-  { name: "Rhoda Dandaura", position: "Ag. Head, Director, Licensing and Documentation", image: null },
-  { name: "Olaoye Samuel", position: "Ag. Head, Administrative Department", image: "/management_staff/admin.jpeg" },
+  {
+    name: "Rhoda Dandaura",
+    position: "Ag. Head, Director, Licensing and Documentation",
+    image: null,
+  },
+
   // Zonal Coordinators
-  { name: "Hubert Odeh", position: "Zonal Coordinator, South East Zone", image: "/management_staff/sez.png" },
-  { name: "Emagha Uju", position: "Zonal Coordinator, South West Zone", image: "/management_staff/swz.jpg" },
-  { name: "Margarita Adeyinka Oluwole", position: "Zonal Coordinator, North Central Zone", image: "/management_staff/ncz.jpg" },
-  { name: "Sangari Rabi Muhammed", position: "Zonal Coordinator, North East Zone", image: "/management_staff/nez.jpg" },
-  { name: "Aliyu Sani", position: "Ag. Zonal Coordinator, North West Zone", image: null },
+  {
+    name: "Hubert Odeh",
+    position: "Zonal Coordinator, South East Zone",
+    image: "/management_staff/sez.png",
+  },
+  {
+    name: "Emagha Uju",
+    position: "Zonal Coordinator, South West Zone",
+    image: "/management_staff/swz.jpg",
+  },
+  {
+    name: "Margarita Adeyinka Oluwole",
+    position: "Zonal Coordinator, North Central Zone",
+    image: "/management_staff/ncz.jpg",
+  },
+  {
+    name: "Sangari Rabi Muhammed",
+    position: "Zonal Coordinator, North East Zone",
+    image: "/management_staff/nez.jpg",
+  },
+  {
+    name: "Aliyu Sani",
+    position: "Ag. Zonal Coordinator, North West Zone",
+    image: null,
+  },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────

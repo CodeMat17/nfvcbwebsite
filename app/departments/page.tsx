@@ -152,17 +152,7 @@ const departments = [
       "Providing needed feedback on comments and reactions from the public",
     ],
   },
-  {
-    name: "Information & Communication Technology (ICT) Department",
-    color: "border-cyan-500",
-    badge: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400",
-    functions: [
-      "Promoting and implementing information communication technology integration",
-      "Hardware maintenance across all NFVCB facilities",
-      "Software and website programming and maintenance",
-      "Network maintenance and help desk services",
-    ],
-  },
+  
 ];
 
 export default function DepartmentsPage() {
@@ -179,7 +169,7 @@ export default function DepartmentsPage() {
               Organisation
             </Badge>
             <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Departments &amp; Units
+              Departments
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
               NFVCB is organised into specialised departments, each playing a vital role in

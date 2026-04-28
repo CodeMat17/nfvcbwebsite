@@ -161,7 +161,7 @@ export function Footer() {
                   { label: "18", src: "/classification_symbols/symbol_18.jpg" },
                   { label: "RE", src: "/classification_symbols/symbol_RE.jpg" },
                 ].map(({ label, src }) => (
-                  <Link key={label} href="/classification" title={`${label} Classification`}>
+                  <Link key={label} href="/classification/#symbols" title={`${label} Classification`}>
                     <div className="relative w-9 h-9 rounded overflow-hidden border border-white/20 hover:border-white/50 transition-colors">
                       <Image src={src} alt={`${label} classification`} fill className="object-contain" sizes="36px" />
                     </div>

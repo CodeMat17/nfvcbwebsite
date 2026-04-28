@@ -386,7 +386,7 @@ export default function ClassificationsPage() {
         {/* ══════════════════════════════════════════
             SECTION 5 — CLASSIFICATION SYMBOLS
         ══════════════════════════════════════════ */}
-        <AnimatedSection className="mb-8">
+        <AnimatedSection id="symbols" className="mb-8 pt-26">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-1 h-6 rounded-full bg-blue-500" aria-hidden />
             <h2 className="text-lg font-black uppercase tracking-wide text-foreground">

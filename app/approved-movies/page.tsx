@@ -65,7 +65,7 @@ export default function ApprovedMoviesPage() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 w-full">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-8">
             <Film className="h-5 w-5 text-primary" />

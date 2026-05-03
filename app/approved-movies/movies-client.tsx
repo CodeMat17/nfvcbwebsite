@@ -65,7 +65,7 @@ export function MoviesClient({ posts }: Props) {
   return (
     <div>
       {/* Search bar */}
-      <div className="relative mb-8 max-w-sm">
+      <div className="relative mb-8 w-full max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
         <input
           type="search"
@@ -100,7 +100,7 @@ export function MoviesClient({ posts }: Props) {
         </div>
       ) : (
         <>
-        <StaggerContainer key={safePage} className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+        <StaggerContainer key={safePage} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {paginated.map((post) => {
             const filmCount = post.movies.length;
             const langs = [...new Set(post.movies.map((f) => f.language))];

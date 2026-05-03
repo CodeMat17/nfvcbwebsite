@@ -119,7 +119,8 @@ function DesktopDropdown({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
+      <Link
+        href={link.href}
         className="flex items-center gap-1 text-sm font-medium text-foreground/80 hover:text-primary transition-colors px-3 py-2"
         aria-expanded={open}
         aria-haspopup="true"
@@ -128,7 +129,7 @@ function DesktopDropdown({
         <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown className="h-3.5 w-3.5" aria-hidden />
         </motion.span>
-      </button>
+      </Link>
       <AnimatePresence>
         {open && (
           <motion.div

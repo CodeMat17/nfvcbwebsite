@@ -78,75 +78,65 @@ export function MoviesClient({ posts }: Props) {
 
             return (
               <StaggerItem key={post.slug}>
-                <Link href={`/approved-movies/${post.slug}`} className="group block h-full">
-                  <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
-                    <div className="relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
+                <Link
+                  href={`/approved-movies/${post.slug}`}
+                  className='group block h-full'>
+                  <Card className='h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0'>
+                    <div className='relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden'>
                       {post.image ? (
                         <Image
                           src={post.image}
                           alt={post.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className='object-cover group-hover:scale-105 transition-transform duration-500'
                         />
                       ) : (
                         <>
                           <Image
-                            src="/logo.webp"
-                            alt=""
+                            src='/logo.webp'
+                            alt=''
                             width={80}
                             height={80}
-                            className="opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
+                            className='opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500'
                             aria-hidden
                           />
-                          <div className="absolute bottom-3 right-3 bg-[#fea600] text-[#001506] text-xs font-bold px-2.5 py-1 rounded-full">
+                          <div className='absolute bottom-3 right-3 bg-[#fea600] text-[#001506] text-xs font-bold px-2.5 py-1 rounded-full'>
                             {filmCount} Movies
                           </div>
                         </>
                       )}
                     </div>
 
-                    <CardHeader className="pb-2">
-                      <Badge className="w-fit text-[10px] mb-2 bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20">
-                        Monthly Approval
-                      </Badge>
-                      <CardTitle className="text-base group-hover:text-primary transition-colors leading-snug text-balance">
-                        {post.title}
-                      </CardTitle>
-                    </CardHeader>
+                   
+                    <h1 className='px-4 font-bold'>{post.title}</h1>
 
-                    <CardContent className="space-y-3">
-                      <div className="flex flex-wrap gap-1">
+                    <CardContent className='space-y-2'>
+                      <div className='flex flex-wrap gap-1'>
                         {langs.map((lang) => (
                           <span
                             key={lang}
-                            className="text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground"
-                          >
+                            className='text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground'>
                             {lang}
                           </span>
                         ))}
                       </div>
 
-                      <div className="flex flex-wrap gap-1">
+                      <div className='flex flex-wrap gap-1'>
                         {ratings.map((r) => (
                           <span
                             key={r}
-                            className="text-[10px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-medium"
-                          >
+                            className='text-[10px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-medium'>
                             {r}
                           </span>
                         ))}
                       </div>
 
-                      <CardDescription className="text-[10px]">
-                        {filmCount} movie{filmCount !== 1 ? "s" : ""} approved this period
-                      </CardDescription>
-
-                      <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-1">
-                        <span className="flex items-center gap-1">
-                          <User className="h-3 w-3" /> {post.publishedBy}
+                      <div className='flex items-center justify-between text-[10px] text-muted-foreground pt-1'>
+                        <span className='flex items-center gap-1'>
+                          <User className='h-3 w-3' /> {post.publishedBy}
                         </span>
-                        <span className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
+                        <span className='flex items-center gap-1'>
+                          <Calendar className='h-3 w-3' />
                           {new Date(post.date).toLocaleDateString("en-NG", {
                             day: "numeric",
                             month: "short",
@@ -155,8 +145,8 @@ export function MoviesClient({ posts }: Props) {
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-1.5 text-xs text-primary font-medium group-hover:gap-2.5 transition-all pt-1">
-                        View approvals <ArrowRight className="h-3.5 w-3.5" />
+                      <div className='flex items-center gap-1.5 text-xs text-primary font-medium group-hover:gap-2.5 transition-all pt-1'>
+                        View approvals <ArrowRight className='h-3.5 w-3.5' />
                       </div>
                     </CardContent>
                   </Card>

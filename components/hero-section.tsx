@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { ClassificationPanel } from "@/components/classification-panel";
-import { SideNewsStack } from "@/components/side-news-stack";
+import { AsideNewsStack } from "@/components/AsideNewsStack";
+import AsideApprovedMovies from "./AsideApprovedMovies";
 
 /* ─── magic particles ─── */
 function MagicParticles() {
@@ -37,11 +38,7 @@ export function HeroSection() {
     <section className="relative bg-background py-6 border-b border-border overflow-hidden">
       <MagicParticles />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/*
-          Mobile:  1 column stacked
-          Large:   3 columns — carousel wide (5fr), news stack (3fr), classification (2fr)
-          All columns stretch to the same height.
-        */}
+       
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_3fr_2fr] gap-4 lg:items-stretch">
           {/* Col 1 — Carousel */}
           <div className="flex flex-col">
@@ -50,7 +47,8 @@ export function HeroSection() {
 
           {/* Col 2 & 3 — News stack + Classification */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:contents">
-            <SideNewsStack />
+            {/* <AsideNewsStack /> */}
+            <AsideApprovedMovies />
             <ClassificationPanel />
           </div>
         </div>

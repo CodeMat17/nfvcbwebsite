@@ -9,6 +9,17 @@ import { Badge } from "@/components/ui/badge";
 
 const slides = [
   {
+    badge: "Licensing",
+    title: "Get Licensed — Distribute Films Legally Across Nigeria",
+    subtitle:
+      "Four distributor licence categories to fit every business scope: Online, National, Regional, and Community. Apply today.",
+    cta: { label: "Licensing Requirements", href: "/industry/licensing" },
+    ctaSecondary: { label: "Industry Info", href: "/industry" },
+    accent: "#009f3b",
+    gradient: "from-[#001506] via-[#003d14] to-[#001506]",
+    image: "/shaibu.jpeg",
+  },
+  {
     badge: "Our Mandate",
     title: "Nigeria's Premier Film & Video Regulatory Authority",
     subtitle:
@@ -28,19 +39,9 @@ const slides = [
     ctaSecondary: { label: "Ratings Guide", href: "/policy#categories" },
     accent: "#fea600",
     gradient: "from-[#1a0e00] via-[#2b1800] to-[#001506]",
-    image: '/classification_symbols/symbol_G.jpg'
+    image: "/classification_symbols/symbol_G.jpg",
   },
-  {
-    badge: "Licensing",
-    title: "Get Licensed — Distribute Films Legally Across Nigeria",
-    subtitle:
-      "Four distributor licence categories to fit every business scope: Online, National, Regional, and Community. Apply today.",
-    cta: { label: "Licensing Requirements", href: "/industry/licensing" },
-    ctaSecondary: { label: "Industry Info", href: "/industry" },
-    accent: "#009f3b",
-    gradient: "from-[#001506] via-[#003d14] to-[#001506]",
-    image: "/shaibu.jpeg",
-  },
+
   {
     badge: "Enforcement",
     title: "Protecting Nigeria's Film Market From Illegal Content",

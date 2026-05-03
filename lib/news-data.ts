@@ -11,60 +11,10 @@ export interface NewsItem {
 }
 
 export const newsItems: NewsItem[] = [
-  {
-    slug: "nfvcb-launches-digital-classification-portal",
-    title: "NFVCB Launches Digital Classification Portal for Filmmakers",
-    excerpt:
-      "The National Film and Video Censors Board has unveiled a new online portal that allows filmmakers to submit works for classification electronically, reducing turnaround time significantly.",
-    content: `<p>The National Film and Video Censors Board (NFVCB) has officially launched its Digital Classification Portal, a transformative step in the Board's commitment to modernising film regulation in Nigeria.</p>
-    <p>The portal, accessible via the NFVCB website, enables producers, marketers and distributors to submit films, music videos, skits, and video games for classification without physical visits to any of the Board's offices.</p>
-    <p>Speaking at the launch, Director-General Dr. Shaibu Husseini described the development as a milestone: "We are determined to reduce bureaucracy and embrace technology. This portal will cut processing time from weeks to days and make our services accessible to every stakeholder across Nigeria."</p>
-    <p>Key features of the portal include real-time application tracking, digital certificate download, payment integration via Remita, and a feedback mechanism for applicants. The Board plans to expand the system to include mobile applications in subsequent phases.</p>`,
-    date: "2026-03-15",
-    category: "press-release",
-    image: "https://picsum.photos/seed/nfvcb-portal/800/500",
-    author: "Corporate Affairs Department",
-  },
-  {
-    slug: "nfvcb-cracks-down-on-uncensored-films",
-    title: "NFVCB Operations Department Reports 200+ Arrests in Q1 2026",
-    excerpt:
-      "Field operations conducted across all six geopolitical zones led to over 200 arrests for distribution and exhibition of unapproved films and video works.",
-    content: `<p>The NFVCB Operations Department has recorded significant success in its first quarter enforcement drive, making over 200 arrests across the country's six geopolitical zones.</p>
-    <p>The crackdown targeted distribution and exhibition of unapproved (uncensored/unclassified) films and video works, unlicensed distribution, and the forging of the Board's classification symbols and certificates.</p>
-    <p>Zonal coordinators from South West, South East, South South, North Central, North West, and North East all reported seizures of pirated content and unclassified materials from markets, cinemas, and roadside vendors.</p>
-    <p>The Director-General warned that the Board would continue to strengthen its enforcement activities: "Compliance with the NFVCB Act is not optional. We will continue to protect the integrity of the classification system and the Nigerian viewing public."</p>`,
-    date: "2026-04-01",
-    category: "news",
-    author: "Operations Department",
-  },
-  {
-    slug: "nollywood-classification-guidelines-review",
-    title: "NFVCB Invites Public Input on Revised Classification Guidelines",
-    excerpt:
-      "In line with biennial review requirements, the Board is inviting stakeholders, industry professionals, and the public to submit inputs toward revising the national film classification guidelines.",
-    content: `<p>The National Film and Video Censors Board has commenced its biennial review of the national film classification guidelines and is inviting public submissions from stakeholders, industry players, and members of the public.</p>
-    <p>The review, which is a statutory requirement, aims to ensure that the classification framework remains current, reflective of evolving community standards, and aligned with global best practices.</p>
-    <p>Areas under review include classification categories, age ratings, content thresholds for violence, language, and sexual content, as well as new guidelines for digital content, streaming, and social media video works.</p>
-    <p>Submissions can be made via email to guidelines@nfvcb.gov.ng or through the Board's head office at No. 20 Alexandria Crescent, Wuse II, Abuja. The consultation period runs for 60 days.</p>`,
-    date: "2026-04-10",
-    category: "announcement",
-    image: "https://picsum.photos/seed/nfvcb-guidelines/800/500",
-    author: "Planning, Research & Statistics Department",
-  },
-  {
-    slug: "director-general-oxford-programme",
-    title: "DG Shaibu Husseini Graduates from Oxford's Blavatnik School Programme",
-    excerpt:
-      "NFVCB Director-General Dr. Shaibu Husseini has successfully completed the AIG-Public Leaders Programme at the Blavatnik School of Governance, University of Oxford.",
-    content: `<p>Dr. Shaibu Husseini, Director-General of the National Film and Video Censors Board, has returned from the United Kingdom after successfully completing the prestigious AIG-Public Leaders Programme at the Blavatnik School of Governance, University of Oxford.</p>
-    <p>The programme, funded by the Aig-Imoukhuede Foundation, brings together senior public servants from across Africa to build leadership capacity and expose them to global governance best practices.</p>
-    <p>Dr. Husseini, who holds a First Class BSc and PhD in Mass Communication from the University of Lagos, is expected to apply the learnings from the programme to advance the NFVCB's institutional transformation agenda.</p>
-    <p>"This experience has deepened my conviction that Nigeria's film regulatory framework can rank among the best in the world. We have the talent, the legislation, and now the strategy," Dr. Husseini said on his return.</p>`,
-    date: "2026-02-20",
-    category: "news",
-    author: "Corporate Affairs Department",
-  },
+
+ 
+
+ 
   {
     slug: "nfvcb-amaa-selection-committee",
     title: "NFVCB Affirms Commitment to Africa Movie Academy Awards Excellence",

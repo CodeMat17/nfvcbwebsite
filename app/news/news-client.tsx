@@ -22,14 +22,8 @@ function categoryColor(cat: string) {
   return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
 }
 
-const CATEGORIES = [
-  { value: "all", label: "All" },
-  { value: "news", label: "News" },
-  { value: "press-release", label: "Press Release" },
-  { value: "announcement", label: "Announcement" },
-] as const;
 
-type Category = (typeof CATEGORIES)[number]["value"];
+
 
 interface Props {
   items: NewsItem[];
@@ -37,20 +31,16 @@ interface Props {
 
 export default function NewsClient({ items }: Props) {
   const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<Category>("all");
+
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return items.filter((item) => {
-      const matchesCategory =
-        activeCategory === "all" || item.category === activeCategory;
-      const matchesQuery =
-        !q ||
-        item.title.toLowerCase().includes(q) ||
-        item.author.toLowerCase().includes(q);
-      return matchesCategory && matchesQuery;
-    });
-  }, [items, query, activeCategory]);
+    return items.filter((item) =>
+      !q ||
+      item.title.toLowerCase().includes(q) ||
+      item.author.toLowerCase().includes(q)
+    );
+  }, [items, query]);
 
   const featured = filtered[0];
   const rest = filtered.slice(1);
@@ -70,21 +60,7 @@ export default function NewsClient({ items }: Props) {
           />
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.value}
-              onClick={() => setActiveCategory(cat.value)}
-              className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-colors ${
-                activeCategory === cat.value
-                  ? "bg-[#009f3b] text-white border-[#009f3b]"
-                  : "bg-transparent text-muted-foreground border-border hover:border-[#009f3b]/50 hover:text-foreground"
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+      
       </div>
 
       {filtered.length === 0 ? (
@@ -95,7 +71,7 @@ export default function NewsClient({ items }: Props) {
         <>
           {/* Featured */}
           <AnimatedSection>
-            <h2 className="text-lg font-semibold text-muted-foreground mb-4 uppercase tracking-wider text-xs">
+            <h2 className="font-semibold text-muted-foreground mb-4 uppercase tracking-wider text-sm">
               Featured Story
             </h2>
             <Link href={`/news/${featured.slug}`} className="group block">

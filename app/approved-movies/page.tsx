@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
 import { approvedMoviesPosts } from "@/lib/approved-movies-data";
 import { ArrowRight, Film } from "lucide-react";
-import { SideNewsStack } from "@/components/side-news-stack";
+import { AsideNewsStack } from "@/components/AsideNewsStack";
 import { ClassificationPanel } from "@/components/classification-panel";
 import { MoviesClient } from "./movies-client";
 
@@ -80,8 +80,8 @@ export default function ApprovedMoviesPage() {
 
           <aside className="w-full lg:w-72 shrink-0">
             <div className="flex flex-col gap-4 sticky top-24">
-              <div className="h-72">
-                <SideNewsStack />
+              <div className="">
+                <AsideNewsStack />
               </div>
               <div className="h-72">
                 <ClassificationPanel />

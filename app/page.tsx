@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -8,18 +9,18 @@ import { Card } from "@/components/ui/card";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
 import { HeroSection } from "@/components/hero-section";
 import { FilmOfTheMonth } from "@/components/film-of-the-month";
-import { NewsGrid } from "@/app/_components/news-grid";
+import { NewsUpdate } from "@/app/_components/news-grid";
 import { StatsBar } from "@/app/_components/stats-bar";
 import { MissionCinema } from "@/app/_components/mission-cinema";
 
 /* ─── data ─── */
 const quickLinks = [
-  { label: "Submit a Film", href: "/industry", icon: Clapperboard, bg: "bg-[#009f3b]", glow: "hover:shadow-[#009f3b]/40" },
-  { label: "Apply for Licence", href: "/industry/licensing", icon: BookOpen, bg: "bg-[#fea600]", glow: "hover:shadow-[#fea600]/40" },
-  { label: "Classification Guide", href: "/policy", icon: Shield, bg: "bg-[#009f3b]/80", glow: "hover:shadow-[#009f3b]/30" },
-  { label: "Find a Zone Office", href: "/zones", icon: Globe, bg: "bg-[#001506] dark:bg-[#003d14]", glow: "hover:shadow-black/30" },
-  { label: "Law Enforcement", href: "/law-enforcement", icon: Scale, bg: "bg-red-600", glow: "hover:shadow-red-500/30" },
-  { label: "Service Charter", href: "/service-charter", icon: Sparkles, bg: "bg-purple-600", glow: "hover:shadow-purple-500/30" },
+  { label: "Submit a Film",        href: "/industry",           icon: Clapperboard, accent: "#009f3b", tag: "Film" },
+  { label: "Apply for Licence",    href: "/industry/licensing", icon: BookOpen,     accent: "#fea600", tag: "Licence" },
+  { label: "Classification Guide", href: "/policy",             icon: Shield,       accent: "#34d399", tag: "Policy" },
+  { label: "Find a Zone Office",   href: "/zones",              icon: Globe,        accent: "#60a5fa", tag: "Zones" },
+  { label: "Law Enforcement",      href: "/law-enforcement",    icon: Scale,        accent: "#f87171", tag: "Legal" },
+  { label: "Service Charter",      href: "/service-charter",    icon: Sparkles,     accent: "#c084fc", tag: "Charter" },
 ];
 
 const features = [
@@ -32,26 +33,84 @@ const features = [
 /* ─── sections ─── */
 function QuickServices() {
   return (
-    <section className="py-8 bg-muted/20 border-b border-border" aria-label="Quick services">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="flex items-center gap-2 mb-5">
-          <Sparkles className="h-4 w-4 text-[#fea600]" aria-hidden />
-          <span className="text-xs font-black uppercase tracking-widest text-muted-foreground">Quick Services</span>
+    <section className="relative py-16 overflow-hidden" aria-label="Quick services">
+      {/* layered background */}
+      <div className="absolute inset-0 bg-[#030f05]" aria-hidden />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,#009f3b18,transparent)]" aria-hidden />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#009f3b]/30 to-transparent" aria-hidden />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* header */}
+        <AnimatedSection className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-10">
+          <div>
+            <div className="flex items-center gap-2.5 mb-2">
+              <span className="block w-4 h-px bg-[#fea600]" aria-hidden />
+              <span className="text-[#fea600] text-[10px] font-extrabold uppercase tracking-[0.25em]">Online Portal</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Quick Services
+            </h2>
+          </div>
+          <p className="text-xs text-white/35 max-w-[200px] text-right leading-relaxed hidden sm:block">
+            Access regulatory services without visiting an office
+          </p>
         </AnimatedSection>
-        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-stretch">
-          {quickLinks.map(({ label, href, icon: Icon, bg, glow }) => (
-            <StaggerItem key={href} className="h-full">
-              <Link href={href} className="group block h-full">
-                <div className={`h-full ${bg} flex flex-col items-center gap-3 p-5 rounded-2xl shadow-md group-hover:shadow-2xl ${glow} transition-all duration-300 group-hover:-translate-y-2 cursor-pointer`}>
-                  <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 group-hover:bg-white/25">
-                    <Icon className="h-8 w-8 text-white" aria-hidden />
+
+        {/* cards */}
+        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {quickLinks.map(({ label, href, icon: Icon, accent, tag }) => (
+            <StaggerItem key={href}>
+              <Link href={href} className="group block h-full" aria-label={label}>
+                <div
+                  className="relative h-full overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.04] backdrop-blur-sm flex flex-col gap-5 p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/[0.15] cursor-pointer hover:shadow-[0_12px_40px_-8px_var(--qs-accent)]"
+                  style={{ "--qs-accent": accent } as React.CSSProperties}
+                >
+                  {/* animated top accent bar */}
+                  <div
+                    className="absolute top-0 inset-x-0 h-[2px] rounded-t-2xl transition-all duration-500 group-hover:h-[3px] group-hover:opacity-100 opacity-60"
+                    style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+                    aria-hidden
+                  />
+
+                  {/* subtle corner glow */}
+                  <div
+                    className="absolute -top-8 -right-8 w-20 h-20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl pointer-events-none"
+                    style={{ background: accent }}
+                    aria-hidden
+                  />
+
+                  {/* icon */}
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: `${accent}1a`, border: `1px solid ${accent}35` }}
+                  >
+                    <Icon className="h-5 w-5" style={{ color: accent }} aria-hidden />
                   </div>
-                  <p className="font-bold text-white text-center leading-tight">{label}</p>
+
+                  {/* text */}
+                  <div className="flex flex-col gap-1.5 flex-1">
+                    <span
+                      className="text-[9px] font-bold uppercase tracking-[0.18em]"
+                      style={{ color: `${accent}99` }}
+                    >
+                      {tag}
+                    </span>
+                    <p className="font-bold text-white text-sm leading-snug">{label}</p>
+                  </div>
+
+                  {/* arrow */}
+                  <ArrowRight
+                    className="h-3.5 w-3.5 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 -translate-x-1"
+                    style={{ color: accent }}
+                    aria-hidden
+                  />
                 </div>
               </Link>
             </StaggerItem>
           ))}
         </StaggerContainer>
+
       </div>
     </section>
   );
@@ -150,7 +209,7 @@ export default function HomePage() {
       <HeroSection />
       <StatsBar />
       <FilmOfTheMonth />
-      <NewsGrid />
+      <NewsUpdate />
       <QuickServices />
       <WhatWeDo />
       <MissionCinema />

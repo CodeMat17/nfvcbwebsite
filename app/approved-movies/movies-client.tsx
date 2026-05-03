@@ -155,7 +155,7 @@ export function MoviesClient({ posts }: Props) {
                         {ratings.map((r) => (
                           <span
                             key={r}
-                            className='text-[10px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-medium'>
+                            className='text-[11px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-bold'>
                             {r}
                           </span>
                         ))}

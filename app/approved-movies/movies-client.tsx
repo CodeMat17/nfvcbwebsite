@@ -6,8 +6,19 @@ import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { StaggerContainer, StaggerItem } from "@/components/animated-section";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import type { ApprovedMoviesPost } from "@/lib/approved-movies-data";
 import { ArrowRight, Calendar, Film, Search, User, X } from "lucide-react";
+
+const PAGE_SIZE = 9;
 
 interface Props {
   posts: ApprovedMoviesPost[];
@@ -21,6 +32,13 @@ function monthChipFromTitle(title: string) {
 
 export function MoviesClient({ posts }: Props) {
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [prevQuery, setPrevQuery] = useState(query);
+
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    setPage(1);
+  }
 
   const months = useMemo(
     () => [...new Set(posts.map((p) => monthChipFromTitle(p.title)))],
@@ -32,6 +50,17 @@ export function MoviesClient({ posts }: Props) {
     if (!q) return posts;
     return posts.filter((p) => p.title.toLowerCase().includes(q));
   }, [posts, query]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const paginated = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  function getPageNumbers(): (number | "ellipsis")[] {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (safePage <= 4) return [1, 2, 3, 4, 5, "ellipsis", totalPages];
+    if (safePage >= totalPages - 3) return [1, "ellipsis", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    return [1, "ellipsis", safePage - 1, safePage, safePage + 1, "ellipsis", totalPages];
+  }
 
   return (
     <div>
@@ -70,8 +99,9 @@ export function MoviesClient({ posts }: Props) {
           </button>
         </div>
       ) : (
-        <StaggerContainer className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          {filtered.map((post) => {
+        <>
+        <StaggerContainer key={safePage} className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {paginated.map((post) => {
             const filmCount = post.movies.length;
             const langs = [...new Set(post.movies.map((f) => f.language))];
             const ratings = [...new Set(post.movies.map((f) => f.rating))];
@@ -155,6 +185,47 @@ export function MoviesClient({ posts }: Props) {
             );
           })}
         </StaggerContainer>
+
+          {totalPages > 1 && (
+            <Pagination className="mt-10">
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    aria-disabled={safePage === 1}
+                    className={safePage === 1 ? "pointer-events-none opacity-50 cursor-default" : "cursor-pointer"}
+                  />
+                </PaginationItem>
+
+                {getPageNumbers().map((entry, i) =>
+                  entry === "ellipsis" ? (
+                    <PaginationItem key={`ellipsis-${i}`}>
+                      <PaginationEllipsis />
+                    </PaginationItem>
+                  ) : (
+                    <PaginationItem key={entry}>
+                      <PaginationLink
+                        isActive={entry === safePage}
+                        onClick={() => setPage(entry)}
+                        className="cursor-pointer"
+                      >
+                        {entry}
+                      </PaginationLink>
+                    </PaginationItem>
+                  )
+                )}
+
+                <PaginationItem>
+                  <PaginationNext
+                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    aria-disabled={safePage === totalPages}
+                    className={safePage === totalPages ? "pointer-events-none opacity-50 cursor-default" : "cursor-pointer"}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          )}
+        </>
       )}
     </div>
   );

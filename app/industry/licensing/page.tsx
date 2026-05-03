@@ -57,7 +57,7 @@ export default function LicensingPage() {
         <AnimatedSection>
           <h2 className="text-2xl font-bold text-foreground mb-2">Licence Categories</h2>
           <p className="text-sm text-muted-foreground mb-8">
-            Use the tabs below to navigate between licence types. Click <strong className="text-foreground">View Requirements</strong> on any card to see the full application checklist and fee breakdown.
+            Browse all licence categories below. Click <strong className="text-foreground">View Requirements</strong> on any card to see the full application checklist and fee breakdown.
           </p>
           <LicenceCards />
         </AnimatedSection>

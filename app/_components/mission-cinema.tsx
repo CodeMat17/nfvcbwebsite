@@ -37,7 +37,7 @@ export function MissionCinema() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <Badge className="mb-5 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30 text-xs font-bold px-4 py-1.5">
+          <Badge className="mb-5 bg-[#009f3b]/5 text-[#009f3b] border-[#009f3b]/70 text-lg font-bold px-4 py-3">
             Our Mission
           </Badge>
           <h2 id="mission-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-6 text-balance leading-snug">

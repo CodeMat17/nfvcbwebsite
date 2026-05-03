@@ -163,7 +163,7 @@ function DGSpotlight() {
       <AnimatedSection>
         <Card className="overflow-hidden border-border hover:shadow-xl transition-all duration-500">
           <div className="grid md:grid-cols-3">
-            <div className="relative bg-gradient-to-br from-[#001506] to-[#009f3b]/40 overflow-hidden h-72 md:h-auto md:min-h-0 md:aspect-auto rounded-md m-4">
+            <div className="relative bg-gradient-to-br from-[#001506] to-[#009f3b]/40 overflow-hidden h-72 sm:h-96 md:h-72 md:aspect-auto lg:h-96 rounded-md m-4">
               <Image
                 src="/management_staff/dr_shaibu.webp"
                 alt="Dr. Shaibu Husseini, Director-General of NFVCB"

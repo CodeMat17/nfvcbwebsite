@@ -53,7 +53,7 @@ export function NewsUpdate() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-20 h-20 rounded-2xl bg-white/6 border border-white/10 flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
                         {featured.category === "press-release" ? <Film className="h-10 w-10 text-nfvcb-green/60" aria-hidden /> :
-                         featured.category === "announcement" ? <Sparkles className="h-10 w-10 text-nfvcb-gold/60" aria-hidden /> :
+                         featured.category === "announcement" ? <Sparkles className="h-10 w-10 text-[#fea600]/60" aria-hidden /> :
                          <Globe className="h-10 w-10 text-blue-400/60" aria-hidden />}
                       </div>
                     </div>

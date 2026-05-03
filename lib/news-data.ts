@@ -12,9 +12,31 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
 
- 
+  {
+    slug: "nfvcb-boss-mtf-arise-fly-shine",
+    title: "NFVCB Boss to MultiChoice Talent Factory Graduands: \"Arise, Fly and Shine\"",
+    excerpt:
+      "NFVCB Executive Director Dr. Shaibu Husseini delivered the keynote at the MTF Class of 2026 Graduation Ceremony, urging graduating filmmakers to embrace their role as cultural influencers and nation builders.",
+    content: `<p>The Executive Director/Chief Executive Officer of the National Film and Video Censors Board (NFVCB), Shaibu Husseini, Ph.D., has called on graduating filmmakers of the MultiChoice Talent Factory (MTF) to embrace their responsibility as cultural influencers and nation builders.</p>
+    <p>Delivering the keynote address at the MTF Class of 2026 Graduation Ceremony, Dr. Husseini urged the graduates—referred to as "Luminaries"—to "Arise, Fly and Shine" as they transition from training into professional practice within the film industry.</p>
+    <p>Dr. Husseini commended MultiChoice for sustaining the Talent Factory initiative, describing it as a strategic investment in the future of African storytelling.</p>
+    <p>"The MultiChoice Talent Factory has consistently demonstrated a strong commitment to developing the next generation of African storytellers—equipping them with skills, discipline, exposure, and industry relevance," he said.</p>
+    <p>He noted that the programme continues to raise standards across the continent by nurturing creative talent capable of competing globally.</p>
+    <p>Addressing the graduates, Dr. Husseini emphasized that their certification represents more than academic achievement—it is a mandate to influence society through storytelling.</p>
+    <p>"Film is not just entertainment; it is influence. Content is not just expression; it has the power to shape lives and society," he stated.</p>
+    <p>He highlighted the global rise of Nollywood, citing successful productions such as <em>Black Book</em>, <em>King of Boys</em>, <em>Anikulapo</em>, and <em>To Kill a Monkey</em> as evidence of the industry's evolution into a global cultural force.</p>
+    <p>Dr. Husseini urged the graduates to maintain discipline and professionalism as they enter the industry, stressing the importance of joining relevant guilds and professional bodies.</p>
+    <p>"Training gives you wings; discipline determines how far you fly. To sustain growth in Nollywood, we need organised creatives committed to professional standards," he said.</p>
+    <p>He also reminded filmmakers of their obligation to submit completed works to the NFVCB for classification, reinforcing the role of regulation in maintaining industry integrity.</p>
+    <p>In his closing remarks, Dr. Husseini encouraged the graduates to remain ambassadors of excellence and to contribute meaningfully to the creative ecosystem.</p>
+    <p>"Wherever you go, let your work reflect integrity, professionalism, and excellence. Let your stories elevate Africa's voice on the global stage and contribute to national development," he added.</p>
+    <p>He further called on the graduates to sustain the MTF vision by collaborating, mentoring emerging talents, and strengthening the network of African creatives.</p>
+    <p>The graduation ceremony was attended by the CEO of MultiChoice Kemi Omotosho, Academic Director of MTF Akaoma Onyeonoru, Dean of the School of Communication at Pan Atlantic University Dr. Ike Obianya, Head of Content Channel MultiChoice Atinuke Babatunde, Moses Babatope of Nile Cinema, President of the Directors Guild of Nigeria Uche Agbo, and President of the Association of Movie Producers Queen Blessing Ebigieson. Highlights of the ceremony included the presentation of certificates and awards to graduands and their induction into the Directors Guild of Nigeria and the Association of Movie Producers.</p>`,
+    date: "2026-05-03",
+    category: "press-release",
+    author: "Ogbonna Onwumere, Director, Corporate Affairs",
+  },
 
- 
   {
     slug: "nfvcb-amaa-selection-committee",
     title: "NFVCB Affirms Commitment to Africa Movie Academy Awards Excellence",

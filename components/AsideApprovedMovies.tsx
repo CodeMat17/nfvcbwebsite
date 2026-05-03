@@ -12,26 +12,29 @@ const AsideApprovedMovies = () => {
     <div className='rounded-xl border bg-card p-5'>
       <div className='flex items-center gap-2 mb-4'>
         <Film className='h-4 w-4 text-nfvcb-green' />
-        <h2 className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
-          Recently Approved Films
+        <h2 className='text-sm font-black uppercase tracking-widest text-foreground'>
+          Recently Approved Movies
         </h2>
       </div>
       <ul className='space-y-4'>
         {recentApproved.map((post) => {
-          const ratingCounts = post.movies.reduce<Record<string, number>>((acc, f) => {
-            acc[f.rating] = (acc[f.rating] ?? 0) + 1;
-            return acc;
-          }, {});
+          const ratingCounts = post.movies.reduce<Record<string, number>>(
+            (acc, f) => {
+              acc[f.rating] = (acc[f.rating] ?? 0) + 1;
+              return acc;
+            },
+            {},
+          );
           return (
             <li key={post.slug}>
               <Link
                 href={`/approved-movies/${post.slug}`}
                 className='group block'>
-                <p className='text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-snug'>
+                <p className=' font-medium text-foreground group-hover:text-primary transition-colors leading-snug'>
                   {post.title}
                 </p>
-                <div className='text-[11px] text-muted-foreground mt-0.5'>
-                  <div className='flex flex-wrap gap-1 mt-1'>
+                <div className='text-[12px] text-muted-foreground mt-0.5'>
+                  <div className='flex flex-wrap gap-1 mt-1 items-center'>
                     {Object.entries(ratingCounts)
                       .sort(([a], [b]) => {
                         const order = [
@@ -48,15 +51,16 @@ const AsideApprovedMovies = () => {
                       .map(([r, count]) => (
                         <span
                           key={r}
-                          className='text-[10px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-medium'>
+                          className='text-[11px] px-2 py-0.5 bg-[#fea600]/5 text-[#fea600] rounded-full font-bold'>
                           {r} ({count})
                         </span>
                       ))}
+
+                    <span className='italic text-muted-foreground text-xs'>
+                       — {post.movies.length} movie
+                      {post.movies.length !== 1 ? "s" : ""}{" "}
+                    </span>
                   </div>
-                  <span>
-                    {post.movies.length} movie
-                    {post.movies.length !== 1 ? "s" : ""}{" "}
-                  </span>
                 </div>
               </Link>
             </li>

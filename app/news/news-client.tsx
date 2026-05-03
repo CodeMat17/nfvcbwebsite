@@ -7,8 +7,19 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import type { NewsItem } from "@/lib/news-data";
 import { ArrowRight, Calendar, User, Search } from "lucide-react";
+
+const PAGE_SIZE = 9;
 
 function categoryLabel(cat: string) {
   if (cat === "press-release") return "Press Release";
@@ -22,16 +33,19 @@ function categoryColor(cat: string) {
   return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
 }
 
-
-
-
 interface Props {
   items: NewsItem[];
 }
 
 export default function NewsClient({ items }: Props) {
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
+  const [prevQuery, setPrevQuery] = useState(query);
 
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    setPage(1);
+  }
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -43,11 +57,20 @@ export default function NewsClient({ items }: Props) {
   }, [items, query]);
 
   const featured = filtered[0];
-  const rest = filtered.slice(1);
+  const allRest = filtered.slice(1);
+  const totalPages = Math.max(1, Math.ceil(allRest.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const rest = allRest.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  function getPageNumbers(): (number | "ellipsis")[] {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (safePage <= 4) return [1, 2, 3, 4, 5, "ellipsis", totalPages];
+    if (safePage >= totalPages - 3) return [1, "ellipsis", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    return [1, "ellipsis", safePage - 1, safePage, safePage + 1, "ellipsis", totalPages];
+  }
 
   return (
     <div className="space-y-10">
-      {/* Search + Filter bar */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
         <div className="relative w-full sm:max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -59,8 +82,6 @@ export default function NewsClient({ items }: Props) {
             className="pl-9"
           />
         </div>
-
-      
       </div>
 
       {filtered.length === 0 ? (
@@ -69,7 +90,6 @@ export default function NewsClient({ items }: Props) {
         </div>
       ) : (
         <>
-          {/* Featured */}
           <AnimatedSection>
             <h2 className="font-semibold text-muted-foreground mb-4 uppercase tracking-wider text-sm">
               Featured Story
@@ -127,13 +147,12 @@ export default function NewsClient({ items }: Props) {
             </Link>
           </AnimatedSection>
 
-          {/* Rest */}
-          {rest.length > 0 && (
+          {allRest.length > 0 && (
             <div>
               <h2 className="text-lg font-semibold text-muted-foreground mb-6 uppercase tracking-wider">
                 All Stories
               </h2>
-              <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <StaggerContainer key={safePage} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {rest.map((item) => (
                   <StaggerItem key={item.slug}>
                     <Link href={`/news/${item.slug}`} className="group block h-full">
@@ -185,6 +204,46 @@ export default function NewsClient({ items }: Props) {
                   </StaggerItem>
                 ))}
               </StaggerContainer>
+
+              {totalPages > 1 && (
+                <Pagination className="mt-10">
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious
+                        onClick={() => setPage((p) => Math.max(1, p - 1))}
+                        aria-disabled={safePage === 1}
+                        className={safePage === 1 ? "pointer-events-none opacity-50 cursor-default" : "cursor-pointer"}
+                      />
+                    </PaginationItem>
+
+                    {getPageNumbers().map((entry, i) =>
+                      entry === "ellipsis" ? (
+                        <PaginationItem key={`ellipsis-${i}`}>
+                          <PaginationEllipsis />
+                        </PaginationItem>
+                      ) : (
+                        <PaginationItem key={entry}>
+                          <PaginationLink
+                            isActive={entry === safePage}
+                            onClick={() => setPage(entry)}
+                            className="cursor-pointer"
+                          >
+                            {entry}
+                          </PaginationLink>
+                        </PaginationItem>
+                      )
+                    )}
+
+                    <PaginationItem>
+                      <PaginationNext
+                        onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                        aria-disabled={safePage === totalPages}
+                        className={safePage === totalPages ? "pointer-events-none opacity-50 cursor-default" : "cursor-pointer"}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              )}
             </div>
           )}
         </>

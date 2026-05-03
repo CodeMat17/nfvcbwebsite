@@ -142,7 +142,7 @@ export default function AboutPage() {
                 <Target className="h-6 w-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Mission Statement</h3>
-              <p className="text-muted-foreground leading-relaxed italic">
+              <p className="text-muted-foreground leading-relaxed italic text-lg">
                 &ldquo;To contribute to the positive transformation of the Nigerian society through
                 the censorship of films and video works whilst balancing the need to preserve
                 freedom of expression within the law, and limit social harm caused by films.&rdquo;
@@ -155,7 +155,7 @@ export default function AboutPage() {
                 <Eye className="h-6 w-6 text-[#001506]" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Our Vision</h3>
-              <p className="text-muted-foreground leading-relaxed italic">
+              <p className="text-muted-foreground leading-relaxed italic text-lg">
                 &ldquo;To be recognized as a world-class film and video regulatory agency that
                 institutes best practice in the discharge of its duties.&rdquo;
               </p>
@@ -166,12 +166,12 @@ export default function AboutPage() {
         {/* Functions */}
         <AnimatedSection>
           <h2 className="text-2xl font-bold text-foreground mb-6">Functions of the Board</h2>
-          <StaggerContainer className="grid sm:grid-cols-2 gap-3">
+          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 items-stretch">
             {functions.map((fn, i) => (
-              <StaggerItem key={i}>
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/40 border border-border hover:border-primary/30 transition-colors">
+              <StaggerItem key={i} className="h-full">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-muted/40 border border-border hover:border-primary/30 transition-colors h-full">
                   <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <p className="text-sm text-muted-foreground">{fn}</p>
+                  <p className=" text-muted-foreground">{fn}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -184,14 +184,14 @@ export default function AboutPage() {
           <p className="text-muted-foreground mb-6">
             Our strategic goals guide every aspect of NFVCB&apos;s operations.
           </p>
-          <StaggerContainer className="space-y-3">
+          <StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
             {goals.map((goal, i) => (
-              <StaggerItem key={i}>
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border hover:shadow-sm hover:border-primary/20 transition-all">
+              <StaggerItem key={i} className="h-full">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border hover:shadow-sm hover:border-primary/20 transition-all h-full">
                   <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold">
                     {i + 1}
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{goal}</p>
+                  <p className="text- text-muted-foreground leading-relaxed">{goal}</p>
                 </div>
               </StaggerItem>
             ))}

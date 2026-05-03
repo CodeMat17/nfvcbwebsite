@@ -125,10 +125,10 @@ export default function LawEnforcementPage() {
             {infringements.map((item, i) => (
               <StaggerItem key={i}>
                 <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 border border-border hover:border-red-300 dark:hover:border-red-800 transition-colors">
-                  <div className="w-5 h-5 rounded-full bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 flex items-center justify-center text-[10px] font-bold shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 flex items-center justify-center text-[11px] font-bold shrink-0">
                     {i + 1}
                   </div>
-                  <p className="text-xs text-muted-foreground leading-snug">{item}</p>
+                  <p className="text-sm text-muted-foreground leading-snug">{item}</p>
                 </div>
               </StaggerItem>
             ))}

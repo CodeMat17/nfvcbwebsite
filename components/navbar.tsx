@@ -46,11 +46,11 @@ const navLinks = [
       { label: "Law Enforcement", href: "/law-enforcement" },
     ],
   },
-  { label: "Zones & Centres", href: "/zones" },
+
   { label: "Approved Movies", href: "/approved-movies" },
-  { label: "News", href: "/news" },
+  { label: "News & Updates", href: "/news" },
   { label: "Classification", href: "/classification" },
-  { label: "Payment", href: "/payment" },
+
   { label: "FAQs", href: "/faqs" },
 ];
 
@@ -185,7 +185,7 @@ export function Navbar() {
                className="rounded"
               priority
             />
-            <div className="hidden sm:block">
+            <div className="hidden xl:block">
               <div className=" font-bold text-primary leading-tight">NFVCB</div>
               {/* <div className="lg:hidden xl:block text-sm text-muted-foreground leading-tight">
                 National Film & Video Censors Board
@@ -225,11 +225,6 @@ export function Navbar() {
                       <div className="text-xs text-muted-foreground">Film & Video Censors Board</div>
                     </div>
                   </div>
-                  {/* <SheetClose asChild>
-                    <Button variant="ghost" size="icon">
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </SheetClose> */}
                 </div>
                 <nav className="p-4 overflow-y-auto" aria-label="Mobile navigation">
                   {navLinks.map((link) => (

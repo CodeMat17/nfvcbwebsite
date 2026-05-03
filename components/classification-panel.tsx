@@ -38,8 +38,8 @@ export function ClassificationPanel() {
     <div className="flex flex-col h-72 lg:h-full border border-border rounded-2xl overflow-hidden bg-card">
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <Film className="h-3.5 w-3.5 text-[#009f3b] shrink-0" />
-        <span className="text-xs font-black uppercase tracking-widest text-foreground">Film Ratings</span>
+        <Film className="h-4 w-4 text-[#009f3b] shrink-0" />
+        <span className="text-sm font-black uppercase tracking-widest text-foreground">Film Ratings</span>
       </div>
 
       {/* Sliding symbol */}

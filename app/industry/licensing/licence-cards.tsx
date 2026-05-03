@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -610,44 +611,29 @@ const distributorLicences: LicenceEntry[] = [
   },
 ];
 
-/* ─── TABS CONFIG ────────────────────────────────────────────────────────── */
-const TABS = [
-  { id: "exhibitors",  label: "Exhibitors",          licences: exhibitorLicences },
-  { id: "premises",   label: "Exhibition Premises",  licences: premisesLicences },
-  { id: "mobile",     label: "Mobile Exhibition",    licences: mobileLicences },
-  { id: "online",     label: "Online Exhibition",    licences: onlineLicences },
-  { id: "distributors", label: "Distributors",       licences: distributorLicences },
+/* ─── SECTIONS CONFIG ────────────────────────────────────────────────────── */
+const SECTIONS = [
+  { id: "distributors", label: "Distributors Licence",          licences: distributorLicences },
+  { id: "exhibitors",   label: "Exhibitors Licence",            licences: exhibitorLicences },
+  { id: "premises",     label: "Exhibitors Premises Licence",   licences: premisesLicences },
+  { id: "mobile",       label: "Mobile Exhibition Licence",     licences: mobileLicences },
+  { id: "online",       label: "Online Exhibition Licence",     licences: onlineLicences },
 ];
 
 /* ─── COMPONENT ──────────────────────────────────────────────────────────── */
 export function LicenceCards() {
-  const [activeTab, setActiveTab] = useState("exhibitors");
   const [selected, setSelected] = useState<LicenceEntry | null>(null);
-
-  const current = TABS.find((t) => t.id === activeTab)!;
 
   return (
     <>
-      {/* Tab nav */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              activeTab === tab.id
-                ? "bg-primary text-white shadow-sm"
-                : "bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {current.licences.map((licence) => {
+      <div className="space-y-14">
+        {SECTIONS.map((section) => (
+          <div key={section.id}>
+            <h3 className="text-lg font-semibold text-foreground mb-5 pb-2 border-b border-border">
+              {section.label}
+            </h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {section.licences.map((licence) => {
           const { title, processingFee, licenceFee, seating, shareCapital, color, badgeColor, iconBg, icon: Icon, desc } = licence;
           return (
             <Card
@@ -655,11 +641,11 @@ export function LicenceCards() {
               className={`relative border-t-4 ${color} flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group`}
             >
               <div className="p-5 pb-4">
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex flex-col gap-2 mb-3">
                   <div className={`${iconBg} w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-sm`}>
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <Badge className={`${badgeColor} border-0 font-medium px-2 py-3 text-base leading-snug`}>{title}</Badge>
+                  <span className={`${badgeColor} inline-block rounded-md font-semibold px-2 py-1 text-sm leading-snug`}>{title}</span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{desc}</p>
               </div>
@@ -699,6 +685,9 @@ export function LicenceCards() {
             </Card>
           );
         })}
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Detail sheet */}

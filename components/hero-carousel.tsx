@@ -137,7 +137,7 @@ export function HeroCarousel() {
           <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
         </div>
       ) : (
-        <div className="absolute inset-0 flex items-center justify-end pr-10 opacity-[0.1] pointer-events-none" aria-hidden>
+        <div className="absolute inset-0 flex items-center justify-end pr-10 opacity-[0.18] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" width={280} height={280} className="object-contain" />
         </div>
       )}

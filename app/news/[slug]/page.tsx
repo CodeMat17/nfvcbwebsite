@@ -78,7 +78,7 @@ export default async function NewsDetailPage({ params }: Props) {
               className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-6 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" /> Back to News
-            </Link>
+            </Link> <br/>
             <Badge className={`w-fit mb-4 text-xs ${categoryColor(item.category)}`}>
               {categoryLabel(item.category)}
             </Badge>

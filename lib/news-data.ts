@@ -34,7 +34,7 @@ export const newsItems: NewsItem[] = [
     <p>The graduation ceremony was attended by the CEO of MultiChoice Kemi Omotosho, Academic Director of MTF Akaoma Onyeonoru, Dean of the School of Communication at Pan Atlantic University Dr. Ike Obianya, Head of Content Channel MultiChoice Atinuke Babatunde, Moses Babatope of Nile Cinema, President of the Directors Guild of Nigeria Uche Agbo, and President of the Association of Movie Producers Queen Blessing Ebigieson. Highlights of the ceremony included the presentation of certificates and awards to graduands and their induction into the Directors Guild of Nigeria and the Association of Movie Producers.</p>`,
     date: "2026-05-03",
     category: "press-release",
-    author: "Ogbonna Onwumere, Director, Corporate Affairs",
+    author: "Corporate Affairs",
   },
 
   {
@@ -91,7 +91,7 @@ export const newsItems: NewsItem[] = [
     <p>He concluded by commending the organisers of the Coal City Film Festival for their vision and contribution to Nigeria's cultural economy, urging filmmakers to continue telling authentic stories that can resonate across global screens.</p>`,
     date: "2026-04-28",
     category: "press-release",
-    author: "Ogbonna Onwumere, Director, Corporate Affairs",
+    author: "Corporate Affairs",
   },
   {
     slug: "nfvcb-ncc-partnership-digital-piracy",
@@ -109,7 +109,7 @@ export const newsItems: NewsItem[] = [
     <p>Dr. Husseini emphasized that Nigeria's film industry is both a cultural treasure and an economic driver. "Protecting it is in our collective national interest," he said, adding that the NFVCB-NCC partnership would ensure a safer digital ecosystem and a fair marketplace for creative talents.</p>`,
     date: "2026-04-25",
     category: "press-release",
-    author: "Ogbonna Onwumere, Director, Corporate Affairs",
+    author: "Corporate Affairs",
   },
   {
     slug: "nfvcb-ceo-advocates-indigenous-language-films",
@@ -124,7 +124,7 @@ export const newsItems: NewsItem[] = [
     <p>Additionally, he emphasized the need to formalize the film sector to accurately capture its contributions to the GDP, urging stakeholders to embrace structure for sustainable growth.</p>`,
     date: "2026-04-22",
     category: "news",
-    author: "Ogbonna Onwumere, Corporate Affairs",
+    author: "Corporate Affairs",
   },
   {
     slug: "nfvcb-school-outreach-programme",

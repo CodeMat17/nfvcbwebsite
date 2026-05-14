@@ -13,6 +13,23 @@ export interface NewsItem {
 export const newsItems: NewsItem[] = [
 
   {
+    slug: "nfvcb-classifies-304-films-2026",
+    title: "NFVCB Classifies 304 Films in First Four Months of 2026, Records Growth Over 2025",
+    excerpt:
+      "The National Film and Video Censors Board has approved and classified a total of 304 films between January and April 2026, reflecting sustained growth in Nigeria's film industry — up from 267 films classified in the same period in 2025.",
+    content: `<p>The National Film and Video Censors Board (NFVCB) has approved and classified a total of 304 films between January and April 2026, reflecting sustained growth in Nigeria's film industry and reaffirming the Board's commitment to effective regulation of the sector.</p>
+    <p>The figure represents an increase over the 267 films classified within the corresponding period in 2025. In the first four months of 2025, the Board classified 25 films in January, 58 in February, 114 in March and 70 in April. According to the 2026 classification statistics, January recorded the highest number of approved films with 102 classifications, followed by 83 in February, 77 in March and 42 in April.</p>
+    <p>The language distribution of the 304 films classified during the review period shows English language productions leading with 201 films, followed by Igbo with 44 films, Yoruba with 42, Hindi with 9, Hausa with 5 and Bini with 3. Further analysis of the classification categories indicates that the majority of the films fell within the "15" and "18" age ratings, reflecting prevailing themes and creative trends in contemporary film productions. The classification distribution is as follows: G: 10 films, PG: 16 films, 12/12A: 18 films, 15: 157 films, and 18: 103 films.</p>
+    <p>Commenting on the performance, the Director, Film Censorship and Classification, Deborah Malgwi, reaffirmed commitment of the Board to promoting responsible storytelling, professionalism and the continued growth of the Nigerian film industry in line with national values and international best practices. She further noted that the increase in film classification activities underscores the resilience and expanding capacity of Nigeria's creative industry, particularly in local content production and distribution.</p>
+    <p>Malgwi further reminded filmmakers that film classification remains a critical regulatory mechanism designed to protect children and vulnerable audiences from unsuitable content while also providing necessary viewing guidance to parents, guardians and the general public.</p>
+    <p>She also commended filmmakers, producers and stakeholders across the value chain for their continued cooperation and compliance with the Board's regulatory framework.</p>
+    <p><em>Signed:<br/>Ogbonna Onwumere,<br/>Director, Corporate Affairs.<br/>National Film and Video Censors Board<br/>Abuja.</em></p>`,
+    date: "2026-05-14",
+    category: "press-release",
+    author: "Corporate Affairs",
+  },
+
+  {
     slug: "nfvcb-boss-mtf-arise-fly-shine",
     title: "NFVCB Boss to MultiChoice Talent Factory Graduands: \"Arise, Fly and Shine\"",
     excerpt:
@@ -34,6 +51,7 @@ export const newsItems: NewsItem[] = [
     <p>The graduation ceremony was attended by the CEO of MultiChoice Kemi Omotosho, Academic Director of MTF Akaoma Onyeonoru, Dean of the School of Communication at Pan Atlantic University Dr. Ike Obianya, Head of Content Channel MultiChoice Atinuke Babatunde, Moses Babatope of Nile Cinema, President of the Directors Guild of Nigeria Uche Agbo, and President of the Association of Movie Producers Queen Blessing Ebigieson. Highlights of the ceremony included the presentation of certificates and awards to graduands and their induction into the Directors Guild of Nigeria and the Association of Movie Producers.</p>`,
     date: "2026-05-03",
     category: "press-release",
+    image: "/shaibu.jpeg",
     author: "Corporate Affairs",
   },
 

@@ -12,6 +12,8 @@ import { FilmOfTheMonth } from "@/components/film-of-the-month";
 import { NewsUpdate } from "@/app/_components/news-grid";
 import { StatsBar } from "@/app/_components/stats-bar";
 import { MissionCinema } from "@/app/_components/mission-cinema";
+import { AsideNewsStack } from "@/components/AsideNewsStack";
+import { CompanyAdverts } from "@/components/CompanyAdverts";
 
 /* ─── data ─── */
 const quickLinks = [

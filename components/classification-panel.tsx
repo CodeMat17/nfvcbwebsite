@@ -7,13 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Film } from "lucide-react";
 
 const classificationSymbols = [
-  { file: "/classification_symbols/symbol_G.jpg",   label: "G",   desc: "General Audience" },
-  { file: "/classification_symbols/symbol_PG.jpg",  label: "PG",  desc: "Parental Guidance" },
-  { file: "/classification_symbols/symbol_12.jpg",  label: "12",  desc: "12 & Over" },
-  { file: "/classification_symbols/symbol_12A.png", label: "12A", desc: "Accompanied Under-12" },
-  { file: "/classification_symbols/symbol_15.jpg",  label: "15",  desc: "15 & Over" },
-  { file: "/classification_symbols/symbol_18.jpg",  label: "18",  desc: "Adults Only" },
-  { file: "/classification_symbols/symbol_RE.jpg",  label: "RE",  desc: "Restricted Exhibition" },
+  { file: "/classification_symbols/symbol_G.jpeg",   label: "G",   desc: "General Audience" },
+  { file: "/classification_symbols/symbol_PG.jpeg",  label: "PG",  desc: "Parental Guidance" },
+  { file: "/classification_symbols/symbol_12.jpeg",  label: "12",  desc: "12 & Over" },
+  { file: "/classification_symbols/symbol_12A.jpeg", label: "12A", desc: "Accompanied Under-12" },
+  { file: "/classification_symbols/symbol_15.jpeg",  label: "15",  desc: "15 & Over" },
+  { file: "/classification_symbols/symbol_18.jpeg",  label: "18",  desc: "Adults Only" },
+  { file: "/classification_symbols/symbol_RE.jpeg",  label: "RE",  desc: "Restricted Exhibition" },
 ];
 
 const SYMBOL_MS = 3500;

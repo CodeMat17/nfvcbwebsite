@@ -222,7 +222,7 @@ export function Navbar() {
                     <Image src="/logo.webp" alt="NFVCB" width={36} height={36} className="rounded" />
                     <div>
                       <div className="text-sm font-bold text-primary">NFVCB</div>
-                      <div className="text-xs text-muted-foreground">Film & Video Censors Board</div>
+                     
                     </div>
                   </div>
                 </div>

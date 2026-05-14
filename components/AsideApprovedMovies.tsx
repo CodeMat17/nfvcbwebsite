@@ -1,4 +1,5 @@
 import { approvedMoviesPosts } from '@/lib/approved-movies-data';
+import { Separator } from '@/components/ui/separator';
 import { ArrowRight, Film } from 'lucide-react';
 import Link from 'next/link';
 
@@ -63,6 +64,9 @@ const AsideApprovedMovies = () => {
                   </div>
                 </div>
               </Link>
+              {recentApproved.indexOf(post) < recentApproved.length - 1 && (
+                <Separator className="mt-4" />
+              )}
             </li>
           );
         })}

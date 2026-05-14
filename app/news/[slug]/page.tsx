@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
 import { newsItems, getNewsItem } from "@/lib/news-data";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
+import { ShareButton } from "@/components/ShareButton";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -70,7 +71,7 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none" aria-hidden>
           <Image src={item.image ?? "/logo.webp"} alt="" fill className="object-cover object-center blur-sm" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001506]/80 to-[#001506]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001506]/80 to-[#001506] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <Link
@@ -78,7 +79,8 @@ export default async function NewsDetailPage({ params }: Props) {
               className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-6 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" /> Back to News
-            </Link> <br/>
+            </Link>
+            <br />
             <Badge className={`w-fit mb-4 text-xs ${categoryColor(item.category)}`}>
               {categoryLabel(item.category)}
             </Badge>
@@ -110,26 +112,19 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className="grid lg:grid-cols-3 gap-10">
           {/* Main content */}
           <div className="lg:col-span-2">
+            {/* Share button — outside AnimatedSection so it's always interactive */}
+            <div className="mb-6">
+              <ShareButton title={item.title} url={`/news/${slug}`} />
+            </div>
+
             <AnimatedSection>
               {/* Article image */}
               <div className="relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center mb-8">
                 {item.image ? (
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={item.image} alt={item.title} fill className="object-cover" />
                 ) : (
                   <>
-                    <Image
-                      src="/logo.webp"
-                      alt=""
-                      width={200}
-                      height={200}
-                      className="opacity-20"
-                      aria-hidden
-                    />
+                    <Image src="/logo.webp" alt="" width={200} height={200} className="opacity-20" aria-hidden />
                     <div className="absolute bottom-4 left-4 right-4">
                       <p className="text-white/50 text-xs text-center">{item.title}</p>
                     </div>
@@ -139,7 +134,7 @@ export default async function NewsDetailPage({ params }: Props) {
 
               {/* Article body */}
               <article
-                className="prose prose-sm sm:prose max-w-none dark:prose-invert
+                className="news-article prose prose-sm sm:prose max-w-none dark:prose-invert
                   prose-headings:text-foreground prose-p:text-muted-foreground
                   prose-p:leading-relaxed prose-strong:text-foreground
                   prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg
@@ -148,21 +143,6 @@ export default async function NewsDetailPage({ params }: Props) {
                   [&_*]:max-w-full [&_*]:break-words overflow-hidden"
                 dangerouslySetInnerHTML={{ __html: item.content }}
               />
-
-              {/* Share */}
-              <div className="mt-10 pt-6 border-t border-border">
-                <p className="text-sm text-muted-foreground mb-3">Share this article:</p>
-                <div className="flex flex-wrap gap-3">
-                  {["Twitter/X", "Facebook", "WhatsApp", "LinkedIn"].map((platform) => (
-                    <button
-                      key={platform}
-                      className="text-xs px-3 py-1.5 rounded-lg border border-border hover:border-primary/30 hover:text-primary text-muted-foreground transition-colors"
-                    >
-                      {platform}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </AnimatedSection>
           </div>
 
@@ -184,10 +164,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     The National Film and Video Censors Board — Nigeria&apos;s film regulatory authority since 1993.
                   </p>
-                  <Link
-                    href="/about"
-                    className="mt-3 block text-xs text-primary hover:underline"
-                  >
+                  <Link href="/about" className="mt-3 block text-xs text-primary hover:underline">
                     Learn more about NFVCB →
                   </Link>
                 </CardContent>
@@ -238,10 +215,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   <p className="text-xs text-muted-foreground mb-3">
                     For press enquiries, contact the Corporate Affairs Department.
                   </p>
-                  <a
-                    href="mailto:media@nfvcb.gov.ng"
-                    className="text-xs text-primary hover:underline font-medium"
-                  >
+                  <a href="mailto:media@nfvcb.gov.ng" className="text-xs text-primary hover:underline font-medium">
                     media@nfvcb.gov.ng
                   </a>
                 </CardContent>

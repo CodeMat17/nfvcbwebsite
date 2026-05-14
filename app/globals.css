@@ -133,6 +133,16 @@
   }
 }
 
+@layer base {
+  .news-article p {
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+  .news-article p:last-child {
+    margin-bottom: 0;
+  }
+}
+
 @layer utilities {
   .film-grain {
     position: relative;

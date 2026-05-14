@@ -39,7 +39,7 @@ const slides = [
     ctaSecondary: { label: "Ratings Guide", href: "/policy#categories" },
     accent: "#fea600",
     gradient: "from-[#1a0e00] via-[#2b1800] to-[#001506]",
-    image: "/classifications.png",
+    image: "/classifications.jpg",
   },
 
   {

@@ -153,29 +153,6 @@ export default function LawEnforcementPage() {
           </Card>
         </AnimatedSection>
 
-        {/* Pending Cases */}
-        <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
-            <Gavel className="h-6 w-6 text-primary" /> Pending Cases
-          </h2>
-          <StaggerContainer className="space-y-3">
-            {pendingCases.map(({ parties, court }, i) => (
-              <StaggerItem key={i}>
-                <div className="flex items-start gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors">
-                  <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold shrink-0">
-                    {i + 1}
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{parties}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
-                      <Gavel className="h-3 w-3" /> {court}
-                    </p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </AnimatedSection>
       </div>
     </>
   );

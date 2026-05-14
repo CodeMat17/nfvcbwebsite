@@ -12,7 +12,7 @@ const slides = [
     badge: "Licensing",
     title: "Get Licensed — Distribute Films Legally Across Nigeria",
     subtitle:
-      "Four distributor licence categories to fit every business scope: Online, National, Regional, and Community. Apply today.",
+      "Four distributor license categories to fit every business scope: Online, National, Regional, and Community. Apply today.",
     cta: { label: "Licensing Requirements", href: "/industry/licensing" },
     ctaSecondary: { label: "Industry Info", href: "/industry" },
     accent: "#009f3b",
@@ -51,6 +51,7 @@ const slides = [
     ctaSecondary: { label: "Our Policy", href: "/policy" },
     accent: "#fea600",
     gradient: "from-[#001506] via-[#1a0a00] to-[#001506]",
+    image: '/nfvcb_ncc.jpg'
   },
 ];
 

@@ -54,11 +54,37 @@ const shareOptions = (title: string, url: string) => [
   },
 ];
 
+function isMobileDevice(): boolean {
+  if (typeof navigator === "undefined") return false;
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    (navigator.maxTouchPoints > 1 && /Mac/i.test(navigator.userAgent));
+}
+
+function canUseNativeShare(data: ShareData): boolean {
+  if (!isMobileDevice()) return false;
+  if (typeof navigator.share !== "function") return false;
+  if (typeof navigator.canShare === "function" && !navigator.canShare(data)) return false;
+  return true;
+}
+
 export function ShareButton({ title, url }: ShareButtonProps) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const absoluteUrl = url.startsWith("http") ? url : `https://nfvcb.gov.ng${url}`;
+  const shareData: ShareData = { title, url: absoluteUrl };
+
+  async function handleShare() {
+    if (canUseNativeShare(shareData)) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return;
+      }
+    }
+    setOpen(true);
+  }
 
   async function copyLink() {
     try {
@@ -66,19 +92,22 @@ export function ShareButton({ title, url }: ShareButtonProps) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // unavailable
+      // clipboard unavailable — silent fail
     }
   }
 
   return (
     <>
-      <Button variant="outline" size="sm" className="gap-2" onClick={() => setOpen(true)}>
+      <Button variant="outline" size="sm" className="gap-2 text-white rounded-full p-4 bg-transparent" onClick={handleShare}>
         <Share2 className="h-4 w-4" />
         Share
       </Button>
 
       {open && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Share this article"
           className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         >
@@ -90,6 +119,7 @@ export function ShareButton({ title, url }: ShareButtonProps) {
               <p className="font-semibold text-foreground">Share</p>
               <button
                 onClick={() => setOpen(false)}
+                aria-label="Close"
                 className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md hover:bg-muted"
               >
                 <X className="h-4 w-4" />

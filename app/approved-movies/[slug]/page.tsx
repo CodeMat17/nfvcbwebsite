@@ -7,6 +7,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { approvedMoviesPosts, getApprovedMoviesPost } from "@/lib/approved-movies-data";
 import { ArrowLeft, Calendar, Film, User } from "lucide-react";
 import { FilmTable } from "./film-table";
+import { ShareButton } from "@/components/ShareButton";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -107,6 +108,10 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
               <span className="flex items-center gap-1.5">
                 <Film className="h-4 w-4 text-[#009f3b]" /> {post.movies.length} Movies Approved
               </span>
+              <ShareButton
+                title={`${post.title} — NFVCB Approved Films`}
+                url={`/approved-movies/${slug}`}
+              />
             </div>
           </AnimatedSection>
         </div>

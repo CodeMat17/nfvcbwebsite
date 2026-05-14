@@ -66,7 +66,7 @@ export const newsItems: NewsItem[] = [
     <p>Dr. Husseini noted that the NFVCB's involvement in AMAA is consistent with the Board's mandate to promote quality content and support the growth of the Nigerian and African film industries.</p>`,
     date: "2026-01-30",
     category: "press-release",
-    image: "https://picsum.photos/seed/nfvcb-amaa/800/500",
+    image: "",
     author: "Corporate Affairs Department",
   },
   {

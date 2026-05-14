@@ -4,6 +4,13 @@ import { useState, useMemo } from "react";
 import { Movie } from "@/lib/approved-movies-data";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Search, X } from "lucide-react";
 
 const RATINGS = ["All", "G", "PG", "12", "12A", "15", "18"];
@@ -69,29 +76,31 @@ export function FilmTable({ movies }: Props) {
           />
         </div>
 
-        <select
-          value={langFilter}
-          onChange={(e) => setLangFilter(e.target.value)}
-          className="h-10 rounded-md border border-input bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring min-w-[130px]"
-        >
-          {languages.map((l) => (
-            <option key={l} value={l}>
-              {l === "All" ? "All Languages" : l}
-            </option>
-          ))}
-        </select>
+        <Select value={langFilter} onValueChange={setLangFilter}>
+          <SelectTrigger className="min-w-32.5">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {languages.map((l) => (
+              <SelectItem key={l} value={l}>
+                {l === "All" ? "All Languages" : l}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-        <select
-          value={ratingFilter}
-          onChange={(e) => setRatingFilter(e.target.value)}
-          className="h-10 rounded-md border border-input bg-background px-3 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring min-w-[130px]"
-        >
-          {RATINGS.map((r) => (
-            <option key={r} value={r}>
-              {r === "All" ? "All Ratings" : r}
-            </option>
-          ))}
-        </select>
+        <Select value={ratingFilter} onValueChange={setRatingFilter}>
+          <SelectTrigger className="min-w-32.5">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {RATINGS.map((r) => (
+              <SelectItem key={r} value={r}>
+                {r === "All" ? "All Ratings" : r}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
         {hasFilters && (
           <button

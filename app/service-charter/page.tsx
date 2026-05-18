@@ -86,47 +86,60 @@ function StandardsList({ items }: { items: string[] }) {
 export default function ServiceCharterPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
-          <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
+      <section className='relative py-24 bg-[#001506] overflow-hidden'>
+        <div
+          className='absolute inset-0 opacity-[0.04] pointer-events-none'
+          aria-hidden>
+          <Image
+            src='/logo.webp'
+            alt=''
+            fill
+            className='object-cover object-center'
+          />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className='mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30'>
               SERVICOM Initiative
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Service Charter</h1>
-            <p className="text-white/60 text-lg max-w-2xl">
-              Our commitment to providing world-class film regulatory services — setting the standard
-              for how NFVCB serves every stakeholder.
+            <h1 className='text-4xl sm:text-5xl font-bold text-white mb-4'>
+              Service Charter
+            </h1>
+            <p className='text-white/60 text-lg max-w-2xl'>
+              Our commitment to providing world-class film regulatory services —
+              setting the standard for how NFVCB serves every stakeholder.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12'>
         {/* DG Foreword */}
         <AnimatedSection>
-          <Card className="bg-primary/5 border-primary/20 overflow-hidden">
-            <CardContent className="p-8 sm:p-10">
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shrink-0">
-                  <ShieldCheck className="h-6 w-6 text-white" />
+          <Card className='bg-primary/5 border-primary/20 overflow-hidden'>
+            <CardContent className='p-8 sm:p-10'>
+              <div className='flex items-start gap-5'>
+                <div className='w-12 h-12 rounded-full bg-primary flex items-center justify-center shrink-0'>
+                  <ShieldCheck className='h-6 w-6 text-white' />
                 </div>
                 <div>
-                  <p className="text-sm text-primary font-medium mb-3 uppercase tracking-wider">
+                  <p className='text-sm text-primary font-medium mb-3 uppercase tracking-wider'>
                     Director-General&apos;s Foreword
                   </p>
-                  <blockquote className="text-muted-foreground leading-relaxed italic text-base sm:text-lg">
-                    &ldquo;In line with the Federal Government reform programme with respect to the
-                    services delivery contract, it is my pleasure to present this revised NFVCB
-                    Service Charter for clients of the board. Our goal is to ensure that NFVCB
-                    operates a world class film regulatory agency with established best practices and
-                    appropriate service standards.&rdquo;
+                  <blockquote className='text-muted-foreground leading-relaxed italic text-base sm:text-lg'>
+                    &ldquo;In line with the Federal Government reform programme
+                    with respect to the services delivery contract, it is my
+                    pleasure to present this revised NFVCB Service Charter for
+                    clients of the board. Our goal is to ensure that NFVCB
+                    operates a world class film regulatory agency with
+                    established best practices and appropriate service
+                    standards.&rdquo;
                   </blockquote>
-                  <div className="mt-4">
-                    <p className="font-semibold text-foreground">Dr. Shaibu Husseini PhD</p>
-                    <p className="text-sm text-muted-foreground">
+                  <div className='mt-4'>
+                    <p className='font-semibold text-foreground'>
+                      Dr. Shaibu Husseini PhD
+                    </p>
+                    <p className='text-sm text-muted-foreground'>
                       Director-General, National Film and Video Censors Board
                     </p>
                   </div>
@@ -138,33 +151,38 @@ export default function ServiceCharterPage() {
 
         {/* Our Clients */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-5">Who This Charter Serves</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <Card className="p-6 hover:shadow-md transition-all hover:border-primary/30">
-              <div className="w-10 h-10 rounded-lg bg-[#009f3b]/10 flex items-center justify-center mb-4">
-                <Building2 className="h-5 w-5 text-[#009f3b]" />
+          <h2 className='text-2xl font-bold text-foreground mb-5'>
+            Who This Charter Serves
+          </h2>
+          <div className='grid sm:grid-cols-2 gap-4'>
+            <Card className='p-6 hover:shadow-md transition-all hover:border-primary/30'>
+              <div className='w-10 h-10 rounded-lg bg-[#009f3b]/10 flex items-center justify-center mb-4'>
+                <Building2 className='h-5 w-5 text-[#009f3b]' />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Industry Clients</h3>
-              <p className="text-sm text-muted-foreground">
-                Producers, marketers and organisations that apply to have films, video works, and
-                computer games censored/classified.
+              <h3 className='font-semibold text-foreground mb-2'>
+                Industry Clients
+              </h3>
+              <p className='text-sm text-muted-foreground'>
+                Producers, marketers and organisations that apply to have films,
+                video works, and computer games censored/classified.
               </p>
             </Card>
-            <Card className="p-6 hover:shadow-md transition-all hover:border-primary/30">
-              <div className="w-10 h-10 rounded-lg bg-[#fea600]/10 flex items-center justify-center mb-4">
-                <Users className="h-5 w-5 text-[#fea600]" />
+            <Card className='p-6 hover:shadow-md transition-all hover:border-primary/30'>
+              <div className='w-10 h-10 rounded-lg bg-[#fea600]/10 flex items-center justify-center mb-4'>
+                <Users className='h-5 w-5 text-[#fea600]' />
               </div>
-              <h3 className="font-semibold text-foreground mb-2">Consumers</h3>
-              <p className="text-sm text-muted-foreground">
-                Members of the public who consume films and video products in Nigeria, and deserve
-                accurate consumer information and protection.
+              <h3 className='font-semibold text-foreground mb-2'>Consumers</h3>
+              <p className='text-sm text-muted-foreground'>
+                Members of the public who consume films and video products in
+                Nigeria, and deserve accurate consumer information and
+                protection.
               </p>
             </Card>
           </div>
         </AnimatedSection>
 
         {/* Standards sections */}
-        <StaggerContainer className="space-y-8">
+        <StaggerContainer className='space-y-8'>
           {[
             {
               title: "For All Clients",
@@ -194,8 +212,8 @@ export default function ServiceCharterPage() {
             <StaggerItem key={title}>
               <Card className={`border-l-4 ${color}`}>
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-lg">
-                    <Icon className="h-5 w-5 text-primary" /> {title}
+                  <CardTitle className='flex items-center gap-2 text-lg'>
+                    <Icon className='h-5 w-5 text-primary' /> {title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -208,33 +226,47 @@ export default function ServiceCharterPage() {
 
         {/* Feedback */}
         <AnimatedSection>
-          <Card className="bg-muted/30">
+          <Card className='bg-muted/30'>
             <CardHeader>
-              <CardTitle className="text-xl">Feedback On Our Service</CardTitle>
+              <CardTitle className='text-xl'>Feedback On Our Service</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+            <CardContent className='space-y-4 text-sm text-muted-foreground leading-relaxed'>
               <p>
-                The Board welcomes feedback on our performance against these service standards. Clients
-                can write to or email us with any comments or suggestions. Your feedback will help us
-                to improve our services in future.
+                The Board welcomes feedback on our performance against these
+                service standards. Clients can write to or email us with any
+                comments or suggestions. Your feedback will help us to improve
+                our services in future.
               </p>
               <p>
-                If you experience any problem with our service and cannot resolve it by discussion
-                with the staff member concerned, escalate the matter by asking to speak to his or her
-                supervisor. If you remain dissatisfied, you can further escalate the issue to the
-                office of the Director-General through the Head of Servicom and Community Liaison
-                Unit.
+                If you experience any problem with our service and cannot
+                resolve it by discussion with the staff member concerned,
+                escalate the matter by asking to speak to his or her supervisor.
+                If you remain dissatisfied, you can further escalate the issue
+                to the office of the Director-General through the Head of
+                Servicom and Community Liaison Unit.
               </p>
               <p>
-                For clients who are not satisfied with a classification decision, we can provide you
-                with a copy of the reasons for the Board&apos;s decision or arrange for you to speak
-                to a senior official. We can also assist you with information on how to apply to the
-                Review Board for a review of the decision.
+                For clients who are not satisfied with a classification
+                decision, we can provide you with a copy of the reasons for the
+                Board&apos;s decision or arrange for you to speak to a senior
+                official. We can also assist you with information on how to
+                apply to the Review Board for a review of the decision.
               </p>
-              <div className="mt-4 p-4 bg-background rounded-xl border border-border">
-                <p className="font-medium text-foreground mb-1">Contact NFVCB</p>
-                <p>Email: <a href="mailto:info@nfvcb.gov.ng" className="text-primary hover:underline">info@nfvcb.gov.ng</a></p>
-                <p>Address: No. 20 Alexandria Crescent, Wuse II, Abuja</p>
+              <div className='mt-4 p-4 bg-background rounded-xl border border-border'>
+                <p className='font-medium text-foreground mb-1'>
+                  Contact NFVCB
+                </p>
+                <p>
+                  Email:{" "}
+                  <a
+                    href='mailto:info@nfvcb.gov.ng'
+                    className='text-primary hover:underline'>
+                    info@nfvcb.gov.ng
+                  </a>
+                </p>
+                <p>
+                  Room B913, Federal Secretariat Complex Phase II, Abuja FCT
+                </p>
               </div>
             </CardContent>
           </Card>

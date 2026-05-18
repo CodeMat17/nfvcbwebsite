@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { StaggerContainer, StaggerItem } from "@/components/animated-section";
 import {
   Pagination,
@@ -24,32 +23,22 @@ interface Props {
   posts: ApprovedMoviesPost[];
 }
 
-/** Extract "Month Year" from titles like "Approved Movies — March 2026" */
-function monthChipFromTitle(title: string) {
-  const match = title.match(/([A-Za-z]+ \d{4})/);
-  return match ? match[1] : title;
-}
-
 export function MoviesClient({ posts }: Props) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [prevQuery, setPrevQuery] = useState(query);
-
-  if (query !== prevQuery) {
-    setPrevQuery(query);
-    setPage(1);
-  }
-
-  const months = useMemo(
-    () => [...new Set(posts.map((p) => monthChipFromTitle(p.title)))],
-    [posts],
-  );
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return posts;
-    return posts.filter((p) => p.title.toLowerCase().includes(q));
+    const trimmed = query.trim().toLowerCase();
+    if (!trimmed) return posts;
+    return posts.filter((p) => p.month.toLowerCase().includes(trimmed));
   }, [posts, query]);
+
+  function clearQuery() {
+    setQuery("");
+    setPage(1);
+    inputRef.current?.focus();
+  }
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -58,26 +47,34 @@ export function MoviesClient({ posts }: Props) {
   function getPageNumbers(): (number | "ellipsis")[] {
     if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
     if (safePage <= 4) return [1, 2, 3, 4, 5, "ellipsis", totalPages];
-    if (safePage >= totalPages - 3) return [1, "ellipsis", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    if (safePage >= totalPages - 3)
+      return [1, "ellipsis", totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
     return [1, "ellipsis", safePage - 1, safePage, safePage + 1, "ellipsis", totalPages];
   }
 
   return (
     <div>
-      {/* Search bar */}
+      {/* Search */}
       <div className="relative mb-8 w-full max-w-sm">
+        <label htmlFor="approval-search" className="sr-only">
+          Search approvals by month
+        </label>
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
         <input
-          type="search"
+          ref={inputRef}
+          id="approval-search"
+          type="text"
+          autoComplete="off"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by month, e.g. March 2026"
+          onChange={(e) => { setQuery(e.target.value); setPage(1); }}
+          onKeyDown={(e) => { if (e.key === "Escape") { clearQuery(); inputRef.current?.blur(); } }}
+          placeholder="Search by month, e.g. March or 2026"
           className="w-full pl-9 pr-9 py-2.5 text-sm rounded-xl border bg-background focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
         />
         {query && (
           <button
-            onClick={() => setQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            onClick={clearQuery}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" />
@@ -85,14 +82,14 @@ export function MoviesClient({ posts }: Props) {
         )}
       </div>
 
-    
-
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center text-muted-foreground gap-3">
           <Film className="h-10 w-10 opacity-30" />
-          <p className="text-sm">No approvals found for &ldquo;{query}&rdquo;</p>
+          <p className="text-sm">
+            No approvals found for &ldquo;{query.trim()}&rdquo;
+          </p>
           <button
-            onClick={() => setQuery("")}
+            onClick={clearQuery}
             className="text-xs text-primary underline underline-offset-2"
           >
             Clear search
@@ -100,91 +97,90 @@ export function MoviesClient({ posts }: Props) {
         </div>
       ) : (
         <>
-        <StaggerContainer key={safePage} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          {paginated.map((post) => {
-            const filmCount = post.movies.length;
-            const langs = [...new Set(post.movies.map((f) => f.language))];
-            const ratings = [...new Set(post.movies.map((f) => f.rating))];
+          <StaggerContainer key={`${query}-${safePage}`} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {paginated.map((post) => {
+              const filmCount = post.movies.length;
+              const langs = [...new Set(post.movies.map((f) => f.language))];
+              const ratings = [...new Set(post.movies.map((f) => f.rating))];
 
-            return (
-              <StaggerItem key={post.slug}>
-                <Link
-                  href={`/approved-movies/${post.slug}`}
-                  className='group block h-full'>
-                  <Card className='h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0'>
-                    <div className='relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden'>
-                      {post.image ? (
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className='object-cover group-hover:scale-105 transition-transform duration-500'
-                        />
-                      ) : (
-                        <>
+              return (
+                <StaggerItem key={post.slug}>
+                  <Link href={`/approved-movies/${post.slug}`} className="group block h-full">
+                    <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
+                      <div className="relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
+                        {post.image ? (
                           <Image
-                            src='/logo.webp'
-                            alt=''
-                            width={80}
-                            height={80}
-                            className='opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500'
-                            aria-hidden
+                            src={post.image}
+                            alt={post.month}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                           />
-                          <div className='absolute bottom-3 right-3 bg-[#fea600] text-[#001506] text-xs font-bold px-2.5 py-1 rounded-full'>
-                            {filmCount} Movies
-                          </div>
-                        </>
-                      )}
-                    </div>
+                        ) : (
+                          <>
+                            <Image
+                              src="/logo.webp"
+                              alt=""
+                              width={80}
+                              height={80}
+                              className="opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
+                              aria-hidden
+                            />
+                            <div className="absolute bottom-3 right-3 bg-[#fea600] text-[#001506] text-xs font-bold px-2.5 py-1 rounded-full">
+                              {filmCount} Movies
+                            </div>
+                          </>
+                        )}
+                      </div>
 
-                   
-                    <h1 className='px-4 font-bold'>{post.title}</h1>
+                      <h1 className="px-4 font-bold">Approved Movies — {post.month}</h1>
 
-                    <CardContent className='space-y-2'>
-                      <div className='flex flex-wrap gap-1'>
-                        {langs.map((lang) => (
-                          <span
-                            key={lang}
-                            className='text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground'>
-                            {lang}
+                      <CardContent className="space-y-2">
+                        <div className="flex flex-wrap gap-1">
+                          {langs.map((lang) => (
+                            <span
+                              key={lang}
+                              className="text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground"
+                            >
+                              {lang}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex flex-wrap gap-1">
+                          {ratings.map((r) => (
+                            <span
+                              key={r}
+                              className="text-[11px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-bold"
+                            >
+                              {r}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-1">
+                          <span className="flex items-center gap-1">
+                            <User className="h-3 w-3" /> {post.publishedBy}
                           </span>
-                        ))}
-                      </div>
-
-                      <div className='flex flex-wrap gap-1'>
-                        {ratings.map((r) => (
-                          <span
-                            key={r}
-                            className='text-[11px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-bold'>
-                            {r}
+                          <span className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            {new Date(post.date).toLocaleDateString("en-NG", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })}
                           </span>
-                        ))}
-                      </div>
+                        </div>
 
-                      <div className='flex items-center justify-between text-[10px] text-muted-foreground pt-1'>
-                        <span className='flex items-center gap-1'>
-                          <User className='h-3 w-3' /> {post.publishedBy}
-                        </span>
-                        <span className='flex items-center gap-1'>
-                          <Calendar className='h-3 w-3' />
-                          {new Date(post.date).toLocaleDateString("en-NG", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </span>
-                      </div>
-
-                      <div className='flex items-center gap-1.5 text-xs text-primary font-medium group-hover:gap-2.5 transition-all pt-1'>
-                        View approvals <ArrowRight className='h-3.5 w-3.5' />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
+                        <div className="flex items-center gap-1.5 text-xs text-primary font-medium group-hover:gap-2.5 transition-all pt-1">
+                          View approvals <ArrowRight className="h-3.5 w-3.5" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
 
           {totalPages > 1 && (
             <Pagination className="mt-10">

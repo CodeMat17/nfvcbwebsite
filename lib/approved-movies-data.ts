@@ -1,5 +1,6 @@
 export interface Movie {
   title: string;
+  month: string;
   duration: string;
   producer: string;
   director: string;
@@ -17,7 +18,7 @@ export interface Movie {
 
 export interface ApprovedMoviesPost {
   slug: string;
-  title: string;
+  month: string;
   date: string;
   publishedBy: string;
   image?: string;
@@ -27,12 +28,13 @@ export interface ApprovedMoviesPost {
 export const approvedMoviesPosts: ApprovedMoviesPost[] = [
   {
     slug: "approved-movies-march-2026",
-    title: "Approved Movies — March 2026",
+    month: "March 2026",
     date: "2026-04-05",
     publishedBy: "ICT Unit",
     movies: [
       {
         title: "Ìgbà Àyé",
+        month: "March 2026",
         duration: "1hr 52min",
         producer: "Tope Adebayo",
         director: "Kemi Adetiba",
@@ -46,6 +48,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Blood Meridian",
+        month: "March 2026",
         duration: "2hr 10min",
         producer: "Charles Okwuosa",
         director: "Daniel Oriahi",
@@ -59,6 +62,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "The Witch and the Seer",
+        month: "March 2026",
         duration: "1hr 38min",
         producer: "Chimamanda Augustine",
         director: "Uhuru Uhuru",
@@ -78,6 +82,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "The Lagos Connection",
+        month: "March 2026",
         duration: "1hr 45min",
         producer: "Joke Silva",
         director: "Niyi Akinmolayan",
@@ -91,6 +96,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Nne",
+        month: "March 2026",
         duration: "1hr 28min",
         producer: "Chioma Obi",
         director: "Stephanie Okereke-Linus",
@@ -104,6 +110,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Shattered Glass",
+        month: "March 2026",
         duration: "1hr 55min",
         producer: "Emem Isong",
         director: "Amara Nwosu",
@@ -117,6 +124,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Adunola",
+        month: "March 2026",
         duration: "1hr 35min",
         producer: "Biodun Stephen",
         director: "Biodun Stephen",
@@ -131,6 +139,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Makama",
+        month: "March 2026",
         duration: "2hr 05min",
         producer: "Hafsat Abdullahi",
         director: "Saddiq Balewa",
@@ -144,6 +153,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Echoes of Tomorrow",
+        month: "March 2026",
         duration: "1hr 42min",
         producer: "Uche Jombo",
         director: "Mildred Okwo",
@@ -157,6 +167,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Ụzọ Ndụ",
+        month: "March 2026",
         duration: "1hr 30min",
         producer: "Chukwuemeka Obi",
         director: "Frank Rajah",
@@ -170,6 +181,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Le Retour",
+        month: "March 2026",
         duration: "1hr 48min",
         producer: "Jean-Pierre Okonkwo",
         director: "Victor Gaston",
@@ -183,6 +195,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Ìbòrí",
+        month: "March 2026",
         duration: "1hr 22min",
         producer: "Femi Adebayo",
         director: "Adebayo Tijani",
@@ -198,12 +211,13 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
   },
   {
     slug: "approved-movies-february-2026",
-    title: "Approved Movies — February 2026",
+    month: "February 2026",
     date: "2026-03-07",
     publishedBy: "ICT Unit",
     movies: [
       {
         title: "Ìfẹ́",
+        month: "February 2026",
         duration: "1hr 40min",
         producer: "Mo Abudu",
         director: "Kemi Adetiba",
@@ -217,6 +231,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Northern Winds",
+        month: "February 2026",
         duration: "1hr 58min",
         producer: "Ibrahim Sheme",
         director: "Saddiq Balewa",
@@ -231,6 +246,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Obi of Lagos",
+        month: "February 2026",
         duration: "2hr 02min",
         producer: "Nkiru Sylvanus",
         director: "Charles Okpaleke",
@@ -244,6 +260,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Isi Ewu",
+        month: "February 2026",
         duration: "1hr 33min",
         producer: "Emeka Mba",
         director: "Tchidi Chikere",
@@ -257,6 +274,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "The Outsider",
+        month: "February 2026",
         duration: "1hr 50min",
         producer: "Tope Oshin",
         director: "Tope Oshin",
@@ -270,6 +288,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Àánú",
+        month: "February 2026",
         duration: "1hr 27min",
         producer: "Yemi Oduwole",
         director: "Adebayo Tijani",
@@ -283,6 +302,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Fractures",
+        month: "February 2026",
         duration: "1hr 44min",
         producer: "Kayode Kasum",
         director: "Kayode Kasum",
@@ -296,6 +316,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Nwoke Ọcha",
+        month: "February 2026",
         duration: "1hr 36min",
         producer: "Charles Inojie",
         director: "Amaka Igwe",
@@ -309,6 +330,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Desert Rose",
+        month: "February 2026",
         duration: "1hr 55min",
         producer: "Yakubu Mohammed",
         director: "Aminu Bello",
@@ -324,12 +346,13 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
   },
   {
     slug: "approved-movies-january-2026",
-    title: "Approved Movies — January 2026",
+    month: "January 2026",
     date: "2026-02-05",
     publishedBy: "ICT Unit",
     movies: [
       {
         title: "New Year, New Lies",
+        month: "January 2026",
         duration: "1hr 38min",
         producer: "Uche Jombo",
         director: "Blessing Egbe",
@@ -343,6 +366,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Ariwo Ko",
+        month: "January 2026",
         duration: "1hr 45min",
         producer: "Femi Adebayo",
         director: "Niyi Akinmolayan",
@@ -356,6 +380,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Eziagụ",
+        month: "January 2026",
         duration: "1hr 30min",
         producer: "Amaka Igwe",
         director: "Tchidi Chikere",
@@ -369,6 +394,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Iron Walls",
+        month: "January 2026",
         duration: "2hr 00min",
         producer: "Charles Okwuosa",
         director: "Izu Ojukwu",
@@ -382,6 +408,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Labule",
+        month: "January 2026",
         duration: "1hr 40min",
         producer: "Ahmed Nuhu",
         director: "Saddiq Balewa",
@@ -395,6 +422,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Obele",
+        month: "January 2026",
         duration: "1hr 35min",
         producer: "Stephanie Okereke-Linus",
         director: "Stephanie Okereke-Linus",
@@ -408,6 +436,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Ìdílé",
+        month: "January 2026",
         duration: "1hr 28min",
         producer: "Biodun Stephen",
         director: "Biodun Stephen",
@@ -421,6 +450,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Nnọọ",
+        month: "January 2026",
         duration: "1hr 22min",
         producer: "Obi Emelonye",
         director: "Obi Emelonye",
@@ -434,6 +464,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Before Midnight",
+        month: "January 2026",
         duration: "1hr 52min",
         producer: "Mo Abudu",
         director: "Kemi Adetiba",
@@ -447,6 +478,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Arewa Zuciya",
+        month: "January 2026",
         duration: "1hr 33min",
         producer: "Maryam Bello",
         director: "Aminu Saira",
@@ -460,6 +492,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
       },
       {
         title: "Borrowed Time",
+        month: "January 2026",
         duration: "1hr 48min",
         producer: "Emem Isong",
         director: "Mildred Okwo",

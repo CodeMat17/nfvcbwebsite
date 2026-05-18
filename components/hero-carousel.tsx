@@ -28,7 +28,7 @@ const slides = [
     ctaSecondary: { label: "Submit a Film", href: "/industry" },
     accent: "#009f3b",
     gradient: "from-[#001506] via-[#002b0e] to-[#001506]",
-    image: "",
+    image: "/carousel_poster.jpg",
   },
   {
     badge: "Film Classification",

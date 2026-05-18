@@ -30,7 +30,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
     slug: "approved-movies-march-2026",
     month: "March 2026",
     date: "2026-04-05",
-    publishedBy: "ICT Unit",
+    publishedBy: "FCC",
     movies: [
       // Rated PG
       {
@@ -1121,7 +1121,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
     slug: "approved-movies-february-2026",
     month: "February 2026",
     date: "2026-03-07",
-    publishedBy: "ICT Unit",
+    publishedBy: "FCC",
     movies: [
       // Rated G
       {
@@ -2296,7 +2296,7 @@ export const approvedMoviesPosts: ApprovedMoviesPost[] = [
     slug: "approved-movies-january-2026",
     month: "January 2026",
     date: "2026-02-05",
-    publishedBy: "ICT Unit",
+    publishedBy: "FCC",
     movies: [
       // Rated G
       {

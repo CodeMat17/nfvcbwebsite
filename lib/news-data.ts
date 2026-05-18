@@ -204,7 +204,7 @@ export const newsItems: NewsItem[] = [
     <p>The outreach is part of the Board's broader strategy to enhance community understanding of the classification system and empower parents to exercise greater responsibility over their children's media diet.</p>`,
     date: "2026-03-05",
     category: "announcement",
-    author: "Licensing & Documenting Department",
+    author: "Licensing & Documentation",
   },
 ];
 

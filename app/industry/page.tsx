@@ -114,12 +114,12 @@ export default function IndustryPage() {
               <StaggerItem key={title}>
                 <Link href={href} className="group block h-full">
                   <Card className="h-full p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 cursor-pointer">
-                    <Badge className={`${badgeColor} border-0 text-xs mb-4`}>{badge}</Badge>
+                    <Badge className={`${badgeColor} border-0 text- mb-2`}>{badge}</Badge>
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
                       <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
                     </div>
-                    <h3 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                    <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{title}</h3>
+                    <p className="text-[15px] text-muted-foreground leading-relaxed">{description}</p>
                     <div className="mt-4 flex items-center gap-1 text-xs text-primary font-medium">
                       Learn more <ArrowRight className="h-3.5 w-3.5" />
                     </div>
@@ -140,8 +140,8 @@ export default function IndustryPage() {
                   {step}
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground text-sm mb-1">{title}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
+                  <p className="font-semibold text-foreground mb-1">{title}</p>
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -156,8 +156,8 @@ export default function IndustryPage() {
                 <Film className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">NFVCB Business Online — Coming Soon</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <h3 className="font-semibold text-foreground mb-2 text-lg">NFVCB Business Online — Coming Soon</h3>
+                <p className="text-[15px] text-muted-foreground leading-relaxed">
                   NFVCB plans to launch a full Business Online Application that will make online
                   transactions easier for stakeholders — including electronic submission, application
                   tracking, and digital certificate download. Watch this space for the launch
@@ -171,7 +171,7 @@ export default function IndustryPage() {
         {/* Forms */}
         <AnimatedSection id="forms">
           <h2 className="text-2xl font-bold text-foreground mb-2">Downloadable Forms</h2>
-          <p className="text-muted-foreground text-sm mb-8">
+          <p className="text-muted-foreground mb-8">
             Download the appropriate form for your submission or application. All forms are in PDF format.
           </p>
 
@@ -189,8 +189,8 @@ export default function IndustryPage() {
             return (
               <div key={category} className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                  <Badge className={`${badgeColor} border-0`}>{category}</Badge>
-                  <span className="text-xs text-muted-foreground">{categoryForms.length} form{categoryForms.length !== 1 ? "s" : ""}</span>
+                  <Badge className={`${badgeColor} text-[15px] border-0`}>{category}</Badge>
+                  <span className="text-muted-foreground">{categoryForms.length} form{categoryForms.length !== 1 ? "s" : ""}</span>
                 </div>
                 <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                   {categoryForms.map(({ name, href }) => (

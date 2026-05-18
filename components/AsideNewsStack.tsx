@@ -44,12 +44,12 @@ export function AsideNewsStack() {
             className={`group flex flex-col gap-1 px-4 py-3 hover:bg-muted/50 transition-colors ${i < 3 ? "border-b border-border" : ""}`}
           >
             <div className="flex items-center gap-2">
-              <span className={`text-[10px] px-1.5 py-0.5 rounded ${categoryColor(item.category)}`}>
+              <span className={`text-[13px] px-1.5 py-0.5 rounded ${categoryColor(item.category)}`}>
                 {categoryLabel(item.category)}
               </span>
-              <span className="text-[10px] text-muted-foreground">NFVCB · {fmtRelative(item.date)}</span>
+              <span className="text-[13px] text-muted-foreground">NFVCB · {fmtRelative(item.date)}</span>
             </div>
-            <p className="text-xs font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+            <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
               {item.title}
             </p>
           </Link>
@@ -58,7 +58,7 @@ export function AsideNewsStack() {
 
       {/* Footer */}
       <div className="flex items-center justify-end px-4 py-2.5 border-t border-border">
-        <Link href="/news" className="text-[11px] font-bold text-primary hover:underline">
+        <Link href="/news" className="text-[12px] font-bold text-primary hover:underline">
           See more
         </Link>
       </div>

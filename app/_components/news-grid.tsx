@@ -58,13 +58,13 @@ export function NewsUpdate() {
                           alt="NFVCB Logo"
                           width={120}
                           height={120}
-                          className="object-contain opacity-40 group-hover:opacity-60 transition-opacity duration-500"
-                        />
+                          className="object-contain opacity-90 group-hover:opacity-60 transition-opacity duration-500"
+                        /> 
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-linear-to-t from-card via-card/10 to-transparent" />
+                    <div className="absolute inset-0 " />
                     <div className="absolute bottom-4 left-5">
-                      <Badge className={`text-sm ${categoryColor(featured.category)} border`}>
+                      <Badge className={`text-[15px] ${categoryColor(featured.category)} border-white/20 py-3 font-bold`}>
                         {categoryLabel(featured.category)}
                       </Badge>
                     </div>
@@ -76,7 +76,7 @@ export function NewsUpdate() {
                     <CardDescription className="line-clamp-2 mt-1 text-sm">{featured.excerpt}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <div className="flex items-center justify-between text- text-muted-foreground">
                       <span className="font-medium">{featured.author}</span>
                       <time dateTime={featured.date}>{fmtDate(featured.date)}</time>
                     </div>

@@ -17,7 +17,7 @@ const AsideApprovedMovies = () => {
           Recently Approved Movies
         </h2>
       </div>
-      <ul className='space-y-4'>
+      <ul className='space-y-2'>
         {recentApproved.map((post) => {
           const ratingCounts = post.movies.reduce<Record<string, number>>(
             (acc, f) => {
@@ -35,7 +35,7 @@ const AsideApprovedMovies = () => {
                 Approved Movies -  {post.month}
                 </p>
                 <div className='text-[12px] text-muted-foreground mt-0.5'>
-                  <div className='flex flex-wrap gap-1 mt-1 items-center'>
+                  <div className='flex flex-wrap gap-1 items-center'>
                     {Object.entries(ratingCounts)
                       .sort(([a], [b]) => {
                         const order = [
@@ -52,12 +52,12 @@ const AsideApprovedMovies = () => {
                       .map(([r, count]) => (
                         <span
                           key={r}
-                          className='text-[11px] px-2 py-0.5 bg-[#fea600]/5 text-[#fea600] rounded-full font-bold'>
+                          className='text-[12px] px-2 py-0.5 bg-[#fea600]/5 text-[#fea600] rounded-full font-bold'>
                           {r} ({count})
                         </span>
                       ))}
 
-                    <span className='italic text-muted-foreground text-xs'>
+                    <span className='italic text-muted-foreground text-xs font-bold'>
                        — {post.movies.length} movie
                       {post.movies.length !== 1 ? "s" : ""}{" "}
                     </span>
@@ -65,15 +65,20 @@ const AsideApprovedMovies = () => {
                 </div>
               </Link>
               {recentApproved.indexOf(post) < recentApproved.length - 1 && (
-                <Separator className="mt-4" />
+                <Separator className="mt-3" />
               )}
             </li>
           );
         })}
       </ul>
+
+
+       <Separator className="mt-2" />
+
+      
       <Link
         href='/approved-movies'
-        className='mt-5 flex items-center gap-1 text-xs text-primary font-medium hover:gap-2 transition-all'>
+        className='mt-2 flex items-center gap-1 text-primary font-medium hover:gap-2 transition-all text-sm'>
         View all approved films <ArrowRight className='h-3.5 w-3.5' />
       </Link>
     </div>

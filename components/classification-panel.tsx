@@ -96,7 +96,7 @@ export function ClassificationPanel() {
             />
           ))}
         </div>
-        <Link href="/classifications" className="text-[11px] font-bold text-primary hover:underline flex items-center gap-0.5">
+        <Link href="/classifications" className="text-sm  text-primary hover:underline flex items-center gap-0.5">
           See more <ArrowRight className="h-2.5 w-2.5" />
         </Link>
       </div>

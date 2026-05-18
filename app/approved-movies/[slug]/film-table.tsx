@@ -124,9 +124,9 @@ export function FilmTable({ movies }: Props) {
 
       {filtered.length > 0 && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filtered.map((film) => (
+          {filtered.map((film, i) => (
             <div
-              key={film.title}
+              key={`${film.title}-${film.rating}-${i}`}
               className="rounded-xl border border-border bg-card p-5 space-y-3 hover:border-primary/30 hover:shadow-md transition-all"
             >
               <div className="flex items-start justify-between gap-3">

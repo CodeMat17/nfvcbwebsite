@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Read(//c/Users/USER/Downloads/**)",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

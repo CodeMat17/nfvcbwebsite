@@ -19,13 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getApprovedMoviesPost(slug);
   if (!post) return { title: "Not Found" };
-  const description = `${post.movies.length} films approved for public exhibition in Nigeria — ${post.title}. Includes ratings (G, PG, 12, 15, 18), languages and consumer advice as classified by NFVCB.`;
+  const pageTitle = `Approved Movies — ${post.month}`;
+  const description = `${post.movies.length} films approved for public exhibition in Nigeria — ${post.month}. Includes ratings (G, PG, 12, 15, 18), languages and consumer advice as classified by NFVCB.`;
   return {
-    title: `${post.title} — NFVCB Approved Films`,
+    title: `${pageTitle} — NFVCB Approved Films`,
     description,
     alternates: { canonical: `https://nfvcb.gov.ng/approved-movies/${slug}` },
     openGraph: {
-      title: `${post.title} — NFVCB Approved Films`,
+      title: `${pageTitle} — NFVCB Approved Films`,
       description,
       url: `https://nfvcb.gov.ng/approved-movies/${slug}`,
       images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
@@ -89,7 +90,7 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
             </Badge>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight text-balance">
-              {post.title}
+              Approved Movies — {post.month}
             </h1>
 
             <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
@@ -109,7 +110,7 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
                 <Film className="h-4 w-4 text-[#009f3b]" /> {post.movies.length} Movies Approved
               </span>
               <ShareButton
-                title={`${post.title} — NFVCB Approved Films`}
+                title={`${post.month} — NFVCB Approved Films`}
                 url={`/approved-movies/${slug}`}
               />
             </div>
@@ -130,12 +131,12 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
         <AnimatedSection>
           <div className="relative rounded-2xl overflow-hidden h-52 sm:h-72 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center">
             {post.image ? (
-              <Image src={post.image} alt={post.title} fill className="object-cover" />
+              <Image src={post.image} alt={post.month} fill className="object-cover" />
             ) : (
               <>
                 <Image src="/logo.webp" alt="" width={180} height={180} className="opacity-15" aria-hidden />
                 <div className="absolute bottom-4 left-0 right-0 text-center">
-                  <p className="text-white/40 text-xs">{post.title}</p>
+                  <p className="text-white/40 text-xs">{post.month}</p>
                 </div>
               </>
             )}

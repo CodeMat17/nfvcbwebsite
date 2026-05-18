@@ -32,7 +32,7 @@ const AsideApprovedMovies = () => {
                 href={`/approved-movies/${post.slug}`}
                 className='group block'>
                 <p className=' font-medium text-foreground group-hover:text-primary transition-colors leading-snug'>
-                  {post.title}
+                Approved Movies -  {post.month}
                 </p>
                 <div className='text-[12px] text-muted-foreground mt-0.5'>
                   <div className='flex flex-wrap gap-1 mt-1 items-center'>

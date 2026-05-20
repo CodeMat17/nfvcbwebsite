@@ -645,30 +645,30 @@ export function LicenceCards() {
                   <div className={`${iconBg} w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-sm`}>
                     <Icon className="h-5 w-5 text-white" />
                   </div>
-                  <span className={`${badgeColor} inline-block rounded-md font-semibold px-2 py-1 text-sm leading-snug`}>{title}</span>
+                  <span className={`${badgeColor} inline-block rounded-md font-semibold px-2 py-1 text-lg leading-snug`}>{title}</span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{desc}</p>
+                <p className="text-[15px] text-muted-foreground leading-relaxed line-clamp-3">{desc}</p>
               </div>
 
               <div className="mx-5 mb-4 rounded-lg bg-muted/40 divide-y divide-border">
                 {shareCapital && (
                   <div className="flex justify-between items-center px-3 py-2">
-                    <span className="text-[12px] text-muted-foreground">Min. Share Capital</span>
-                    <span className="text-[12px] font-semibold text-foreground">{shareCapital}</span>
+                    <span className="text-[13px] text-muted-foreground">Min. Share Capital</span>
+                    <span className="text-[13px] font-semibold text-foreground">{shareCapital}</span>
                   </div>
                 )}
                 {seating && (
                   <div className="flex justify-between items-center px-3 py-2">
-                    <span className="text-[12px] text-muted-foreground">Seating</span>
-                    <span className="text-[12px] font-semibold text-foreground">{seating}</span>
+                    <span className="text-[13px] text-muted-foreground">Seating</span>
+                    <span className="text-[13px] font-semibold text-foreground">{seating}</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center px-3 py-2">
-                  <span className="text-[12px] text-muted-foreground">Processing Fee</span>
-                  <span className="text-[12px] font-semibold text-foreground">{processingFee}</span>
+                  <span className="text-[13px] text-muted-foreground">Processing Fee</span>
+                  <span className="text-[13px] font-semibold text-foreground">{processingFee}</span>
                 </div>
                 <div className="flex justify-between items-center px-3 py-2.5 rounded-b-lg bg-muted/60">
-                  <span className="text-sm font-bold text-foreground">Licence Fee</span>
+                  <span className="font-bold text-foreground">Licence Fee</span>
                   <span className="text-sm font-bold text-primary">{licenceFee}</span>
                 </div>
               </div>

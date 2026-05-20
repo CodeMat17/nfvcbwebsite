@@ -76,7 +76,7 @@ function StandardsList({ items }: { items: string[] }) {
       {items.map((item, i) => (
         <li key={i} className="flex items-start gap-3">
           <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-          <p className="text-sm text-muted-foreground leading-relaxed">{item}</p>
+          <p className="text-[15px] text-muted-foreground leading-relaxed">{item}</p>
         </li>
       ))}
     </ul>
@@ -159,10 +159,10 @@ export default function ServiceCharterPage() {
               <div className='w-10 h-10 rounded-lg bg-[#009f3b]/10 flex items-center justify-center mb-4'>
                 <Building2 className='h-5 w-5 text-[#009f3b]' />
               </div>
-              <h3 className='font-semibold text-foreground mb-2'>
+              <h3 className='font-semibold text-[15px] text-foreground mb-2'>
                 Industry Clients
               </h3>
-              <p className='text-sm text-muted-foreground'>
+              <p className='text-[15px] text-muted-foreground'>
                 Producers, marketers and organisations that apply to have films,
                 video works, and computer games censored/classified.
               </p>
@@ -171,8 +171,8 @@ export default function ServiceCharterPage() {
               <div className='w-10 h-10 rounded-lg bg-[#fea600]/10 flex items-center justify-center mb-4'>
                 <Users className='h-5 w-5 text-[#fea600]' />
               </div>
-              <h3 className='font-semibold text-foreground mb-2'>Consumers</h3>
-              <p className='text-sm text-muted-foreground'>
+              <h3 className='font-semibold text-[15px] text-foreground mb-2'>Consumers</h3>
+              <p className='text-[15px] text-muted-foreground'>
                 Members of the public who consume films and video products in
                 Nigeria, and deserve accurate consumer information and
                 protection.
@@ -230,7 +230,7 @@ export default function ServiceCharterPage() {
             <CardHeader>
               <CardTitle className='text-xl'>Feedback On Our Service</CardTitle>
             </CardHeader>
-            <CardContent className='space-y-4 text-sm text-muted-foreground leading-relaxed'>
+            <CardContent className='space-y-4 text-[15px] text-muted-foreground leading-relaxed'>
               <p>
                 The Board welcomes feedback on our performance against these
                 service standards. Clients can write to or email us with any

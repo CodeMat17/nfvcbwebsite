@@ -68,7 +68,7 @@ export default function LicensingPage() {
             <CardHeader>
               <CardTitle className="text-base">Licence Renewal</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
+            <CardContent className="text-[15px] text-muted-foreground space-y-2">
               <p>
                 Licences for Exhibitors and Distributors are renewable annually.{" "}
                 <strong className="text-foreground">Renewal before expiry</strong> attracts a fee of
@@ -87,7 +87,7 @@ export default function LicensingPage() {
             <CardHeader>
               <CardTitle className="text-base">Payment Instructions</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
+            <CardContent className="text-[15px] text-muted-foreground space-y-2">
               <p>
                 All payments must be made via{" "}
                 <strong className="text-foreground">Remita</strong> or any other

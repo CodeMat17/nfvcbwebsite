@@ -359,7 +359,7 @@ export default function ClassificationsPage() {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Pay a flat rate of{" "}
                   <span className="font-black text-foreground">₦50,000</span> for films of 1–120 minutes via the{" "}
-                  <span className="font-semibold text-foreground">Remita</span> federal government payment platform.
+                  <a href="/payment-guide" className="font-semibold text-[#009f3b] hover:underline">RevOP</a> federal government payment platform.
                   Forward the payment receipt to the zonal/centre email where the film was submitted and copy{" "}
                   <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-[#009f3b] hover:underline">nfvcbonline@gmail.com</a>.
                   Once payment is confirmed your film will be classified and approved within{" "}

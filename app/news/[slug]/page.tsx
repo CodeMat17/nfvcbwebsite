@@ -122,8 +122,6 @@ export default async function NewsDetailPage({ params }: Props) {
         <div className='grid lg:grid-cols-3 gap-10'>
           {/* Main content */}
           <div className='lg:col-span-2'>
-        
-
             <AnimatedSection>
               {/* Article image */}
               <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center mb-8'>
@@ -141,16 +139,17 @@ export default async function NewsDetailPage({ params }: Props) {
                       alt=''
                       width={200}
                       height={200}
-                      className='opacity-20'
+                      className='opacity-100'
                       aria-hidden
                     />
-                    <div className='absolute bottom-4 left-4 right-4'>
-                      <p className='text-white/50 text-xs text-center'>
+                    <div className='w-full absolute bottom-0 bg-linear-to-t from-[#001506] to-transparent px-3 pb-3 pt-8'>
+                      <p className='text-white text-[15px] text-center'>
                         {item.title}
                       </p>
                     </div>
                   </>
                 )}
+               
               </div>
 
               {/* Article body */}
@@ -233,7 +232,7 @@ export default async function NewsDetailPage({ params }: Props) {
                                 alt=''
                                 width={24}
                                 height={24}
-                                className='opacity-30'
+                                className='opacity-100'
                                 aria-hidden
                               />
                             )}

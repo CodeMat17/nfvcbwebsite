@@ -111,7 +111,7 @@ export default function NewsClient({ items }: Props) {
                         alt=""
                         width={160}
                         height={160}
-                        className="opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
+                        className="opacity-100 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
                         aria-hidden
                       />
                     )}
@@ -171,7 +171,7 @@ export default function NewsClient({ items }: Props) {
                               alt=""
                               width={80}
                               height={80}
-                              className="opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
+                              className="opacity-100 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
                               aria-hidden
                             />
                           )}

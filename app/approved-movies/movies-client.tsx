@@ -122,7 +122,7 @@ export function MoviesClient({ posts }: Props) {
                               alt=""
                               width={80}
                               height={80}
-                              className="opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
+                              className="opacity-100 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
                               aria-hidden
                             />
                             <div className="absolute bottom-3 right-3 bg-[#fea600] text-[#001506] text-xs font-bold px-2.5 py-1 rounded-full">

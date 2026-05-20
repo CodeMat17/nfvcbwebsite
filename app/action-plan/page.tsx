@@ -188,7 +188,7 @@ export default function ActionPlanPage() {
           </div>
         </AnimatedSection>
 
-        <StaggerContainer className="space-y-8">
+        <StaggerContainer className=" space-y-8">
           {actionPoints.map(({ number, title, objective, strategies, color, badgeColor }) => (
             <StaggerItem key={number}>
               <Card id={`point-${number}`} className={`border-l-4 ${color} scroll-mt-28`}>
@@ -207,16 +207,16 @@ export default function ActionPlanPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="bg-muted/40 rounded-xl p-4">
-                    <p className="text-sm font-medium text-foreground mb-1">Objective</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{objective}</p>
+                    <p className="text-[15px] font-medium text-foreground mb-1">Objective</p>
+                    <p className="text-[15px] text-muted-foreground leading-relaxed">{objective}</p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-foreground mb-3">Strategies</p>
+                    <p className="text-[15px] font-medium text-foreground mb-3">Strategies</p>
                     <ul className="space-y-2">
                       {strategies.map((strategy, si) => (
                         <li key={si} className="flex items-start gap-2">
                           <ChevronRight className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                          <p className="text-sm text-muted-foreground leading-relaxed">{strategy}</p>
+                          <p className="text-[15px] text-muted-foreground leading-relaxed">{strategy}</p>
                         </li>
                       ))}
                     </ul>

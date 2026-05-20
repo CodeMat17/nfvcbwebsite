@@ -76,7 +76,7 @@ const forms = [
 const submissionProcess = [
   { step: 1, title: "Prepare Your Work", desc: "Ensure your film, music video, skit or video game is complete and ready for review." },
   { step: 2, title: "Complete Application Form", desc: "Download and complete the appropriate application form for your content type." },
-  { step: 3, title: "Pay Applicable Fees", desc: "Make payment via Remita to NFVCB. Keep your payment receipt as you will need it." },
+  { step: 3, title: "Pay Applicable Fees", desc: "Make payment via RevOP (revop.gov.ng) to NFVCB. Keep your payment receipt as you will need it." },
   { step: 4, title: "Submit to NFVCB", desc: "Submit your application, work copy, and payment receipt to the nearest NFVCB office or online portal." },
   { step: 5, title: "Await Classification", desc: "NFVCB will classify your work within 20 working days and issue a classification certificate." },
   { step: 6, title: "Receive Certificate", desc: "Collect your classification certificate within 5 working days of the classification decision." },

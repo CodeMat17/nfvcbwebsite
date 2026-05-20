@@ -89,10 +89,13 @@ export default function LicensingPage() {
             </CardHeader>
             <CardContent className="text-[15px] text-muted-foreground space-y-2">
               <p>
-                All payments must be made via{" "}
-                <strong className="text-foreground">Remita</strong> or any other
-                government-approved payment platform. Keep a printout of your payment and obtain an
-                NFVCB official receipt. Payments made outside Remita will not be accepted.
+                All payments must be made via the{" "}
+                <a href="/payment-guide" className="text-primary hover:underline font-medium">
+                  RevOP portal
+                </a>{" "}
+                (the official Federal Government revenue payment platform). Keep a printout of your
+                payment receipt and obtain an NFVCB official receipt. Payments made outside RevOP
+                will not be accepted.
               </p>
               <p>
                 For licensing enquiries, contact:{" "}

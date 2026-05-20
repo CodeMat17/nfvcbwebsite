@@ -67,7 +67,7 @@ const exhibitorLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "Undertaking to exhibit only NFVCB-classified films and display classification symbols and ratings prominently",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -94,7 +94,7 @@ const exhibitorLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "Undertaking to exhibit only NFVCB-classified films and display classification symbols prominently",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦3,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦3,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -118,7 +118,7 @@ const exhibitorLicences: LicenceEntry[] = [
       "Identifiable physical office within the suburban area of intended operation",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦2,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦2,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -143,7 +143,7 @@ const exhibitorLicences: LicenceEntry[] = [
       "Identifiable physical office within the LGA of intended operation",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
 ];
@@ -175,7 +175,7 @@ const premisesLicences: LicenceEntry[] = [
       "Valid Federal or State Fire Service Certificate certifying the premises is fit for cinema operation",
       "Compliance with all health, safety, emergency access, and building control standards",
       "Evidence of affiliation with a recognized and registered body for cinema exhibition in Nigeria",
-      "Evidence of Remita payment (₦150,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦150,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -198,7 +198,7 @@ const premisesLicences: LicenceEntry[] = [
       "Valid Federal or State Fire Service Certificate certifying premises is fit for cinema operation",
       "Compliance with health, safety, emergency access, and building control standards",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
-      "Evidence of Remita payment (₦250,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦250,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -221,7 +221,7 @@ const premisesLicences: LicenceEntry[] = [
       "Valid Federal or State Fire Service Certificate",
       "Compliance with health, safety, emergency access, and building control standards",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
-      "Evidence of Remita payment (₦200,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦200,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -244,7 +244,7 @@ const premisesLicences: LicenceEntry[] = [
       "Valid Federal or State Fire Service Certificate",
       "Compliance with health, safety, emergency access, and building control standards",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
-      "Evidence of Remita payment (₦150,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦150,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
     ],
   },
 
@@ -268,7 +268,7 @@ const premisesLicences: LicenceEntry[] = [
       "Valid Federal or State Fire Service Certificate",
       "Compliance with health, safety, and emergency access standards",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
-      "Evidence of Remita payment (₦350,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦350,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -292,7 +292,7 @@ const premisesLicences: LicenceEntry[] = [
       "Valid Federal or State Fire Service Certificate for each operating location",
       "Compliance with health, safety, and emergency access standards at each premises",
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
-      "Evidence of Remita payment (₦350,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦350,000 licence fee + ₦10,000 processing fee) and NFVCB official receipt",
     ],
   },
 ];
@@ -321,7 +321,7 @@ const mobileLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "Seating capacity: not to exceed 300 persons per hall or premises",
       "Valid Federal or State Fire Service Certificate for each premises",
-      "Evidence of Remita payment (₦350,000 per hall + ₦10,000 processing per hall) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦350,000 per hall + ₦10,000 processing per hall) and NFVCB official receipt",
     ],
   },
   {
@@ -346,7 +346,7 @@ const mobileLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "All films duly classified by the NFVCB; classification symbols prominently displayed",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -371,7 +371,7 @@ const mobileLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized and registered cinema exhibition body in Nigeria",
       "All films duly classified by the NFVCB; classification symbols prominently displayed",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦10,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦10,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
 ];
@@ -403,7 +403,7 @@ const onlineLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized audiovisual, broadcasting, or digital content body (where applicable)",
       "Stream only NFVCB-classified content; display classification symbols and ratings prominently; implement digital filters for age-inappropriate content",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦200,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦200,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -429,7 +429,7 @@ const onlineLicences: LicenceEntry[] = [
       "Identifiable and verifiable physical office within Nigeria",
       "Stream only NFVCB-classified content; display classification symbols; implement age filters",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦25,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦25,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -454,7 +454,7 @@ const onlineLicences: LicenceEntry[] = [
       "Identifiable and verifiable physical office within Nigeria",
       "Stream only NFVCB-classified content; display classification symbols and ratings",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -476,7 +476,7 @@ const onlineLicences: LicenceEntry[] = [
       "Evidence of active, verified YouTube channel(s) used for film/video distribution",
       "Stream only NFVCB-classified content; display classification symbols in video descriptions and on-screen",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
 ];
@@ -507,7 +507,7 @@ const distributorLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized body for film distribution in Nigeria",
       "Undertaking to distribute only NFVCB-classified films",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦5,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -534,7 +534,7 @@ const distributorLicences: LicenceEntry[] = [
       "Evidence of affiliation with a recognized body for film distribution in Nigeria",
       "Undertaking to distribute only NFVCB-classified films",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦3,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦3,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -558,7 +558,7 @@ const distributorLicences: LicenceEntry[] = [
       "Identifiable physical office in the suburban area of intended operation",
       "Undertaking to distribute only NFVCB-classified films",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦2,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦2,500,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -581,7 +581,7 @@ const distributorLicences: LicenceEntry[] = [
       "Identifiable office within the LGA of intended operation",
       "Undertaking to distribute only NFVCB-classified films",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
   {
@@ -606,7 +606,7 @@ const distributorLicences: LicenceEntry[] = [
       "A functional website or channel is required",
       "Undertaking to distribute only NFVCB-classified films; classification symbols displayed in video descriptions and on-screen",
       "Valid Tax Identification Number (TIN) from FIRS",
-      "Evidence of Remita payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
+      "Evidence of RevOP payment (₦1,000,000 licence fee + ₦50,000 processing fee) and NFVCB official receipt",
     ],
   },
 ];

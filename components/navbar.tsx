@@ -34,7 +34,6 @@ const navLinks = [
     children: [
       { label: "Industry Information", href: "/industry" },
       { label: "Licensing", href: "/industry/licensing" },
-      { label: "Payment Guide", href: "/payment-guide" },
       { label: "Service Charter", href: "/service-charter" },
     ],
   },
@@ -48,6 +47,7 @@ const navLinks = [
     ],
   },
 
+  { label: "Payment Guide", href: "/payment-guide" },
   { label: "Approved Movies", href: "/approved-movies" },
   { label: "News & Updates", href: "/news" },
   { label: "Classification", href: "/classification" },

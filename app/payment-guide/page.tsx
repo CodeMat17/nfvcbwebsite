@@ -413,7 +413,7 @@ export default function PaymentGuidePage() {
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
               Federal Government of Nigeria revenue payments — generate your bill, then pay online,
-              by card, or at any bank branch. Ensure you readthe guide below before you proceed.
+              by card, or at any bank branch. Ensure you read the guide below before you proceed.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link

@@ -176,7 +176,7 @@ export function HeroCarousel() {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <Badge
-              className="mb-2 text-[10px] font-bold px-2 py-0.5"
+              className="mb-2 text-[15px] font-bold px-2 py-1"
               style={{ background: `${slide.accent}22`, color: slide.accent, borderColor: `${slide.accent}44` }}
             >
               {slide.badge}

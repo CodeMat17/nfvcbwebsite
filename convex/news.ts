@@ -1,49 +1,67 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
-import { paginationOptsValidator } from "convex/server";
 
 export const list = query({
-  args: { paginationOpts: paginationOptsValidator },
-  handler: async (ctx, args) => {
-    return ctx.db.query("news").order("desc").paginate(args.paginationOpts);
-  },
-});
-
-export const listAll = query({
   args: {},
   handler: async (ctx) => {
-    return ctx.db.query("news").order("desc").take(200);
+    return await ctx.db.query("news").order("desc").collect();
   },
 });
 
-export const getById = query({
-  args: { id: v.id("news") },
-  handler: async (ctx, args) => {
-    return ctx.db.get(args.id);
-  },
-});
+function toSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
 
-export const getBySlug = query({
-  args: { slug: v.string() },
-  handler: async (ctx, args) => {
-    return ctx.db.query("news").withIndex("by_slug", (q) => q.eq("slug", args.slug)).unique();
-  },
-});
+function toExcerpt(body: string): string {
+  const plain = body.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return plain.length <= 150 ? plain : plain.slice(0, 147) + "...";
+}
 
 export const create = mutation({
   args: {
     title: v.string(),
-    slug: v.string(),
-    excerpt: v.optional(v.string()),
     body: v.string(),
-    coverImageId: v.optional(v.id("_storage")),
     coverImageUrl: v.optional(v.string()),
+    coverImageId: v.optional(v.id("_storage")),
     category: v.optional(v.string()),
     author: v.optional(v.string()),
-    isPublished: v.boolean(),
+    featured: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
-    return ctx.db.insert("news", args);
+    if (args.coverImageId) {
+      const meta = await ctx.db.system.get(args.coverImageId);
+      if (meta && meta.size > 150 * 1024) {
+        throw new Error("Cover image must be 150 KB or smaller.");
+      }
+    }
+
+    const slug = toSlug(args.title);
+    const existing = await ctx.db
+      .query("news")
+      .withIndex("by_slug", (q) => q.eq("slug", slug))
+      .unique();
+    if (existing) {
+      throw new Error(`A news article with slug "${slug}" already exists.`);
+    }
+
+    const excerpt = toExcerpt(args.body);
+
+    return await ctx.db.insert("news", {
+      title: args.title,
+      slug,
+      excerpt,
+      body: args.body,
+      coverImageUrl: args.coverImageUrl,
+      coverImageId: args.coverImageId,
+      category: args.category,
+      author: args.author,
+      featured: args.featured,
+    });
   },
 });
 
@@ -51,43 +69,53 @@ export const update = mutation({
   args: {
     id: v.id("news"),
     title: v.optional(v.string()),
-    slug: v.optional(v.string()),
-    excerpt: v.optional(v.string()),
     body: v.optional(v.string()),
-    coverImageId: v.optional(v.id("_storage")),
     coverImageUrl: v.optional(v.string()),
+    coverImageId: v.optional(v.id("_storage")),
     category: v.optional(v.string()),
     author: v.optional(v.string()),
-    isPublished: v.optional(v.boolean()),
+    featured: v.optional(v.boolean()),
   },
-  handler: async (ctx, { id, ...fields }) => {
-    await ctx.db.patch(id, fields);
+  handler: async (ctx, args) => {
+    const { id, ...fields } = args;
+
+    const existing = await ctx.db.get(id);
+    if (!existing) throw new Error("News article not found.");
+
+    if (fields.coverImageId) {
+      const meta = await ctx.db.system.get(fields.coverImageId);
+      if (meta && meta.size > 150 * 1024) {
+        throw new Error("Cover image must be 150 KB or smaller.");
+      }
+    }
+
+    const patch: Record<string, unknown> = { ...fields };
+
+    if (fields.title !== undefined) {
+      const slug = toSlug(fields.title);
+      const conflict = await ctx.db
+        .query("news")
+        .withIndex("by_slug", (q) => q.eq("slug", slug))
+        .unique();
+      if (conflict && conflict._id !== id) {
+        throw new Error(`A news article with slug "${slug}" already exists.`);
+      }
+      patch.slug = slug;
+    }
+
+    if (fields.body !== undefined) {
+      patch.excerpt = toExcerpt(fields.body);
+    }
+
+    await ctx.db.patch(id, patch);
   },
 });
 
 export const remove = mutation({
   args: { id: v.id("news") },
   handler: async (ctx, args) => {
-    const images = await ctx.db.query("newsImages").withIndex("by_newsId", (q) => q.eq("newsId", args.id)).collect();
-    for (const img of images) {
-      await ctx.storage.delete(img.storageId);
-      await ctx.db.delete(img._id);
-    }
-    const doc = await ctx.db.get(args.id);
-    if (doc?.coverImageId) await ctx.storage.delete(doc.coverImageId);
+    const existing = await ctx.db.get(args.id);
+    if (!existing) throw new Error("News article not found.");
     await ctx.db.delete(args.id);
-  },
-});
-
-export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => ctx.storage.generateUploadUrl(),
-});
-
-export const saveCoverImage = mutation({
-  args: { id: v.id("news"), storageId: v.id("_storage") },
-  handler: async (ctx, args) => {
-    const url = await ctx.storage.getUrl(args.storageId);
-    await ctx.db.patch(args.id, { coverImageId: args.storageId, coverImageUrl: url ?? undefined });
   },
 });

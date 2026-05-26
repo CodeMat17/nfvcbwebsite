@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Award, Film, Globe, Users } from "lucide-react";
 
 const stats = [
-  { label: "Years Serving Nigeria", value: "31+", icon: Award, color: "text-[#009f3b]", ring: "bg-[#009f3b]/15 border border-[#009f3b]/30" },
+  { label: "Years Serving Nigeria", value: "41+", icon: Award, color: "text-[#009f3b]", ring: "bg-[#009f3b]/15 border border-[#009f3b]/30" },
   { label: "Films Classified", value: "50K+", icon: Film, color: "text-[#fea600]", ring: "bg-[#fea600]/15 border border-[#fea600]/30" },
   { label: "Licensed Outlets", value: "10K+", icon: Globe, color: "text-[#009f3b]", ring: "bg-[#009f3b]/15 border border-[#009f3b]/30" },
   { label: "Zonal Offices", value: "6", icon: Users, color: "text-[#fea600]", ring: "bg-[#fea600]/15 border border-[#fea600]/30" },

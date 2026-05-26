@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 
@@ -212,15 +213,17 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange={false}>
-          <Navbar />
-          <main id="main-content" className="flex-1 pt-22">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <ConvexClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange={false}>
+            <Navbar />
+            <main id="main-content" className="flex-1 pt-22">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );

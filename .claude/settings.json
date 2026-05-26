@@ -3,7 +3,8 @@
     "allow": [
       "Bash(node -e ' *)",
       "Read(//c/Users/USER/Downloads/**)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(ls -la \"c:\\\\\\\\Users\\\\\\\\USER\\\\\\\\Documents\\\\\\\\projects\\\\\\\\nfvcb\\\\\\\\\")"
     ]
   }
 }

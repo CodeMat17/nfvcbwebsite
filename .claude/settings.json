@@ -4,7 +4,15 @@
       "Bash(node -e ' *)",
       "Read(//c/Users/USER/Downloads/**)",
       "Bash(python3 -c ' *)",
-      "Bash(ls -la \"c:\\\\\\\\Users\\\\\\\\USER\\\\\\\\Documents\\\\\\\\projects\\\\\\\\nfvcb\\\\\\\\\")"
+      "Bash(ls -la \"c:\\\\\\\\Users\\\\\\\\USER\\\\\\\\Documents\\\\\\\\projects\\\\\\\\nfvcb\\\\\\\\\")",
+      "Read(//c/Users/USER/Documents/projects/nfvcb-website-admin/app/**)",
+      "Read(//c/Users/USER/Documents/projects/nfvcb-website-admin/**)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\USER\\Documents\\projects\\nfvcb-website-admin\\components",
+      "C:\\Users\\USER\\Documents\\projects\\nfvcb-website-admin\\app\\dashboard\\post-news",
+      "C:\\Users\\USER\\Documents\\projects\\nfvcb-website-admin\\app",
+      "C:\\Users\\USER\\Documents\\projects\\nfvcb-website-admin"
     ]
   }
 }

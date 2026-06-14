@@ -51,9 +51,9 @@ function categoryLabel(cat: string) {
 }
 
 function categoryColor(cat: string) {
-  if (cat === "press-release") return "bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20";
-  if (cat === "announcement") return "bg-[#fea600]/10 text-[#fea600] border-[#fea600]/20";
-  return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
+  if (cat === "press-release") return "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20";
+  if (cat === "announcement") return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
+  return "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20";
 }
 
 export default async function NewsDetailPage({ params }: Props) {
@@ -67,7 +67,7 @@ export default async function NewsDetailPage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className='relative py-20 bg-[#001506] overflow-hidden'>
+      <section className='relative py-20 bg-green-950 overflow-hidden'>
         <div
           className='absolute inset-0 opacity-[0.05] pointer-events-none'
           aria-hidden>
@@ -78,7 +78,7 @@ export default async function NewsDetailPage({ params }: Props) {
             className='object-cover object-center blur-sm'
           />
         </div>
-        <div className='absolute inset-0 bg-gradient-to-b from-[#001506]/80 to-[#001506] pointer-events-none' />
+        <div className='absolute inset-0 bg-gradient-to-b from-green-950/80 to-green-950 pointer-events-none' />
         <div className='relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
           <AnimatedSection>
             <Link
@@ -96,10 +96,10 @@ export default async function NewsDetailPage({ params }: Props) {
             </h1>
             <div className='flex flex-wrap items-center gap-4 text-sm text-white/60'>
               <span className='flex items-center gap-1.5'>
-                <User className='h-4 w-4 text-[#009f3b]' /> {item.author}
+                <User className='h-4 w-4 text-green-500' /> {item.author}
               </span>
               <span className='flex items-center gap-1.5'>
-                <Calendar className='h-4 w-4 text-[#009f3b]' />
+                <Calendar className='h-4 w-4 text-green-500' />
                 {new Date(item.date).toLocaleDateString("en-NG", {
                   weekday: "long",
                   day: "numeric",
@@ -108,7 +108,7 @@ export default async function NewsDetailPage({ params }: Props) {
                 })}
               </span>
               <span className='flex items-center gap-1.5'>
-                <Tag className='h-4 w-4 text-[#009f3b]' /> NFVCB Nigeria
+                <Tag className='h-4 w-4 text-green-500' /> NFVCB Nigeria
               </span>
             </div>
             <div className='mt-6'>
@@ -124,7 +124,7 @@ export default async function NewsDetailPage({ params }: Props) {
           <div className='lg:col-span-2'>
             <AnimatedSection>
               {/* Article image */}
-              <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center mb-8'>
+              <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-green-950 to-emerald-700/40 flex items-center justify-center mb-8'>
                 {item.image ? (
                   <Image
                     src={item.image}
@@ -142,7 +142,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       className='opacity-100'
                       aria-hidden
                     />
-                    <div className='w-full absolute bottom-0 bg-linear-to-t from-[#001506] to-transparent px-3 pb-3 pt-8'>
+                    <div className='w-full absolute bottom-0 bg-linear-to-t from-green-950 to-transparent px-3 pb-3 pt-8'>
                       <p className='text-white text-[15px] text-center'>
                         {item.title}
                       </p>
@@ -217,7 +217,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       className='group block'>
                       <Card className='overflow-hidden hover:shadow-md transition-all hover:border-primary/30'>
                         <CardContent className='p-4 flex gap-3'>
-                          <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-[#001506] to-[#009f3b]/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
+                          <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-green-950 to-teal-600/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
                             {r.image ? (
                               <Image
                                 src={r.image}

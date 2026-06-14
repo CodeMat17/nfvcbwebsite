@@ -172,4 +172,35 @@
       rgba(0, 21, 6, 0.9) 100%
     );
   }
+
+  /* ── Tiptap rich-text editor ─────────────────────────────────────────────── */
+  .ProseMirror {
+    outline: none;
+  }
+  .ProseMirror p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    @apply text-muted-foreground;
+    pointer-events: none;
+    float: left;
+    height: 0;
+  }
+  .ProseMirror h2 { @apply text-xl font-bold mt-4 mb-2; }
+  .ProseMirror h3 { @apply text-lg font-semibold mt-3 mb-1; }
+  .ProseMirror h4 { @apply text-base font-semibold mt-2 mb-1; }
+  .ProseMirror p  { @apply my-1 leading-relaxed; }
+  .ProseMirror ul { @apply list-disc pl-5 my-2 space-y-0.5; }
+  .ProseMirror ol { @apply list-decimal pl-5 my-2 space-y-0.5; }
+  .ProseMirror li { @apply leading-relaxed; }
+  .ProseMirror blockquote {
+    @apply border-l-4 border-nfvcb-green pl-4 italic text-muted-foreground my-3;
+  }
+  .ProseMirror pre {
+    @apply bg-muted rounded-md px-4 py-3 font-mono text-sm my-3 overflow-x-auto;
+  }
+  .ProseMirror code { @apply bg-muted rounded px-1 py-0.5 font-mono text-sm; }
+  .ProseMirror a  { @apply text-nfvcb-green underline underline-offset-2; }
+  .ProseMirror img {
+    @apply max-w-full rounded-md my-3 border;
+  }
+  .ProseMirror hr { @apply border-border my-4; }
 }

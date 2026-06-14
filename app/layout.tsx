@@ -194,7 +194,8 @@ export default function RootLayout({
     <html
       lang="en-NG"
       className={`${nunito.variable} h-full antialiased`}
-      suppressHydrationWarning>
+      suppressHydrationWarning
+      data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"

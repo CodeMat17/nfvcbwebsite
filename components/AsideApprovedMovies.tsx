@@ -12,7 +12,7 @@ const AsideApprovedMovies = () => {
   return (
     <div className='rounded-xl border bg-card p-5'>
       <div className='flex items-center gap-2 mb-4'>
-        <Film className='h-4 w-4 text-nfvcb-green' />
+        <Film className='h-4 w-4 text-green-600' />
         <h2 className='text-sm font-black uppercase tracking-widest text-foreground'>
           Recently Approved Movies
         </h2>
@@ -52,7 +52,7 @@ const AsideApprovedMovies = () => {
                       .map(([r, count]) => (
                         <span
                           key={r}
-                          className='text-[12px] px-2 py-0.5 bg-[#fea600]/5 text-[#fea600] rounded-full font-bold'>
+                          className='text-[12px] px-2 py-0.5 bg-emerald-500/10 text-emerald-600 rounded-full font-bold'>
                           {r} ({count})
                         </span>
                       ))}
@@ -78,7 +78,7 @@ const AsideApprovedMovies = () => {
       
       <Link
         href='/approved-movies'
-        className='mt-2 flex items-center gap-1 text-primary font-medium hover:gap-2 transition-all text-sm'>
+        className='mt-2 flex items-center gap-1 text-teal-600 font-medium hover:gap-2 hover:text-teal-700 transition-all text-sm'>
         View all approved films <ArrowRight className='h-3.5 w-3.5' />
       </Link>
     </div>

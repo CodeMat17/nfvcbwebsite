@@ -1,12 +1,11 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
-export const list = query({
-  args: {},
-  handler: async (ctx) => {
-    return await ctx.db.query("news").order("desc").collect();
-  },
-});
+const MAX_TITLE = 200;
+const MAX_AUTHOR = 100;
+const MAX_BODY = 500_000;
+const MAX_CATEGORY = 50;
+const ALLOWED_CATEGORIES = ["news", "press-release", "announcement"];
 
 function toSlug(title: string): string {
   return title
@@ -22,6 +21,60 @@ function toExcerpt(body: string): string {
   return plain.length <= 150 ? plain : plain.slice(0, 147) + "...";
 }
 
+function validateFields(args: {
+  title?: string;
+  body?: string;
+  author?: string;
+  category?: string;
+  coverImageUrl?: string;
+}) {
+  if (args.title !== undefined) {
+    if (!args.title.trim()) throw new Error("Title is required.");
+    if (args.title.length > MAX_TITLE)
+      throw new Error(`Title must be ${MAX_TITLE} characters or fewer.`);
+  }
+  if (args.body !== undefined) {
+    if (!args.body.trim()) throw new Error("Body is required.");
+    if (args.body.length > MAX_BODY)
+      throw new Error("Body content is too large.");
+  }
+  if (args.author !== undefined && args.author.length > MAX_AUTHOR) {
+    throw new Error(`Author must be ${MAX_AUTHOR} characters or fewer.`);
+  }
+  if (args.category !== undefined && args.category.length > MAX_CATEGORY) {
+    throw new Error("Invalid category.");
+  }
+  if (
+    args.category !== undefined &&
+    !ALLOWED_CATEGORIES.includes(args.category)
+  ) {
+    throw new Error("Invalid category.");
+  }
+  if (args.coverImageUrl !== undefined && args.coverImageUrl !== "") {
+    try {
+      const url = new URL(args.coverImageUrl);
+      if (!["https:", "http:"].includes(url.protocol))
+        throw new Error("Cover image URL must use http or https.");
+    } catch {
+      throw new Error("Cover image URL is not valid.");
+    }
+  }
+}
+
+export const generateUploadUrl = mutation({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
+  },
+});
+
+export const list = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("news").order("desc").collect();
+  },
+});
+
 export const create = mutation({
   args: {
     title: v.string(),
@@ -33,10 +86,18 @@ export const create = mutation({
     featured: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    validateFields({
+      title: args.title,
+      body: args.body,
+      author: args.author,
+      category: args.category,
+      coverImageUrl: args.coverImageUrl,
+    });
+
     if (args.coverImageId) {
       const meta = await ctx.db.system.get(args.coverImageId);
-      if (meta && meta.size > 150 * 1024) {
-        throw new Error("Cover image must be 150 KB or smaller.");
+      if (meta && meta.size > 100 * 1024) {
+        throw new Error("Cover image must be 100 KB or smaller.");
       }
     }
 
@@ -49,17 +110,15 @@ export const create = mutation({
       throw new Error(`A news article with slug "${slug}" already exists.`);
     }
 
-    const excerpt = toExcerpt(args.body);
-
     return await ctx.db.insert("news", {
-      title: args.title,
+      title: args.title.trim(),
       slug,
-      excerpt,
+      excerpt: toExcerpt(args.body),
       body: args.body,
-      coverImageUrl: args.coverImageUrl,
+      coverImageUrl: args.coverImageUrl || undefined,
       coverImageId: args.coverImageId,
       category: args.category,
-      author: args.author,
+      author: args.author?.trim() || undefined,
       featured: args.featured,
     });
   },
@@ -82,10 +141,18 @@ export const update = mutation({
     const existing = await ctx.db.get(id);
     if (!existing) throw new Error("News article not found.");
 
+    validateFields({
+      title: fields.title,
+      body: fields.body,
+      author: fields.author,
+      category: fields.category,
+      coverImageUrl: fields.coverImageUrl,
+    });
+
     if (fields.coverImageId) {
       const meta = await ctx.db.system.get(fields.coverImageId);
-      if (meta && meta.size > 150 * 1024) {
-        throw new Error("Cover image must be 150 KB or smaller.");
+      if (meta && meta.size > 100 * 1024) {
+        throw new Error("Cover image must be 100 KB or smaller.");
       }
     }
 
@@ -101,10 +168,15 @@ export const update = mutation({
         throw new Error(`A news article with slug "${slug}" already exists.`);
       }
       patch.slug = slug;
+      patch.title = fields.title.trim();
     }
 
     if (fields.body !== undefined) {
       patch.excerpt = toExcerpt(fields.body);
+    }
+
+    if (fields.author !== undefined) {
+      patch.author = fields.author.trim() || undefined;
     }
 
     await ctx.db.patch(id, patch);
@@ -116,6 +188,10 @@ export const remove = mutation({
   handler: async (ctx, args) => {
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new Error("News article not found.");
+    // Delete associated storage file if present
+    if (existing.coverImageId) {
+      await ctx.storage.delete(existing.coverImageId);
+    }
     await ctx.db.delete(args.id);
   },
 });

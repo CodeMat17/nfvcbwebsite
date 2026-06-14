@@ -22,6 +22,14 @@ export default defineSchema({
       filterFields: ["category", "featured"],
     }),
 
+  // ─── Management Staff ───────────────────────────────────────────────────────
+  managementStaff: defineTable({
+    name: v.string(),
+    designation: v.string(),
+    imageId: v.id("_storage"),
+    order: v.number(),
+  }).index("by_order", ["order"]),
+
   // ─── Approved Movies ────────────────────────────────────────────────────────
   // Each "post" groups a monthly batch of approved films.
   approvedMovies: defineTable({

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
-import { GraduationCap, Award, BookOpen, Globe } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Management Team — Leadership & Principal Officers",
@@ -49,19 +50,6 @@ const principalOfficers = [
     subtitle: "Ministry of Arts, Culture, Tourism and Creative Economy",
     image: "/management_staff/minister.webp",
   },
-];
-
-const dgAchievements = [
-  { icon: GraduationCap, text: "First Class BSc, Mass Communication — Lagos State University" },
-  { icon: GraduationCap, text: "MSc (Distinction), Mass Communication — University of Lagos" },
-  { icon: GraduationCap, text: "PhD, Mass Communication (Film Studies) — University of Lagos" },
-  { icon: Award, text: "Chair, AMAA Selection Committee — 16 consecutive years" },
-  { icon: Globe, text: "AIG-Public Leaders Programme, Blavatnik School of Governance, University of Oxford" },
-  { icon: Globe, text: "US International Visitors Leadership Programme alumnus" },
-  { icon: BookOpen, text: "Author: 'Moviedom: The Nollywood Narratives'" },
-  { icon: Award, text: "Current voting member, International Golden Globes Award" },
-  { icon: Award, text: "Consultant, Berlin International Film Festival" },
-  { icon: GraduationCap, text: "Senior Teaching & Research Fellow, UNILAG Mass Communication" },
 ];
 
 // Ordered: Directors → Heads → Ag. Heads → Zonal Coordinators
@@ -190,99 +178,61 @@ export default function ManagementPage() {
           </StaggerContainer>
         </AnimatedSection>
 
-        {/* Director General */}
+        {/* Executive Director */}
         <AnimatedSection className="mb-16">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* DG Card */}
-            <div className="md:col-span-1">
-              <Card className="overflow-hidden border-primary/20 sticky top-28 py-0">
-                <div className="relative h-72 sm:h-80 lg:h-72 xl:h-80 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 overflow-hidden">
-                  <Image src="/management_staff/dr_shaibu.webp" alt="Dr. Shaibu Husseini" fill className="object-cover object-top" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 p-5 z-10">
-                    <Badge className="bg-[#fea600] text-[#001506] font-semibold mb-2">
-                      Director General
-                    </Badge>
-                    <h2 className="text-xl font-bold text-white">Dr. Shaibu Husseini</h2>
-                    <p className="text-white/70 text-sm">PhD, Mass Communication</p>
-                  </div>
+          <div className="relative rounded-3xl overflow-hidden border border-[#fea600]/30 bg-gradient-to-br from-[#001506] to-[#001a08]">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_100%_50%,rgba(254,166,0,0.08),transparent)]" />
+            <div className="relative grid md:grid-cols-[auto_1fr] gap-0">
+              {/* Photo */}
+              <div className="relative w-full md:w-72 lg:w-80 h-80 md:h-auto shrink-0 overflow-hidden">
+                <Image
+                  src="/management_staff/dr_shaibu.webp"
+                  alt="Dr. Shaibu Husseini"
+                  fill
+                  className="object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001506]/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#001506]/60" />
+                <div className="absolute bottom-4 left-4 md:hidden">
+                  <Badge className="bg-[#fea600] text-[#001506] font-bold text-xs mb-1">Executive Director / CEO</Badge>
+                  <p className="text-white font-bold text-lg leading-tight">Dr. Shaibu Husseini</p>
                 </div>
-                <CardContent className="p-5">
-                  <div className="space-y-3">
-                    {dgAchievements.map(({ icon: Icon, text }, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <Icon className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                        <p className="text-xs text-muted-foreground leading-snug">{text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* DG Profile */}
-            <div className="md:col-span-2 space-y-5">
-              <div>
-                <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">
-                  Director General&apos;s Profile
-                </Badge>
-                <h2 className="text-3xl font-bold text-foreground mb-1">Dr. Shaibu Husseini</h2>
-                <p className="text-muted-foreground text-sm">PhD (Lagos) | FISPA | Film Scholar | Culture Expert</p>
               </div>
 
-              <div className="space-y-4 text-muted-foreground leading-relaxed text-sm sm:text-base">
-                <p>
-                  Dr. Shaibu Husseini holds a First Class BSc degree in Mass Communication from the
-                  Lagos State University; an MSc degree in Mass Communication (Distinction) from the
-                  University of Lagos and a PhD in Mass Communication from the University of Lagos.
-                  His PhD was on film studies — his thesis examined the &apos;Structure of Film
-                  Production Companies in Nollywood&apos;.
+              {/* Content */}
+              <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-5">
+                <div className="hidden md:block">
+                  <Badge className="bg-[#fea600] text-[#001506] font-bold mb-3">Executive Director / CEO</Badge>
+                  <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">Dr. Shaibu Husseini</h2>
+                  <p className="text-white/50 text-sm mt-1">PhD, Mass Communication · MNIPR · RPA · FTA · FGOND</p>
+                </div>
+
+                <p className="text-white/70 leading-relaxed text-sm sm:text-base">
+                  Widely referred to as <span className="text-white font-semibold">&ldquo;Mr. Nollywood&rdquo;</span>, Dr. Shaibu Husseini is one of Nigeria&apos;s most authoritative voices in film scholarship, cultural journalism, and creative policy. Appointed Executive Director / CEO of the NFVCB by President Bola Ahmed Tinubu on January 12, 2024, he has led a transformative shift from censorship to progressive content classification, championed full digitalisation, and positioned Nigerian cinema for global competitiveness.
                 </p>
-                <p>
-                  A trained and seasoned theatre, film, broadcast, Public Relations and Culture
-                  expert, Shaibu is an alumnus of the United States International Visitors Leadership
-                  Programme and the Aig-Imoukhuede Foundation&apos;s AIG-Public Leaders Programme of
-                  the Blavatnik School of Governance of the University of Oxford.
-                </p>
-                <p>
-                  One time Secretary of the Governing Board of the National Theatre/National Troupe
-                  of Nigeria (from 2011 to 2015) and until his appointment Director of Dance and
-                  Music and Head of the Strategic Communication Unit of the National Troupe of
-                  Nigeria, Dr. Shaibu is reputed as one of the most consistent documentarists of
-                  Nigeria&apos;s vibrant film and movie industry Nollywood and he is an astute
-                  commentator on arts, theatre and film development in Nigeria and the continent of
-                  Africa. His career as a film and culture journalist with Nigeria&apos;s flagship
-                  newspaper — The Guardian — has spanned over three decades.
-                </p>
-                <p>
-                  The Chair, for 16 years running, of the Selection Committee of Africa&apos;s
-                  premier film award — the Africa Movie Academy Awards (AMAA) — and a member of
-                  the prestigious AMAA jury, Shaibu has attended several conferences, workshops and
-                  festivals and has sat on numerous local and international committees on film,
-                  theatre and allied matters. These include serving on the Board of the Mainframe
-                  Film Institute run by the legendary Tunde Kelani, the board of In-short
-                  International Film Festival and on the Board of the Bank of Industry (BOI)
-                  Nollywood Fund, amongst others.
-                </p>
-                <p>
-                  Author of a monograph on the pioneers of the Nigerian film and video industry
-                  titled &apos;Moviedom: The Nollywood Narratives&apos;, Shaibu is a Senior Teaching
-                  and Research Fellow at the Mass Communication Department of the University of Lagos
-                  and was a former member of the Nigeria Official Selection Committee charged with
-                  deciding Nigeria&apos;s entry for the Best International Film category of the
-                  Oscars. He is a current voting member of the International Golden Globes Award and
-                  a consultant to the Berlin International Film Festival.
-                </p>
-                <p>
-                  A pioneer artiste of the National Troupe of Nigeria who rose to become
-                  Personal/Special Assistant to the Director General of the National
-                  Theatre/National Troupe of Nigeria, Dr. Shaibu has considerable theoretical,
-                  practical and field experience in Theatre, cultural administration, Public
-                  Relations, Advertising, Journalism, Broadcasting and film. He considers himself
-                  an enthusiastic, dedicated, detailed and capable theory-cum-practice oriented
-                  professional who is able to improve the ability of an organisation to deliver
-                  outcomes that matter.
-                </p>
+
+                <div className="flex flex-wrap gap-3 text-xs">
+                  {[
+                    { label: "30+", sub: "Years in Media" },
+                    { label: "16yrs", sub: "AMAA Chair" },
+                    { label: "PhD", sub: "UNILAG" },
+                    { label: "465", sub: "Staff Empowered" },
+                  ].map(({ label, sub }) => (
+                    <div key={sub} className="px-4 py-2 rounded-xl border border-white/10 bg-white/5 text-center min-w-[72px]">
+                      <p className="text-[#fea600] font-bold text-base">{label}</p>
+                      <p className="text-white/40 mt-0.5">{sub}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    href="/executive-director"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#fea600] hover:bg-[#fea600]/90 text-[#001506] font-semibold text-sm transition-all duration-200 shadow-lg shadow-[#fea600]/20"
+                  >
+                    Full Profile & Achievements
+                    <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

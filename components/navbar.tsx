@@ -25,6 +25,7 @@ const navLinks = [
       { label: "Vision & Goals", href: "/about#vision" },
       { label: "Philosophy", href: "/about#philosophy" },
       { label: "Management Team", href: "/management" },
+      { label: "Executive Director", href: "/executive-director" },
       { label: "Departments", href: "/departments" },
     ],
   },

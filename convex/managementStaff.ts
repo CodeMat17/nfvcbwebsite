@@ -37,6 +37,15 @@ export const list = query({
   },
 });
 
+export const getById = query({
+  args: { id: v.id("managementStaff") },
+  handler: async (ctx, args) => {
+    const staff = await ctx.db.get(args.id);
+    if (!staff) return null;
+    return { ...staff, imageUrl: await ctx.storage.getUrl(staff.imageId) };
+  },
+});
+
 export const create = mutation({
   args: {
     name: v.string(),

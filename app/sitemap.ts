@@ -33,10 +33,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
-      url: `${BASE_URL}/classifications`,
+      url: `${BASE_URL}/classification`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/faqs`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/policy`,
@@ -69,6 +75,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${BASE_URL}/executive-director`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/law-enforcement`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -93,7 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/payment`,
+      url: `${BASE_URL}/payment-guide`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,

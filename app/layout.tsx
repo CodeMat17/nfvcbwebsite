@@ -116,9 +116,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  verification: {
-    google: "nfvcb-google-site-verification",
-  },
+  // verification: {
+  //   google: "nfvcb-google-site-verification",
+  // },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

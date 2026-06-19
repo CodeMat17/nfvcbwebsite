@@ -71,7 +71,37 @@ export const generateUploadUrl = mutation({
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    return await ctx.db.query("news").order("desc").collect();
+    const rows = await ctx.db.query("news").order("desc").collect();
+    return await Promise.all(
+      rows.map(async (row) => {
+        let coverImageUrl: string | null = row.coverImageUrl ?? null;
+        if (row.coverImageId) {
+          try {
+            coverImageUrl = await ctx.storage.getUrl(row.coverImageId);
+          } catch {
+            coverImageUrl = null;
+          }
+        }
+        return { ...row, coverImageUrl };
+      })
+    );
+  },
+});
+
+export const getById = query({
+  args: { id: v.id("news") },
+  handler: async (ctx, args) => {
+    const row = await ctx.db.get(args.id);
+    if (!row) return null;
+    let coverImageUrl: string | null = row.coverImageUrl ?? null;
+    if (row.coverImageId) {
+      try {
+        coverImageUrl = await ctx.storage.getUrl(row.coverImageId);
+      } catch {
+        coverImageUrl = null;
+      }
+    }
+    return { ...row, coverImageUrl };
   },
 });
 
@@ -96,8 +126,8 @@ export const create = mutation({
 
     if (args.coverImageId) {
       const meta = await ctx.db.system.get(args.coverImageId);
-      if (meta && meta.size > 100 * 1024) {
-        throw new Error("Cover image must be 100 KB or smaller.");
+      if (meta && meta.size > 300 * 1024) {
+        throw new Error("Cover image must be 300 KB or smaller.");
       }
     }
 
@@ -129,14 +159,14 @@ export const update = mutation({
     id: v.id("news"),
     title: v.optional(v.string()),
     body: v.optional(v.string()),
-    coverImageUrl: v.optional(v.string()),
     coverImageId: v.optional(v.id("_storage")),
+    clearCoverImage: v.optional(v.boolean()),
     category: v.optional(v.string()),
     author: v.optional(v.string()),
     featured: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
-    const { id, ...fields } = args;
+    const { id, clearCoverImage, ...fields } = args;
 
     const existing = await ctx.db.get(id);
     if (!existing) throw new Error("News article not found.");
@@ -146,17 +176,25 @@ export const update = mutation({
       body: fields.body,
       author: fields.author,
       category: fields.category,
-      coverImageUrl: fields.coverImageUrl,
     });
+
+    const patch: Record<string, unknown> = { ...fields };
 
     if (fields.coverImageId) {
       const meta = await ctx.db.system.get(fields.coverImageId);
-      if (meta && meta.size > 100 * 1024) {
-        throw new Error("Cover image must be 100 KB or smaller.");
+      if (meta && meta.size > 300 * 1024) {
+        throw new Error("Cover image must be 300 KB or smaller.");
       }
+      if (existing.coverImageId) {
+        try { await ctx.storage.delete(existing.coverImageId); } catch { /* ignore */ }
+      }
+    } else if (clearCoverImage) {
+      if (existing.coverImageId) {
+        try { await ctx.storage.delete(existing.coverImageId); } catch { /* ignore */ }
+      }
+      patch.coverImageId = undefined;
+      patch.coverImageUrl = undefined;
     }
-
-    const patch: Record<string, unknown> = { ...fields };
 
     if (fields.title !== undefined) {
       const slug = toSlug(fields.title);

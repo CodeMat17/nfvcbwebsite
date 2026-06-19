@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 function toSlug(title: string): string {
   return title
@@ -11,6 +11,43 @@ function toSlug(title: string): string {
 }
 
 // ─── Approved Movie Posts ────────────────────────────────────────────────────
+
+export const listPosts = query({
+  args: {},
+  handler: async (ctx) => {
+    return await ctx.db.query("approvedMovies").order("desc").collect();
+  },
+});
+
+export const getPost = query({
+  args: { id: v.id("approvedMovies") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
+  },
+});
+
+export const getPostBySlug = query({
+  args: { slug: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("approvedMovies")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .unique();
+  },
+});
+
+// ─── Approved Movie Items ────────────────────────────────────────────────────
+
+export const listItems = query({
+  args: { postId: v.id("approvedMovies") },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("approvedMovieItems")
+      .withIndex("by_postId", (q) => q.eq("postId", args.postId))
+      .order("asc")
+      .collect();
+  },
+});
 
 export const createPost = mutation({
   args: {

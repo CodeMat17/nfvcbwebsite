@@ -31,7 +31,7 @@ const departments = [
   { name: "Executive Director's Office", icon: "🏛️" },
   { name: "Administration Department", icon: "⚙️" },
   { name: "Film Censorship & Classification Department", icon: "🎬" },
-  { name: "Licensing & Documenting Department", icon: "📋" },
+  { name: "Licensing & Documentation Department", icon: "📋" },
   { name: "Operations Department", icon: "🗺️" },
   { name: "Planning, Research & Statistics Department", icon: "📊" },
   { name: "Service Innovation Department", icon: "💡" },

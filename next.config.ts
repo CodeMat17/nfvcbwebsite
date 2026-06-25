@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "picsum.photos" },
+      { protocol: "https", hostname: "fastidious-flamingo-212.convex.cloud" },
+      { protocol: "https", hostname: "rapid-pigeon-641.convex.cloud" },
     ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -34,7 +36,10 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)\\.(ico|png|jpg|jpeg|webp|avif|svg|woff2|woff|ttf)",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
     ];

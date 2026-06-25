@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
 import { ArrowUpRight } from "lucide-react";
+import { SeniorManagementSection } from "./senior-management-section";
 
 export const metadata: Metadata = {
   title: "Management Team — Leadership & Principal Officers",
@@ -49,85 +50,6 @@ const principalOfficers = [
     title: "Honourable Minister",
     subtitle: "Ministry of Arts, Culture, Tourism and Creative Economy",
     image: "/management_staff/minister.webp",
-  },
-];
-
-// Ordered: Directors → Heads → Ag. Heads → Zonal Coordinators
-const seniorManagement = [
-  // Directors
-  {
-    name: "Deborah A. Malgwi",
-    position: "Director, Film Censorship & Classification",
-    image: "/management_staff/fcc.webp",
-  },
-  {
-    name: "Peace Ononobi",
-    position: "Director, Service Innovation Department",
-    image: "/management_staff/sid.jpeg",
-  },
-  {
-    name: "Onwumere Ogbonna",
-    position: "Director, Corporate Affairs",
-    image: "/management_staff/ca.webp",
-  },
-  {
-    name: "Francis Nzekwu Esq.",
-    position: "Director, Planning Research & Statistics",
-    image: "/management_staff/prs.jpg",
-  },
-
-  {
-    name: "Etuechere Martins",
-    position: "Director, Operations",
-    image: "/management_staff/sd.jpeg",
-  },
-  {
-    name: "Olaoye Samuel",
-    position: "Ag. Head, Administrative Department",
-    image: "/management_staff/admin.jpeg",
-  },
-  {
-    name: "Hasina D. Nasir",
-    position: "Head, Legal Services",
-    image: "/management_staff/lg.jpg",
-  },
-  {
-    name: "Isaac Adeyemi",
-    position: "Head of Finance & Account",
-    image: "/management_staff/accounts.jpeg",
-  },
-  // Ag. Heads
-  {
-    name: "Rhoda Dandaura",
-    position: "Ag. Head, Director, Licensing and Documentation",
-    image: null,
-  },
-
-  // Zonal Coordinators
-  {
-    name: "Hubert Odeh",
-    position: "Zonal Coordinator, South East Zone",
-    image: "/management_staff/sez.png",
-  },
-  {
-    name: "Emagha Uju",
-    position: "Zonal Coordinator, South West Zone",
-    image: "/management_staff/swz.jpg",
-  },
-  {
-    name: "Margarita Adeyinka Oluwole",
-    position: "Zonal Coordinator, North Central Zone",
-    image: "/management_staff/ncz.jpg",
-  },
-  {
-    name: "Sangari Rabi Muhammed",
-    position: "Zonal Coordinator, North East Zone",
-    image: "/management_staff/nez.jpg",
-  },
-  {
-    name: "Aliyu Sani",
-    position: "Ag. Zonal Coordinator, North West Zone",
-    image: null,
   },
 ];
 
@@ -241,26 +163,7 @@ export default function ManagementPage() {
         {/* Senior Management */}
         <AnimatedSection>
           <h2 className="text-2xl font-bold text-foreground mb-8">Senior Management</h2>
-          <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {seniorManagement.map(({ name, position, image }) => (
-              <StaggerItem key={name}>
-                <Card className="overflow-hidden border-primary/20 py-0 hover:shadow-md transition-all hover:border-primary/40 hover:-translate-y-0.5">
-                  <div className="relative h-96  bg-gradient-to-br from-[#001506] to-[#009f3b]/40 overflow-hidden">
-                    {image ? (
-                      <Image src={image} alt={name} fill className="object-cover object-top" />
-                    ) : (
-                      <Image src="/logo.webp" alt="" fill className="object-contain object-center opacity-20 p-6" />
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-3 z-10">
-                      <p className="font-bold text-white leading-tight">{name}</p>
-                      <p className="text-white/70 text-sm mt-0.5 leading-snug">{position}</p>
-                    </div>
-                  </div>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+          <SeniorManagementSection />
         </AnimatedSection>
 
       </div>

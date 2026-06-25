@@ -11,6 +11,7 @@
 import type * as approvedMovies from "../approvedMovies.js";
 import type * as managementStaff from "../managementStaff.js";
 import type * as news from "../news.js";
+import type * as storage from "../storage.js";
 
 import type {
   ApiFromModules,
@@ -22,6 +23,7 @@ declare const fullApi: ApiFromModules<{
   approvedMovies: typeof approvedMovies;
   managementStaff: typeof managementStaff;
   news: typeof news;
+  storage: typeof storage;
 }>;
 
 /**

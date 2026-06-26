@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
 import { newsItems } from "@/lib/news-data";
 import { approvedMoviesPosts } from "@/lib/approved-movies-data";
-import { ArrowRight, Film } from "lucide-react";
 import NewsClient from "./news-client";
 import { ClassificationPanel } from "@/components/classification-panel";
 import AsideApprovedMovies from "@/components/AsideApprovedMovies";

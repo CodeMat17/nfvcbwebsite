@@ -48,7 +48,7 @@ export default function ExecutiveDirectorPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       {/* ── HERO ── */}
       <section id="hero" ref={heroRef} className="relative min-h-screen flex items-end overflow-hidden">
         <motion.div style={{ scale: imageScale }} className="absolute inset-0 z-0">
@@ -79,7 +79,7 @@ export default function ExecutiveDirectorPage() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="font-playfair text-5xl sm:text-6xl md:text-8xl lg:text-[96px] font-bold text-white leading-[0.95] tracking-tight"
+              className="font-playfair text-[2.6rem] sm:text-5xl md:text-8xl lg:text-[96px] font-bold text-white leading-[0.95] tracking-tight"
             >
               Dr. Shaibu
               <br />
@@ -121,7 +121,7 @@ export default function ExecutiveDirectorPage() {
 
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.6 }}
-              className="mt-14 pt-8 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-8 max-w-sm"
+              className="mt-14 pt-8 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-8 max-w-sm text-center"
             >
               {[{ value: "30+", label: "Years in Media" }, { value: "16yrs", label: "AMAA Chair" }, { value: "465", label: "Staff Empowered" }].map((s) => (
                 <div key={s.label}>
@@ -133,7 +133,7 @@ export default function ExecutiveDirectorPage() {
           </div>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.4 }}
           className="absolute bottom-6 right-8 z-10 flex items-center gap-2 text-white/40"
         >
@@ -141,7 +141,7 @@ export default function ExecutiveDirectorPage() {
           <motion.div animate={{ y: [0, 5, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
             <ChevronDown size={14} />
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* ── ABOUT ── */}
@@ -312,7 +312,7 @@ export default function ExecutiveDirectorPage() {
         <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
           <FadeIn direction="none">
             <div className="text-center">
-              <div className="text-amber-400/30 font-playfair text-[120px] leading-none select-none mb-[-40px]">&ldquo;</div>
+              <div className="text-amber-400/30 font-playfair text-[72px] md:text-[120px] leading-none select-none mb-[-24px] md:mb-[-40px]">&ldquo;</div>
               <p className="font-playfair text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-relaxed italic max-w-3xl mx-auto">
                 I am an open book. Since the reward for hard work is more work, I commit to continue working tirelessly to promote and advance the cause of theatre and film arts in Nigeria.
               </p>

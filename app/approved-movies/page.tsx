@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description:
       "Monthly lists of films approved for public exhibition in Nigeria — ratings, languages and consumer advice from NFVCB.",
     url: "https://nfvcb.gov.ng/approved-movies",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

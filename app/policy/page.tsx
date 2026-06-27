@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description:
       "NFVCB's official classification policy — censorship principles, content criteria and rating categories under Nigerian law.",
     url: "https://nfvcb.gov.ng/policy",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

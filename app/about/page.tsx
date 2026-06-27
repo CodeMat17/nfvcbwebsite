@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Established by Act No. 85 of 1993, NFVCB is Nigeria's official film and video regulatory authority. Discover our history, mission and statutory functions.",
     url: "https://nfvcb.gov.ng/about",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

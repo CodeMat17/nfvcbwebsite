@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description:
       "NFVCB's strategic blueprint for transforming Nigeria's film regulatory landscape — digitisation, enforcement and industry development.",
     url: "https://nfvcb.gov.ng/action-plan",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

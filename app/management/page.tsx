@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Meet Director-General Dr. Shaibu Husseini and the senior leadership team of the National Film and Video Censors Board.",
     url: "https://nfvcb.gov.ng/management",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

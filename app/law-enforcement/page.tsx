@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description:
       "NFVCB enforcement activities — infringement types, prosecution and pending cases combating piracy and uncensored content in Nigeria.",
     url: "https://nfvcb.gov.ng/law-enforcement",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

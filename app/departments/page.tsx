@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description:
       "Explore all departments of the National Film and Video Censors Board including Censorship, Licensing, Operations, Legal, ICT and Finance.",
     url: "https://nfvcb.gov.ng/departments",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

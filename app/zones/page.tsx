@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Locate NFVCB offices across all six geopolitical zones of Nigeria — addresses and contact details.",
     url: "https://nfvcb.gov.ng/zones",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

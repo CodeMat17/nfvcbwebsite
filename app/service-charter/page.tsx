@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     description:
       "NFVCB's defined service standards for filmmakers, distributors, exhibitors and the public — processing times and obligations.",
     url: "https://nfvcb.gov.ng/service-charter",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description:
       "Latest official news, press releases and announcements from Nigeria's National Film and Video Censors Board.",
     url: "https://nfvcb.gov.ng/news",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

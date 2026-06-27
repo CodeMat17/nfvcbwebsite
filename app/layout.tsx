@@ -88,7 +88,7 @@ export const metadata: Metadata = {
       "Nigeria's official film regulatory authority since 1993. Film classification, licensing, enforcement and Nollywood industry development.",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/opengraph-image-v2.png",
         width: 1200,
         height: 630,
         alt: "NFVCB — National Film and Video Censors Board of Nigeria",
@@ -103,7 +103,7 @@ export const metadata: Metadata = {
     title: "NFVCB — National Film and Video Censors Board of Nigeria",
     description:
       "Nigeria's official film regulatory authority since 1993. Film classification, licensing and Nollywood industry development.",
-    images: ["/opengraph-image.png"],
+    images: ["/opengraph-image-v2.png"],
   },
   robots: {
     index: true,
@@ -139,7 +139,7 @@ const organizationJsonLd = {
     width: 512,
     height: 512,
   },
-  image: `${BASE_URL}/opengraph-image.png`,
+  image: `${BASE_URL}/opengraph-image-v2.png`,
   description:
     "Nigeria's official film regulatory authority established by Act No. 85 of 1993. Responsible for the classification, censorship and regulation of films, video works and video games in Nigeria.",
   foundingDate: "1993",

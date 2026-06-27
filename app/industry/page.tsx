@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "How to submit films, download forms, and access NFVCB services for producers, distributors and exhibitors in Nigeria.",
     url: "https://nfvcb.gov.ng/industry",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

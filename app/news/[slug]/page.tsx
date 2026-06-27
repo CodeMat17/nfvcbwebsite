@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!item) return { title: "Not Found" };
   const ogImage = item.coverImageUrl
     ? [{ url: item.coverImageUrl, width: 800, height: 500 }]
-    : [{ url: "/opengraph-image.png", width: 1200, height: 630 }];
+    : [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }];
   const dateStr =
     item.publishedAt ?? new Date(item._creationTime).toISOString();
   return {

@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description:
       "Step-by-step guide for generating a bill and making payment on the OAGF RevOP portal.",
     url: "https://nfvcb.gov.ng/payment-guide",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

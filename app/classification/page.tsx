@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Official NFVCB film classification symbols explained. Understand what G, PG, 12, 15, 18 and RE ratings mean for Nigerian audiences.",
     url: "https://nfvcb.gov.ng/classification",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

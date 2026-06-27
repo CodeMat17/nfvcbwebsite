@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${pageTitle} — NFVCB Approved Films`,
       description,
       url: `https://nfvcb.gov.ng/approved-movies/${slug}`,
-      images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+      images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
     },
   };
 }

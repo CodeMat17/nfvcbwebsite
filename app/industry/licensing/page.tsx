@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description:
       "Licensing requirements and fees for exhibitors, distributors and online platforms operating in Nigeria's film industry.",
     url: "https://nfvcb.gov.ng/industry/licensing",
-    images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

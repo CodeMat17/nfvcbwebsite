@@ -2,26 +2,26 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
-import { newsItems, getNewsItem } from "@/lib/news-data";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { ShareButton } from "@/components/ShareButton";
 
-type Props = { params: Promise<{ slug: string }> };
+export const dynamic = "force-dynamic";
 
-export async function generateStaticParams() {
-  return newsItems.map((item) => ({ slug: item.slug }));
-}
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const item = getNewsItem(slug);
+  const item = await fetchQuery(api.news.getBySlug, { slug });
   if (!item) return { title: "Not Found" };
-  const ogImage = item.image
-    ? [{ url: item.image, width: 800, height: 500 }]
+  const ogImage = item.coverImageUrl
+    ? [{ url: item.coverImageUrl, width: 800, height: 500 }]
     : [{ url: "/opengraph-image.png", width: 1200, height: 630 }];
+  const dateStr = item.publishedAt ?? new Date(item._creationTime).toISOString();
   return {
     title: item.title,
     description: item.excerpt,
@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: item.title,
       description: item.excerpt,
       url: `https://nfvcb.gov.ng/news/${slug}`,
-      publishedTime: item.date,
-      authors: [item.author],
+      publishedTime: dateStr,
+      authors: item.author ? [item.author] : ["NFVCB"],
       images: ogImage,
     },
     twitter: {
@@ -44,13 +44,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function categoryLabel(cat: string) {
+function categoryLabel(cat: string | undefined) {
   if (cat === "press-release") return "Press Release";
   if (cat === "announcement") return "Announcement";
   return "News";
 }
 
-function categoryColor(cat: string) {
+function categoryColor(cat: string | undefined) {
   if (cat === "press-release") return "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20";
   if (cat === "announcement") return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
   return "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20";
@@ -58,11 +58,15 @@ function categoryColor(cat: string) {
 
 export default async function NewsDetailPage({ params }: Props) {
   const { slug } = await params;
-  const item = getNewsItem(slug);
+  const [item, allItems] = await Promise.all([
+    fetchQuery(api.news.getBySlug, { slug }),
+    fetchQuery(api.news.list),
+  ]);
 
   if (!item) notFound();
 
-  const related = newsItems.filter((n) => n.slug !== slug).slice(0, 3);
+  const related = allItems.filter((n) => n.slug !== slug).slice(0, 3);
+  const dateStr = item.publishedAt ?? new Date(item._creationTime).toISOString();
 
   return (
     <>
@@ -72,7 +76,7 @@ export default async function NewsDetailPage({ params }: Props) {
           className='absolute inset-0 opacity-[0.05] pointer-events-none'
           aria-hidden>
           <Image
-            src={item.image ?? "/logo.webp"}
+            src={item.coverImageUrl ?? "/logo.webp"}
             alt=''
             fill
             className='object-cover object-center blur-sm'
@@ -96,11 +100,11 @@ export default async function NewsDetailPage({ params }: Props) {
             </h1>
             <div className='flex flex-wrap items-center gap-4 text-sm text-white/60'>
               <span className='flex items-center gap-1.5'>
-                <User className='h-4 w-4 text-green-500' /> {item.author}
+                <User className='h-4 w-4 text-green-500' /> {item.author ?? "NFVCB"}
               </span>
               <span className='flex items-center gap-1.5'>
                 <Calendar className='h-4 w-4 text-green-500' />
-                {new Date(item.date).toLocaleDateString("en-NG", {
+                {new Date(dateStr).toLocaleDateString("en-NG", {
                   weekday: "long",
                   day: "numeric",
                   month: "long",
@@ -123,11 +127,10 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Main content */}
           <div className='lg:col-span-2'>
             <AnimatedSection>
-              {/* Article image */}
               <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-green-950 to-emerald-700/40 flex items-center justify-center mb-8'>
-                {item.image ? (
+                {item.coverImageUrl ? (
                   <Image
-                    src={item.image}
+                    src={item.coverImageUrl}
                     alt={item.title}
                     fill
                     className='object-cover'
@@ -149,10 +152,8 @@ export default async function NewsDetailPage({ params }: Props) {
                     </div>
                   </>
                 )}
-               
               </div>
 
-              {/* Article body */}
               <article
                 className='news-article prose prose-sm sm:prose max-w-none dark:prose-invert
                   prose-headings:text-foreground prose-p:text-muted-foreground
@@ -161,7 +162,7 @@ export default async function NewsDetailPage({ params }: Props) {
                   prose-pre:overflow-x-auto prose-pre:max-w-full
                   prose-table:block prose-table:overflow-x-auto prose-table:w-full
                   [&_*]:max-w-full [&_*]:break-words overflow-hidden'
-                dangerouslySetInnerHTML={{ __html: item.content }}
+                dangerouslySetInnerHTML={{ __html: item.body }}
               />
             </AnimatedSection>
           </div>
@@ -212,15 +213,15 @@ export default async function NewsDetailPage({ params }: Props) {
                 <div className='space-y-4'>
                   {related.map((r) => (
                     <Link
-                      key={r.slug}
+                      key={r._id}
                       href={`/news/${r.slug}`}
                       className='group block'>
                       <Card className='overflow-hidden hover:shadow-md transition-all hover:border-primary/30'>
                         <CardContent className='p-4 flex gap-3'>
                           <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-green-950 to-teal-600/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
-                            {r.image ? (
+                            {r.coverImageUrl ? (
                               <Image
-                                src={r.image}
+                                src={r.coverImageUrl}
                                 alt=''
                                 fill
                                 className='object-cover opacity-80'
@@ -242,7 +243,7 @@ export default async function NewsDetailPage({ params }: Props) {
                               {r.title}
                             </p>
                             <p className='text-[10px] text-muted-foreground mt-1'>
-                              {new Date(r.date).toLocaleDateString("en-NG", {
+                              {new Date(r.publishedAt ?? r._creationTime).toLocaleDateString("en-NG", {
                                 day: "numeric",
                                 month: "short",
                                 year: "numeric",

@@ -16,21 +16,28 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import type { NewsItem } from "@/lib/news-data";
 import { ArrowRight, Calendar, User, Search } from "lucide-react";
+import type { api } from "@/convex/_generated/api";
+import type { FunctionReturnType } from "convex/server";
+
+type NewsItem = FunctionReturnType<typeof api.news.list>[number];
 
 const PAGE_SIZE = 9;
 
-function categoryLabel(cat: string) {
+function categoryLabel(cat: string | undefined) {
   if (cat === "press-release") return "Press Release";
   if (cat === "announcement") return "Announcement";
   return "News";
 }
 
-function categoryColor(cat: string) {
+function categoryColor(cat: string | undefined) {
   if (cat === "press-release") return "bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20";
   if (cat === "announcement") return "bg-[#fea600]/10 text-[#fea600] border-[#fea600]/20";
   return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
+}
+
+function itemDate(item: NewsItem): string {
+  return item.publishedAt ?? new Date(item._creationTime).toISOString();
 }
 
 interface Props {
@@ -52,7 +59,7 @@ export default function NewsClient({ items }: Props) {
     return items.filter((item) =>
       !q ||
       item.title.toLowerCase().includes(q) ||
-      item.author.toLowerCase().includes(q)
+      (item.author ?? "").toLowerCase().includes(q)
     );
   }, [items, query]);
 
@@ -98,9 +105,9 @@ export default function NewsClient({ items }: Props) {
               <Card className="overflow-hidden hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 py-0">
                 <div className="grid lg:grid-cols-2">
                   <div className="relative h-64 lg:h-auto min-h-56 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
-                    {featured.image ? (
+                    {featured.coverImageUrl ? (
                       <Image
-                        src={featured.image}
+                        src={featured.coverImageUrl}
                         alt={featured.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -127,11 +134,11 @@ export default function NewsClient({ items }: Props) {
                     <p className="text-muted-foreground leading-relaxed mb-6">{featured.excerpt}</p>
                     <div className="flex items-center gap-4 text-xs text-muted-foreground mb-6">
                       <span className="flex items-center gap-1">
-                        <User className="h-3.5 w-3.5" /> {featured.author}
+                        <User className="h-3.5 w-3.5" /> {featured.author ?? "NFVCB"}
                       </span>
                       <span className="flex items-center gap-1">
                         <Calendar className="h-3.5 w-3.5" />
-                        {new Date(featured.date).toLocaleDateString("en-NG", {
+                        {new Date(itemDate(featured)).toLocaleDateString("en-NG", {
                           day: "numeric",
                           month: "long",
                           year: "numeric",
@@ -154,13 +161,13 @@ export default function NewsClient({ items }: Props) {
               </h2>
               <StaggerContainer key={safePage} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {rest.map((item) => (
-                  <StaggerItem key={item.slug}>
+                  <StaggerItem key={item._id}>
                     <Link href={`/news/${item.slug}`} className="group block h-full">
                       <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
                         <div className="relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
-                          {item.image ? (
+                          {item.coverImageUrl ? (
                             <Image
-                              src={item.image}
+                              src={item.coverImageUrl}
                               alt={item.title}
                               fill
                               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -189,9 +196,9 @@ export default function NewsClient({ items }: Props) {
                             {item.excerpt}
                           </CardDescription>
                           <div className="flex items-center justify-between text-[10px] text-muted-foreground">
-                            <span>{item.author}</span>
+                            <span>{item.author ?? "NFVCB"}</span>
                             <span>
-                              {new Date(item.date).toLocaleDateString("en-NG", {
+                              {new Date(itemDate(item)).toLocaleDateString("en-NG", {
                                 day: "numeric",
                                 month: "short",
                                 year: "numeric",

@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
-import { newsItems } from "@/lib/news-data";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { approvedMoviesPosts } from "@/lib/approved-movies-data";
 
 const BASE_URL = "https://nfvcb.gov.ng";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -112,9 +113,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  const newsItems = await fetchQuery(api.news.list);
   const newsRoutes: MetadataRoute.Sitemap = newsItems.map((item) => ({
     url: `${BASE_URL}/news/${item.slug}`,
-    lastModified: new Date(item.date),
+    lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(item._creationTime),
     changeFrequency: "monthly",
     priority: 0.7,
   }));

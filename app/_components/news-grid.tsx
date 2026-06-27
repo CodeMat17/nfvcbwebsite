@@ -2,31 +2,31 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
-import { newsItems } from "@/lib/news-data";
 import { AsideNewsStack } from "@/components/AsideNewsStack";
 import { CompanyAdverts } from "@/components/CompanyAdverts";
 
-function categoryLabel(cat: string) {
+function categoryLabel(cat: string | undefined) {
   if (cat === "press-release") return "Press Release";
   if (cat === "announcement") return "Notice";
   return "News";
 }
-function categoryColor(cat: string) {
+function categoryColor(cat: string | undefined) {
   if (cat === "press-release") return "bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20";
   if (cat === "announcement") return "bg-[#fea600]/10 text-[#fea600] border-[#fea600]/20";
   return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
 }
-function fmtDate(d: string) {
+function fmtDate(d: string | number) {
   return new Date(d).toLocaleDateString("en-NG", { day: "numeric", month: "short", year: "numeric" });
 }
 
-const sorted = [...newsItems].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
 export function NewsUpdate() {
-  const featured = sorted[0];
+  const items = useQuery(api.news.list);
+  const featured = items?.[0];
 
   return (
     <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,9 +43,9 @@ export function NewsUpdate() {
               <Link href={`/news/${featured.slug}`} className="group block">
                 <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-border pt-0">
                   <div className="relative h-56 sm:h-72 overflow-hidden bg-linear-to-br from-nfvcb-dark via-[#002b0e] to-nfvcb-dark">
-                    {featured.image ? (
+                    {featured.coverImageUrl ? (
                       <Image
-                        src={featured.image}
+                        src={featured.coverImageUrl}
                         alt={featured.title}
                         fill
                         className="object-cover"
@@ -59,7 +59,7 @@ export function NewsUpdate() {
                           width={120}
                           height={120}
                           className="object-contain opacity-90 group-hover:opacity-60 transition-opacity duration-500"
-                        /> 
+                        />
                       </div>
                     )}
                     <div className="absolute inset-0 " />
@@ -77,15 +77,15 @@ export function NewsUpdate() {
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-between text- text-muted-foreground">
-                      <span className="font-medium">{featured.author}</span>
-                      <time dateTime={featured.date}>{fmtDate(featured.date)}</time>
+                      <span className="font-medium">{featured.author ?? "NFVCB"}</span>
+                      <time dateTime={featured.publishedAt ?? new Date(featured._creationTime).toISOString()}>
+                        {fmtDate(featured.publishedAt ?? featured._creationTime)}
+                      </time>
                     </div>
                   </CardContent>
                 </Card>
               </Link>
             </AnimatedSection>
-
-        
           </div>
 
           {/* Sidebar */}

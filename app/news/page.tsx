@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
-import { newsItems } from "@/lib/news-data";
-import { approvedMoviesPosts } from "@/lib/approved-movies-data";
 import NewsClient from "./news-client";
 import { ClassificationPanel } from "@/components/classification-panel";
 import AsideApprovedMovies from "@/components/AsideApprovedMovies";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "News, Press Releases & Announcements",
@@ -32,12 +34,8 @@ export const metadata: Metadata = {
 };
 
 
-export default function NewsPage() {
-  const sorted = [...newsItems].sort((a, b) => b.date.localeCompare(a.date));
-
-  const recentApproved = [...approvedMoviesPosts]
-    .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, 5);
+export default async function NewsPage() {
+  const items = await fetchQuery(api.news.list);
 
   return (
     <>
@@ -64,16 +62,12 @@ export default function NewsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           <div className="flex-1 min-w-0">
-            <NewsClient items={sorted} />
+            <NewsClient items={items} />
           </div>
 
-          {/* Aside approved movies */}
           <aside className="w-full lg:w-72 shrink-0">
             <div className="flex flex-col gap-4 sticky top-24">
-             
-
               <AsideApprovedMovies />
-
               <div className="h-72">
                 <ClassificationPanel />
               </div>

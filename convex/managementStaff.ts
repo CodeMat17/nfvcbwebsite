@@ -25,9 +25,15 @@ export const list = query({
   handler: async (ctx) => {
     const staff = await ctx.db
       .query("managementStaff")
-      .withIndex("by_order")
-      .order("asc")
+      // .withIndex("by_order")
+      // .order("desc")
       .take(500);
+     staff.sort((a, b) => {
+       const sa = a.seniority ?? Number.MAX_SAFE_INTEGER;
+       const sb = b.seniority ?? Number.MAX_SAFE_INTEGER;
+       if (sa !== sb) return sa - sb;
+       return b.order - a.order;
+     });
     return await Promise.all(
       staff.map(async (s) => ({
         ...s,

@@ -1,16 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { newsItems } from "@/lib/news-data";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+
+const STATIC_ITEMS = [
+  { text: "NFVCB classifies all films and videos — imported or locally produced", href: "/policy" },
+  { text: "Apply for a distributor licence — four categories available", href: "/industry/licensing" },
+  { text: "NFVCB has 6 zonal offices and 30+ state centres nationwide", href: "/zones" },
+];
 
 export function NewsTicker() {
+  const news = useQuery(api.news.list);
   const items = [
-    ...newsItems.map((n) => ({ text: n.title, href: `/news/${n.slug}` })),
-    { text: "NFVCB classifies all films and videos — imported or locally produced", href: "/policy" },
-    { text: "Apply for a distributor licence — four categories available", href: "/industry/licensing" },
-    { text: "NFVCB has 6 zonal offices and 30+ state centres nationwide", href: "/zones" },
+    ...(news ?? []).map((n) => ({ text: n.title, href: `/news/${n.slug}` })),
+    ...STATIC_ITEMS,
   ];
   const doubled = [...items, ...items];
 

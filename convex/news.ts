@@ -88,6 +88,26 @@ export const list = query({
   },
 });
 
+export const getBySlug = query({
+  args: { slug: v.string() },
+  handler: async (ctx, args) => {
+    const row = await ctx.db
+      .query("news")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .unique();
+    if (!row) return null;
+    let coverImageUrl: string | null = row.coverImageUrl ?? null;
+    if (row.coverImageId) {
+      try {
+        coverImageUrl = await ctx.storage.getUrl(row.coverImageId);
+      } catch {
+        coverImageUrl = null;
+      }
+    }
+    return { ...row, coverImageUrl };
+  },
+});
+
 export const getById = query({
   args: { id: v.id("news") },
   handler: async (ctx, args) => {

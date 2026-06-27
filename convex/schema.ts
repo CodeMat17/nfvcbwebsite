@@ -29,6 +29,7 @@ export default defineSchema({
     designation: v.string(),
     imageId: v.optional(v.id("_storage")),
     order: v.number(),
+    seniority: v.optional(v.number()),
   }).index("by_order", ["order"]),
 
   // ─── Approved Movies ────────────────────────────────────────────────────────

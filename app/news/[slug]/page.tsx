@@ -1,14 +1,14 @@
+import { AnimatedSection } from "@/components/animated-section";
+import { ShareButton } from "@/components/ShareButton";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { api } from "@/convex/_generated/api";
+import { fetchQuery } from "convex/nextjs";
+import { ArrowLeft, Calendar, Tag, User } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fetchQuery } from "convex/nextjs";
-import { api } from "@/convex/_generated/api";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { AnimatedSection } from "@/components/animated-section";
-import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
-import { ShareButton } from "@/components/ShareButton";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = item.coverImageUrl
     ? [{ url: item.coverImageUrl, width: 800, height: 500 }]
     : [{ url: "/opengraph-image.png", width: 1200, height: 630 }];
-  const dateStr = item.publishedAt ?? new Date(item._creationTime).toISOString();
+  const dateStr =
+    item.publishedAt ?? new Date(item._creationTime).toISOString();
   return {
     title: item.title,
     description: item.excerpt,
@@ -51,8 +52,10 @@ function categoryLabel(cat: string | undefined) {
 }
 
 function categoryColor(cat: string | undefined) {
-  if (cat === "press-release") return "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20";
-  if (cat === "announcement") return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
+  if (cat === "press-release")
+    return "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20";
+  if (cat === "announcement")
+    return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
   return "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20";
 }
 
@@ -66,7 +69,8 @@ export default async function NewsDetailPage({ params }: Props) {
   if (!item) notFound();
 
   const related = allItems.filter((n) => n.slug !== slug).slice(0, 3);
-  const dateStr = item.publishedAt ?? new Date(item._creationTime).toISOString();
+  const dateStr =
+    item.publishedAt ?? new Date(item._creationTime).toISOString();
 
   return (
     <>
@@ -100,7 +104,8 @@ export default async function NewsDetailPage({ params }: Props) {
             </h1>
             <div className='flex flex-wrap items-center gap-4 text-sm text-white/60'>
               <span className='flex items-center gap-1.5'>
-                <User className='h-4 w-4 text-green-500' /> {item.author ?? "NFVCB"}
+                <User className='h-4 w-4 text-green-500' />{" "}
+                {item.author ?? "NFVCB"}
               </span>
               <span className='flex items-center gap-1.5'>
                 <Calendar className='h-4 w-4 text-green-500' />
@@ -127,33 +132,16 @@ export default async function NewsDetailPage({ params }: Props) {
           {/* Main content */}
           <div className='lg:col-span-2'>
             <AnimatedSection>
-              <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-green-950 to-emerald-700/40 flex items-center justify-center mb-8'>
-                {item.coverImageUrl ? (
+              {item.coverImageUrl && (
+                <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-green-950 to-emerald-700/40 flex items-center justify-center mb-8'>
                   <Image
                     src={item.coverImageUrl}
                     alt={item.title}
                     fill
                     className='object-cover'
                   />
-                ) : (
-                  <>
-                    <Image
-                      src='/logo.webp'
-                      alt=''
-                      width={200}
-                      height={200}
-                      className='opacity-100'
-                      aria-hidden
-                    />
-                    <div className='w-full absolute bottom-0 bg-linear-to-t from-green-950 to-transparent px-3 pb-3 pt-8'>
-                      <p className='text-white text-[15px] text-center'>
-                        {item.title}
-                      </p>
-                    </div>
-                  </>
-                )}
-              </div>
-
+                </div>
+              )}
               <article
                 className='news-article prose prose-sm sm:prose max-w-none dark:prose-invert
                   prose-headings:text-foreground prose-p:text-muted-foreground
@@ -243,7 +231,9 @@ export default async function NewsDetailPage({ params }: Props) {
                               {r.title}
                             </p>
                             <p className='text-[10px] text-muted-foreground mt-1'>
-                              {new Date(r.publishedAt ?? r._creationTime).toLocaleDateString("en-NG", {
+                              {new Date(
+                                r.publishedAt ?? r._creationTime,
+                              ).toLocaleDateString("en-NG", {
                                 day: "numeric",
                                 month: "short",
                                 year: "numeric",

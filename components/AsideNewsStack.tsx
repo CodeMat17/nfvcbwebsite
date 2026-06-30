@@ -43,14 +43,14 @@ export function AsideNewsStack() {
             className={`group flex flex-col gap-1 px-4 py-3 hover:bg-muted/50 transition-colors ${i < 3 ? "border-b border-border" : ""}`}
           >
             <div className="flex items-center gap-2">
-              <span className={`text-[13px] px-1.5 py-0.5 rounded ${categoryColor(item.category)}`}>
+              <span className={`text-[11px] px-1.5 py-0.5 rounded ${categoryColor(item.category)}`}>
                 {categoryLabel(item.category)}
               </span>
-              <span className="text-[13px] text-muted-foreground">
+              <span className="text-[11px] text-muted-foreground">
                 NFVCB · {fmtRelative(item.publishedAt ?? item._creationTime)}
               </span>
             </div>
-            <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+            <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-snug">
               {item.title}
             </p>
           </Link>

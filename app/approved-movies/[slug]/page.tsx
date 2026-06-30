@@ -126,20 +126,7 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
 
         {/* Cover image */}
-        <AnimatedSection>
-          <div className="relative rounded-2xl overflow-hidden h-52 sm:h-72 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center">
-            {post.image ? (
-              <Image src={post.image} alt={post.month} fill className="object-cover" />
-            ) : (
-              <>
-                <Image src="/logo.webp" alt="" width={180} height={180} className="opacity-15" aria-hidden />
-                <div className="absolute bottom-4 left-0 right-0 text-center">
-                  <p className="text-white/40 text-xs">{post.month}</p>
-                </div>
-              </>
-            )}
-          </div>
-        </AnimatedSection>
+      
 
         {/* Summary */}
         <AnimatedSection>

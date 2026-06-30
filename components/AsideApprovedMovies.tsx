@@ -11,7 +11,7 @@ const AsideApprovedMovies = () => {
 
   const recentApproved = [...(posts ?? [])]
     .sort((a, b) => b.date.localeCompare(a.date))
-    .slice(0, 5);
+    .slice(0, 3);
 
   return (
     <div className='rounded-xl border bg-card p-5'>

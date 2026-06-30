@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
-import { approvedMoviesPosts } from "@/lib/approved-movies-data";
 import { ArrowRight, Film } from "lucide-react";
 import { AsideNewsStack } from "@/components/AsideNewsStack";
 import { ClassificationPanel } from "@/components/classification-panel";
 import { MoviesClient } from "./movies-client";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Approved Movies — Monthly Classification Lists",
@@ -32,7 +35,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ApprovedMoviesPage() {
+export default async function ApprovedMoviesPage() {
+  const posts = await fetchQuery(api.approvedMovies.listPostsWithMovies);
+
   return (
     <>
       {/* Hero */}
@@ -75,7 +80,7 @@ export default function ApprovedMoviesPage() {
           </div>
         </AnimatedSection>
 
-        <MoviesClient posts={approvedMoviesPosts} />
+        <MoviesClient posts={posts} />
         </div>{/* end main */}
 
           <aside className="w-full lg:w-72 shrink-0">

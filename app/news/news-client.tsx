@@ -63,8 +63,8 @@ export default function NewsClient({ items }: Props) {
     );
   }, [items, query]);
 
-  const featured = filtered[0];
-  const allRest = filtered.slice(1);
+  const featured = filtered.find((item) => item.featured) ?? filtered[0];
+  const allRest = filtered.filter((item) => item._id !== featured._id);
   const totalPages = Math.max(1, Math.ceil(allRest.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const rest = allRest.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);

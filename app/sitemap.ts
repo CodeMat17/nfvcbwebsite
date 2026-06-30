@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
-import { approvedMoviesPosts } from "@/lib/approved-movies-data";
 
 const BASE_URL = "https://nfvcb.gov.ng";
 
@@ -121,9 +120,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const movieRoutes: MetadataRoute.Sitemap = approvedMoviesPosts.map((post) => ({
+  const movieItems = await fetchQuery(api.approvedMovies.listPosts);
+  const movieRoutes: MetadataRoute.Sitemap = movieItems.map((post) => ({
     url: `${BASE_URL}/approved-movies/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: post.date ? new Date(post.date) : new Date(post._creationTime),
     changeFrequency: "monthly",
     priority: 0.65,
   }));

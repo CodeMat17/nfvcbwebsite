@@ -64,13 +64,42 @@ function validateFields(args: {
 export const generateUploadUrl = mutation({
   args: {},
   handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
     return await ctx.storage.generateUploadUrl();
   },
 });
 
+// Public: only published articles.
 export const list = query({
   args: {},
   handler: async (ctx) => {
+    const rows = (await ctx.db.query("news").order("desc").collect()).filter(
+      (row) => row.publish === true
+    );
+    return await Promise.all(
+      rows.map(async (row) => {
+        let coverImageUrl: string | null = row.coverImageUrl ?? null;
+        if (row.coverImageId) {
+          try {
+            coverImageUrl = await ctx.storage.getUrl(row.coverImageId);
+          } catch {
+            coverImageUrl = null;
+          }
+        }
+        return { ...row, coverImageUrl };
+      })
+    );
+  },
+});
+
+// Admin dashboard: every article, published or not.
+export const listAll = query({
+  args: {},
+  handler: async (ctx) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
+
     const rows = await ctx.db.query("news").order("desc").collect();
     return await Promise.all(
       rows.map(async (row) => {
@@ -88,6 +117,7 @@ export const list = query({
   },
 });
 
+// Public: only published articles.
 export const getBySlug = query({
   args: { slug: v.string() },
   handler: async (ctx, args) => {
@@ -95,7 +125,7 @@ export const getBySlug = query({
       .query("news")
       .withIndex("by_slug", (q) => q.eq("slug", args.slug))
       .unique();
-    if (!row) return null;
+    if (!row || row.publish !== true) return null;
     let coverImageUrl: string | null = row.coverImageUrl ?? null;
     if (row.coverImageId) {
       try {
@@ -108,9 +138,13 @@ export const getBySlug = query({
   },
 });
 
+// Admin: fetch any article by id, including drafts.
 export const getById = query({
   args: { id: v.id("news") },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
+
     const row = await ctx.db.get(args.id);
     if (!row) return null;
     let coverImageUrl: string | null = row.coverImageUrl ?? null;
@@ -135,8 +169,12 @@ export const create = mutation({
     author: v.optional(v.string()),
     featured: v.optional(v.boolean()),
     publishedAt: v.optional(v.string()),
+    publish: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
+
     validateFields({
       title: args.title,
       body: args.body,
@@ -172,6 +210,7 @@ export const create = mutation({
       author: args.author?.trim() || undefined,
       featured: args.featured,
       publishedAt: args.publishedAt,
+      publish: args.publish ?? false,
     });
   },
 });
@@ -187,8 +226,12 @@ export const update = mutation({
     author: v.optional(v.string()),
     featured: v.optional(v.boolean()),
     publishedAt: v.optional(v.string()),
+    publish: v.optional(v.boolean()),
   },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
+
     const { id, clearCoverImage, ...fields } = args;
 
     const existing = await ctx.db.get(id);
@@ -208,10 +251,12 @@ export const update = mutation({
       if (meta && meta.size > 300 * 1024) {
         throw new Error("Cover image must be 300 KB or smaller.");
       }
+      // Delete old storage file when replacing with a new one
       if (existing.coverImageId) {
         try { await ctx.storage.delete(existing.coverImageId); } catch { /* ignore */ }
       }
     } else if (clearCoverImage) {
+      // Explicit image removal
       if (existing.coverImageId) {
         try { await ctx.storage.delete(existing.coverImageId); } catch { /* ignore */ }
       }
@@ -244,9 +289,25 @@ export const update = mutation({
   },
 });
 
+export const togglePublish = mutation({
+  args: { id: v.id("news"), publish: v.boolean() },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
+
+    const existing = await ctx.db.get(args.id);
+    if (!existing) throw new Error("News article not found.");
+
+    await ctx.db.patch(args.id, { publish: args.publish });
+  },
+});
+
 export const remove = mutation({
   args: { id: v.id("news") },
   handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (identity === null) throw new Error("Not authenticated");
+
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new Error("News article not found.");
     // Delete associated storage file if present

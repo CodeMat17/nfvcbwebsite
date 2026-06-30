@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Star, Trophy, Clapperboard } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { approvedMoviesPosts } from "@/lib/approved-movies-data";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import type { ApprovedMoviesPost, Movie } from "@/lib/approved-movies-data";
 
 const RATING_COLOR: Record<string, string> = {
   G: "bg-green-600",
@@ -17,16 +19,17 @@ const RATING_COLOR: Record<string, string> = {
   RE: "bg-purple-700",
 };
 
-function findFeaturedFilm() {
-  for (const post of approvedMoviesPosts) {
-    const film = post.movies.find((m) => m.featured);
+function findFeaturedFilm(posts: ApprovedMoviesPost[]) {
+  for (const post of posts) {
+    const film = post.movies.find((m: Movie) => m.featured);
     if (film) return { film, post };
   }
   return null;
 }
 
 export function FilmOfTheMonth() {
-  const result = findFeaturedFilm();
+  const posts = useQuery(api.approvedMovies.listPostsWithMovies);
+  const result = posts ? findFeaturedFilm(posts) : null;
   if (!result) return null;
 
   const { film, post } = result;

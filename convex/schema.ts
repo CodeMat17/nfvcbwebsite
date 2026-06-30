@@ -14,6 +14,7 @@ export default defineSchema({
     author: v.optional(v.string()),
     featured: v.optional(v.boolean()),
     publishedAt: v.optional(v.string()),
+    publish: v.optional(v.boolean()),
   })
     .index("by_slug", ["slug"])
     .index("by_category", ["category"])
@@ -30,7 +31,9 @@ export default defineSchema({
     imageId: v.optional(v.id("_storage")),
     order: v.number(),
     seniority: v.optional(v.number()),
-  }).index("by_order", ["order"]),
+  })
+    .index("by_order", ["order"])
+    .index("by_seniority", ["seniority"]),
 
   // ─── Approved Movies ────────────────────────────────────────────────────────
   // Each "post" groups a monthly batch of approved films.
@@ -39,6 +42,7 @@ export default defineSchema({
     slug: v.string(),
     month: v.string(),
     author: v.string(),
+    date: v.optional(v.string()),
   }).index("by_slug", ["slug"]),
 
   // Individual films stored separately to avoid the 1 MB document limit.

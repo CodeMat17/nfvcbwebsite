@@ -2,22 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
-import { approvedMoviesPosts, getApprovedMoviesPost } from "@/lib/approved-movies-data";
 import { ArrowLeft, Calendar, Film, User } from "lucide-react";
 import { FilmTable } from "./film-table";
 import { ShareButton } from "@/components/ShareButton";
 
-type Props = { params: Promise<{ slug: string }> };
+export const dynamic = "force-dynamic";
 
-export async function generateStaticParams() {
-  return approvedMoviesPosts.map((p) => ({ slug: p.slug }));
-}
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = getApprovedMoviesPost(slug);
+  const post = await fetchQuery(api.approvedMovies.getPostBySlugWithMovies, { slug });
   if (!post) return { title: "Not Found" };
   const pageTitle = `Approved Movies — ${post.month}`;
   const description = `${post.movies.length} films approved for public exhibition in Nigeria — ${post.month}. Includes ratings (G, PG, 12, 15, 18), languages and consumer advice as classified by NFVCB.`;
@@ -58,9 +57,8 @@ function ratingColor(r: string) {
 
 export default async function ApprovedMoviesDetailPage({ params }: Props) {
   const { slug } = await params;
-  const post = getApprovedMoviesPost(slug);
+  const post = await fetchQuery(api.approvedMovies.getPostBySlugWithMovies, { slug });
   if (!post) notFound();
-  if (!post) return null;
 
   const langCounts = countBy(post.movies, "language");
   const ratingCounts = countBy(post.movies, "rating");

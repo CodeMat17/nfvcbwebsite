@@ -1,11 +1,15 @@
-import { approvedMoviesPosts } from '@/lib/approved-movies-data';
-import { Separator } from '@/components/ui/separator';
-import { ArrowRight, Film } from 'lucide-react';
-import Link from 'next/link';
+"use client";
+
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { Separator } from "@/components/ui/separator";
+import { ArrowRight, Film } from "lucide-react";
+import Link from "next/link";
 
 const AsideApprovedMovies = () => {
+  const posts = useQuery(api.approvedMovies.listPostsWithMovies);
 
-  const recentApproved = [...approvedMoviesPosts]
+  const recentApproved = [...(posts ?? [])]
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, 5);
 
@@ -75,7 +79,7 @@ const AsideApprovedMovies = () => {
 
        <Separator className="mt-2" />
 
-      
+
       <Link
         href='/approved-movies'
         className='mt-2 flex items-center gap-1 text-teal-600 font-medium hover:gap-2 hover:text-teal-700 transition-all text-sm'>

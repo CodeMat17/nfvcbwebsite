@@ -172,7 +172,7 @@ export function MoviesClient({ posts }: Props) {
                         </div>
 
                         <div className="flex items-center gap-1.5 text-xs text-primary font-medium group-hover:gap-2.5 transition-all pt-1">
-                          View approvals <ArrowRight className="h-3.5 w-3.5" />
+                          View movies <ArrowRight className="h-3.5 w-3.5" />
                         </div>
                       </CardContent>
                     </Card>

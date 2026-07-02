@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const zones = [
   {
-    name: "Head Office",
+    name: "Head Office (Annex)",
     location: "Abuja (FCT)",
     color: "border-[#009f3b]",
     badge: "bg-[#009f3b]/10 text-[#009f3b]",
@@ -41,16 +41,16 @@ const zones = [
         name: "Head Office",
         coordinator: "",
         phone: "",
-        address: "No. 20 Alexandria Crescent, Wuse II, Abuja",
-        state: "Abuja",
+        address: "Room B913, Federal Secretariat Complex Phase II, Abuja",
+        state: "FCT",
       },
-      {
-        name: "AMAC Office",
-        coordinator: "Monkom Mary",
-        phone: "08033113827",
-        address: "Room 215 AMAC Secretariat FCT",
-        state: "Abuja",
-      },
+      // {
+      //   name: "AMAC Office",
+      //   coordinator: "Monkom Mary",
+      //   phone: "08033113827",
+      //   address: "Room 215 AMAC Secretariat FCT",
+      //   state: "Abuja",
+      // },
     ],
   },
   {
@@ -63,21 +63,23 @@ const zones = [
         name: "NC Zonal Office",
         coordinator: "Oluwole Margarita",
         phone: "07080550605",
-        address: "3 Ahmadu Bello Way, Ministry of Works Yard, Jos, Plateau State",
+        address:
+          "3 Ahmadu Bello Way, Ministry of Works Yard, Jos, Plateau State",
         state: "Jos",
       },
       {
         name: "Ilorin Centre",
-        coordinator: "Yusuf Abdullahi",
-        phone: "08033940278",
-        address: "2nd Floor, Arts and Culture Building Complex, Geri-Alimi, Ilorin, Kwara State",
+        coordinator: "Alabama Atere",
+        phone: "08033816492",
+        address:
+          "2nd Floor, Arts and Culture Building Complex, Geri-Alimi, Ilorin, Kwara State",
         state: "Ilorin",
       },
       {
-        name: "Kogi State Centre",
-        coordinator: "Jack Okoko",
-        phone: "08035047972",
-        address: "c/o Ministry of Information, Ganaja Road after Meme Bridge, Opp Tipper Garage, Lokoja",
+        name: "Lokoja Centre",
+        coordinator: "Abdulwahab Shuibu",
+        phone: "08064888418",
+        address: "c/o NAO, Hassan Kastina Rd. Opp. CBN, Lokoja",
         state: "Lokoja",
       },
       {
@@ -91,14 +93,16 @@ const zones = [
         name: "Nasarawa State Centre",
         coordinator: "Fanto Namo",
         phone: "08060296929",
-        address: "Suite 38 Kaura Plaza, Opp PDP Secretariat Jos Road, Lafia, Nasarawa State",
+        address:
+          "Suite 38 Kaura Plaza, Opp PDP Secretariat Jos Road, Lafia, Nasarawa State",
         state: "Lafia",
       },
       {
-        name: "Benue State Centre",
-        coordinator: "Onum Gabriel",
-        phone: "08063871169",
-        address: "B Wing, Ground Floor, Federal Secretariat Complex, Makurdi, Benue State",
+        name: "Makurdi Centre",
+        coordinator: "Akpan Godwin (Ag.)",
+        phone: "08034539762",
+        address:
+          "B Wing, Ground Floor, Federal Secretariat Complex, Makurdi, Benue State",
         state: "Makurdi",
       },
     ],
@@ -111,18 +115,19 @@ const zones = [
     offices: [
       {
         name: "NW Zonal Office",
-        coordinator: "Aliyu Sani",
+        coordinator: "Aliyu Sani (Ag.)",
         phone: "08069546374",
-        address: "Floor 7th Room 733-739, Federal Government Secretariat, Murtala Muhammad Way, Katsina Road, Kano",
+        address:
+          "Floor 7th Room 733-739, Federal Government Secretariat, Murtala Muhammad Way, Katsina Road, Kano",
         state: "Kano",
       },
-      {
-        name: "Sokoto Centre",
-        coordinator: "Maryam Danladi Bako",
-        phone: "08030954841",
-        address: "Block 12, Room 302 Shehu Kangiwa Secretariat (Five Star) Byepass, Sokoto",
-        state: "Sokoto",
-      },
+      // {
+      //   name: "Sokoto Centre",
+      //   coordinator: "Maryam Danladi Bako",
+      //   phone: "08030954841",
+      //   address: "Block 12, Room 302 Shehu Kangiwa Secretariat (Five Star) Byepass, Sokoto",
+      //   state: "Sokoto",
+      // },
       {
         name: "Kaduna Centre",
         coordinator: "Akwash Blessing",
@@ -137,13 +142,13 @@ const zones = [
         address: "3rd Floor Federal Secretariat, Dandagoro, Katsina",
         state: "Katsina",
       },
-      {
-        name: "Jigawa Centre",
-        coordinator: "Nasir Abdulmalik",
-        phone: "08062065917",
-        address: "No 4, Ground Floor, Old Block, New State Secretariat Complex, Dutse",
-        state: "Dutse",
-      },
+      // {
+      //   name: "Jigawa Centre",
+      //   coordinator: "Nasir Abdulmalik",
+      //   phone: "08062065917",
+      //   address: "No 4, Ground Floor, Old Block, New State Secretariat Complex, Dutse",
+      //   state: "Dutse",
+      // },
     ],
   },
   {
@@ -154,23 +159,25 @@ const zones = [
     offices: [
       {
         name: "NE Zonal Office",
-        coordinator: "Rabi Sangari",
-        phone: "07031108867",
-        address: "Federal Secretariat Complex, 3rd Floor, Room 82/83, Bauchi State",
+        coordinator: "Monday Kopgakka (Ag.)",
+        phone: "09162096070",
+        address:
+          "Federal Secretariat Complex, 3rd Floor, Room 82/83, Bauchi State",
         state: "Bauchi",
       },
-      {
-        name: "Jalingo Centre",
-        coordinator: "Ruth Isa Simon",
-        phone: "08133833129",
-        address: "Taraba State Broadcasting Service Complex, Jalingo, Taraba State",
-        state: "Jalingo",
-      },
+      // {
+      //   name: "Jalingo Centre",
+      //   coordinator: "Ruth Isa Simon",
+      //   phone: "08133833129",
+      //   address: "Taraba State Broadcasting Service Complex, Jalingo, Taraba State",
+      //   state: "Jalingo",
+      // },
       {
         name: "Yola Centre",
         coordinator: "Bodinga Abraham Umar",
         phone: "08033343285",
-        address: "Federal Ministry of Information beside Federal College of Education, Yola, Adamawa State",
+        address:
+          "Federal Ministry of Information beside Federal College of Education, Yola, Adamawa State",
         state: "Yola",
       },
       {
@@ -184,7 +191,8 @@ const zones = [
         name: "Maiduguri Centre",
         coordinator: "Shehu Umar Halima",
         phone: "08037493122",
-        address: "Federal Secretariat Complex Behind University of Maiduguri Staff Clinic, Kano Road, Borno State",
+        address:
+          "Federal Secretariat Complex Behind University of Maiduguri Staff Clinic, Kano Road, Borno State",
         state: "Maiduguri",
       },
     ],
@@ -199,28 +207,32 @@ const zones = [
         name: "SE Zonal Office",
         coordinator: "Hubert Odeh",
         phone: "08036009530",
-        address: "26, Kenan Crescent, Federal Housing Estate, 33G. R.A, Onitsha, Anambra State",
+        address:
+          "26, Kenan Crescent, Federal Housing Estate, 33G. R.A, Onitsha, Anambra State",
         state: "Onitsha",
       },
       {
         name: "Aba Centre",
         coordinator: "Nkeiru Onyenakazi",
         phone: "08037143817",
-        address: "Rooms 36 & 37, Aba Main Town Hall, Aba South LGA, Aba, Abia State",
+        address:
+          "Rooms 36 & 37, Aba Main Town Hall, Aba South LGA, Aba, Abia State",
         state: "Aba",
       },
       {
         name: "Owerri Centre",
         coordinator: "Blessing Amadi",
         phone: "08037639790",
-        address: "Federal Secretariat Complex, Port Harcourt Road, New Owerri, Imo State",
+        address:
+          "Federal Secretariat Complex, Port Harcourt Road, New Owerri, Imo State",
         state: "Owerri",
       },
       {
         name: "Enugu Centre",
         coordinator: "Ozoana William",
         phone: "08033506470",
-        address: "Rooms 23/24 Federal Secretariat Complex, Independence Layout, Enugu State",
+        address:
+          "Rooms 23/24 Federal Secretariat Complex, Independence Layout, Enugu State",
         state: "Enugu",
       },
     ],
@@ -235,35 +247,40 @@ const zones = [
         name: "SS Zonal Office",
         coordinator: "Ernest Irehie",
         phone: "08127943130",
-        address: "Federal Secretariat Complex, Aba/PH Road, Opposite Presidential Hotel, 2nd Floor, Right Wing, RM 209, Port Harcourt, Rivers State",
+        address:
+          "Federal Secretariat Complex, Aba/PH Road, Opposite Presidential Hotel, 2nd Floor, Right Wing, RM 209, Port Harcourt, Rivers State",
         state: "Port Harcourt",
       },
       {
         name: "Warri Centre",
         coordinator: "Anwadike Paul",
         phone: "08055284788",
-        address: "Uvwie Town Hall, No. 200 P.T.I road, Opp PTI School, Effurun, Warri, Delta State",
+        address:
+          "Uvwie Town Hall, No. 200 P.T.I road, Opp PTI School, Effurun, Warri, Delta State",
         state: "Warri",
       },
       {
         name: "Benin Centre",
         coordinator: "Fred Elakhe",
         phone: "08034718097",
-        address: "First Floor, Federal Secretariat Complex, Aduwawa Road, Benin City, Edo State",
+        address:
+          "First Floor, Federal Secretariat Complex, Aduwawa Road, Benin City, Edo State",
         state: "Benin City",
       },
       {
         name: "Uyo Centre",
-        coordinator: "Manuell Domingo Umanah",
+        coordinator: "Maxwell Domingo Umanah",
         phone: "",
-        address: "Room 210, Federal Secretariat, Abak Road, Uyo, Akwa Ibom State",
+        address:
+          "Room 210, Federal Secretariat, Abak Road, Uyo, Akwa Ibom State",
         state: "Uyo",
       },
       {
         name: "Calabar Centre",
         coordinator: "Ezenne Ikechukwu Edwin",
         phone: "08055171003",
-        address: "Rooms B18-20, Federal Secretariat Complex, Murtala Mohammed Highway, Calabar",
+        address:
+          "Rooms B18-20, Federal Secretariat Complex, Murtala Mohammed Highway, Calabar",
         state: "Calabar",
       },
     ],
@@ -285,35 +302,38 @@ const zones = [
         name: "Ikorodu Centre",
         coordinator: "Taiwo Ogunsami",
         phone: "08137834749",
-        address: "Local Government Secretariat Ikorodu, 50 Beach Road, Opp General Hospital, Ikorodu",
+        address:
+          "Local Government Secretariat Ikorodu, 50 Beach Road, Opp General Hospital, Ikorodu",
         state: "Ikorodu",
       },
       {
         name: "Oshogbo Centre",
         coordinator: "Olusegun Francis",
         phone: "08066383217",
-        address: "I/c Ministry of Commerce and Industries, Osun State Secretariat, Abeere, Osogbo, Osun State",
+        address:
+          "I/c Ministry of Commerce and Industries, Osun State Secretariat, Abeere, Osogbo, Osun State",
         state: "Oshogbo",
       },
+      // {
+      //   name: "Ibadan Central Office",
+      //   coordinator: "Osaretin Niyi",
+      //   phone: "08029619756",
+      //   address: "Federal Secretariat Complex, Ikolaba, G.R.A, Agodi, Ibadan",
+      //   state: "Ibadan",
+      // },
       {
-        name: "Ibadan Central Office",
-        coordinator: "Osaretin Niyi",
-        phone: "08029619756",
-        address: "Federal Secretariat Complex, Ikolaba, G.R.A, Agodi, Ibadan",
-        state: "Ibadan",
-      },
-      {
-        name: "Ibadan South Office",
-        coordinator: "Umoelin Kelvin",
-        phone: "0803370477",
+        name: "Ibadan Centre",
+        coordinator: "Akanni Oluremi",
+        phone: "08035711895",
         address: "Federal Secretariat Complex, Ikolaba, G.R.A, Agodi, Ibadan",
         state: "Ibadan",
       },
       {
         name: "Akure Centre",
-        coordinator: "Abdulwahab Shaibu",
-        phone: "08064888418",
-        address: "Federal Secretariat, Igbatoro Road, Alagbaka GRA, Akure, Ondo State",
+        coordinator: "Alonge Festus (Ag.)",
+        phone: "08034212550",
+        address:
+          "Federal Secretariat, Igbatoro Road, Alagbaka GRA, Akure, Ondo State",
         state: "Akure",
       },
       {

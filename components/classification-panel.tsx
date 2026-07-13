@@ -58,7 +58,7 @@ export function ClassificationPanel() {
             exit="exit"
             className="absolute inset-0 flex flex-col"
           >
-            <Link href="/classifications" className="group flex flex-col flex-1 min-h-0">
+            <Link href="/classification" className="group flex flex-col flex-1 min-h-0">
               <div className="flex-1 min-h-0 overflow-hidden bg-muted/20 flex items-center justify-center p-4">
                 <div className="relative w-full h-full">
                   <Image
@@ -96,7 +96,7 @@ export function ClassificationPanel() {
             />
           ))}
         </div>
-        <Link href="/classifications" className="text-sm  text-primary hover:underline flex items-center gap-0.5">
+        <Link href="/classification" className="text-sm  text-primary hover:underline flex items-center gap-0.5">
           See more <ArrowRight className="h-2.5 w-2.5" />
         </Link>
       </div>

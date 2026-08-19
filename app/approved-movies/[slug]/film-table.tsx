@@ -12,7 +12,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search, X, ChevronDown, Clock, Languages } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Search, X, Clock, Languages, Info } from "lucide-react";
 
 const RATINGS = ["All", "G", "PG", "12", "12A", "15", "18"];
 
@@ -22,11 +31,24 @@ interface Props {
 
 /* Progressive disclosure. The card previously showed all eight fields at
    identical weight with a repeated 10px uppercase label — across dozens of
-   films that is a wall of text with no entry point. The front of the card now
-   carries only what people actually scan by; production credits sit behind an
-   expand. */
+   films that is a wall of text with no entry point. The front of the card
+   carries only what people actually scan by; production credits sit behind a
+   dialog so opening one never reflows the grid around it. */
 function FilmCard({ film }: { film: Movie }) {
-  const [open, setOpen] = useState(false);
+  const details: [string, string][] = [
+    ["Director", film.director],
+    ["Producer", film.producer],
+    ["Major Cast", film.majorCast],
+    ["Preview Location", film.previewLocation],
+    [
+      "Date of Approval",
+      new Date(film.dateOfApproval).toLocaleDateString("en-NG", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      }),
+    ],
+  ];
 
   return (
     <div className="rounded-xl border border-border bg-card transition-all hover:border-primary/30 hover:shadow-2">
@@ -56,42 +78,34 @@ function FilmCard({ film }: { film: Movie }) {
         )}
       </div>
 
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className="flex tap w-full items-center justify-between gap-2 border-t border-border px-5 text-caption font-semibold text-muted-foreground transition-colors hover:text-primary"
-      >
-        {open ? "Hide details" : "Production details"}
-        <ChevronDown
-          className={`h-4 w-4 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-          aria-hidden
-        />
-      </button>
+      <AlertDialog>
+        <AlertDialogTrigger className="flex tap w-full items-center justify-between gap-2 border-t border-border px-5 text-caption font-semibold text-muted-foreground transition-colors hover:text-primary">
+          Production details
+          <Info className="h-4 w-4 shrink-0" aria-hidden />
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{film.title}</AlertDialogTitle>
+            <p className="text-caption text-muted-foreground">{film.productionCompany}</p>
+          </AlertDialogHeader>
 
-      {open && (
-        <dl className="space-y-2.5 border-t border-border px-5 py-4 text-caption">
-          {[
-            ["Director", film.director],
-            ["Producer", film.producer],
-            ["Major Cast", film.majorCast],
-            ["Preview Location", film.previewLocation],
-            [
-              "Date of Approval",
-              new Date(film.dateOfApproval).toLocaleDateString("en-NG", {
-                day: "numeric",
-                month: "short",
-                year: "numeric",
-              }),
-            ],
-          ].map(([label, value]) => (
-            <div key={label} className="grid grid-cols-[9rem_1fr] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5">
-              <dt className="text-muted-foreground">{label}</dt>
-              <dd className="text-foreground">{value}</dd>
-            </div>
-          ))}
-        </dl>
-      )}
+          <dl className="space-y-2.5 border-t border-border pt-4 text-caption">
+            {details.map(([label, value]) => (
+              <div
+                key={label}
+                className="grid grid-cols-[9rem_1fr] gap-3 max-sm:grid-cols-1 max-sm:gap-0.5"
+              >
+                <dt className="text-muted-foreground">{label}</dt>
+                <dd className="text-foreground">{value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <AlertDialogFooter>
+            <AlertDialogAction>Close</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

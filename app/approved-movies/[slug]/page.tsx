@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
-import { ArrowLeft, Calendar, Film, User } from "lucide-react";
+import { Calendar, Film, User } from "lucide-react";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { RatingBadge, RATING_ORDER } from "@/components/rating-badge";
 import { FilmTable } from "./film-table";
 import { ShareButton } from "@/components/ShareButton";
 
@@ -41,19 +42,8 @@ function countBy<T>(arr: T[], key: keyof T): Record<string, number> {
   }, {});
 }
 
-const RATING_ORDER = ["G", "PG", "12", "12A", "15", "18"];
 
-function ratingColor(r: string) {
-  switch (r) {
-    case "G":   return "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20";
-    case "PG":  return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
-    case "12":  return "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20";
-    case "12A": return "bg-orange-400/10 text-orange-500 border-orange-400/20";
-    case "15":  return "bg-red-400/10 text-red-500 border-red-400/20";
-    case "18":  return "bg-red-700/10 text-red-700 dark:text-red-400 border-red-700/20";
-    default:    return "bg-muted text-muted-foreground";
-  }
-}
+
 
 export default async function ApprovedMoviesDetailPage({ params }: Props) {
   const { slug } = await params;
@@ -69,34 +59,37 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 bg-[#001506] overflow-hidden">
+      <section className="relative py-20 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src={post.image ?? "/logo.webp"} alt="" fill className="object-cover object-center blur-sm" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#001506]/60 to-[#001506]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-nfvcb-dark/60 to-nfvcb-dark" />
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Replaces a lone "Back to…" link (and a stray <br/>) with a full
+              trail, so arrivals from search know where they are. */}
+          <div className="[&_a]:text-white/60 [&_a:hover]:text-accent [&_span]:text-white">
+            <Breadcrumbs
+              items={[
+                { label: "Approved Movies", href: "/approved-movies" },
+                { label: post.month, href: `/approved-movies/${post.slug}` },
+              ]}
+            />
+          </div>
           <AnimatedSection>
-            <Link
-              href="/approved-movies"
-              className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-6 transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" /> Back to Approved Movies
-            </Link>
-<br/>
-            <Badge className="w-fit mb-4 bg-[#fea600]/20 text-[#fea600] border-[#fea600]/30">
+            <Badge className="w-fit mb-4 bg-accent/20 text-accent border-accent/30">
               Classification &amp; Approval
             </Badge>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight text-balance">
+            <h1 className="text-h1 font-black text-white mb-5 leading-tight text-balance">
               Approved Movies — {post.month}
             </h1>
 
             <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
               <span className="flex items-center gap-1.5">
-                <User className="h-4 w-4 text-[#009f3b]" /> {post.publishedBy}
+                <User className="h-4 w-4 text-primary" /> {post.publishedBy}
               </span>
               <span className="flex items-center gap-1.5">
-                <Calendar className="h-4 w-4 text-[#009f3b]" />
+                <Calendar className="h-4 w-4 text-primary" />
                 {new Date(post.date).toLocaleDateString("en-NG", {
                   weekday: "long",
                   day: "numeric",
@@ -105,7 +98,7 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
                 })}
               </span>
               <span className="flex items-center gap-1.5">
-                <Film className="h-4 w-4 text-[#009f3b]" /> {post.movies.length} Movies Approved
+                <Film className="h-4 w-4 text-primary" /> {post.movies.length} Movies Approved
               </span>
               <ShareButton
                 title={`${post.month} — NFVCB Approved Films`}
@@ -117,9 +110,9 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
       </section>
 
       {/* Film strip */}
-      <div className="h-3 bg-[#001506] flex overflow-hidden" aria-hidden>
+      <div className="h-3 bg-nfvcb-dark flex overflow-hidden" aria-hidden>
         {Array.from({ length: 40 }).map((_, i) => (
-          <div key={i} className="w-8 shrink-0 border-r-2 border-[#fea600]/30 h-full" />
+          <div key={i} className="w-8 shrink-0 border-r-2 border-accent/30 h-full" />
         ))}
       </div>
 
@@ -162,13 +155,11 @@ export default async function ApprovedMoviesDetailPage({ params }: Props) {
               <div className="space-y-2.5">
                 {sortedRatings.map(([rating, count]) => (
                   <div key={rating} className="flex items-center gap-3">
-                    <Badge className={`text-[10px] font-bold w-10 justify-center shrink-0 ${ratingColor(rating)}`}>
-                      {rating}
-                    </Badge>
+                    <RatingBadge rating={rating} className="w-11 justify-center" />
                     <div className="flex-1 flex items-center justify-between">
                       <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden mx-3">
                         <div
-                          className="h-full bg-[#fea600] rounded-full"
+                          className="h-full bg-accent rounded-full"
                           style={{ width: `${(count / post.movies.length) * 100}%` }}
                         />
                       </div>

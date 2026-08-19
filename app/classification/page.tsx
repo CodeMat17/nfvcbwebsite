@@ -121,11 +121,11 @@ const otherFees = [
 export default function ClassificationsPage() {
   return (
     <main className="min-h-screen pt-10 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="section">
 
         {/* ── page hero ── */}
         <AnimatedSection className="text-center mb-16">
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h1 className="text-h1 font-black text-foreground mb-4">
             Classification & Fees
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
@@ -139,7 +139,7 @@ export default function ClassificationsPage() {
         ══════════════════════════════════════════ */}
         <AnimatedSection className="mb-4">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-1 h-6 rounded-full bg-[#009f3b]" aria-hidden />
+            <div className="w-1 h-6 rounded-full bg-primary" aria-hidden />
             <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
               Classification Fees — Films
             </h2>
@@ -156,10 +156,10 @@ export default function ClassificationsPage() {
         <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {filmFees.map(({ item, runtime, local, english, foreign }) => (
             <StaggerItem key={item}>
-              <Card className="h-full border-border hover:shadow-md transition-shadow hover:border-[#009f3b]/30">
+              <Card className="h-full border-border hover:shadow-md transition-shadow hover:border-primary/30">
                 <CardHeader className="pb-2 pt-5 px-5">
                   <div className="flex items-center justify-between mb-1">
-                    <Badge className="bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20 border text-sm font-bold text-center">
+                    <Badge className="bg-primary/10 text-primary border-primary/20 border text-sm font-bold text-center">
                       Item {item}
                     </Badge>
                     <span className="text-sm font-bold text-muted-foreground">{runtime}</span>
@@ -181,9 +181,9 @@ export default function ClassificationsPage() {
                     <span className="text-sm text-muted-foreground">Foreign Film</span>
                     <span className="text-sm font-bold text-foreground">{foreign}</span>
                   </div>
-                  <div className="mt-1 rounded-lg bg-[#fea600]/8 border border-[#fea600]/20 px-3 py-2 flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-[#fea600]">PUBLIC EXHIBITION</span>
-                    <span className="text-[11px] text-muted-foreground ml-auto">+30% of fee</span>
+                  <div className="mt-1 rounded-lg bg-accent/8 border border-accent/20 px-3 py-2 flex items-center gap-2">
+                    <span className="text-overline font-bold text-accent">PUBLIC EXHIBITION</span>
+                    <span className="text-overline text-muted-foreground ml-auto">+30% of fee</span>
                   </div>
                 </CardContent>
               </Card>
@@ -193,9 +193,9 @@ export default function ClassificationsPage() {
 
         {/* Fast-track banner */}
         <AnimatedSection className="mb-14">
-          <div className="rounded-2xl border border-[#009f3b]/25 bg-[#009f3b]/5 px-6 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0">
-              <Film className="h-5 w-5 text-[#009f3b]" aria-hidden />
+          <div className="rounded-2xl border border-primary/25 bg-primary/5 px-6 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
+              <Film className="h-5 w-5 text-primary" aria-hidden />
             </div>
             <div>
               <p className="text-sm font-black text-foreground">Fast-Track Processing</p>
@@ -212,7 +212,7 @@ export default function ClassificationsPage() {
         ══════════════════════════════════════════ */}
         <AnimatedSection className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-1 h-6 rounded-full bg-[#fea600]" aria-hidden />
+            <div className="w-1 h-6 rounded-full bg-accent" aria-hidden />
             <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
               Classification Fees — Trailers
             </h2>
@@ -224,9 +224,9 @@ export default function ClassificationsPage() {
 
         <StaggerContainer className="grid sm:grid-cols-3 gap-4 mb-14">
           {[
-            { label: "Nigerian (Local Language)", amount: "₦5,000", color: "text-[#009f3b]", ring: "border-[#009f3b]/20 bg-[#009f3b]/5" },
-            { label: "Nigerian (English Language)", amount: "₦7,500", color: "text-[#fea600]", ring: "border-[#fea600]/20 bg-[#fea600]/5" },
-            { label: "Foreign Film Trailer", amount: "₦7,500", color: "text-blue-500", ring: "border-blue-500/20 bg-blue-500/5" },
+            { label: "Nigerian (Local Language)", amount: "₦5,000", color: "text-primary", ring: "border-primary/20 bg-primary/5" },
+            { label: "Nigerian (English Language)", amount: "₦7,500", color: "text-accent", ring: "border-accent/20 bg-accent/5" },
+            { label: "Foreign Film Trailer", amount: "₦7,500", color: "text-primary", ring: "border-primary/20 bg-primary/5" },
           ].map(({ label, amount, color, ring }) => (
             <StaggerItem key={label}>
               <Card className={`border ${ring} hover:shadow-md transition-shadow`}>
@@ -245,7 +245,7 @@ export default function ClassificationsPage() {
         ══════════════════════════════════════════ */}
         <AnimatedSection className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-1 h-6 rounded-full bg-purple-500" aria-hidden />
+            <div className="w-1 h-6 rounded-full bg-primary" aria-hidden />
             <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
               Other Fees
             </h2>
@@ -258,10 +258,10 @@ export default function ClassificationsPage() {
         <StaggerContainer className="grid sm:grid-cols-3 gap-4 mb-16">
           {otherFees.map(({ category, note }) => (
             <StaggerItem key={category}>
-              <Card className="h-full border-border hover:shadow-md transition-shadow hover:border-purple-500/30">
+              <Card className="h-full border-border hover:shadow-md transition-shadow hover:border-primary/30">
                 <CardContent className="flex flex-col gap-3 py-6 px-5 h-full">
-                  <div className="w-9 h-9 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
-                    <Receipt className="h-4 w-4 text-purple-500" aria-hidden />
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Receipt className="h-4 w-4 text-primary" aria-hidden />
                   </div>
                   <p className="text-sm font-black text-foreground">{category}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{note}</p>
@@ -276,7 +276,7 @@ export default function ClassificationsPage() {
         ══════════════════════════════════════════ */}
         <AnimatedSection className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-1 h-6 rounded-full bg-[#009f3b]" aria-hidden />
+            <div className="w-1 h-6 rounded-full bg-primary" aria-hidden />
             <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
               Online Classification — Films for Digital Distribution
             </h2>
@@ -289,12 +289,12 @@ export default function ClassificationsPage() {
         </AnimatedSection>
 
         <AnimatedSection className="mb-14">
-          <div className="rounded-2xl border border-[#009f3b]/25 bg-[#009f3b]/5 px-6 py-6 space-y-8">
+          <div className="rounded-2xl border border-primary/25 bg-primary/5 px-6 py-6 space-y-8">
 
             {/* Step 1 */}
             <div className="flex gap-4">
-              <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-sm font-black text-[#009f3b]">1</span>
+              <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-black text-primary">1</span>
               </div>
               <div>
                 <p className="text-sm font-black text-foreground mb-1">Send an Application Letter</p>
@@ -314,8 +314,8 @@ export default function ClassificationsPage() {
 
             {/* Step 2 */}
             <div className="flex gap-4">
-              <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-sm font-black text-[#009f3b]">2</span>
+              <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-black text-primary">2</span>
               </div>
               <div className="w-full">
                 <p className="text-sm font-black text-foreground mb-1">Upload Your Film &amp; Submit</p>
@@ -323,7 +323,7 @@ export default function ClassificationsPage() {
                   Upload your film via <span className="font-semibold text-foreground">Google Drive</span> or{" "}
                   <span className="font-semibold text-foreground">WeTransfer</span>, then send the link together with
                   your application letter to the email address of your nearest NFVCB office.
-                  Always copy <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-[#009f3b] hover:underline">nfvcbonline@gmail.com</a> regardless of location.
+                  Always copy <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-primary hover:underline">nfvcbonline@gmail.com</a> regardless of location.
                 </p>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {[
@@ -338,10 +338,10 @@ export default function ClassificationsPage() {
                     { zone: "South East", email: "severification@nfvcb.gov.ng" },
                   ].map(({ zone, email }) => (
                     <div key={zone} className="rounded-xl border border-border bg-background px-4 py-3 flex items-start gap-3">
-                      <Mail className="h-4 w-4 text-[#009f3b] mt-0.5 shrink-0" aria-hidden />
+                      <Mail className="h-4 w-4 text-primary mt-0.5 shrink-0" aria-hidden />
                       <div className="min-w-0">
                         <p className="text-xs font-black text-foreground">{zone}</p>
-                        <a href={`mailto:${email}`} className="text-xs text-[#009f3b] hover:underline break-all">{email}</a>
+                        <a href={`mailto:${email}`} className="text-xs text-primary hover:underline break-all">{email}</a>
                       </div>
                     </div>
                   ))}
@@ -351,17 +351,17 @@ export default function ClassificationsPage() {
 
             {/* Step 3 */}
             <div className="flex gap-4">
-              <div className="w-9 h-9 rounded-xl bg-[#009f3b]/15 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-sm font-black text-[#009f3b]">3</span>
+              <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
+                <span className="text-sm font-black text-primary">3</span>
               </div>
               <div>
                 <p className="text-sm font-black text-foreground mb-1">Make Payment &amp; Receive Your Certificate</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Pay a flat rate of{" "}
                   <span className="font-black text-foreground">₦50,000</span> for films of 1–120 minutes via the{" "}
-                  <a href="/payment-guide" className="font-semibold text-[#009f3b] hover:underline">RevOP</a> federal government payment platform.
+                  <a href="/payment-guide" className="font-semibold text-primary hover:underline">RevOP</a> federal government payment platform.
                   Forward the payment receipt to the zonal/centre email where the film was submitted and copy{" "}
-                  <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-[#009f3b] hover:underline">nfvcbonline@gmail.com</a>.
+                  <a href="mailto:nfvcbonline@gmail.com" className="font-semibold text-primary hover:underline">nfvcbonline@gmail.com</a>.
                   Once payment is confirmed your film will be classified and approved within{" "}
                   <span className="font-black text-foreground">24 hours</span>, and the certificate sent to your email.
                 </p>
@@ -369,14 +369,14 @@ export default function ClassificationsPage() {
             </div>
 
             {/* Legal notice */}
-            <div className="rounded-xl border border-red-500/25 bg-red-500/5 px-5 py-4 flex gap-3 items-start">
-              <MonitorPlay className="h-5 w-5 text-red-500 shrink-0 mt-0.5" aria-hidden />
+            <div className="rounded-xl border border-destructive/25 bg-destructive/5 px-5 py-4 flex gap-3 items-start">
+              <MonitorPlay className="h-5 w-5 text-destructive shrink-0 mt-0.5" aria-hidden />
               <p className="text-sm text-muted-foreground leading-relaxed">
-                <span className="font-black text-red-500">IMPORTANT: </span>
+                <span className="font-black text-destructive">IMPORTANT: </span>
                 It is <span className="font-bold text-foreground">illegal</span> to distribute or exhibit any film or
                 video work not classified by the NFVCB. It is also illegal to distribute films and video works if you
                 are not a licensed distributor. Visit{" "}
-                <a href="https://www.nfvcb.gov.ng" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#009f3b] hover:underline">www.nfvcb.gov.ng</a>{" "}
+                <a href="https://www.nfvcb.gov.ng" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary hover:underline">www.nfvcb.gov.ng</a>{" "}
                 or any of our state or zonal offices for more details.
               </p>
             </div>
@@ -388,7 +388,7 @@ export default function ClassificationsPage() {
         ══════════════════════════════════════════ */}
         <AnimatedSection id="symbols" className="mb-8 pt-26">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-1 h-6 rounded-full bg-blue-500" aria-hidden />
+            <div className="w-1 h-6 rounded-full bg-primary" aria-hidden />
             <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
               Classification Symbols
             </h2>

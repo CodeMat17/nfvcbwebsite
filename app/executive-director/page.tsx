@@ -60,7 +60,7 @@ export default function ExecutiveDirectorPage() {
         <motion.div
           animate={{ y: [0, -25, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-amber-500/8 blur-3xl pointer-events-none"
+          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/8 blur-3xl pointer-events-none"
         />
 
         <motion.div
@@ -72,7 +72,7 @@ export default function ExecutiveDirectorPage() {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
               className="flex items-center gap-2.5 mb-6"
             >
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span className="text-sm font-medium text-white/70 tracking-wide uppercase">Executive Director · NFVCB Nigeria</span>
             </motion.div>
 
@@ -83,7 +83,7 @@ export default function ExecutiveDirectorPage() {
             >
               Dr. Shaibu
               <br />
-              <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">Husseini</span>
+              <span className="bg-gradient-to-r from-accent via-accent to-accent bg-clip-text text-transparent">Husseini</span>
             </motion.h1>
 
             <motion.p
@@ -98,7 +98,7 @@ export default function ExecutiveDirectorPage() {
               className="mt-9 flex flex-wrap items-center gap-4"
             >
               <a href="#achievements"
-                className="group inline-flex items-center gap-2 px-3 sm:px-6 py-3 rounded-full bg-amber-400 hover:bg-amber-300 text-black font-semibold text-sm transition-all duration-200 shadow-xl shadow-amber-500/30">
+                className="group inline-flex items-center gap-2 px-3 sm:px-6 py-3 rounded-full bg-accent hover:bg-accent text-black font-semibold text-sm transition-all duration-200 shadow-xl shadow-accent/30">
                 Key Achievements
                 <ArrowUpRight size={15} className="hidden sm:block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
@@ -125,7 +125,7 @@ export default function ExecutiveDirectorPage() {
             >
               {[{ value: "30+", label: "Years in Media" }, { value: "16yrs", label: "AMAA Chair" }, { value: "465", label: "Staff Empowered" }].map((s) => (
                 <div key={s.label}>
-                  <div className="font-playfair text-3xl font-bold text-amber-400">{s.value}</div>
+                  <div className="font-playfair text-3xl font-bold text-accent">{s.value}</div>
                   <div className="text-xs text-white/50 mt-1 font-medium">{s.label}</div>
                 </div>
               ))}
@@ -148,12 +148,12 @@ export default function ExecutiveDirectorPage() {
       <section id="about" className="py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <FadeIn className="mb-16">
-            <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-5">
+            <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-5">
               <Sparkles size={12} /> About
             </div>
             <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight max-w-2xl">
               A life dedicated to<br />
-              <span className="text-amber-500 dark:text-amber-400">culture & film</span>
+              <span className="text-accent">culture & film</span>
             </h2>
           </FadeIn>
 
@@ -183,7 +183,7 @@ export default function ExecutiveDirectorPage() {
                 </p>
               </div>
 
-              <div className="mt-10 pl-6 border-l-2 border-amber-400/60">
+              <div className="mt-10 pl-6 border-l-2 border-accent/60">
                 <p className="font-playfair text-xl italic text-foreground/75 leading-relaxed">
                   &ldquo;The Golden Globe appointment is the highest imprimatur for my career as a culture journalist and critic.&rdquo;
                 </p>
@@ -211,11 +211,11 @@ export default function ExecutiveDirectorPage() {
                 ))}
               </div>
 
-              <div className="mb-8 p-5 rounded-2xl bg-amber-50/60 dark:bg-amber-900/10 border border-amber-200/60 dark:border-amber-800/30">
-                <p className="text-xs font-bold uppercase tracking-[0.15em] text-amber-700 dark:text-amber-400 mb-3">Credentials & Fellowships</p>
+              <div className="mb-8 p-5 rounded-2xl bg-accent/10/60 border border-accent/30/60">
+                <p className="text-xs font-bold uppercase tracking-[0.15em] text-accent mb-3">Credentials & Fellowships</p>
                 <div className="flex flex-wrap gap-2">
                   {["PhD", "MNIPR", "RPA", "FTA", "FGOND"].map((cred) => (
-                    <span key={cred} className="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 text-xs font-bold border border-amber-200 dark:border-amber-700/40">
+                    <span key={cred} className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold border border-accent/30">
                       {cred}
                     </span>
                   ))}
@@ -240,9 +240,9 @@ export default function ExecutiveDirectorPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="group flex items-center justify-between px-5 py-3 rounded-xl border border-border/60 hover:border-amber-400/50 hover:bg-amber-50/50 dark:hover:bg-amber-900/10 transition-all duration-200 cursor-default">
+                    className="group flex items-center justify-between px-5 py-3 rounded-xl border border-border/60 hover:border-accent/50 hover:bg-accent/10/50 dark:hover:bg-accent/10 transition-all duration-200 cursor-default">
                     <span className="text-sm font-medium">{tag}</span>
-                    <ArrowUpRight size={14} className="text-muted-foreground/0 group-hover:text-amber-500 transition-all duration-200" />
+                    <ArrowUpRight size={14} className="text-muted-foreground/0 group-hover:text-accent transition-all duration-200" />
                   </motion.div>
                 ))}
               </div>
@@ -252,7 +252,7 @@ export default function ExecutiveDirectorPage() {
           {/* What friends & colleagues say */}
           <FadeIn>
             <div className="mb-6">
-              <p className="text-xs font-bold uppercase tracking-[0.15em] text-amber-600 dark:text-amber-400 mb-2">
+              <p className="text-xs font-bold uppercase tracking-[0.15em] text-accent mb-2">
                 What colleagues & friends say
               </p>
               <h3 className="font-playfair text-2xl md:text-3xl font-bold">In Their Own Words</h3>
@@ -292,8 +292,8 @@ export default function ExecutiveDirectorPage() {
               },
             ].map((item, i) => (
               <FadeIn key={i} delay={(i % 3) * 0.1}>
-                <div className="group h-full p-7 rounded-2xl border border-border/60 hover:border-amber-400/40 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                  <Quote size={20} className="text-amber-400/50 mb-4 flex-shrink-0" />
+                <div className="group h-full p-7 rounded-2xl border border-border/60 hover:border-accent/40 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                  <Quote size={20} className="text-accent/50 mb-4 flex-shrink-0" />
                   <p className="text-sm leading-relaxed text-foreground/80 italic mb-5 flex-1">&ldquo;{item.quote}&rdquo;</p>
                   <div className="pt-4 border-t border-border/60">
                     <p className="font-semibold text-sm">{item.name}</p>
@@ -307,12 +307,12 @@ export default function ExecutiveDirectorPage() {
       </section>
 
       {/* ── QUOTE INTERLUDE 1 ── */}
-      <div className="py-20 md:py-28 bg-zinc-950 dark:bg-zinc-900/70 overflow-hidden relative">
+      <div className="py-20 md:py-28 bg-nfvcb-dark overflow-hidden relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(251,191,36,0.06),transparent)]" />
         <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
           <FadeIn direction="none">
             <div className="text-center">
-              <div className="text-amber-400/30 font-playfair text-[72px] md:text-[120px] leading-none select-none mb-[-24px] md:mb-[-40px]">&ldquo;</div>
+              <div className="text-accent/30 font-playfair text-[72px] md:text-[120px] leading-none select-none mb-[-24px] md:mb-[-40px]">&ldquo;</div>
               <p className="font-playfair text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-relaxed italic max-w-3xl mx-auto">
                 I am an open book. Since the reward for hard work is more work, I commit to continue working tirelessly to promote and advance the cause of theatre and film arts in Nigeria.
               </p>
@@ -328,7 +328,7 @@ export default function ExecutiveDirectorPage() {
           <FadeIn className="mb-14">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+                <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <GraduationCap size={12} /> Education
                 </div>
                 <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1]">Academic Excellence</h2>
@@ -344,12 +344,12 @@ export default function ExecutiveDirectorPage() {
               { degree: "PhD", field: "Mass Communication", school: "University of Lagos", thesis: "Structure of Film Production Companies in Nollywood", short: "UNILAG", num: "03" },
             ].map((edu, i) => (
               <FadeIn key={i} delay={i * 0.12}>
-                <div className="group relative h-full p-8 rounded-2xl border border-border/60 hover:border-amber-400/50 bg-card hover:shadow-2xl hover:shadow-amber-500/5 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
-                  <div className="absolute top-6 right-6 font-playfair text-5xl font-bold text-border/60 dark:text-white/5 group-hover:text-amber-400/15 transition-colors duration-300 select-none">
+                <div className="group relative h-full p-8 rounded-2xl border border-border/60 hover:border-accent/50 bg-card hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+                  <div className="absolute top-6 right-6 font-playfair text-5xl font-bold text-border/60 dark:text-white/5 group-hover:text-accent/15 transition-colors duration-300 select-none">
                     {edu.num}
                   </div>
                   <div className="relative">
-                    <p className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-[0.15em] mb-3">{edu.field}</p>
+                    <p className="text-xs font-bold text-accent uppercase tracking-[0.15em] mb-3">{edu.field}</p>
                     <h3 className="font-playfair text-2xl font-bold leading-tight mb-1">{edu.degree}</h3>
                     <p className="text-muted-foreground text-sm">{edu.school}</p>
                     {edu.thesis && (
@@ -371,7 +371,7 @@ export default function ExecutiveDirectorPage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <FadeIn>
             <div className="relative rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/90 to-orange-600/90" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/90 to-accent/90" />
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_80%_at_0%_50%,rgba(255,255,255,0.12),transparent)]" />
               <div className="relative p-10 md:p-16 lg:p-20">
                 <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
@@ -405,7 +405,7 @@ export default function ExecutiveDirectorPage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <FadeIn className="mb-14">
             <div>
-              <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+              <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                 <Briefcase size={12} /> Career History
               </div>
               <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1]">Three Decades of<br />Distinguished Service</h2>
@@ -427,15 +427,15 @@ export default function ExecutiveDirectorPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: (i % 2) * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`group flex gap-5 py-7 border-b border-border/50 hover:border-amber-400/40 transition-colors duration-200 ${i % 2 === 0 ? "" : "lg:border-l lg:pl-8 lg:border-b lg:border-l-border/50"}`}>
+                className={`group flex gap-5 py-7 border-b border-border/50 hover:border-accent/40 transition-colors duration-200 ${i % 2 === 0 ? "" : "lg:border-l lg:pl-8 lg:border-b lg:border-l-border/50"}`}>
                 <div className="flex-shrink-0 mt-1">
-                  <div className="w-8 h-8 rounded-full border-2 border-border group-hover:border-amber-400 bg-background flex items-center justify-center transition-colors duration-200">
-                    <div className="w-2 h-2 rounded-full bg-muted-foreground/50 group-hover:bg-amber-400 transition-colors duration-200" />
+                  <div className="w-8 h-8 rounded-full border-2 border-border group-hover:border-accent bg-background flex items-center justify-center transition-colors duration-200">
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground/50 group-hover:bg-accent transition-colors duration-200" />
                   </div>
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground leading-snug">{item.title}</h3>
-                  <p className="text-amber-600 dark:text-amber-400 text-sm font-medium mt-0.5">{item.org}</p>
+                  <p className="text-accent text-sm font-medium mt-0.5">{item.org}</p>
                   {item.sub && <p className="text-muted-foreground text-sm mt-1">{item.sub}</p>}
                   {item.detail && <p className="text-muted-foreground text-xs mt-1.5 italic">{item.detail}</p>}
                 </div>
@@ -446,13 +446,13 @@ export default function ExecutiveDirectorPage() {
       </section>
 
       {/* ── FILM INDUSTRY ── */}
-      <section id="film" className="py-24 md:py-36 bg-zinc-950 dark:bg-zinc-900/50 relative overflow-hidden">
+      <section id="film" className="py-24 md:py-36 bg-nfvcb-dark relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(251,191,36,0.07),transparent)]" />
         <div className="max-w-7xl mx-auto px-5 sm:px-8 relative">
           <FadeIn className="mb-14">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+                <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <Film size={12} /> Film Industry
                 </div>
                 <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white leading-[1.1]">A Pillar of<br />African Cinema</h2>
@@ -476,9 +476,9 @@ export default function ExecutiveDirectorPage() {
               { icon: "🗣️", title: "NECLive 2025 Panelist", desc: "Featured panelist at the Nigeria Economic Summit — Creative Economy track" },
             ].map((item, i) => (
               <FadeIn key={i} delay={(i % 3) * 0.08}>
-                <div className="group p-6 rounded-2xl border border-white/8 hover:border-amber-400/40 bg-white/3 hover:bg-white/6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 h-full">
+                <div className="group p-6 rounded-2xl border border-white/8 hover:border-accent/40 bg-white/3 hover:bg-white/6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 h-full">
                   <div className="text-2xl mb-4">{item.icon}</div>
-                  <h3 className="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-amber-300 transition-colors">{item.title}</h3>
+                  <h3 className="font-semibold text-white text-sm leading-snug mb-2 group-hover:text-accent transition-colors">{item.title}</h3>
                   <p className="text-white/45 text-xs leading-relaxed">{item.desc}</p>
                 </div>
               </FadeIn>
@@ -493,7 +493,7 @@ export default function ExecutiveDirectorPage() {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
               <FadeIn direction="left" className="mb-10">
-                <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+                <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <BookOpen size={12} /> Publications
                 </div>
                 <h2 className="font-playfair text-3xl md:text-4xl font-bold">Academic & Literary Work</h2>
@@ -504,9 +504,9 @@ export default function ExecutiveDirectorPage() {
                   { year: "2024", type: "NFVCB Publications", title: "Three Decades of Film Classification", desc: "Contributed to three landmark NFVCB publications marking the board's 30th anniversary, covering Nigeria's classified and censored films." },
                 ].map((pub, i) => (
                   <FadeIn key={i} direction="left" delay={i * 0.1}>
-                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-amber-400/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card">
+                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-accent/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card">
                       <div className="flex items-start justify-between mb-4">
-                        <span className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider">{pub.type} · {pub.year}</span>
+                        <span className="text-xs font-bold text-accent uppercase tracking-wider">{pub.type} · {pub.year}</span>
                       </div>
                       <h3 className="font-playfair text-xl font-bold leading-snug mb-3">{pub.title}</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">{pub.desc}</p>
@@ -518,7 +518,7 @@ export default function ExecutiveDirectorPage() {
 
             <div>
               <FadeIn direction="right" className="mb-10">
-                <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+                <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <Globe2 size={12} /> Global Leadership
                 </div>
                 <h2 className="font-playfair text-3xl md:text-4xl font-bold">International Programmes</h2>
@@ -529,12 +529,12 @@ export default function ExecutiveDirectorPage() {
                   { flag: "🇬🇧", title: "AIG-Public Leaders Programme", org: "Blavatnik School of Governance, University of Oxford", desc: "Advanced leadership training at one of the world's foremost institutions for public policy and governance." },
                 ].map((item, i) => (
                   <FadeIn key={i} direction="right" delay={i * 0.12}>
-                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-amber-400/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card">
+                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-accent/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card">
                       <div className="flex gap-4 items-start">
                         <span className="text-4xl flex-shrink-0">{item.flag}</span>
                         <div>
                           <h3 className="font-semibold leading-snug mb-1">{item.title}</h3>
-                          <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-3">{item.org}</p>
+                          <p className="text-xs font-semibold text-accent mb-3">{item.org}</p>
                           <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                         </div>
                       </div>
@@ -548,10 +548,10 @@ export default function ExecutiveDirectorPage() {
       </section>
 
       {/* ── AWARDS ── */}
-      <section id="awards" className="py-24 md:py-36 bg-gradient-to-b from-background to-amber-50/40 dark:to-amber-900/5">
+      <section id="awards" className="py-24 md:py-36 bg-gradient-to-b from-background to-accent/40">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <FadeIn className="mb-14 text-center">
-            <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+            <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
               <Trophy size={12} /> Awards & Honours
             </div>
             <h2 className="font-playfair text-4xl md:text-5xl font-bold">Recognised by Peers<br />& Industry</h2>
@@ -585,17 +585,17 @@ export default function ExecutiveDirectorPage() {
               <FadeIn key={i} delay={i * 0.1}>
                 <div className={`group relative p-8 rounded-2xl h-full border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl
                   ${award.featured
-                    ? "border-amber-400/60 bg-gradient-to-br from-amber-50 to-orange-50/50 dark:from-amber-900/20 dark:to-orange-900/10 shadow-lg shadow-amber-500/10"
-                    : "border-border/60 bg-card hover:border-amber-400/40 hover:shadow-amber-500/5"}`}>
+                    ? "border-accent/60 bg-gradient-to-br from-accent to-accent/50 shadow-lg shadow-accent/10"
+                    : "border-border/60 bg-card hover:border-accent/40 hover:shadow-accent/5"}`}>
                   {award.featured && (
                     <div className="absolute top-5 right-5">
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500 text-white">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-accent text-white">
                         <Star size={10} fill="white" /> Latest
                       </span>
                     </div>
                   )}
                   <div className="text-4xl mb-5">{award.icon}</div>
-                  <p className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">{award.org} · {award.date}</p>
+                  <p className="text-xs font-bold text-accent uppercase tracking-wider mb-1">{award.org} · {award.date}</p>
                   <h3 className="font-playfair text-xl font-bold leading-snug mb-3">{award.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{award.desc}</p>
                 </div>
@@ -610,7 +610,7 @@ export default function ExecutiveDirectorPage() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <FadeIn className="mb-14">
             <div>
-              <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+              <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                 <Rocket size={12} /> Achievements
               </div>
               <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1]">Transforming Nigeria&apos;s<br />Film Landscape</h2>
@@ -633,9 +633,9 @@ export default function ExecutiveDirectorPage() {
               <FadeIn key={i} delay={(i % 4) * 0.07}
                 className={item.size === "lg" ? "col-span-2" : "col-span-1"}>
                 <motion.div whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="group p-6 md:p-7 rounded-2xl border border-border/60 hover:border-amber-400/50 bg-card hover:shadow-xl hover:shadow-amber-500/5 transition-all duration-300 h-full">
+                  className="group p-6 md:p-7 rounded-2xl border border-border/60 hover:border-accent/50 bg-card hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 h-full">
                   <div className="text-2xl mb-4">{item.icon}</div>
-                  <h3 className="font-semibold text-sm leading-snug mb-2 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{item.title}</h3>
+                  <h3 className="font-semibold text-sm leading-snug mb-2 group-hover:text-accent dark:group-hover:text-accent transition-colors">{item.title}</h3>
                   <p className="text-muted-foreground text-xs leading-relaxed">{item.desc}</p>
                 </motion.div>
               </FadeIn>
@@ -645,7 +645,7 @@ export default function ExecutiveDirectorPage() {
       </section>
 
       {/* ── QUOTE INTERLUDE 2 ── */}
-      <div className="py-20 md:py-28 bg-zinc-950 dark:bg-zinc-900/70 relative overflow-hidden">
+      <div className="py-20 md:py-28 bg-nfvcb-dark relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_80%_50%,rgba(251,191,36,0.05),transparent)]" />
         <div className="max-w-5xl mx-auto px-5 sm:px-8">
           <FadeIn direction="none">
@@ -655,7 +655,7 @@ export default function ExecutiveDirectorPage() {
                 { quote: "Since the reward for hard work is more work, I commit to continue working tirelessly to promote and advance the cause of theatre and film arts in Nigeria.", context: "On receiving the FTA Fellowship" },
               ].map((item, i) => (
                 <div key={i} className={`flex-1 ${i === 1 ? "md:pt-10 md:border-l md:border-white/10 md:pl-16" : ""}`}>
-                  <Quote size={20} className="text-amber-400/50 mb-4" />
+                  <Quote size={20} className="text-accent/50 mb-4" />
                   <p className="font-playfair text-xl md:text-2xl font-medium text-white italic leading-relaxed">&ldquo;{item.quote}&rdquo;</p>
                   <p className="mt-4 text-white/35 text-xs font-medium tracking-wider uppercase">{item.context}</p>
                 </div>
@@ -669,7 +669,7 @@ export default function ExecutiveDirectorPage() {
       <section id="contact" className="py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <FadeIn className="mb-14 text-center">
-            <div className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">
+            <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
               <Link2 size={12} /> Affiliations
             </div>
             <h2 className="font-playfair text-4xl md:text-5xl font-bold">Institutional Connections</h2>
@@ -687,20 +687,20 @@ export default function ExecutiveDirectorPage() {
               <FadeIn key={i} delay={i * 0.07}>
                 {aff.url ? (
                   <a href={aff.url} target="_blank" rel="noopener noreferrer"
-                    className="group flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-amber-400/60 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    className="group flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-accent/60 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <div>
-                      <h3 className="font-bold text-base group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{aff.name}</h3>
+                      <h3 className="font-bold text-base group-hover:text-accent dark:group-hover:text-accent transition-colors">{aff.name}</h3>
                       <p className="text-muted-foreground text-xs mt-0.5 leading-snug">{aff.full}</p>
-                      <p className="text-xs font-medium text-amber-600/70 dark:text-amber-400/70 mt-2">{aff.role}</p>
+                      <p className="text-xs font-medium text-accent/70 mt-2">{aff.role}</p>
                     </div>
-                    <ArrowUpRight size={15} className="text-muted-foreground/0 group-hover:text-amber-500 flex-shrink-0 mt-0.5 transition-all duration-200" />
+                    <ArrowUpRight size={15} className="text-muted-foreground/0 group-hover:text-accent flex-shrink-0 mt-0.5 transition-all duration-200" />
                   </a>
                 ) : (
-                  <div className="flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-amber-400/40 bg-card hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-accent/40 bg-card hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                     <div>
                       <h3 className="font-bold text-base">{aff.name}</h3>
                       <p className="text-muted-foreground text-xs mt-0.5 leading-snug">{aff.full}</p>
-                      <p className="text-xs font-medium text-amber-600/70 dark:text-amber-400/70 mt-2">{aff.role}</p>
+                      <p className="text-xs font-medium text-accent/70 mt-2">{aff.role}</p>
                     </div>
                   </div>
                 )}

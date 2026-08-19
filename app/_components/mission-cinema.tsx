@@ -2,61 +2,73 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+
+/* The pulsing 384px blur orb was removed — it ran an infinite animation for a
+   barely-visible effect. The perforation strips stay: they are the site's one
+   ambient motif, and repeating them here ties this band to the hero. */
+function Perfs({ side }: { side: "left" | "right" }) {
+  return (
+    <div
+      className={`pointer-events-none absolute inset-y-0 ${side}-0 hidden w-6 flex-col justify-around py-2 opacity-20 sm:flex`}
+      aria-hidden
+    >
+      {Array.from({ length: 24 }).map((_, i) => (
+        <div key={i} className="mx-auto h-4 w-3 rounded-[2px] border border-white/30 bg-black/40" />
+      ))}
+    </div>
+  );
+}
 
 export function MissionCinema() {
-  return (
-    <section className="relative py-20 sm:py-28 overflow-hidden" aria-labelledby="mission-heading">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#001506] via-[#002b0e] to-[#001506]" />
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.06] pointer-events-none" aria-hidden>
-        <Image src="/logo.webp" alt="" width={500} height={500} className="object-contain" />
-      </div>
-      <div className="absolute left-0 top-0 bottom-0 w-6 flex flex-col gap-1 py-2 opacity-25" aria-hidden>
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div key={i} className="mx-auto w-3 h-4 rounded-sm border border-white/30 bg-black/40" />
-        ))}
-      </div>
-      <div className="absolute right-0 top-0 bottom-0 w-6 flex flex-col gap-1 py-2 opacity-25" aria-hidden>
-        {Array.from({ length: 30 }).map((_, i) => (
-          <div key={i} className="mx-auto w-3 h-4 rounded-sm border border-white/30 bg-black/40" />
-        ))}
-      </div>
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-[#009f3b]/10 blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        aria-hidden
-      />
+  const reduced = useReducedMotion();
 
-      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
+  return (
+    <section
+      className="relative isolate overflow-hidden bg-gradient-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark"
+      aria-labelledby="mission-heading"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.05]"
+        aria-hidden
+      >
+        <Image src="/logo.webp" alt="" width={480} height={480} className="object-contain" />
+      </div>
+      <Perfs side="left" />
+      <Perfs side="right" />
+
+      <div className="section section-y relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mx-auto max-w-3xl text-center"
+          initial={reduced ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
-          <Badge className="mb-5 bg-[#009f3b]/5 text-[#009f3b] border-[#009f3b]/70 text-lg font-bold px-4 py-3">
-            Our Mission
-          </Badge>
-          <h2 id="mission-heading" className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-6 text-balance leading-snug">
+          <p className="eyebrow mb-5 justify-center">Our Mission</p>
+
+          <h2
+            id="mission-heading"
+            className="text-h2 font-black leading-snug text-balance text-white"
+          >
             &ldquo;To contribute to the positive transformation of the Nigerian society through the
             censorship of films and video works whilst balancing the need to preserve{" "}
-            <span className="text-[#009f3b]">freedom of expression</span>{" "}
-            within the law.&rdquo;
+            <span className="text-accent">freedom of expression</span> within the law.&rdquo;
           </h2>
-          <p className="text-white/50 mb-8">— NFVCB Mission Statement</p>
-          <div className="flex flex-wrap justify-center gap-4">
+
+          <p className="mt-6 text-caption text-white/50">— NFVCB Mission Statement</p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 bg-[#009f3b] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#009f3b]/90 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#009f3b]/25 text-sm"
+              className="inline-flex tap items-center gap-2 rounded-xl bg-primary px-6 text-caption font-bold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5"
             >
               About NFVCB <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
               href="/service-charter"
-              className="inline-flex items-center gap-2 border border-white/20 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/10 transition-all text-sm"
+              className="inline-flex tap items-center rounded-xl border border-white/25 px-6 text-caption font-semibold text-white transition-colors hover:bg-white/10"
             >
               Service Charter
             </Link>

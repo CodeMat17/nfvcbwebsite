@@ -4,261 +4,282 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ChevronLeft, ChevronRight, ArrowRight, Pause, Play } from "lucide-react";
 
 const slides = [
   {
     badge: "Licensing",
-    title: "Get Licensed — Distribute Films Legally Across Nigeria",
+    title: "Distribute films legally across Nigeria",
     subtitle:
-      "Four distributor license categories to fit every business scope: Online, National, Regional, and Community. Apply today.",
+      "Four distributor licence categories to fit every business scope: Online, National, Regional and Community.",
     cta: { label: "Licensing Requirements", href: "/industry/licensing" },
     ctaSecondary: { label: "Industry Info", href: "/industry" },
-    accent: "#009f3b",
-    gradient: "from-[#001506] via-[#003d14] to-[#001506]",
     image: "/shaibu.jpeg",
   },
   {
     badge: "Our Mandate",
-    title: "Nigeria's Premier Film & Video Regulatory Authority",
+    title: "Nigeria's film and video regulatory authority",
     subtitle:
-      "Empowering Nollywood, protecting audiences, and preserving culture since 1993 — the NFVCB classifies every film you watch.",
+      "Empowering Nollywood, protecting audiences and preserving culture since 1993 — the NFVCB classifies every film you watch.",
     cta: { label: "About NFVCB", href: "/about" },
     ctaSecondary: { label: "Submit a Film", href: "/industry" },
-    accent: "#009f3b",
-    gradient: "from-[#001506] via-[#002b0e] to-[#001506]",
     image: "/poster2.jpg",
   },
   {
-    badge: "Film Classification",
-    title: "Know Before You Watch — Nigeria's Classification System",
+    badge: "Classification",
+    title: "Know before you watch",
     subtitle:
-      "From G to RE, every film carries an NFVCB rating. Our classification system protects children, informs parents, and preserves creative freedom.",
+      "From G to RE, every film carries an NFVCB rating — protecting children, informing parents and preserving creative freedom.",
     cta: { label: "Classification Policy", href: "/policy" },
-    ctaSecondary: { label: "Ratings Guide", href: "/policy#categories" },
-    accent: "#fea600",
-    gradient: "from-[#1a0e00] via-[#2b1800] to-[#001506]",
+    ctaSecondary: { label: "Ratings Guide", href: "/classification" },
     image: "/classifications.jpg",
   },
-
   {
     badge: "Enforcement",
-    title: "Protecting Nigeria's Film Market From Illegal Content",
+    title: "Protecting Nigeria's film market",
     subtitle:
-      "NFVCB's field operations team monitors compliance nationwide — combating piracy, uncensored content, and unlicensed distribution.",
+      "Field operations monitor compliance nationwide — combating piracy, uncensored content and unlicensed distribution.",
     cta: { label: "Law Enforcement", href: "/law-enforcement" },
     ctaSecondary: { label: "Our Policy", href: "/policy" },
-    accent: "#fea600",
-    gradient: "from-[#001506] via-[#1a0a00] to-[#001506]",
-    image: '/nfvcb_ncc.jpg'
+    image: "/nfvcb_ncc.jpg",
   },
 ];
 
-const AUTOPLAY_MS = 5500;
+const AUTOPLAY_MS = 7000;
+const EXPO = [0.16, 1, 0.3, 1] as const;
+
+/* The single ambient device kept from the previous hero. Ghost lettering, the
+   pulsing orb and the 18 looping particles were removed — four competing
+   effects read as noise, and the particles burned battery below the fold. */
+function FilmPerfs({ side }: { side: "left" | "right" }) {
+  return (
+    <div
+      className={`pointer-events-none absolute inset-y-0 ${side}-0 z-20 hidden w-6 flex-col justify-around py-3 opacity-25 sm:flex`}
+      aria-hidden
+    >
+      {Array.from({ length: 12 }).map((_, i) => (
+        <div key={i} className="mx-auto h-4 w-3 rounded-[2px] border border-white/50 bg-black/40" />
+      ))}
+    </div>
+  );
+}
 
 export function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [paused, setPaused] = useState(false);
   const reduced = useReducedMotion();
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const go = useCallback(
-    (next: number, dir: number) => {
-      setDirection(dir);
-      setIndex((next + slides.length) % slides.length);
-    },
-    []
-  );
+  const go = useCallback((next: number, dir: number) => {
+    setDirection(dir);
+    setIndex((next + slides.length) % slides.length);
+  }, []);
 
-  const startTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => go(index + 1, 1), AUTOPLAY_MS);
-  }, [index, go]);
-
+  /* WCAG 2.2.2 — auto-advancing content must be pausable. Previously it
+     advanced every 5.5s with no pause on hover, focus or by control. */
   useEffect(() => {
-    startTimer();
+    if (paused || reduced) return;
+    timerRef.current = setInterval(() => {
+      setDirection(1);
+      setIndex((i) => (i + 1) % slides.length);
+    }, AUTOPLAY_MS);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [startTimer]);
+  }, [paused, reduced]);
 
   const slide = slides[index];
 
-  const variants = {
-    enter: (d: number) => ({ x: d > 0 ? "100%" : "-100%", opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (d: number) => ({ x: d > 0 ? "-100%" : "100%", opacity: 0 }),
+  const bgVariants = {
+    enter: (d: number) => ({ opacity: 0, scale: 1.06, x: d > 0 ? 40 : -40 }),
+    center: { opacity: 1, scale: 1, x: 0 },
+    exit: (d: number) => ({ opacity: 0, scale: 1.02, x: d > 0 ? -40 : 40 }),
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl h-[400px] sm:h-[360px] lg:h-[380px] group">
-      {/* Background gradient */}
-      <AnimatePresence custom={direction} initial={false} mode="sync">
-        <motion.div
-          key={`bg-${index}`}
-          custom={direction}
-          variants={reduced ? {} : variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`}
-        />
-      </AnimatePresence>
-
-      {/* Accent top strip */}
-      <motion.div
-        key={`strip-${index}`}
-        className="absolute top-0 left-0 right-0 h-[3px] z-20 pointer-events-none"
-        style={{ background: slide.accent }}
-        initial={{ scaleX: 0, originX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-      />
-
-      {/* Ghost lettering */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none" aria-hidden>
-        <span className="text-[26vw] lg:text-[20vw] font-black text-white/[0.025] tracking-tighter leading-none">
-          NFVCB
-        </span>
-      </div>
-
-      {/* Ambient glow orb */}
-      <motion.div
-        key={`orb-${index}`}
-        className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full blur-[80px] pointer-events-none"
-        style={{ background: `radial-gradient(circle at center, ${slide.accent}22 0%, transparent 70%)` }}
-        animate={{ scale: [0.9, 1.1, 0.9], opacity: [0.5, 0.9, 0.5] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Background image or logo watermark */}
-      {slide.image ? (
-        <div className="absolute inset-0 pointer-events-none" aria-hidden>
-          <Image src={slide.image} alt="" fill className="object-cover opacity-80" />
-          <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-        </div>
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-end pr-10 opacity-[0.18] pointer-events-none" aria-hidden>
-          <Image src="/logo.webp" alt="" width={280} height={280} className="object-contain" />
-        </div>
-      )}
-
-      {/* Animated film perfs — left edge */}
-      <div className="absolute left-0 top-0 bottom-0 w-7 flex flex-col gap-1 py-2 opacity-30" aria-hidden>
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} className="mx-auto w-4 h-5 rounded-sm border border-white/40 bg-black/30" />
-        ))}
-      </div>
-      <div className="absolute right-0 top-0 bottom-0 w-7 flex flex-col gap-1 py-2 opacity-30" aria-hidden>
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} className="mx-auto w-4 h-5 rounded-sm border border-white/40 bg-black/30" />
-        ))}
-      </div>
-
-      {/* Slide content */}
-      <AnimatePresence custom={direction} initial={false} mode="wait" >
+    <section
+      className="group relative isolate h-[clamp(26rem,62vh,34rem)] w-full overflow-hidden rounded-2xl bg-nfvcb-dark sm:h-[clamp(28rem,60vh,32rem)]"
+      aria-roledescription="carousel"
+      aria-label="NFVCB highlights"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      {/* Imagery — slow Ken Burns drift, disabled under reduced motion */}
+      <AnimatePresence custom={direction} initial={false} mode="popLayout">
         <motion.div
           key={index}
           custom={direction}
-          variants={reduced ? {} : {
-            enter: (d) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
-            center: { x: 0, opacity: 1, transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 } },
-            exit: (d) => ({ x: d > 0 ? -60 : 60, opacity: 0, transition: { duration: 0.35 } }),
-          }}
+          variants={reduced ? undefined : bgVariants}
           initial="enter"
           animate="center"
           exit="exit"
-          className="absolute inset-0 flex flex-col justify-end p-5 sm:p-7 mb-4"
+          transition={{ duration: 0.8, ease: EXPO }}
+          className="absolute inset-0"
         >
           <motion.div
-            initial={reduced ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            className="absolute inset-0"
+            animate={reduced ? undefined : { scale: [1.04, 1.12] }}
+            transition={{ duration: AUTOPLAY_MS / 1000 + 2, ease: "linear" }}
           >
-            <Badge
-              className="mb-2 text-[15px] font-bold px-2 py-1"
-              style={{ background: `${slide.accent}22`, color: slide.accent, borderColor: `${slide.accent}44` }}
-            >
-              {slide.badge}
-            </Badge>
-          </motion.div>
-
-          <motion.h2
-            className="text-base sm:text-lg lg:text-xl font-black text-white leading-snug mb-3 max-w-lg text-balance"
-            initial={reduced ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.28, duration: 0.55 }}
-          >
-            {slide.title}
-          </motion.h2>
-
-          <motion.div
-            className="flex flex-wrap gap-2"
-            initial={reduced ? false : { opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.44, duration: 0.45 }}
-          >
-            <Link
-              href={slide.cta.href}
-              className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg text-[#001506] transition-all hover:-translate-y-0.5 hover:shadow-lg"
-              style={{ background: slide.accent, boxShadow: `0 0 0 0 ${slide.accent}` }}
-            >
-              {slide.cta.label} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href={slide.ctaSecondary.href}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg border border-white/20 text-white hover:bg-white/10 transition-all"
-            >
-              {slide.ctaSecondary.label}
-            </Link>
+            <Image
+              src={slide.image}
+              alt=""
+              fill
+              priority={index === 0}
+              sizes="(max-width: 1024px) 100vw, 60vw"
+              className="object-cover"
+            />
           </motion.div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Prev / Next */}
-      <button
-        onClick={() => { go(index - 1, -1); startTimer(); }}
-        className="absolute left-8 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </button>
-      <button
-        onClick={() => { go(index + 1, 1); startTimer(); }}
-        className="absolute right-8 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all opacity-0 group-hover:opacity-100 backdrop-blur-sm pb-2"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-4 w-4" />
-      </button>
+      {/* Scrim — heavy enough that white text clears AA over all four images */}
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-nfvcb-dark via-nfvcb-dark/75 to-nfvcb-dark/25"
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-nfvcb-dark/80 via-transparent to-transparent"
+        aria-hidden
+      />
 
-      {/* Dots */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { go(i, i > index ? 1 : -1); startTimer(); }}
-            aria-label={`Go to slide ${i + 1}`}
-            className="transition-all duration-300 rounded-full"
-            style={{
-              width: i === index ? 24 : 8,
-              height: 8,
-              background: i === index ? slide.accent : "rgba(255,255,255,0.3)",
+      <FilmPerfs side="left" />
+      <FilmPerfs side="right" />
+
+      {/* Content */}
+      <div className="relative z-10 flex h-full flex-col justify-end p-5 pb-16 sm:p-8 sm:pb-16 lg:p-10 lg:pb-16">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={reduced ? false : "hidden"}
+            animate="show"
+            exit={reduced ? undefined : "out"}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
+              out: { opacity: 0, transition: { duration: 0.2 } },
             }}
-          />
-        ))}
+            className="max-w-2xl"
+          >
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.5, ease: EXPO }}
+              className="eyebrow mb-3"
+            >
+              {slide.badge}
+            </motion.p>
+
+            {/* The headline was previously text-base…lg:text-xl — smaller than
+                body copy. This is the change that carries the whole hero. */}
+            <motion.h2
+              variants={{ hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.62, ease: EXPO }}
+              className="text-h1 font-black text-balance text-white"
+            >
+              {slide.title}
+            </motion.h2>
+
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.55, ease: EXPO }}
+              className="mt-3 hidden max-w-lg text-body text-white/75 sm:block"
+            >
+              {slide.subtitle}
+            </motion.p>
+
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.5, ease: EXPO }}
+              className="mt-6 flex flex-wrap gap-2.5"
+            >
+              <Link
+                href={slide.cta.href}
+                className="inline-flex tap items-center gap-2 rounded-lg bg-accent px-5 text-caption font-bold text-nfvcb-dark transition-transform duration-200 hover:-translate-y-0.5"
+              >
+                {slide.cta.label}
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href={slide.ctaSecondary.href}
+                className="inline-flex tap items-center rounded-lg border border-white/25 px-5 text-caption font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+              >
+                {slide.ctaSecondary.label}
+              </Link>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10">
-        <motion.div
-          className="h-full"
-          style={{ background: slide.accent }}
-          key={index}
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: AUTOPLAY_MS / 1000, ease: "linear" }}
-        />
+      {/* Announce slide changes to assistive tech */}
+      <div className="sr-only" aria-live="polite" aria-atomic>
+        Slide {index + 1} of {slides.length}: {slide.title}
       </div>
-    </div>
+
+      {/* Controls — always visible. Previously opacity-0 group-hover:opacity-100,
+          which made them permanently unreachable on touch devices. */}
+      <div className="absolute inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 px-4 pb-4 sm:px-6">
+        <div className="flex items-center gap-2">
+          {slides.map((s, i) => (
+            <button
+              key={s.badge}
+              type="button"
+              onClick={() => go(i, i > index ? 1 : -1)}
+              aria-label={`Go to slide ${i + 1}: ${s.title}`}
+              aria-current={i === index}
+              className="group/dot grid h-8 place-items-center"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  i === index
+                    ? "w-7 bg-accent"
+                    : "w-1.5 bg-white/40 group-hover/dot:bg-white/70"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-1.5">
+          <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-label={paused ? "Resume slideshow" : "Pause slideshow"}
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50"
+          >
+            {paused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+          </button>
+          <button
+            type="button"
+            onClick={() => go(index - 1, -1)}
+            aria-label="Previous slide"
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(index + 1, 1)}
+            aria-label="Next slide"
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Progress */}
+      <div className="absolute inset-x-0 top-0 z-30 h-0.5 bg-white/10">
+        {!reduced && !paused && (
+          <motion.div
+            key={index}
+            className="h-full bg-accent"
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: AUTOPLAY_MS / 1000, ease: "linear" }}
+          />
+        )}
+      </div>
+    </section>
   );
 }

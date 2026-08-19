@@ -25,8 +25,6 @@ export const metadata: Metadata = {
   },
 };
 
-const ACCENTS = ["#009f3b", "#10b981", "#14b8a6"] as const;
-
 const departments = [
   { name: "Executive Director's Office", icon: "🏛️" },
   { name: "Administration Department", icon: "⚙️" },
@@ -48,12 +46,12 @@ export default function DepartmentsPage() {
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-nfvcb-green/20 text-nfvcb-green border-nfvcb-green/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Organisation
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               Departments
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -65,45 +63,33 @@ export default function DepartmentsPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="section py-16">
         <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {departments.map(({ name, icon }, index) => {
-            const accent = ACCENTS[index % ACCENTS.length];
-            return (
-              <StaggerItem key={name}>
-                <div className="group relative h-full rounded-2xl border border-border bg-card overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-default">
-                  {/* coloured top bar */}
-                  <div className="h-1.5 w-full" style={{ background: accent }} />
-                  <div className="p-6 flex flex-col gap-4">
-                    {/* icon circle */}
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl shrink-0"
-                      style={{ background: `${accent}18` }}
-                    >
-                      {icon}
-                    </div>
-                    {/* index badge + name */}
-                    <div>
-                      <span
-                        className="text-[15px] font-semibold tracking-widest uppercase mb-1 block"
-                        style={{ color: accent }}
-                      >
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="font-semibold leading-snug text-foreground">
-                        {name}
-                      </h3>
-                    </div>
+          {/* The rotating three-colour accent scheme was removed — the hue
+              carried no meaning, it just cycled by array index. */}
+          {departments.map(({ name, icon }, index) => (
+            <StaggerItem key={name}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-3">
+                <span
+                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
+                  aria-hidden
+                />
+                <div className="flex flex-col gap-4 p-6">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10 text-2xl">
+                    <span aria-hidden>{icon}</span>
                   </div>
-                  {/* subtle glow on hover */}
-                  <div
-                    className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                    style={{ boxShadow: `inset 0 0 40px 0 ${accent}18` }}
-                  />
+                  <div>
+                    <span className="mb-1 block text-overline uppercase text-primary">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="text-h4 font-semibold leading-snug text-foreground">
+                      {name}
+                    </h3>
+                  </div>
                 </div>
-              </StaggerItem>
-            );
-          })}
+              </div>
+            </StaggerItem>
+          ))}
         </StaggerContainer>
       </div>
     </>

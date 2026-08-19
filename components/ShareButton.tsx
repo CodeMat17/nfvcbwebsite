@@ -31,25 +31,25 @@ const shareOptions = (title: string, url: string) => [
   {
     label: "WhatsApp",
     icon: <WhatsAppIcon />,
-    color: "hover:bg-green-500/10 hover:text-green-600 hover:border-green-500/30",
+    color: "hover:bg-primary/10 hover:text-primary hover:border-primary/30",
     href: `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`,
   },
   {
     label: "X (Twitter)",
     icon: <XIcon />,
-    color: "hover:bg-gray-500/10 hover:text-gray-900 dark:hover:text-gray-100 hover:border-gray-500/30",
+    color: "hover:bg-foreground/10 hover:text-foreground hover:border-foreground/30",
     href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
   },
   {
     label: "Facebook",
     icon: <FacebookIcon />,
-    color: "hover:bg-blue-600/10 hover:text-blue-600 hover:border-blue-600/30",
+    color: "hover:bg-primary/10 hover:text-primary hover:border-primary/30",
     href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
   },
   {
     label: "Email",
     icon: <Mail className="h-5 w-5" />,
-    color: "hover:bg-orange-500/10 hover:text-orange-600 hover:border-orange-500/30",
+    color: "hover:bg-accent/10 hover:text-accent hover:border-accent/30",
     href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent("Check this out: " + url)}`,
   },
 ];
@@ -149,8 +149,8 @@ export function ShareButton({ title, url }: ShareButtonProps) {
             >
               {copied ? (
                 <>
-                  <Check className="h-4 w-4 text-green-600" />
-                  <span className="text-green-600">Link Copied!</span>
+                  <Check className="h-4 w-4 text-primary" />
+                  <span className="text-primary">Link Copied!</span>
                 </>
               ) : (
                 <>

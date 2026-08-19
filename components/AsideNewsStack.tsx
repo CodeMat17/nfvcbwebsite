@@ -11,9 +11,9 @@ function categoryLabel(cat: string | undefined) {
   return "News";
 }
 function categoryColor(cat: string | undefined) {
-  if (cat === "press-release") return "bg-[#009f3b] text-white";
-  if (cat === "announcement") return "bg-[#fea600] text-black";
-  return "bg-blue-600 text-white";
+  if (cat === "press-release") return "bg-primary text-white";
+  if (cat === "announcement") return "bg-accent text-black";
+  return "bg-primary text-white";
 }
 function fmtRelative(d: string | number) {
   const diff = Math.floor((Date.now() - new Date(d).getTime()) / 60000);
@@ -30,7 +30,7 @@ export function AsideNewsStack() {
     <div className="flex flex-col border border-border rounded-2xl">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
         <div className="flex items-center gap-2">
-          <Flame className="h-4 w-4 text-[#fea600]" />
+          <Flame className="h-4 w-4 text-accent" />
           <span className="text-xs font-black uppercase tracking-widest text-foreground">Top Stories</span>
         </div>
       </div>
@@ -43,10 +43,10 @@ export function AsideNewsStack() {
             className={`group flex flex-col gap-1 px-4 py-3 hover:bg-muted/50 transition-colors ${i < 3 ? "border-b border-border" : ""}`}
           >
             <div className="flex items-center gap-2">
-              <span className={`text-[11px] px-1.5 py-0.5 rounded ${categoryColor(item.category)}`}>
+              <span className={`text-overline px-1.5 py-0.5 rounded ${categoryColor(item.category)}`}>
                 {categoryLabel(item.category)}
               </span>
-              <span className="text-[11px] text-muted-foreground">
+              <span className="text-overline text-muted-foreground">
                 NFVCB · {fmtRelative(item.publishedAt ?? item._creationTime)}
               </span>
             </div>
@@ -58,7 +58,7 @@ export function AsideNewsStack() {
       </div>
 
       <div className="flex items-center justify-end px-4 py-2.5 border-t border-border">
-        <Link href="/news" className="text-[12px] font-bold text-primary hover:underline">
+        <Link href="/news" className="text-caption font-bold text-primary hover:underline">
           See more
         </Link>
       </div>

@@ -79,64 +79,64 @@ const classificationRatings = [
   {
     symbol: "G",
     name: "General Exhibition",
-    color: "bg-green-600",
-    textColor: "text-green-700 dark:text-green-400",
-    bgColor: "bg-green-50 dark:bg-green-950/30",
-    borderColor: "border-green-200 dark:border-green-800",
+    color: "bg-primary",
+    textColor: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-primary/30",
     desc: "Suitable for general exhibition. Content is appropriate for all audiences including children of all ages.",
   },
   {
     symbol: "PG",
     name: "Parental Guidance",
-    color: "bg-blue-600",
-    textColor: "text-blue-700 dark:text-blue-400",
-    bgColor: "bg-blue-50 dark:bg-blue-950/30",
-    borderColor: "border-blue-200 dark:border-blue-800",
+    color: "bg-primary",
+    textColor: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-primary/30",
     desc: "Some material may not be suitable for young children. Parental guidance is suggested for children under 12.",
   },
   {
     symbol: "12",
     name: "12 and Over",
-    color: "bg-yellow-500",
-    textColor: "text-yellow-700 dark:text-yellow-400",
-    bgColor: "bg-yellow-50 dark:bg-yellow-950/30",
-    borderColor: "border-yellow-200 dark:border-yellow-800",
+    color: "bg-accent",
+    textColor: "text-accent",
+    bgColor: "bg-accent/10",
+    borderColor: "border-accent/30",
     desc: "Suitable for persons aged 12 and above. May contain mild violence, moderate language, or thematic content not appropriate for younger children.",
   },
   {
     symbol: "12A",
     name: "12 Accompanied",
-    color: "bg-orange-400",
-    textColor: "text-orange-700 dark:text-orange-400",
-    bgColor: "bg-orange-50 dark:bg-orange-950/30",
-    borderColor: "border-orange-200 dark:border-orange-800",
+    color: "bg-accent",
+    textColor: "text-accent",
+    bgColor: "bg-accent/10",
+    borderColor: "border-accent/30",
     desc: "Children under 12 may watch only if accompanied by an adult. Parents are strongly advised to consider the suitability of the film for their child.",
   },
   {
     symbol: "15",
     name: "15 and Over",
-    color: "bg-red-400",
-    textColor: "text-red-600 dark:text-red-400",
-    bgColor: "bg-red-50 dark:bg-red-950/30",
-    borderColor: "border-red-200 dark:border-red-800",
+    color: "bg-destructive",
+    textColor: "text-destructive",
+    bgColor: "bg-destructive/10",
+    borderColor: "border-destructive/30",
     desc: "Not suitable for persons below 15 years of age. May contain mature themes, strong language, or moderate violence.",
   },
   {
     symbol: "18",
     name: "Adults Only",
-    color: "bg-red-700",
-    textColor: "text-red-700 dark:text-red-400",
-    bgColor: "bg-red-50 dark:bg-red-950/30",
-    borderColor: "border-red-300 dark:border-red-900",
+    color: "bg-destructive",
+    textColor: "text-destructive",
+    bgColor: "bg-destructive/10",
+    borderColor: "border-destructive/30",
     desc: "Restricted to persons 18 years and above. Contains adult content, strong violence, or explicit material unsuitable for minors.",
   },
   {
     symbol: "RE",
     name: "Restricted Exhibition",
-    color: "bg-purple-700",
-    textColor: "text-purple-700 dark:text-purple-400",
-    bgColor: "bg-purple-50 dark:bg-purple-950/30",
-    borderColor: "border-purple-200 dark:border-purple-800",
+    color: "bg-primary",
+    textColor: "text-primary",
+    bgColor: "bg-primary/10",
+    borderColor: "border-primary/30",
     desc: "Only for restricted exhibition in specially licensed venues. Not approved for general public exhibition or broadcast.",
   },
 ];
@@ -144,16 +144,16 @@ const classificationRatings = [
 export default function PolicyPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Regulation
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Our Policy</h1>
+            <h1 className="text-h1 font-black text-white mb-4">Our Policy</h1>
             <p className="text-white/60 text-lg max-w-2xl">
               The legal framework, principles, and criteria governing NFVCB&apos;s classification
               and censorship of films and video works in Nigeria.
@@ -162,7 +162,7 @@ export default function PolicyPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-14">
+      <div className="section py-16 space-y-14">
         {/* Policy Overview */}
         <AnimatedSection>
           <div className="prose prose-sm max-w-none space-y-4 text-muted-foreground leading-relaxed">
@@ -261,14 +261,14 @@ export default function PolicyPage() {
                 key={i}
                 className={`flex items-start gap-3 p-4 rounded-xl border ${
                   type === "required"
-                    ? "border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-950/20"
-                    : "border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-950/20"
+                    ? "border-primary/30 bg-primary/10"
+                    : "border-destructive/30 bg-destructive/10"
                 }`}
               >
                 {type === "required" ? (
-                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 ) : (
-                  <XCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+                  <XCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                 )}
                 <p className="text-muted-foreground leading-relaxed">{text}</p>
               </div>

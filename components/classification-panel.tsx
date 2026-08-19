@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowRight, Film } from "lucide-react";
 
 const classificationSymbols = [
@@ -21,25 +21,36 @@ const SYMBOL_MS = 3500;
 export function ClassificationPanel() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
+  const [paused, setPaused] = useState(false);
+  const reduced = useReducedMotion();
 
   const advance = useCallback(() => {
     setDir(1);
     setIndex((prev) => (prev + 1) % classificationSymbols.length);
   }, []);
 
+  /* Same WCAG 2.2.2 fix as the hero carousel — auto-advancing content has to
+     be pausable, and it should not keep cycling for a keyboard user reading it. */
   useEffect(() => {
+    if (paused || reduced) return;
     const t = setInterval(advance, SYMBOL_MS);
     return () => clearInterval(t);
-  }, [advance]);
+  }, [advance, paused, reduced]);
 
   const sym = classificationSymbols[index];
 
   return (
-    <div className="flex flex-col h-72 lg:h-full border border-border rounded-2xl overflow-hidden bg-card">
+    <div
+      className="flex flex-col h-72 lg:h-full border border-border rounded-2xl overflow-hidden bg-card"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border shrink-0">
-        <Film className="h-4 w-4 text-[#009f3b] shrink-0" />
-        <span className="text-sm font-black uppercase tracking-widest text-foreground">Film Ratings</span>
+        <Film className="h-4 w-4 text-primary shrink-0" aria-hidden />
+        <h2 className="text-overline uppercase text-foreground">Film Ratings</h2>
       </div>
 
       {/* Sliding symbol */}
@@ -86,18 +97,23 @@ export function ClassificationPanel() {
             <button
               key={i}
               onClick={() => { setDir(i > index ? 1 : -1); setIndex(i); }}
-              aria-label={classificationSymbols[i].label}
-              className="rounded-full transition-all duration-300"
-              style={{
-                width: i === index ? 16 : 6,
-                height: 6,
-                background: i === index ? "#009f3b" : "var(--border)",
-              }}
-            />
+              aria-label={`Show ${classificationSymbols[i].label} — ${classificationSymbols[i].desc}`}
+              aria-current={i === index}
+              className="grid h-6 place-items-center"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all duration-300 ${
+                  i === index ? "w-4 bg-primary" : "w-1.5 bg-border"
+                }`}
+              />
+            </button>
           ))}
         </div>
-        <Link href="/classification" className="text-sm  text-primary hover:underline flex items-center gap-0.5">
-          See more <ArrowRight className="h-2.5 w-2.5" />
+        <Link
+          href="/classification"
+          className="flex items-center gap-1 text-caption font-semibold text-primary transition-all hover:gap-2"
+        >
+          All ratings <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </Link>
       </div>
     </div>

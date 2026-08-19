@@ -76,7 +76,7 @@ function StandardsList({ items }: { items: string[] }) {
       {items.map((item, i) => (
         <li key={i} className="flex items-start gap-3">
           <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-          <p className="text-[15px] text-muted-foreground leading-relaxed">{item}</p>
+          <p className="text-body text-muted-foreground leading-relaxed">{item}</p>
         </li>
       ))}
     </ul>
@@ -86,7 +86,7 @@ function StandardsList({ items }: { items: string[] }) {
 export default function ServiceCharterPage() {
   return (
     <>
-      <section className='relative py-24 bg-[#001506] overflow-hidden'>
+      <section className='relative py-24 bg-nfvcb-dark overflow-hidden'>
         <div
           className='absolute inset-0 opacity-[0.04] pointer-events-none'
           aria-hidden>
@@ -97,12 +97,12 @@ export default function ServiceCharterPage() {
             className='object-cover object-center'
           />
         </div>
-        <div className='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='relative z-10 section'>
           <AnimatedSection>
-            <Badge className='mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30'>
+            <Badge className='mb-4 bg-primary/20 text-primary border-primary/30'>
               SERVICOM Initiative
             </Badge>
-            <h1 className='text-4xl sm:text-5xl font-bold text-white mb-4'>
+            <h1 className='text-h1 font-black text-white mb-4'>
               Service Charter
             </h1>
             <p className='text-white/60 text-lg max-w-2xl'>
@@ -113,7 +113,7 @@ export default function ServiceCharterPage() {
         </div>
       </section>
 
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12'>
+      <div className='section py-16 space-y-12'>
         {/* DG Foreword */}
         <AnimatedSection>
           <Card className='bg-primary/5 border-primary/20 overflow-hidden'>
@@ -156,23 +156,23 @@ export default function ServiceCharterPage() {
           </h2>
           <div className='grid sm:grid-cols-2 gap-4'>
             <Card className='p-6 hover:shadow-md transition-all hover:border-primary/30'>
-              <div className='w-10 h-10 rounded-lg bg-[#009f3b]/10 flex items-center justify-center mb-4'>
-                <Building2 className='h-5 w-5 text-[#009f3b]' />
+              <div className='w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4'>
+                <Building2 className='h-5 w-5 text-primary' />
               </div>
-              <h3 className='font-semibold text-[15px] text-foreground mb-2'>
+              <h3 className='font-semibold text-body text-foreground mb-2'>
                 Industry Clients
               </h3>
-              <p className='text-[15px] text-muted-foreground'>
+              <p className='text-body text-muted-foreground'>
                 Producers, marketers and organisations that apply to have films,
                 video works, and computer games censored/classified.
               </p>
             </Card>
             <Card className='p-6 hover:shadow-md transition-all hover:border-primary/30'>
-              <div className='w-10 h-10 rounded-lg bg-[#fea600]/10 flex items-center justify-center mb-4'>
-                <Users className='h-5 w-5 text-[#fea600]' />
+              <div className='w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4'>
+                <Users className='h-5 w-5 text-accent' />
               </div>
-              <h3 className='font-semibold text-[15px] text-foreground mb-2'>Consumers</h3>
-              <p className='text-[15px] text-muted-foreground'>
+              <h3 className='font-semibold text-body text-foreground mb-2'>Consumers</h3>
+              <p className='text-body text-muted-foreground'>
                 Members of the public who consume films and video products in
                 Nigeria, and deserve accurate consumer information and
                 protection.
@@ -188,25 +188,25 @@ export default function ServiceCharterPage() {
               title: "For All Clients",
               icon: ShieldCheck,
               items: generalStandards,
-              color: "border-[#009f3b]",
+              color: "border-primary",
             },
             {
               title: "For Film & Video Industry Clients",
               icon: Building2,
               items: industryStandards,
-              color: "border-blue-500",
+              color: "border-primary",
             },
             {
               title: "For Government & Law Enforcement",
               icon: Landmark,
               items: governmentStandards,
-              color: "border-[#fea600]",
+              color: "border-accent",
             },
             {
               title: "For Members of the Public",
               icon: Users,
               items: publicStandards,
-              color: "border-purple-500",
+              color: "border-primary",
             },
           ].map(({ title, icon: Icon, items, color }) => (
             <StaggerItem key={title}>
@@ -230,7 +230,7 @@ export default function ServiceCharterPage() {
             <CardHeader>
               <CardTitle className='text-xl'>Feedback On Our Service</CardTitle>
             </CardHeader>
-            <CardContent className='space-y-4 text-[15px] text-muted-foreground leading-relaxed'>
+            <CardContent className='space-y-4 text-body text-muted-foreground leading-relaxed'>
               <p>
                 The Board welcomes feedback on our performance against these
                 service standards. Clients can write to or email us with any

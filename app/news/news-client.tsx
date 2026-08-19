@@ -31,9 +31,9 @@ function categoryLabel(cat: string | undefined) {
 }
 
 function categoryColor(cat: string | undefined) {
-  if (cat === "press-release") return "bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20";
-  if (cat === "announcement") return "bg-[#fea600]/10 text-[#fea600] border-[#fea600]/20";
-  return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
+  if (cat === "press-release") return "bg-primary/10 text-primary border-primary/20";
+  if (cat === "announcement") return "bg-accent/10 text-accent border-accent/20";
+  return "bg-primary/10 text-primary border-primary/20";
 }
 
 function itemDate(item: NewsItem): string {
@@ -104,7 +104,7 @@ export default function NewsClient({ items }: Props) {
             <Link href={`/news/${featured.slug}`} className="group block">
               <Card className="overflow-hidden hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 py-0">
                 <div className="grid lg:grid-cols-2">
-                  <div className="relative h-64 lg:h-auto min-h-56 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
+                  <div className="relative h-64 lg:h-auto min-h-56 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center overflow-hidden">
                     {featured.coverImageUrl ? (
                       <Image
                         src={featured.coverImageUrl}
@@ -164,7 +164,7 @@ export default function NewsClient({ items }: Props) {
                   <StaggerItem key={item._id}>
                     <Link href={`/news/${item.slug}`} className="group block h-full">
                       <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
-                        <div className="relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
+                        <div className="relative h-44 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center overflow-hidden">
                           {item.coverImageUrl ? (
                             <Image
                               src={item.coverImageUrl}
@@ -184,7 +184,7 @@ export default function NewsClient({ items }: Props) {
                           )}
                         </div>
                         <CardHeader className="pb-2">
-                          <Badge className={`w-fit text-[12px] mb-2 ${categoryColor(item.category)}`}>
+                          <Badge className={`w-fit text-caption mb-2 ${categoryColor(item.category)}`}>
                             {categoryLabel(item.category)}
                           </Badge>
                           <CardTitle className="text-base group-hover:text-primary transition-colors line-clamp-2 text-balance leading-snug">
@@ -195,7 +195,7 @@ export default function NewsClient({ items }: Props) {
                           <CardDescription className="line-clamp-2 text-xs mb-3">
                             {item.excerpt}
                           </CardDescription>
-                          <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+                          <div className="flex items-center justify-between text-overline text-muted-foreground">
                             <span>{item.author ?? "NFVCB"}</span>
                             <span>
                               {new Date(itemDate(item)).toLocaleDateString("en-NG", {

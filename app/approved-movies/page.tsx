@@ -41,16 +41,16 @@ export default async function ApprovedMoviesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#fea600]/20 text-[#fea600] border-[#fea600]/30">
+            <Badge className="mb-4 bg-accent/20 text-accent border-accent/30">
               Classification &amp; Approval
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               Approved Movies
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -62,13 +62,13 @@ export default async function ApprovedMoviesPage() {
       </section>
 
       {/* Film strip decoration */}
-      <div className="h-3 bg-[#001506] flex overflow-hidden" aria-hidden>
+      <div className="h-3 bg-nfvcb-dark flex overflow-hidden" aria-hidden>
         {Array.from({ length: 40 }).map((_, i) => (
-          <div key={i} className="w-8 shrink-0 border-r-2 border-[#fea600]/30 h-full" />
+          <div key={i} className="w-8 shrink-0 border-r-2 border-accent/30 h-full" />
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="section py-16">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
         <div className="flex-1 min-w-0 w-full">
         <AnimatedSection>
@@ -97,10 +97,10 @@ export default async function ApprovedMoviesPage() {
       </div>
 
       {/* CTA */}
-      <section className="bg-[#001506] py-16 mt-8">
+      <section className="bg-nfvcb-dark py-16 mt-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
-            <Film className="h-10 w-10 text-[#fea600] mx-auto mb-4" />
+            <Film className="h-10 w-10 text-accent mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-white mb-3">Submit a Film for Classification</h2>
             <p className="text-white/60 mb-6 text-sm max-w-xl mx-auto">
               Producers and distributors can submit films for classification and approval through the
@@ -108,7 +108,7 @@ export default async function ApprovedMoviesPage() {
             </p>
             <Link
               href="/industry/licensing"
-              className="inline-flex items-center gap-2 bg-[#fea600] text-[#001506] font-semibold px-6 py-3 rounded-xl hover:bg-[#fea600]/90 transition-colors text-sm"
+              className="inline-flex items-center gap-2 bg-accent text-nfvcb-dark font-semibold px-6 py-3 rounded-xl hover:bg-accent/90 transition-colors text-sm"
             >
               Start Licensing Process <ArrowRight className="h-4 w-4" />
             </Link>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LicenceCards } from "./licence-cards";
 
 export const metadata: Metadata = {
@@ -32,16 +33,24 @@ export const metadata: Metadata = {
 export default function LicensingPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
+          <div className="[&_a]:text-white/60 [&_a:hover]:text-accent [&_span]:text-white">
+            <Breadcrumbs
+              items={[
+                { label: "Services", href: "/industry" },
+                { label: "Licensing", href: "/industry/licensing" },
+              ]}
+            />
+          </div>
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Licensing
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               Film Exhibition &amp; Distribution Licensing
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -53,7 +62,7 @@ export default function LicensingPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+      <div className="section py-16 space-y-12">
         <AnimatedSection>
           <h2 className="text-2xl font-bold text-foreground mb-2">Licence Categories</h2>
           <p className="text-sm text-muted-foreground mb-8">
@@ -68,7 +77,7 @@ export default function LicensingPage() {
             <CardHeader>
               <CardTitle className="text-base">Licence Renewal</CardTitle>
             </CardHeader>
-            <CardContent className="text-[15px] text-muted-foreground space-y-2">
+            <CardContent className="text-body text-muted-foreground space-y-2">
               <p>
                 Licences for Exhibitors and Distributors are renewable annually.{" "}
                 <strong className="text-foreground">Renewal before expiry</strong> attracts a fee of
@@ -87,7 +96,7 @@ export default function LicensingPage() {
             <CardHeader>
               <CardTitle className="text-base">Payment Instructions</CardTitle>
             </CardHeader>
-            <CardContent className="text-[15px] text-muted-foreground space-y-2">
+            <CardContent className="text-body text-muted-foreground space-y-2">
               <p>
                 All payments must be made via the{" "}
                 <a href="/payment-guide" className="text-primary hover:underline font-medium">

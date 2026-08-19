@@ -39,8 +39,8 @@ const actionPoints = [
       "Promote the project through special events and activities, as well as through the mass media.",
       "Offer incentives and rewards to outstanding producers who best fulfill the objectives.",
     ],
-    color: "border-[#009f3b]",
-    badgeColor: "bg-[#009f3b]/10 text-[#009f3b]",
+    color: "border-primary",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     number: 2,
@@ -52,8 +52,8 @@ const actionPoints = [
       "Employ a sliding censorship fee system, charging lower fees for movies with defined advocacy themes, such as children's movies.",
       "Be more proactive in censorship, and monitoring enforcement of classification rules.",
     ],
-    color: "border-red-500",
-    badgeColor: "bg-red-500/10 text-red-600 dark:text-red-400",
+    color: "border-destructive",
+    badgeColor: "bg-destructive/10 text-destructive",
   },
   {
     number: 3,
@@ -66,8 +66,8 @@ const actionPoints = [
       "Organise training programmes focusing on new content development, aimed at institutionalising international best practices in film production.",
       "Organise International conference on film censorship/classification: impact on society and development.",
     ],
-    color: "border-blue-500",
-    badgeColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    color: "border-primary",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     number: 4,
@@ -81,8 +81,8 @@ const actionPoints = [
       "Launch new IT-based work flow process.",
       "Involve Stakeholders in developing new censorship classification guidelines.",
     ],
-    color: "border-[#fea600]",
-    badgeColor: "bg-[#fea600]/10 text-[#fea600]",
+    color: "border-accent",
+    badgeColor: "bg-accent/10 text-accent",
   },
   {
     number: 5,
@@ -96,8 +96,8 @@ const actionPoints = [
       "Establish the NFVCB Consultative forum based on the six geo-political zones, as well as a national consultative body.",
       "Understand emerging product and technology to identify potential clients and industry, technology and communication trends.",
     ],
-    color: "border-purple-500",
-    badgeColor: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
+    color: "border-primary",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     number: 6,
@@ -110,8 +110,8 @@ const actionPoints = [
       "Establish an informal community involvement in the preview of movies submitted.",
       "Establish and communicate clearly the NFVCB service charter to all relevant stakeholders.",
     ],
-    color: "border-teal-500",
-    badgeColor: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
+    color: "border-primary",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     number: 7,
@@ -124,8 +124,8 @@ const actionPoints = [
       "Establish arrangements for all NFVCB staff to have convenient access to information required in the course of their work.",
       "Improve NFVCB handling of external enquiries.",
     ],
-    color: "border-indigo-500",
-    badgeColor: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400",
+    color: "border-primary",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     number: 8,
@@ -139,24 +139,24 @@ const actionPoints = [
       "Establish appropriate arrangements for the timely recruitment of staff.",
       "Maintain appropriate terms and conditions for the employment of NFVCB staff.",
     ],
-    color: "border-amber-500",
-    badgeColor: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+    color: "border-accent",
+    badgeColor: "bg-accent/10 text-accent",
   },
 ];
 
 export default function ActionPlanPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Strategic Plan
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               8-Point Action Plan
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -167,7 +167,7 @@ export default function ActionPlanPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="section py-16">
         {/* Overview grid */}
         <AnimatedSection className="mb-12">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -207,16 +207,16 @@ export default function ActionPlanPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="bg-muted/40 rounded-xl p-4">
-                    <p className="text-[15px] font-medium text-foreground mb-1">Objective</p>
-                    <p className="text-[15px] text-muted-foreground leading-relaxed">{objective}</p>
+                    <p className="text-body font-medium text-foreground mb-1">Objective</p>
+                    <p className="text-body text-muted-foreground leading-relaxed">{objective}</p>
                   </div>
                   <div>
-                    <p className="text-[15px] font-medium text-foreground mb-3">Strategies</p>
+                    <p className="text-body font-medium text-foreground mb-3">Strategies</p>
                     <ul className="space-y-2">
                       {strategies.map((strategy, si) => (
                         <li key={si} className="flex items-start gap-2">
                           <ChevronRight className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                          <p className="text-[15px] text-muted-foreground leading-relaxed">{strategy}</p>
+                          <p className="text-body text-muted-foreground leading-relaxed">{strategy}</p>
                         </li>
                       ))}
                     </ul>

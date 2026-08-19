@@ -34,8 +34,8 @@ const zones = [
   {
     name: "Head Office (Annex)",
     location: "Abuja (FCT)",
-    color: "border-[#009f3b]",
-    badge: "bg-[#009f3b]/10 text-[#009f3b]",
+    color: "border-primary",
+    badge: "bg-primary/10 text-primary",
     offices: [
       {
         name: "Head Office",
@@ -56,8 +56,8 @@ const zones = [
   {
     name: "North Central Zonal Office",
     location: "Jos, Plateau State",
-    color: "border-blue-500",
-    badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    color: "border-primary",
+    badge: "bg-primary/10 text-primary",
     offices: [
       {
         name: "NC Zonal Office",
@@ -110,8 +110,8 @@ const zones = [
   {
     name: "Northwest Zonal Office",
     location: "Kano State",
-    color: "border-amber-500",
-    badge: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+    color: "border-accent",
+    badge: "bg-accent/10 text-accent",
     offices: [
       {
         name: "NW Zonal Office",
@@ -154,8 +154,8 @@ const zones = [
   {
     name: "Northeast Zonal Office",
     location: "Bauchi State",
-    color: "border-red-500",
-    badge: "bg-red-500/10 text-red-600 dark:text-red-400",
+    color: "border-destructive",
+    badge: "bg-destructive/10 text-destructive",
     offices: [
       {
         name: "NE Zonal Office",
@@ -200,8 +200,8 @@ const zones = [
   {
     name: "Southeast Zonal Office",
     location: "Onitsha, Anambra State",
-    color: "border-green-500",
-    badge: "bg-green-500/10 text-green-600 dark:text-green-400",
+    color: "border-primary",
+    badge: "bg-primary/10 text-primary",
     offices: [
       {
         name: "SE Zonal Office",
@@ -240,8 +240,8 @@ const zones = [
   {
     name: "South-South Zonal Office",
     location: "Port Harcourt, Rivers State",
-    color: "border-teal-500",
-    badge: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
+    color: "border-primary",
+    badge: "bg-primary/10 text-primary",
     offices: [
       {
         name: "SS Zonal Office",
@@ -288,8 +288,8 @@ const zones = [
   {
     name: "Southwest Zonal Office",
     location: "Lagos State",
-    color: "border-purple-500",
-    badge: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
+    color: "border-primary",
+    badge: "bg-primary/10 text-primary",
     offices: [
       {
         name: "SW Zonal Office",
@@ -350,16 +350,16 @@ const zones = [
 export default function ZonesPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Nationwide Presence
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               Zones &amp; Centres
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -370,7 +370,7 @@ export default function ZonesPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+      <div className="section py-16 space-y-12">
         {/* Zone stats */}
     
 

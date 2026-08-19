@@ -3,21 +3,12 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Star, Trophy, Clapperboard } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { RatingBadge } from "@/components/rating-badge";
 import { Card } from "@/components/ui/card";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import type { ApprovedMoviesPost, Movie } from "@/lib/approved-movies-data";
 
-const RATING_COLOR: Record<string, string> = {
-  G: "bg-green-600",
-  PG: "bg-blue-600",
-  "12": "bg-yellow-500",
-  "12A": "bg-amber-500",
-  "15": "bg-orange-500",
-  "18": "bg-red-600",
-  RE: "bg-purple-700",
-};
 
 function findFeaturedFilm(posts: ApprovedMoviesPost[]) {
   for (const post of posts) {
@@ -33,10 +24,10 @@ export function FilmOfTheMonth() {
   if (!result) return null;
 
   const { film, post } = result;
-  const ratingBg = RATING_COLOR[film.rating] ?? "bg-gray-600";
+
 
   return (
-    <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 section">
       {/* Section header */}
       <motion.div
         className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-border"
@@ -46,8 +37,8 @@ export function FilmOfTheMonth() {
         transition={{ duration: 0.5 }}
       >
         <div className="flex items-center gap-3">
-          <div className="w-1 h-6 rounded-full bg-[#fea600]" />
-          <Trophy className="h-5 w-5 text-[#fea600]" />
+          <div className="w-1 h-6 rounded-full bg-accent" />
+          <Trophy className="h-5 w-5 text-accent" />
           <h2 className="text-lg font-black uppercase tracking-wide text-foreground">
             Film of the Month
           </h2>
@@ -88,22 +79,24 @@ export function FilmOfTheMonth() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          <Card className="flex-1 relative overflow-hidden border-[#fea600]/30 hover:shadow-xl transition-all duration-500">
+          <Card className="flex-1 relative overflow-hidden border-accent/30 hover:shadow-xl transition-all duration-500">
             {/* Top accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#009f3b] via-[#fea600] to-[#009f3b]" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
 
             <div className="p-6 sm:p-7 flex flex-col h-full gap-5">
               {/* Film title + rating */}
               <div>
                 <div className="flex items-center gap-2 flex-wrap mb-2">
-                  <Badge className={`${ratingBg} text-white font-black text-xs px-2.5 py-0.5`}>
-                    {film.rating}
-                  </Badge>
-                  <Badge className="bg-[#fea600]/15 text-[#fea600] border border-[#fea600]/30 text-xs font-semibold">
-                    NFVCB Pick · {new Date(post.date).toLocaleDateString("en-NG", { month: "long", year: "numeric" })}
-                  </Badge>
+                  <RatingBadge rating={film.rating} />
+                  <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/15 px-2.5 py-1 text-overline text-accent">
+                    NFVCB Pick ·{" "}
+                    {new Date(post.date).toLocaleDateString("en-NG", {
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </span>
                 </div>
-                <h3 className="text-2xl font-black text-foreground leading-tight mb-1">
+                <h3 className="text-h2 font-black text-foreground leading-tight mb-1">
                   {film.title}
                 </h3>
                 <p className="text-sm text-muted-foreground">
@@ -113,13 +106,13 @@ export function FilmOfTheMonth() {
 
               {/* Jury note */}
               {film.juryNote && (
-                <blockquote className="relative pl-4 border-l-2 border-[#fea600] text-sm text-muted-foreground italic leading-relaxed">
+                <blockquote className="relative pl-4 border-l-2 border-accent text-sm text-muted-foreground italic leading-relaxed">
                   &ldquo;{film.juryNote}&rdquo;
                   <div className="mt-2 flex items-center gap-1 not-italic">
                     {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="h-3 w-3 fill-[#fea600] text-[#fea600]" />
+                      <Star key={i} className="h-3 w-3 fill-accent text-accent" />
                     ))}
-                    <span className="text-[10px] font-bold text-[#fea600] ml-1 uppercase tracking-wider">NFVCB Board</span>
+                    <span className="text-overline font-bold text-accent ml-1 uppercase tracking-wider">NFVCB Board</span>
                   </div>
                 </blockquote>
               )}
@@ -127,7 +120,7 @@ export function FilmOfTheMonth() {
               {/* Producer info */}
               <div className="mt-auto rounded-xl bg-muted/50 border border-border p-4 space-y-2.5">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground font-semibold uppercase tracking-wider">
-                  <Clapperboard className="h-3.5 w-3.5 text-[#009f3b]" />
+                  <Clapperboard className="h-3.5 w-3.5 text-primary" />
                   Producer Spotlight
                 </div>
                 <div>
@@ -144,7 +137,7 @@ export function FilmOfTheMonth() {
 
               <Link
                 href={`/approved-movies/${post.slug}`}
-                className="mt-1 inline-flex items-center justify-center gap-2 w-full py-2.5 bg-[#009f3b] hover:bg-[#009f3b]/90 text-white text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#009f3b]/25"
+                className="mt-1 inline-flex items-center justify-center gap-2 w-full py-2.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-3"
               >
                 View Full Approval Details <ArrowRight className="h-3.5 w-3.5" />
               </Link>

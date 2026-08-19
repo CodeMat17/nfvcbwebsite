@@ -30,7 +30,7 @@ export function SeniorManagementSection() {
       {staff.map(({ _id, name, designation, imageUrl }) => (
         <StaggerItem key={_id}>
           <Card className="overflow-hidden border-primary/20 py-0 hover:shadow-md transition-all hover:border-primary/40 hover:-translate-y-0.5">
-            <div className="relative h-96 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 overflow-hidden">
+            <div className="relative h-96 bg-gradient-to-br from-nfvcb-dark to-primary/40 overflow-hidden">
               {imageUrl ? (
                 <Image src={imageUrl} alt={name} fill className="object-cover object-top" />
               ) : (

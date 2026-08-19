@@ -16,9 +16,9 @@ function categoryLabel(cat: string | undefined) {
   return "News";
 }
 function categoryColor(cat: string | undefined) {
-  if (cat === "press-release") return "bg-[#009f3b]/10 text-[#009f3b] border-[#009f3b]/20";
-  if (cat === "announcement") return "bg-[#fea600]/10 text-[#fea600] border-[#fea600]/20";
-  return "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20";
+  if (cat === "press-release") return "bg-primary/10 text-primary border-primary/20";
+  if (cat === "announcement") return "bg-accent/10 text-accent border-accent/20";
+  return "bg-primary/10 text-primary border-primary/20";
 }
 function fmtDate(d: string | number) {
   return new Date(d).toLocaleDateString("en-NG", { day: "numeric", month: "short", year: "numeric" });
@@ -29,9 +29,9 @@ export function NewsUpdate() {
   const featured = items?.[0];
 
   return (
-    <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 section">
       <AnimatedSection className="flex items-center gap-3 mb-6 pb-4 border-b border-border">
-        <div className="w-1 h-6 rounded-full bg-nfvcb-green" />
+        <div className="w-1 h-6 rounded-full bg-primary" />
         <h2 className="text-lg font-black text-foreground uppercase tracking-wide">Latest News &amp; Adverts</h2>
       </AnimatedSection>
 
@@ -42,7 +42,7 @@ export function NewsUpdate() {
             <AnimatedSection>
               <Link href={`/news/${featured.slug}`} className="group block">
                 <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-border pt-0">
-                  <div className="relative h-56 sm:h-72 overflow-hidden bg-linear-to-br from-nfvcb-dark via-[#002b0e] to-nfvcb-dark">
+                  <div className="relative h-56 sm:h-72 overflow-hidden bg-linear-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark">
                     {featured.coverImageUrl ? (
                       <Image
                         src={featured.coverImageUrl}
@@ -52,7 +52,7 @@ export function NewsUpdate() {
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-nfvcb-dark via-[#002b0e] to-nfvcb-dark">
+                      <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark">
                         <Image
                           src="/logo.webp"
                           alt="NFVCB Logo"
@@ -64,7 +64,7 @@ export function NewsUpdate() {
                     )}
                     <div className="absolute inset-0 " />
                     <div className="absolute bottom-4 left-5">
-                      <Badge className={`text-[15px] ${categoryColor(featured.category)} border-white/20 py-3 font-bold`}>
+                      <Badge className={`text-body ${categoryColor(featured.category)} border-white/20 py-3 font-bold`}>
                         {categoryLabel(featured.category)}
                       </Badge>
                     </div>

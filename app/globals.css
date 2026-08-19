@@ -49,6 +49,67 @@
   --color-nfvcb-green: #009f3b;
   --color-nfvcb-dark: #001506;
   --color-nfvcb-gold: #fea600;
+
+  /* ── Classification ratings ───────────────────────────────────────────────
+     The ONLY colours outside the three brand hues. Age ratings are the Board's
+     core public taxonomy and must be distinguishable at a glance — functional,
+     not decorative. Confined to rating badges; never used for styling. */
+  --color-rating-g: var(--rating-g);
+  --color-rating-pg: var(--rating-pg);
+  --color-rating-12: var(--rating-12);
+  --color-rating-15: var(--rating-15);
+  --color-rating-18: var(--rating-18);
+
+  /* ── Type scale ───────────────────────────────────────────────────────────
+     ~1.25 ratio, fluid via clamp(). Labels floor at 11px — never smaller. */
+  --text-overline: 0.6875rem;
+  --text-overline--line-height: 1.2;
+  --text-overline--letter-spacing: 0.18em;
+  --text-overline--font-weight: 700;
+
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.45;
+
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.65;
+
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.7;
+
+  --text-h4: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-h4--line-height: 1.4;
+  --text-h4--letter-spacing: -0.006em;
+
+  --text-h3: clamp(1.125rem, 1.05rem + 0.38vw, 1.375rem);
+  --text-h3--line-height: 1.35;
+  --text-h3--letter-spacing: -0.012em;
+
+  --text-h2: clamp(1.375rem, 1.2rem + 0.88vw, 1.875rem);
+  --text-h2--line-height: 1.25;
+  --text-h2--letter-spacing: -0.018em;
+
+  --text-h1: clamp(1.75rem, 1.4rem + 1.75vw, 2.75rem);
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.026em;
+
+  --text-display: clamp(2.25rem, 1.35rem + 4.5vw, 4.5rem);
+  --text-display--line-height: 1.03;
+  --text-display--letter-spacing: -0.038em;
+
+  /* ── Elevation ────────────────────────────────────────────────────────────
+     Green-tinted rather than neutral black, so cards belong to the brand. */
+  --shadow-1: 0 1px 2px rgba(0, 21, 6, 0.05);
+  --shadow-2: 0 2px 4px rgba(0, 21, 6, 0.05), 0 4px 12px -2px rgba(0, 21, 6, 0.07);
+  --shadow-3: 0 4px 8px rgba(0, 21, 6, 0.05), 0 12px 28px -6px rgba(0, 21, 6, 0.1);
+  --shadow-4: 0 8px 16px rgba(0, 21, 6, 0.06), 0 24px 56px -12px rgba(0, 21, 6, 0.14);
+
+  /* ── Motion ───────────────────────────────────────────────────────────────
+     One shared feel for every transition on the site. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 620ms;
 }
 
 :root {
@@ -84,6 +145,20 @@
   --sidebar-accent-foreground: #001506;
   --sidebar-border: #d0eada;
   --sidebar-ring: #009f3b;
+
+  /* Rating ramp — reads as a severity progression, not arbitrary hues. */
+  --rating-g: #0a7d4a;
+  --rating-pg: #1667b8;
+  --rating-12: #8f5b00;
+  --rating-15: #c2410c;
+  --rating-18: #b91c1c;
+
+  /* Shared shell metrics — consumed by both the header and <main>. */
+  --header-h: 4rem;
+
+  /* Vertical rhythm — one value, so every section on the site matches. */
+  --space-section: clamp(3rem, 2.2rem + 4vw, 5.5rem);
+  --space-block: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
 }
 
 .dark {
@@ -102,9 +177,11 @@
   --accent: #fea600;
   --accent-foreground: #001506;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: #003d14;
-  --input: #003d14;
-  --ring: #009f3b;
+  /* Lifted from #003d14 (1.52:1 against the background — effectively
+     invisible) so card and divider edges actually read in dark mode. */
+  --border: #0a5423;
+  --input: #0a5423;
+  --ring: #00d44f;
   --chart-1: #009f3b;
   --chart-2: #fea600;
   --chart-3: #00d44f;
@@ -116,8 +193,15 @@
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #003d14;
   --sidebar-accent-foreground: #e8f5ee;
-  --sidebar-border: #003d14;
+  --sidebar-border: #0a5423;
   --sidebar-ring: #009f3b;
+
+  /* Same severity ramp, lifted for legibility on the dark ground. */
+  --rating-g: #4ade80;
+  --rating-pg: #7cc2ff;
+  --rating-12: #fbbf24;
+  --rating-15: #fb923c;
+  --rating-18: #f87171;
 }
 
 @layer base {
@@ -125,11 +209,34 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground text-body;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+  }
+
+  /* Anchored headings clear the fixed header instead of hiding under it. */
+  :target {
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  /* One visible focus treatment for every interactive element on the site. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring rounded-sm;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
@@ -144,6 +251,43 @@
 }
 
 @layer utilities {
+  /* ── Layout primitives ──────────────────────────────────────────────────
+     Replaces `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8` retyped across ~20
+     files, and the scattered py-6 / py-14 / py-16 vertical rhythm. */
+  .section {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .section { padding-inline: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .section { padding-inline: 2rem; }
+  }
+
+  .section-y {
+    padding-block: var(--space-section);
+  }
+
+  /* Minimum comfortable touch target. */
+  .tap {
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+  }
+
+  /* ── Editorial section heading ──────────────────────────────────────────
+     The gold rule + overline + title pattern currently hand-rolled on every
+     page. Defined once so section headers are identical site-wide. */
+  .eyebrow {
+    @apply flex items-center gap-2.5 text-overline uppercase text-accent;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply block w-5 h-px bg-accent;
+  }
+
   .film-grain {
     position: relative;
   }

@@ -39,16 +39,16 @@ export default async function NewsPage() {
 
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-nfvcb-green border-nfvcb-green/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Media Centre
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               News &amp; Press Releases
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -59,7 +59,7 @@ export default async function NewsPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="section py-16">
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           <div className="flex-1 min-w-0">
             <NewsClient items={items} />

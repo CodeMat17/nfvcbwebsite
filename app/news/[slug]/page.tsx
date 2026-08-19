@@ -4,10 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { api } from "@/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
-import { ArrowLeft, Calendar, Tag, User } from "lucide-react";
+import { Calendar, Tag, User } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -53,10 +54,10 @@ function categoryLabel(cat: string | undefined) {
 
 function categoryColor(cat: string | undefined) {
   if (cat === "press-release")
-    return "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20";
+    return "bg-primary/10 text-primary border-primary/20";
   if (cat === "announcement")
-    return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20";
-  return "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20";
+    return "bg-primary/10 text-primary border-primary/20";
+  return "bg-primary/10 text-primary border-primary/20";
 }
 
 export default async function NewsDetailPage({ params }: Props) {
@@ -75,7 +76,7 @@ export default async function NewsDetailPage({ params }: Props) {
   return (
     <>
       {/* Hero */}
-      <section className='relative py-20 bg-green-950 overflow-hidden'>
+      <section className='relative py-20 bg-nfvcb-dark overflow-hidden'>
         <div
           className='absolute inset-0 opacity-[0.05] pointer-events-none'
           aria-hidden>
@@ -86,29 +87,31 @@ export default async function NewsDetailPage({ params }: Props) {
             className='object-cover object-center blur-sm'
           />
         </div>
-        <div className='absolute inset-0 bg-gradient-to-b from-green-950/80 to-green-950 pointer-events-none' />
+        <div className='absolute inset-0 bg-gradient-to-b from-nfvcb-dark/80 to-nfvcb-dark pointer-events-none' />
         <div className='relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'>
+          <div className="[&_a]:text-white/60 [&_a:hover]:text-accent [&_span]:text-white">
+            <Breadcrumbs
+              items={[
+                { label: "News", href: "/news" },
+                { label: item.title, href: `/news/${item.slug}` },
+              ]}
+            />
+          </div>
           <AnimatedSection>
-            <Link
-              href='/news'
-              className='inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-6 transition-colors'>
-              <ArrowLeft className='h-4 w-4' /> Back to News
-            </Link>
-            <br />
             <Badge
               className={`w-fit mb-4 text-xs ${categoryColor(item.category)}`}>
               {categoryLabel(item.category)}
             </Badge>
-            <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight text-balance'>
+            <h1 className='text-h1 font-black text-white mb-6 leading-tight text-balance'>
               {item.title}
             </h1>
             <div className='flex flex-wrap items-center gap-4 text-sm text-white/60'>
               <span className='flex items-center gap-1.5'>
-                <User className='h-4 w-4 text-green-500' />{" "}
+                <User className='h-4 w-4 text-primary' />{" "}
                 {item.author ?? "NFVCB"}
               </span>
               <span className='flex items-center gap-1.5'>
-                <Calendar className='h-4 w-4 text-green-500' />
+                <Calendar className='h-4 w-4 text-primary' />
                 {new Date(dateStr).toLocaleDateString("en-NG", {
                   weekday: "long",
                   day: "numeric",
@@ -117,7 +120,7 @@ export default async function NewsDetailPage({ params }: Props) {
                 })}
               </span>
               <span className='flex items-center gap-1.5'>
-                <Tag className='h-4 w-4 text-green-500' /> NFVCB Nigeria
+                <Tag className='h-4 w-4 text-primary' /> NFVCB Nigeria
               </span>
             </div>
             <div className='mt-6'>
@@ -127,13 +130,13 @@ export default async function NewsDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16'>
+      <div className='section py-16'>
         <div className='grid lg:grid-cols-3 gap-10'>
           {/* Main content */}
           <div className='lg:col-span-2'>
             <AnimatedSection>
               {item.coverImageUrl && (
-                <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-green-950 to-emerald-700/40 flex items-center justify-center mb-8'>
+                <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center mb-8'>
                   <Image
                     src={item.coverImageUrl}
                     alt={item.title}
@@ -206,7 +209,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       className='group block'>
                       <Card className='overflow-hidden hover:shadow-md transition-all hover:border-primary/30'>
                         <CardContent className='p-4 flex gap-3'>
-                          <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-green-950 to-teal-600/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
+                          <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-nfvcb-dark to-primary/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
                             {r.coverImageUrl ? (
                               <Image
                                 src={r.coverImageUrl}
@@ -230,7 +233,7 @@ export default async function NewsDetailPage({ params }: Props) {
                             <p className='text-xs font-medium group-hover:text-primary transition-colors line-clamp-2 text-balance'>
                               {r.title}
                             </p>
-                            <p className='text-[10px] text-muted-foreground mt-1'>
+                            <p className='text-overline text-muted-foreground mt-1'>
                               {new Date(
                                 r.publishedAt ?? r._creationTime,
                               ).toLocaleDateString("en-NG", {

@@ -38,7 +38,7 @@ const services = [
       "Submit films, music videos, skits, and video games to NFVCB for classification. All works must be classified before distribution or exhibition in Nigeria.",
     href: "/policy",
     badge: "Core Service",
-    badgeColor: "bg-[#009f3b]/10 text-[#009f3b]",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     icon: BookOpen,
@@ -47,7 +47,7 @@ const services = [
       "Apply for Exhibitor, Exhibition Premises, Mobile Exhibition, Online Exhibition, or Distributor licences. Five licence categories covering every scale of operation — community to national.",
     href: "/industry/licensing",
     badge: "Licensing",
-    badgeColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
+    badgeColor: "bg-primary/10 text-primary",
   },
   {
     icon: Download,
@@ -56,7 +56,7 @@ const services = [
       "Access and download all forms needed to submit a film, music video, skit or video game to NFVCB for classification. Forms available in PDF format.",
     href: "#forms",
     badge: "Resources",
-    badgeColor: "bg-[#fea600]/10 text-[#fea600]",
+    badgeColor: "bg-accent/10 text-accent",
   },
 ];
 
@@ -85,16 +85,16 @@ const submissionProcess = [
 export default function IndustryPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               For Stakeholders
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               Industry Information
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -105,7 +105,7 @@ export default function IndustryPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+      <div className="section py-16 space-y-16">
         {/* Services */}
         <AnimatedSection>
           <h2 className="text-2xl font-bold text-foreground mb-6">Our Services</h2>
@@ -119,7 +119,7 @@ export default function IndustryPage() {
                       <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
                     </div>
                     <h3 className="font-semibold text-foreground text-lg group-hover:text-primary transition-colors">{title}</h3>
-                    <p className="text-[15px] text-muted-foreground leading-relaxed">{description}</p>
+                    <p className="text-body text-muted-foreground leading-relaxed">{description}</p>
                     <div className="mt-4 flex items-center gap-1 text-xs text-primary font-medium">
                       Learn more <ArrowRight className="h-3.5 w-3.5" />
                     </div>
@@ -141,7 +141,7 @@ export default function IndustryPage() {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground mb-1">{title}</p>
-                  <p className="text-[15px] text-muted-foreground leading-relaxed">{desc}</p>
+                  <p className="text-body text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
@@ -157,7 +157,7 @@ export default function IndustryPage() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-2 text-lg">NFVCB Business Online — Coming Soon</h3>
-                <p className="text-[15px] text-muted-foreground leading-relaxed">
+                <p className="text-body text-muted-foreground leading-relaxed">
                   NFVCB plans to launch a full Business Online Application that will make online
                   transactions easier for stakeholders — including electronic submission, application
                   tracking, and digital certificate download. Watch this space for the launch
@@ -179,25 +179,25 @@ export default function IndustryPage() {
             const categoryForms = forms.filter((f) => f.type === category);
             const badgeColor =
               category === "Classification"
-                ? "bg-[#009f3b]/10 text-[#009f3b]"
+                ? "bg-primary/10 text-primary"
                 : category === "Licensing"
-                ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                ? "bg-primary/10 text-primary"
                 : category === "Reference"
-                ? "bg-purple-500/10 text-purple-600 dark:text-purple-400"
-                : "bg-[#fea600]/10 text-[#fea600]";
+                ? "bg-primary/10 text-primary"
+                : "bg-accent/10 text-accent";
 
             return (
               <div key={category} className="mb-10">
                 <div className="flex items-center gap-3 mb-4">
-                  <Badge className={`${badgeColor} text-[15px] border-0`}>{category}</Badge>
+                  <Badge className={`${badgeColor} text-body border-0`}>{category}</Badge>
                   <span className="text-muted-foreground">{categoryForms.length} form{categoryForms.length !== 1 ? "s" : ""}</span>
                 </div>
                 <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                   {categoryForms.map(({ name, href }) => (
                     <StaggerItem key={name}>
                       <Card className="group p-5 flex flex-col gap-4 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200 h-full">
-                        <div className="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-950/40 flex items-center justify-center shrink-0">
-                          <span className="text-[10px] font-bold text-red-600 dark:text-red-400">PDF</span>
+                        <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0">
+                          <span className="text-overline font-bold text-destructive">PDF</span>
                         </div>
                         <p className="text-sm font-medium text-foreground leading-snug flex-1">{name}</p>
                         <a
@@ -218,12 +218,12 @@ export default function IndustryPage() {
 
         {/* Licensing CTA */}
         <AnimatedSection>
-          <div className="relative rounded-2xl overflow-hidden bg-[#001506] p-8 sm:p-12 text-center">
+          <div className="relative rounded-2xl overflow-hidden bg-nfvcb-dark p-8 sm:p-12 text-center">
             <div className="absolute inset-0 opacity-[0.05]" aria-hidden>
               <Image src="/logo.webp" alt="" fill className="object-cover" />
             </div>
             <div className="relative z-10">
-              <Badge className="mb-4 bg-[#fea600]/20 text-[#fea600] border-[#fea600]/30">
+              <Badge className="mb-4 bg-accent/20 text-accent border-accent/30">
                 Get Licensed
               </Badge>
               <h2 className="text-2xl font-bold text-white mb-3">Ready to Apply for a Licence?</h2>
@@ -234,7 +234,7 @@ export default function IndustryPage() {
               </p>
               <Link
                 href="/industry/licensing"
-                className="inline-flex items-center gap-2 bg-[#009f3b] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#009f3b]/90 transition-all hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 bg-primary text-white font-semibold px-6 py-3 rounded-xl hover:bg-primary/90 transition-all hover:-translate-y-0.5"
               >
                 View Licensing Requirements <ArrowRight className="h-4 w-4" />
               </Link>

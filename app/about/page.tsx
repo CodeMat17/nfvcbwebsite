@@ -64,15 +64,15 @@ const goals = [
 
 function PageHero() {
   return (
-    <section className="relative py-24 overflow-hidden bg-[#001506]">
+    <section className="relative py-24 overflow-hidden bg-nfvcb-dark">
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none flex items-center justify-end" aria-hidden>
         <Image src="/logo.webp" alt="" width={500} height={500} className="object-contain" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#001506] via-[#001506]/90 to-transparent" />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-gradient-to-r from-nfvcb-dark via-nfvcb-dark/90 to-transparent" />
+      <div className="relative z-10 section">
         <AnimatedSection>
-          <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">About NFVCB</Badge>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">About NFVCB</Badge>
+          <h1 className="text-h1 font-black text-white mb-4">
             Our History &amp; Identity
           </h1>
           <p className="text-white/60 max-w-2xl text-lg leading-relaxed">
@@ -90,7 +90,7 @@ export default function AboutPage() {
     <>
       <PageHero />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+      <div className="section py-16 space-y-20">
         {/* History */}
         <AnimatedSection id="history" className="scroll-mt-20">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -152,7 +152,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0.1}>
             <Card className="p-8 h-full border-accent/30 bg-accent/5">
               <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-5">
-                <Eye className="h-6 w-6 text-[#001506]" />
+                <Eye className="h-6 w-6 text-nfvcb-dark" />
               </div>
               <h3 className="text-xl font-bold text-foreground mb-3">Our Vision</h3>
               <p className="text-muted-foreground leading-relaxed italic text-lg">
@@ -201,20 +201,20 @@ export default function AboutPage() {
         {/* Philosophy */}
         <AnimatedSection id="philosophy" className="scroll-mt-20">
           <div className="relative rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-[#001506]" />
+            <div className="absolute inset-0 bg-nfvcb-dark" />
             <div className="absolute inset-0 opacity-[0.04]" aria-hidden>
               <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
             </div>
             <div className="relative z-10 p-8 sm:p-12">
-              <Badge className="mb-4 bg-[#fea600]/20 text-[#fea600] border-[#fea600]/30">Our Philosophy</Badge>
+              <Badge className="mb-4 bg-accent/20 text-accent border-accent/30">Our Philosophy</Badge>
               <h2 className="text-2xl font-bold text-white mb-6">
                 Principles Guiding Film Classification
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {philosophyPrinciples.map((p, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full border border-[#009f3b]/50 flex items-center justify-center shrink-0 mt-0.5">
-                      <div className="w-2 h-2 rounded-full bg-[#009f3b]" />
+                    <div className="w-5 h-5 rounded-full border border-primary/50 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-2 h-2 rounded-full bg-primary" />
                     </div>
                     <p className="text-sm text-white/70 leading-relaxed">{p}</p>
                   </div>

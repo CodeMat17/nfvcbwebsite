@@ -88,10 +88,10 @@ export function RevOpPaymentWidget() {
   }
 
   return (
-    <Card className="border-nfvcb-green/30">
+    <Card className="border-primary/30">
       <CardHeader className="pb-4">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-nfvcb-green flex items-center justify-center shrink-0">
+          <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center shrink-0">
             <CreditCard className="h-4 w-4 text-white" />
           </div>
           <div>
@@ -163,16 +163,16 @@ export function RevOpPaymentWidget() {
           </div>
 
           {error && (
-            <div className="flex items-start gap-2 p-3 rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800">
-              <AlertCircle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
-              <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
+            <div className="flex items-start gap-2 p-3 rounded-lg bg-destructive/10 border border-destructive/30">
+              <AlertCircle className="h-4 w-4 text-destructive shrink-0 mt-0.5" />
+              <p className="text-sm text-destructive">{error}</p>
             </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-nfvcb-green text-white text-sm font-semibold hover:bg-[#007d2e] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
           >
             {loading ? (
               <>
@@ -219,7 +219,7 @@ function Field({
     <div className="space-y-1.5">
       <label htmlFor={name} className="text-sm font-medium text-foreground">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-destructive ml-1">*</span>}
       </label>
       <input
         id={name}
@@ -230,7 +230,7 @@ function Field({
         placeholder={placeholder}
         required={required}
         min={min}
-        className="w-full px-3 py-2 text-sm rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-nfvcb-green/40 focus:border-nfvcb-green transition-colors"
+        className="w-full px-3 py-2 text-sm rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
       />
     </div>
   );

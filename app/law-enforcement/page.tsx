@@ -80,16 +80,16 @@ const pendingCases = [
 export default function LawEnforcementPage() {
   return (
     <>
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-red-500/20 text-red-400 border-red-500/30">
+            <Badge className="mb-4 bg-destructive/20 text-destructive border-destructive/30">
               Enforcement
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Law Enforcement</h1>
+            <h1 className="text-h1 font-black text-white mb-4">Law Enforcement</h1>
             <p className="text-white/60 text-lg max-w-2xl">
               NFVCB actively enforces compliance with the NFVCB Act 85 of 1993. Violations lead to
               arrest, prosecution, and sanctions. The Board&apos;s operations team monitors
@@ -99,19 +99,19 @@ export default function LawEnforcementPage() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-14">
+      <div className="section py-16 space-y-14">
         {/* Major infringements */}
         <AnimatedSection>
           <h2 className="text-2xl font-bold text-foreground mb-3 flex items-center gap-2">
-            <ShieldAlert className="h-6 w-6 text-red-500" /> Major Areas of Infringement
+            <ShieldAlert className="h-6 w-6 text-destructive" /> Major Areas of Infringement
           </h2>
           <p className="text-muted-foreground text-sm mb-6">
             These are the most commonly detected violations during NFVCB field operations:
           </p>
           <div className="space-y-3">
             {majorInfringements.map((item, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800">
-                <AlertTriangle className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+              <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-destructive/10 border border-destructive/30">
+                <AlertTriangle className="h-4 w-4 text-destructive shrink-0 mt-0.5" />
                 <p className="text-sm text-muted-foreground">{item}</p>
               </div>
             ))}
@@ -124,8 +124,8 @@ export default function LawEnforcementPage() {
           <StaggerContainer className="grid sm:grid-cols-2 gap-3">
             {infringements.map((item, i) => (
               <StaggerItem key={i}>
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 border border-border hover:border-red-300 dark:hover:border-red-800 transition-colors">
-                  <div className="w-5 h-5 rounded-full bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 flex items-center justify-center text-[11px] font-bold shrink-0">
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 border border-border hover:border-destructive/30 dark:hover:border-destructive transition-colors">
+                  <div className="w-5 h-5 rounded-full bg-destructive/10 text-destructive flex items-center justify-center text-overline font-bold shrink-0">
                     {i + 1}
                   </div>
                   <p className="text-sm text-muted-foreground leading-snug">{item}</p>
@@ -137,9 +137,9 @@ export default function LawEnforcementPage() {
 
         {/* Prosecution */}
         <AnimatedSection>
-          <Card className="border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/20">
+          <Card className="border-accent/30 bg-accent/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-amber-700 dark:text-amber-400">
+              <CardTitle className="flex items-center gap-2 text-accent">
                 <Gavel className="h-5 w-5" /> Prosecution
               </CardTitle>
             </CardHeader>

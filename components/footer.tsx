@@ -32,20 +32,20 @@ export function Footer() {
       {/* Film strip decoration */}
       <div className="flex overflow-hidden h-6 bg-black/40">
         {Array.from({ length: 40 }).map((_, i) => (
-          <div key={i} className="shrink-0 w-8 h-6 border-r border-nfvcb-green/30 flex items-center justify-center">
-            <div className="w-4 h-3 rounded-sm bg-nfvcb-green/10" />
+          <div key={i} className="shrink-0 w-8 h-6 border-r border-primary/30 flex items-center justify-center">
+            <div className="w-4 h-3 rounded-sm bg-primary/10" />
           </div>
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="section py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand column */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-3 mb-5">
               <Image src="/logo.webp" alt="NFVCB Logo" width={56} height={56} className="rounded" />
               <div>
-                <div className="text-xl font-bold text-nfvcb-green">NFVCB</div>
+                <div className="text-xl font-bold text-primary">NFVCB</div>
                 <div className="text-xs text-white/60 leading-tight">
                   National Film &amp; Video<br />Censors Board
                 </div>
@@ -60,16 +60,16 @@ export function Footer() {
                 href="https://maps.google.com/?q=Room+B913+Federal+Secretariat+Complex+Phase+II+Abuja"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-2 text-sm text-white/60 hover:text-nfvcb-gold transition-colors"
+                className="flex items-start gap-2 text-sm text-white/60 hover:text-accent transition-colors"
               >
-                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-nfvcb-green" />
+                <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
                 <span>Room B913, Federal Secretariat Complex Phase II, Abuja FCT</span>
               </a>
               {/* <a
                 href="https://wa.me/2347082767572"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-nfvcb-gold transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-accent transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,23 +83,23 @@ export function Footer() {
               </a> */}
               <a
                 href="mailto:info@nfvcb.gov.ng"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-nfvcb-gold transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-accent transition-colors"
               >
-                <Mail className="h-4 w-4 shrink-0 text-nfvcb-green" />
+                <Mail className="h-4 w-4 shrink-0 text-primary" />
                 <span>info@nfvcb.gov.ng</span>
               </a>
               <a
                 href="mailto:dgoffice@nfvcb.gov.ng"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-nfvcb-gold transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-accent transition-colors"
               >
-                <Mail className="h-4 w-4 shrink-0 text-nfvcb-green" />
+                <Mail className="h-4 w-4 shrink-0 text-primary" />
                 <span>dgoffice@nfvcb.gov.ng</span>
               </a>
               <a
                 href="mailto:complaint@nfvcb.gov.ng"
-                className="flex items-center gap-2 text-sm text-white/60 hover:text-nfvcb-gold transition-colors"
+                className="flex items-center gap-2 text-sm text-white/60 hover:text-accent transition-colors"
               >
-                <Mail className="h-4 w-4 shrink-0 text-nfvcb-green" />
+                <Mail className="h-4 w-4 shrink-0 text-primary" />
                 <span>complaint@nfvcb.gov.ng</span>
               </a>
             </div>
@@ -114,7 +114,7 @@ export function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-nfvcb-green hover:text-nfvcb-green transition-colors"
+                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/60 hover:border-primary hover:text-primary transition-colors"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -125,7 +125,7 @@ export function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([title, links]) => (
             <div key={title}>
-              <h3 className="text-sm font-semibold text-nfvcb-gold uppercase tracking-wider mb-4">
+              <h3 className="text-sm font-semibold text-accent uppercase tracking-wider mb-4">
                 {title}
               </h3>
               <ul className="space-y-2">

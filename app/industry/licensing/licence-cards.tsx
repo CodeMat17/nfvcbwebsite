@@ -34,9 +34,6 @@ type LicenceEntry = {
   renewalAfter?: string;
   shareCapital?: string;
   seating?: string;
-  color: string;
-  badgeColor: string;
-  iconBg: string;
   desc: string;
   requirements: string[];
 };
@@ -51,9 +48,6 @@ const exhibitorLicences: LicenceEntry[] = [
     renewalBefore: "₦1,000,000",
     renewalAfter: "₦2,500,000",
     shareCapital: "₦5,000,000",
-    color: "border-green-700",
-    badgeColor: "bg-green-700/10 text-green-700 dark:text-green-500",
-    iconBg: "bg-green-700",
     desc: "For companies seeking to conduct film exhibition activities across multiple States within Nigeria.",
     requirements: [
       "Duly completed and signed National Exhibitor License Application Form",
@@ -78,9 +72,6 @@ const exhibitorLicences: LicenceEntry[] = [
     renewalBefore: "₦700,000",
     renewalAfter: "₦1,750,000",
     shareCapital: "₦3,000,000",
-    color: "border-emerald-600",
-    badgeColor: "bg-emerald-600/10 text-emerald-600",
-    iconBg: "bg-emerald-600",
     desc: "For companies seeking to conduct film exhibition within a single State or defined region of Nigeria.",
     requirements: [
       "Duly completed and signed Regional Exhibitor License Application Form",
@@ -104,9 +95,6 @@ const exhibitorLicences: LicenceEntry[] = [
     licenceFee: "₦2,500,000",
     renewalBefore: "₦500,000",
     renewalAfter: "₦1,250,000",
-    color: "border-teal-600",
-    badgeColor: "bg-teal-600/10 text-teal-600",
-    iconBg: "bg-teal-600",
     desc: "For companies seeking to exhibit films in suburban, semi-urban, and peri-urban areas, promoting regulated film access in developing communities.",
     requirements: [
       "Duly completed and signed Suburban Exhibitor License Application Form",
@@ -129,9 +117,6 @@ const exhibitorLicences: LicenceEntry[] = [
     renewalBefore: "₦200,000",
     renewalAfter: "₦500,000",
     shareCapital: "₦1,000,000",
-    color: "border-emerald-700",
-    badgeColor: "bg-emerald-700/10 text-emerald-700 dark:text-emerald-500",
-    iconBg: "bg-emerald-700",
     desc: "For duly registered companies seeking to conduct film exhibition within a specific community or Local Government Area.",
     requirements: [
       "Duly completed and signed Community Exhibitor License Application Form",
@@ -156,9 +141,6 @@ const premisesLicences: LicenceEntry[] = [
     processingFee: "₦10,000",
     licenceFee: "₦150,000",
     seating: "Up to 100 seats",
-    color: "border-emerald-700",
-    badgeColor: "bg-emerald-700/10 text-emerald-700 dark:text-emerald-500",
-    iconBg: "bg-emerald-700",
     desc: "For licensed exhibitors establishing and operating a Community Cinema within a rural community under NFVCB oversight.",
     requirements: [
       "Duly completed and signed Community Exhibition Premises License Application Form, including evidence of valid Licensed Exhibitor status issued by the NFVCB (prerequisite)",
@@ -183,9 +165,6 @@ const premisesLicences: LicenceEntry[] = [
     processingFee: "₦10,000",
     licenceFee: "₦250,000",
     seating: "201 seats and above",
-    color: "border-green-700",
-    badgeColor: "bg-green-700/10 text-green-700 dark:text-green-500",
-    iconBg: "bg-green-700",
     desc: "Located in cosmopolitan areas with a high level of public infrastructure and accessibility.",
     requirements: [
       "Duly completed and signed Exhibition Premises License Application Form",
@@ -206,9 +185,6 @@ const premisesLicences: LicenceEntry[] = [
     processingFee: "₦10,000",
     licenceFee: "₦200,000",
     seating: "101 – 200 seats",
-    color: "border-emerald-600",
-    badgeColor: "bg-emerald-600/10 text-emerald-600",
-    iconBg: "bg-emerald-600",
     desc: "Located in urban areas with a medium level of public infrastructure.",
     requirements: [
       "Duly completed and signed Exhibition Premises License Application Form",
@@ -229,9 +205,6 @@ const premisesLicences: LicenceEntry[] = [
     processingFee: "₦10,000",
     licenceFee: "₦150,000",
     seating: "1 – 100 seats",
-    color: "border-teal-600",
-    badgeColor: "bg-teal-600/10 text-teal-600",
-    iconBg: "bg-teal-600",
     desc: "Located in suburban areas with a relatively lower level of public infrastructure.",
     requirements: [
       "Duly completed and signed Exhibition Premises License Application Form",
@@ -253,9 +226,6 @@ const premisesLicences: LicenceEntry[] = [
     processingFee: "₦10,000",
     licenceFee: "₦350,000",
     seating: "Subject to NFVCB approval",
-    color: "border-teal-500",
-    badgeColor: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
-    iconBg: "bg-teal-500",
     desc: "Located in designated open spaces including rural, sub-urban, or semi-urban communities, suitable for vehicular-based exhibition.",
     requirements: [
       "Duly completed and signed Exhibition Premises License Application Form",
@@ -276,9 +246,6 @@ const premisesLicences: LicenceEntry[] = [
     processingFee: "₦10,000",
     licenceFee: "₦350,000",
     seating: "Subject to NFVCB approval",
-    color: "border-green-600",
-    badgeColor: "bg-green-600/10 text-green-600 dark:text-green-400",
-    iconBg: "bg-green-600",
     desc: "A movable or temporary exhibition structure designed for flexible operation across approved locations.",
     requirements: [
       "Duly completed and signed Exhibition Premises License Application Form",
@@ -303,9 +270,6 @@ const mobileLicences: LicenceEntry[] = [
     title: "Mobile Exhibition (Per Hall)",
     processingFee: "₦10,000 per hall",
     licenceFee: "₦350,000 per hall",
-    color: "border-teal-500",
-    badgeColor: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
-    iconBg: "bg-teal-500",
     desc: "For licensed exhibitors conducting mobile film exhibition at approved venues. Licensed per hall or premises on a quarterly basis.",
     requirements: [
       "Duly completed and signed Mobile Exhibition Application Form",
@@ -329,9 +293,6 @@ const mobileLicences: LicenceEntry[] = [
     processingFee: "₦50,000",
     licenceFee: "₦5,000,000",
     shareCapital: "₦3,000,000",
-    color: "border-emerald-600",
-    badgeColor: "bg-emerald-600/10 text-emerald-600",
-    iconBg: "bg-emerald-600",
     desc: "For incorporated companies conducting mobile film exhibition within a single State or defined region of Nigeria.",
     requirements: [
       "Duly completed and signed Regional Mobile Exhibitor License Application Form",
@@ -354,9 +315,6 @@ const mobileLicences: LicenceEntry[] = [
     processingFee: "₦50,000",
     licenceFee: "₦10,000,000",
     shareCapital: "₦5,000,000",
-    color: "border-green-700",
-    badgeColor: "bg-green-700/10 text-green-700 dark:text-green-500",
-    iconBg: "bg-green-700",
     desc: "For incorporated companies conducting mobile film exhibition across multiple States within Nigeria.",
     requirements: [
       "Duly completed and signed National Mobile Exhibitor License Application Form",
@@ -383,9 +341,6 @@ const onlineLicences: LicenceEntry[] = [
     processingFee: "₦50,000",
     licenceFee: "₦200,000,000",
     shareCapital: "₦5,000,000",
-    color: "border-green-700",
-    badgeColor: "bg-green-700/10 text-green-700 dark:text-green-500",
-    iconBg: "bg-green-700",
     desc: "Large international streaming platforms operating across multiple jurisdictions and engaging Nigerian audiences online.",
     requirements: [
       "Duly completed and signed Online Exhibitor License Application Form",
@@ -413,9 +368,6 @@ const onlineLicences: LicenceEntry[] = [
     renewalBefore: "₦5,000,000",
     renewalAfter: "₦7,500,000",
     shareCapital: "₦5,000,000",
-    color: "border-emerald-600",
-    badgeColor: "bg-emerald-600/10 text-emerald-600",
-    iconBg: "bg-emerald-600",
     desc: "Aggregators and smaller value-added service providers distributing digital film content online in Nigeria.",
     requirements: [
       "Duly completed and signed Online Exhibitor License Application Form",
@@ -441,9 +393,6 @@ const onlineLicences: LicenceEntry[] = [
     renewalBefore: "₦1,000,000",
     renewalAfter: "₦1,500,000",
     shareCapital: "₦5,000,000",
-    color: "border-teal-600",
-    badgeColor: "bg-teal-600/10 text-teal-600",
-    iconBg: "bg-teal-600",
     desc: "Small online platforms and start-ups seeking to legally exhibit or stream film content to Nigerian audiences.",
     requirements: [
       "Duly completed and signed Online Exhibitor License Application Form",
@@ -465,9 +414,6 @@ const onlineLicences: LicenceEntry[] = [
     title: "YouTube Operator",
     processingFee: "₦50,000",
     licenceFee: "₦1,000,000",
-    color: "border-green-600",
-    badgeColor: "bg-green-600/10 text-green-600 dark:text-green-400",
-    iconBg: "bg-green-600",
     desc: "Operators distributing film and video content primarily via YouTube to Nigerian audiences.",
     requirements: [
       "Duly completed and signed Online Exhibitor License Application Form",
@@ -494,9 +440,6 @@ const distributorLicences: LicenceEntry[] = [
     renewalBefore: "₦1,000,000",
     renewalAfter: "₦2,500,000",
     shareCapital: "₦5,000,000",
-    color: "border-green-700",
-    badgeColor: "bg-green-700/10 text-green-700 dark:text-green-500",
-    iconBg: "bg-green-700",
     desc: "Licensed to distribute and market films and video works across the entire country through physical and digital channels.",
     requirements: [
       "Duly completed and signed National Distributor License Application Form",
@@ -521,9 +464,6 @@ const distributorLicences: LicenceEntry[] = [
     renewalBefore: "₦700,000",
     renewalAfter: "₦1,750,000",
     shareCapital: "₦3,000,000",
-    color: "border-emerald-600",
-    badgeColor: "bg-emerald-600/10 text-emerald-600",
-    iconBg: "bg-emerald-600",
     desc: "Licensed to distribute and market films and video works within a single State or defined geo-political zone.",
     requirements: [
       "Duly completed and signed Regional Distributor License Application Form",
@@ -547,9 +487,6 @@ const distributorLicences: LicenceEntry[] = [
     licenceFee: "₦2,500,000",
     renewalBefore: "₦500,000",
     renewalAfter: "₦1,250,000",
-    color: "border-teal-600",
-    badgeColor: "bg-teal-600/10 text-teal-600",
-    iconBg: "bg-teal-600",
     desc: "Licensed to distribute and market films and video works in suburban and state-level markets.",
     requirements: [
       "Duly completed and signed Suburban/State Distributor License Application Form",
@@ -571,9 +508,6 @@ const distributorLicences: LicenceEntry[] = [
     licenceFee: "₦1,000,000",
     renewalBefore: "₦200,000",
     renewalAfter: "₦500,000",
-    color: "border-emerald-700",
-    badgeColor: "bg-emerald-700/10 text-emerald-700 dark:text-emerald-500",
-    iconBg: "bg-emerald-700",
     desc: "Licensed to distribute and market films and video works within a specific community or Local Government Area.",
     requirements: [
       "Duly completed and signed Community/LGA Distributor License Application Form",
@@ -594,9 +528,6 @@ const distributorLicences: LicenceEntry[] = [
     licenceFee: "₦1,000,000",
     renewalBefore: "₦200,000",
     renewalAfter: "₦500,000",
-    color: "border-green-600",
-    badgeColor: "bg-green-600/10 text-green-600 dark:text-green-400",
-    iconBg: "bg-green-600",
     desc: "Licensed to distribute and market films and video works via YouTube and related online platforms.",
     requirements: [
       "Duly completed and signed Online Distributor License Application Form",
@@ -629,67 +560,87 @@ export function LicenceCards() {
 
   return (
     <>
-      <div className="space-y-14">
+      <div className="space-y-(--space-section)">
         {SECTIONS.map((section) => (
-          <div key={section.id}>
-            <h3 className="text-lg font-semibold text-foreground mb-5 pb-2 border-b border-border">
-              {section.label}
-            </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {section.licences.map((licence) => {
-          const { title, processingFee, licenceFee, seating, shareCapital, color, badgeColor, iconBg, icon: Icon, desc } = licence;
-          return (
-            <Card
-              key={title}
-              className={`relative border-t-4 ${color} flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group`}
-            >
-              <div className="p-5 pb-4">
-                <div className="flex flex-col gap-2 mb-3">
-                  <div className={`${iconBg} w-11 h-11 rounded-xl flex items-center justify-center shrink-0 shadow-sm`}>
-                    <Icon className="h-5 w-5 text-white" />
-                  </div>
-                  <span className={`${badgeColor} inline-block rounded-md font-semibold px-2 py-1 text-lg leading-snug`}>{title}</span>
-                </div>
-                <p className="text-[15px] text-muted-foreground leading-relaxed line-clamp-3">{desc}</p>
-              </div>
-
-              <div className="mx-5 mb-4 rounded-lg bg-muted/40 divide-y divide-border">
-                {shareCapital && (
-                  <div className="flex justify-between items-center px-3 py-2">
-                    <span className="text-[13px] text-muted-foreground">Min. Share Capital</span>
-                    <span className="text-[13px] font-semibold text-foreground">{shareCapital}</span>
-                  </div>
-                )}
-                {seating && (
-                  <div className="flex justify-between items-center px-3 py-2">
-                    <span className="text-[13px] text-muted-foreground">Seating</span>
-                    <span className="text-[13px] font-semibold text-foreground">{seating}</span>
-                  </div>
-                )}
-                <div className="flex justify-between items-center px-3 py-2">
-                  <span className="text-[13px] text-muted-foreground">Processing Fee</span>
-                  <span className="text-[13px] font-semibold text-foreground">{processingFee}</span>
-                </div>
-                <div className="flex justify-between items-center px-3 py-2.5 rounded-b-lg bg-muted/60">
-                  <span className="font-bold text-foreground">Licence Fee</span>
-                  <span className="text-sm font-bold text-primary">{licenceFee}</span>
-                </div>
-              </div>
-
-              <div className="px-5 pb-5 mt-auto">
-                <Button
-                  size="sm"
-                  className={`w-full text-xs font-medium ${iconBg} text-white hover:opacity-90 border-0`}
-                  onClick={() => setSelected(licence)}
-                >
-                  View Requirements
-                </Button>
-              </div>
-            </Card>
-          );
-        })}
+          <section key={section.id} id={section.id} aria-labelledby={`${section.id}-heading`}>
+            <div className="mb-(--space-block) border-b border-border pb-4">
+              <h3 id={`${section.id}-heading`} className="text-h3 font-black text-foreground">
+                {section.label}
+              </h3>
+              <p className="mt-1 text-caption text-muted-foreground">
+                {section.licences.length} licence
+                {section.licences.length !== 1 ? "s" : ""} in this category
+              </p>
             </div>
-          </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {section.licences.map((licence) => {
+                const {
+                  title, processingFee, licenceFee, seating, shareCapital,
+                  icon: Icon, desc,
+                } = licence;
+
+                return (
+                  <Card
+                    key={title}
+                    className="group relative flex flex-col overflow-hidden p-0 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-3"
+                  >
+                    <span
+                      className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
+                      aria-hidden
+                    />
+
+                    <div className="p-5 pb-4">
+                      <div className="mb-3 grid h-11 w-11 place-items-center rounded-xl border border-primary/20 bg-primary/10">
+                        <Icon className="h-5 w-5 text-primary" aria-hidden />
+                      </div>
+                      <h4 className="text-h4 font-bold leading-snug text-foreground">{title}</h4>
+                      <p className="mt-2 line-clamp-3 text-caption leading-relaxed text-muted-foreground">
+                        {desc}
+                      </p>
+                    </div>
+
+                    {/* The licence fee is the figure people compare across cards,
+                        so it leads rather than sitting last in a flat list of
+                        equally-weighted rows. */}
+                    <div className="mx-5 mb-4 overflow-hidden rounded-lg border border-border">
+                      <div className="bg-primary/10 px-3 py-2.5">
+                        <p className="text-overline uppercase text-muted-foreground">Licence Fee</p>
+                        <p className="text-h3 font-black text-primary">{licenceFee}</p>
+                      </div>
+                      <dl className="divide-y divide-border bg-muted/40">
+                        {shareCapital && (
+                          <div className="flex items-center justify-between gap-2 px-3 py-2">
+                            <dt className="text-caption text-muted-foreground">Min. Share Capital</dt>
+                            <dd className="text-caption font-semibold text-foreground">{shareCapital}</dd>
+                          </div>
+                        )}
+                        {seating && (
+                          <div className="flex items-center justify-between gap-2 px-3 py-2">
+                            <dt className="text-caption text-muted-foreground">Seating</dt>
+                            <dd className="text-caption font-semibold text-foreground">{seating}</dd>
+                          </div>
+                        )}
+                        <div className="flex items-center justify-between gap-2 px-3 py-2">
+                          <dt className="text-caption text-muted-foreground">Processing Fee</dt>
+                          <dd className="text-caption font-semibold text-foreground">{processingFee}</dd>
+                        </div>
+                      </dl>
+                    </div>
+
+                    <div className="mt-auto px-5 pb-5">
+                      <Button
+                        className="tap w-full text-caption font-semibold"
+                        onClick={() => setSelected(licence)}
+                      >
+                        View Requirements
+                      </Button>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
+          </section>
         ))}
       </div>
 
@@ -697,29 +648,29 @@ export function LicenceCards() {
       <Sheet open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
         <SheetContent
           side="right"
-          className="w-full sm:w-[500px] md:w-[580px] lg:w-[640px] overflow-y-auto"
+          className="w-full overflow-y-auto sm:w-[500px] md:w-[580px] lg:w-[640px]"
         >
           {selected && (
             <>
               <SheetHeader className="mb-6">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className={`${selected.iconBg} w-10 h-10 rounded-xl flex items-center justify-center shrink-0`}>
-                    <selected.icon className="h-5 w-5 text-white" />
+                <div className="mb-2 flex items-center gap-3">
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10">
+                    <selected.icon className="h-5 w-5 text-primary" aria-hidden />
                   </div>
-                  <div>
-                    <Badge className={`${selected.badgeColor} border-0 text-xs mb-1`}>
+                  <div className="min-w-0">
+                    <Badge className="mb-1 border-primary/25 bg-primary/10 text-overline text-primary">
                       NFVCB Licence
                     </Badge>
-                    <SheetTitle className="text-xl leading-tight">{selected.title}</SheetTitle>
+                    <SheetTitle className="text-h3 leading-tight">{selected.title}</SheetTitle>
                   </div>
                 </div>
-                <SheetDescription className="text-sm leading-relaxed">
+                <SheetDescription className="text-caption leading-relaxed">
                   {selected.desc}
                 </SheetDescription>
               </SheetHeader>
 
               {/* Fees summary */}
-              <div className="flex flex-wrap gap-3 mb-6 px-4">
+              <div className="mb-6 grid grid-cols-2 gap-2 px-4 sm:grid-cols-3">
                 {[
                   { label: "Licence Fee", val: selected.licenceFee },
                   { label: "Processing Fee", val: selected.processingFee },
@@ -728,28 +679,39 @@ export function LicenceCards() {
                   ...(selected.renewalBefore ? [{ label: "Renewal (before expiry)", val: selected.renewalBefore }] : []),
                   ...(selected.renewalAfter ? [{ label: "Renewal (after expiry)", val: selected.renewalAfter }] : []),
                 ].map(({ label, val }) => (
-                  <div key={label} className="bg-muted/40 rounded-lg px-4 py-2.5 min-w-[110px]">
-                    <p className="text-[10px] text-muted-foreground mb-0.5">{label}</p>
-                    <p className="font-bold text-primary text-sm">{val}</p>
+                  <div key={label} className="rounded-lg border border-border bg-muted/40 px-3 py-2.5">
+                    <p className="mb-0.5 text-overline uppercase text-muted-foreground">{label}</p>
+                    <p className="text-caption font-bold text-primary">{val}</p>
                   </div>
                 ))}
               </div>
 
               {/* Requirements */}
               <div className="px-4 pb-4">
-                <p className="text-sm font-semibold text-foreground mb-3">Application Requirements</p>
+                <h4 className="mb-3 text-h4 font-bold text-foreground">
+                  Application Requirements
+                  <span className="ml-2 text-caption font-normal text-muted-foreground">
+                    ({selected.requirements.length})
+                  </span>
+                </h4>
                 <ul className="space-y-3">
                   {selected.requirements.map((req, i) => (
                     <li key={i} className="flex items-start gap-2.5">
-                      <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                      <p className="text-sm text-muted-foreground leading-relaxed">{req}</p>
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
+                      <p className="text-caption leading-relaxed text-muted-foreground">{req}</p>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="border-t border-border p-4 text-xs text-muted-foreground">
-                For enquiries: <a href="mailto:nfvcb_ldd@nfvcb.gov.ng" className="text-primary hover:underline">nfvcb_ldd@nfvcb.gov.ng</a>
+              <div className="border-t border-border p-4 text-caption text-muted-foreground">
+                For enquiries:{" "}
+                <a
+                  href="mailto:nfvcb_ldd@nfvcb.gov.ng"
+                  className="font-semibold text-primary hover:underline"
+                >
+                  nfvcb_ldd@nfvcb.gov.ng
+                </a>
               </div>
             </>
           )}

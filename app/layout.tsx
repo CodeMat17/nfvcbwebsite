@@ -18,6 +18,8 @@ const BASE_URL = "https://nfvcb.gov.ng";
 
 export const viewport: Viewport = {
   themeColor: [
+    /* Literal hex — the browser reads this before any CSS is parsed, so a
+       var() reference here resolves to nothing. */
     { media: "(prefers-color-scheme: light)", color: "#009f3b" },
     { media: "(prefers-color-scheme: dark)", color: "#001506" },
   ],
@@ -210,7 +212,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-[family-name:var(--font-nunito)]">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-9999 focus:px-4 focus:py-2 focus:bg-nfvcb-green focus:text-white focus:font-bold focus:rounded-lg focus:shadow-lg focus:outline-none"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-9999 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-bold focus:rounded-lg focus:shadow-4"
         >
           Skip to main content
         </a>
@@ -221,7 +223,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange={false}>
             <Navbar />
-            <main id="main-content" className="flex-1 pt-22">{children}</main>
+            <main id="main-content" className="flex-1 pt-(--header-h)">
+              {children}
+            </main>
             <Footer />
           </ThemeProvider>
         </ConvexClientProvider>

@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { StaggerContainer, StaggerItem } from "@/components/animated-section";
+import { RatingBadge, RATING_ORDER } from "@/components/rating-badge";
 import {
   Pagination,
   PaginationContent,
@@ -24,9 +26,44 @@ interface Props {
 }
 
 export function MoviesClient({ posts }: Props) {
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
+
+  /* Search and page live in the URL — the list can be linked and shared, and
+     the back button restores where you were. */
+  const query = params.get("q") ?? "";
+  const page = Math.max(1, Number(params.get("page")) || 1);
+
+  const setParams = useCallback(
+    (patch: Record<string, string | null>) => {
+      const next = new URLSearchParams(params.toString());
+      for (const [k, v] of Object.entries(patch)) {
+        if (!v) next.delete(k);
+        else next.set(k, v);
+      }
+      const qs = next.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [params, pathname, router]
+  );
+
+  const [draft, setDraft] = useState(query);
+  /* Re-sync only when the URL changes from outside this input (back button,
+     shared link, cleared search). Adjusting state during render rather than
+     in an effect avoids a second render pass. */
+  const [syncedFrom, setSyncedFrom] = useState(query);
+  if (syncedFrom !== query) {
+    setSyncedFrom(query);
+    setDraft(query);
+  }
+  useEffect(() => {
+    if (draft === query) return;
+    const t = setTimeout(() => setParams({ q: draft || null, page: null }), 250);
+    return () => clearTimeout(t);
+  }, [draft, query, setParams]);
 
   const filtered = useMemo(() => {
     const trimmed = query.trim().toLowerCase();
@@ -34,15 +71,21 @@ export function MoviesClient({ posts }: Props) {
     return posts.filter((p) => p.month.toLowerCase().includes(trimmed));
   }, [posts, query]);
 
-  function clearQuery() {
-    setQuery("");
-    setPage(1);
-    inputRef.current?.focus();
-  }
-
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const paginated = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  /* Paging used to leave you scrolled mid-list on the new page. */
+  function goToPage(n: number) {
+    setParams({ page: n === 1 ? null : String(n) });
+    topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function clearQuery() {
+    setDraft("");
+    router.replace(pathname, { scroll: false });
+    inputRef.current?.focus();
+  }
 
   function getPageNumbers(): (number | "ellipsis")[] {
     if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -53,116 +96,122 @@ export function MoviesClient({ posts }: Props) {
   }
 
   return (
-    <div>
+    <div ref={topRef} className="scroll-mt-28">
       {/* Search */}
-      <div className="relative mb-8 w-full max-w-sm">
-        <label htmlFor="approval-search" className="sr-only">
-          Search approvals by month
-        </label>
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-        <input
-          ref={inputRef}
-          id="approval-search"
-          type="text"
-          autoComplete="off"
-          value={query}
-          onChange={(e) => { setQuery(e.target.value); setPage(1); }}
-          onKeyDown={(e) => { if (e.key === "Escape") { clearQuery(); inputRef.current?.blur(); } }}
-          placeholder="Search by month, e.g. March or 2026"
-          className="w-full pl-9 pr-9 py-2.5 text-sm rounded-xl border bg-background focus:outline-none focus:ring-2 focus:ring-primary/40 transition"
-        />
-        {query && (
-          <button
-            onClick={clearQuery}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Clear search"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        )}
+      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative w-full max-w-sm">
+          <label htmlFor="approval-search" className="sr-only">
+            Search approvals by month
+          </label>
+          <Search
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden
+          />
+          <input
+            ref={inputRef}
+            id="approval-search"
+            type="text"
+            autoComplete="off"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") { clearQuery(); inputRef.current?.blur(); }
+            }}
+            placeholder="Search by month, e.g. March or 2026"
+            className="tap w-full rounded-xl border border-input bg-background pl-9 pr-9 text-caption transition focus:outline-none focus:ring-2 focus:ring-ring/40"
+          />
+          {draft && (
+            <button
+              onClick={clearQuery}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground transition-colors hover:text-foreground"
+              aria-label="Clear search"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
+
+        {/* This list previously gave no result feedback at all, while the film
+            list on the detail page did. Both now report the same way. */}
+        <p className="text-caption text-muted-foreground" aria-live="polite">
+          Showing <span className="font-semibold text-foreground">{paginated.length}</span> of{" "}
+          {filtered.length} {filtered.length === 1 ? "release" : "releases"}
+        </p>
       </div>
 
       {filtered.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-center text-muted-foreground gap-3">
-          <Film className="h-10 w-10 opacity-30" />
-          <p className="text-sm">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border py-20 text-center">
+          <Film className="h-9 w-9 text-muted-foreground/40" aria-hidden />
+          <p className="text-caption text-muted-foreground">
             No approvals found for &ldquo;{query.trim()}&rdquo;
           </p>
           <button
             onClick={clearQuery}
-            className="text-xs text-primary underline underline-offset-2"
+            className="text-caption font-semibold text-primary hover:underline"
           >
             Clear search
           </button>
         </div>
       ) : (
         <>
-          <StaggerContainer key={`${query}-${safePage}`} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          <StaggerContainer
+            key={`${query}-${safePage}`}
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
+          >
             {paginated.map((post) => {
               const filmCount = post.movies.length;
-              const langs = [...new Set(post.movies.map((f) => f.language))];
-              const ratings = [...new Set(post.movies.map((f) => f.rating))];
+              const ratings = [...new Set(post.movies.map((f) => f.rating))].sort(
+                (a, b) => RATING_ORDER.indexOf(a) - RATING_ORDER.indexOf(b)
+              );
 
               return (
                 <StaggerItem key={post.slug}>
                   <Link href={`/approved-movies/${post.slug}`} className="group block h-full">
-                    <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
-                      <div className="relative h-44 bg-gradient-to-br from-[#001506] to-[#009f3b]/40 flex items-center justify-center overflow-hidden">
+                    <Card className="h-full overflow-hidden pt-0 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-3">
+                      <div className="relative flex h-44 items-center justify-center overflow-hidden bg-nfvcb-dark">
                         {post.image ? (
                           <Image
                             src={post.image}
-                            alt={post.month}
+                            alt=""
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         ) : (
-                          <>
-                            <Image
-                              src="/logo.webp"
-                              alt=""
-                              width={80}
-                              height={80}
-                              className="opacity-100 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500"
-                              aria-hidden
-                            />
-                            <div className="absolute bottom-3 right-3 bg-[#fea600] text-[#001506] text-xs font-bold px-2.5 py-1 rounded-full">
-                              {filmCount} Movies
-                            </div>
-                          </>
+                          <Image
+                            src="/logo.webp"
+                            alt=""
+                            width={72}
+                            height={72}
+                            className="opacity-70 transition-all duration-500 group-hover:scale-110 group-hover:opacity-40"
+                            aria-hidden
+                          />
                         )}
+                        <span className="absolute bottom-3 right-3 rounded-full bg-accent px-2.5 py-1 text-overline text-nfvcb-dark">
+                          {filmCount} {filmCount === 1 ? "film" : "films"}
+                        </span>
                       </div>
 
-                      <h1 className="px-4 font-bold">Approved Movies — {post.month}</h1>
-
-                      <CardContent className="space-y-2">
-                        <div className="flex flex-wrap gap-1">
-                          {langs.map((lang) => (
-                            <span
-                              key={lang}
-                              className="text-[10px] px-2 py-0.5 bg-muted rounded-full text-muted-foreground"
-                            >
-                              {lang}
-                            </span>
-                          ))}
-                        </div>
+                      <CardContent className="space-y-3">
+                        {/* Was an <h1> — one per card, many per page, which
+                            broke the document outline for screen readers. */}
+                        <h3 className="text-h4 font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+                          {post.month}
+                        </h3>
 
                         <div className="flex flex-wrap gap-1">
                           {ratings.map((r) => (
-                            <span
-                              key={r}
-                              className="text-[11px] px-2 py-0.5 bg-[#fea600]/10 text-[#fea600] rounded-full font-bold"
-                            >
-                              {r}
-                            </span>
+                            <RatingBadge key={r} rating={r} size="sm" />
                           ))}
                         </div>
 
-                        <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-1">
-                          <span className="flex items-center gap-1">
-                            <User className="h-3 w-3" /> {post.publishedBy}
+                        <div className="flex items-center justify-between gap-2 pt-1 text-caption text-muted-foreground">
+                          <span className="inline-flex min-w-0 items-center gap-1.5">
+                            <User className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                            <span className="truncate">{post.publishedBy}</span>
                           </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
+                          <span className="inline-flex shrink-0 items-center gap-1.5">
+                            <Calendar className="h-3.5 w-3.5" aria-hidden />
                             {new Date(post.date).toLocaleDateString("en-NG", {
                               day: "numeric",
                               month: "short",
@@ -171,9 +220,9 @@ export function MoviesClient({ posts }: Props) {
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-1.5 text-xs text-primary font-medium group-hover:gap-2.5 transition-all pt-1">
-                          View movies <ArrowRight className="h-3.5 w-3.5" />
-                        </div>
+                        <span className="flex items-center gap-1.5 pt-1 text-overline uppercase text-primary transition-all group-hover:gap-2.5">
+                          View films <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                        </span>
                       </CardContent>
                     </Card>
                   </Link>
@@ -187,9 +236,9 @@ export function MoviesClient({ posts }: Props) {
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    onClick={() => goToPage(Math.max(1, safePage - 1))}
                     aria-disabled={safePage === 1}
-                    className={safePage === 1 ? "pointer-events-none opacity-50 cursor-default" : "cursor-pointer"}
+                    className={safePage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
                   />
                 </PaginationItem>
 
@@ -202,7 +251,7 @@ export function MoviesClient({ posts }: Props) {
                     <PaginationItem key={entry}>
                       <PaginationLink
                         isActive={entry === safePage}
-                        onClick={() => setPage(entry)}
+                        onClick={() => goToPage(entry)}
                         className="cursor-pointer"
                       >
                         {entry}
@@ -213,9 +262,9 @@ export function MoviesClient({ posts }: Props) {
 
                 <PaginationItem>
                   <PaginationNext
-                    onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                    onClick={() => goToPage(Math.min(totalPages, safePage + 1))}
                     aria-disabled={safePage === totalPages}
-                    className={safePage === totalPages ? "pointer-events-none opacity-50 cursor-default" : "cursor-pointer"}
+                    className={safePage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
                   />
                 </PaginationItem>
               </PaginationContent>

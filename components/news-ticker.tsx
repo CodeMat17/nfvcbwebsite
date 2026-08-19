@@ -20,9 +20,9 @@ export function NewsTicker() {
   const doubled = [...items, ...items];
 
   return (
-    <div className="bg-nfvcb-green text-white overflow-hidden flex items-center h-9 select-none">
+    <div className="bg-primary text-white overflow-hidden flex items-center h-9 select-none">
       <div className="shrink-0 bg-nfvcb-dark px-4 h-full flex items-center z-10">
-        <span className="text-[10px] font-black uppercase tracking-widest text-nfvcb-gold whitespace-nowrap">
+        <span className="text-overline font-black uppercase tracking-widest text-accent whitespace-nowrap">
           Latest
         </span>
       </div>
@@ -38,7 +38,7 @@ export function NewsTicker() {
               href={href}
               className="text-xs font-medium text-white/90 hover:text-white transition-colors shrink-0 inline-flex items-center gap-2"
             >
-              <span className="text-nfvcb-gold text-[10px]">◆</span>
+              <span className="text-accent text-overline">◆</span>
               {text}
             </Link>
           ))}

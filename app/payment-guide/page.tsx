@@ -46,43 +46,43 @@ export const metadata: Metadata = {
 const reminders = [
   {
     icon: CheckCircle,
-    color: "text-[#009f3b]",
-    bg: "bg-[#009f3b]/10 border-[#009f3b]/20",
+    color: "text-primary",
+    bg: "bg-primary/10 border-primary/20",
     title: "Validate your ID",
     desc: 'Always click the Validate button after entering your ID number. If you have no valid ID, choose "Not Available".',
   },
   {
     icon: Receipt,
-    color: "text-[#fea600]",
-    bg: "bg-[#fea600]/10 border-[#fea600]/20",
+    color: "text-accent",
+    bg: "bg-accent/10 border-accent/20",
     title: "Save your bill reference",
     desc: "Copy it immediately after generation. You will need it to pay or retrieve your receipt later.",
   },
   {
     icon: AlertCircle,
-    color: "text-red-500",
-    bg: "bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800",
+    color: "text-destructive",
+    bg: "bg-destructive/10 border-destructive/30",
     title: "Transfer time limit",
     desc: "Bank transfers must be completed within the time window shown on your invoice or the payment will expire.",
   },
   {
     icon: CreditCard,
-    color: "text-blue-500",
-    bg: "bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800",
+    color: "text-primary",
+    bg: "bg-primary/10 border-primary/30",
     title: "Full payment only",
     desc: "Part-payment is not enabled. Always pay the exact total charge shown on your bill.",
   },
   {
     icon: Download,
-    color: "text-purple-500",
-    bg: "bg-purple-50 dark:bg-purple-950/20 border-purple-200 dark:border-purple-800",
+    color: "text-primary",
+    bg: "bg-primary/10 border-primary/30",
     title: "Download your invoice",
     desc: "The downloaded PDF shows full payment instructions for online, bank transfer, and bank branch options.",
   },
   {
     icon: TriangleAlert,
-    color: "text-orange-500",
-    bg: "bg-orange-50 dark:bg-orange-950/20 border-orange-200 dark:border-orange-800",
+    color: "text-accent",
+    bg: "bg-accent/10 border-accent/30",
     title: "Use the official portal only",
     desc: "Always access revop.gov.ng directly. Never pay via links received through unofficial SMS or social media.",
   },
@@ -122,8 +122,8 @@ const part1Steps = [
         <p className="text-sm text-muted-foreground leading-relaxed">
           A Billers List will appear. Use the search bar to find &quot;NATIONAL FILM AND VIDEO CENSORS BOARD&quot;. Click on your biller to proceed.
         </p>
-        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-[#009f3b]/5 border border-[#009f3b]/20">
-          <Info className="h-4 w-4 text-[#009f3b] shrink-0 mt-0.5" />
+        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
+          <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
             If you already have a bill reference number, click{" "}
             <strong className="text-foreground">&ldquo;Click here to pay&rdquo;</strong> at the
@@ -192,8 +192,8 @@ const part1Steps = [
             </li>
           ))}
         </ul>
-        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800">
-          <AlertCircle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-accent/10 border border-accent/30">
+          <AlertCircle className="h-4 w-4 text-accent shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
             You must click the{" "}
             <strong className="text-foreground">&ldquo;Validate&rdquo;</strong> button after
@@ -218,8 +218,8 @@ const part1Steps = [
           A &ldquo;Confirm Bill&rdquo; dialog will appear showing the item description, quantity,
           rate, and total amount in Naira. Review all details carefully.
         </p>
-        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800">
-          <TriangleAlert className="h-4 w-4 text-red-500 shrink-0 mt-0.5" />
+        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-destructive/10 border border-destructive/30">
+          <TriangleAlert className="h-4 w-4 text-destructive shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">Warning:</strong> Creating a bill is irreversible.
             Once confirmed, it cannot be undone.
@@ -254,8 +254,8 @@ const part1Steps = [
             channels
           </li>
         </ul>
-        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800">
-          <AlertCircle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-accent/10 border border-accent/30">
+          <AlertCircle className="h-4 w-4 text-accent shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">Important:</strong> Copy or note down your Bill
             Reference Number — you will need it to make payment.
@@ -309,22 +309,22 @@ const part2Steps = [
             {
               icon: ArrowRight,
               label: "Bank Transfer",
-              color: "text-blue-600",
-              bg: "bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-800",
+              color: "text-primary",
+              bg: "bg-primary/10 border-primary/30",
               desc: "Transfer the exact amount to the account details generated for you within the time limit shown on screen.",
             },
             {
               icon: CreditCard,
               label: "Card",
-              color: "text-[#009f3b]",
-              bg: "bg-[#009f3b]/5 border-[#009f3b]/20",
+              color: "text-primary",
+              bg: "bg-primary/5 border-primary/20",
               desc: 'Select Card, then choose Credo by eTranzact as the payment option. Click "Continue", enter your card details, and click "Proceed" to complete payment.',
             },
             {
               icon: Landmark,
               label: "Bank Branch",
-              color: "text-purple-600",
-              bg: "bg-purple-50 dark:bg-purple-950/20 border-purple-200 dark:border-purple-800",
+              color: "text-primary",
+              bg: "bg-primary/10 border-primary/30",
               desc: "Walk into any bank branch closest to you and present your downloaded bill invoice for payment.",
             },
           ].map(({ icon: Icon, label, color, bg, desc }) => (
@@ -355,8 +355,8 @@ const part2Steps = [
           Click <strong className="text-foreground">&ldquo;Pay Bill&rdquo;</strong> and follow your
           chosen channel&apos;s instructions to authorise the transaction.
         </p>
-        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-[#009f3b]/5 border border-[#009f3b]/20">
-          <Info className="h-4 w-4 text-[#009f3b] shrink-0 mt-0.5" />
+        <div className="mt-3 flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20">
+          <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <p className="text-sm text-muted-foreground">
             <strong className="text-foreground">Note:</strong> Part-payment is not enabled. Always
             pay the exact total charge shown on your bill.
@@ -399,16 +399,16 @@ export default function PaymentGuidePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-24 bg-[#001506] overflow-hidden">
+      <section className="relative py-24 bg-nfvcb-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden>
           <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 section">
           <AnimatedSection>
-            <Badge className="mb-4 bg-[#009f3b]/20 text-[#009f3b] border-[#009f3b]/30">
+            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
               Official OAGF RevOP User Guide
             </Badge>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            <h1 className="text-h1 font-black text-white mb-4">
               How to Make a RevOP Payment
             </h1>
             <p className="text-white/60 text-lg max-w-2xl">
@@ -420,7 +420,7 @@ export default function PaymentGuidePage() {
                 href="https://revop.gov.ng/payments/generate-bill"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#009f3b] text-white text-sm font-semibold hover:bg-[#007d2e] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors"
               >
                 Generate a Bill <ExternalLink className="h-4 w-4" />
               </Link>
@@ -441,7 +441,7 @@ export default function PaymentGuidePage() {
         {/* Part 1 */}
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-[#009f3b] flex items-center justify-center text-white text-sm font-bold shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
               1
             </div>
             <h2 className="text-2xl font-bold text-foreground">Part 1 — Generate Your Bill</h2>
@@ -449,7 +449,7 @@ export default function PaymentGuidePage() {
           <StaggerContainer className="space-y-4">
             {part1Steps.map((step) => (
               <StaggerItem key={step.number}>
-                <StepCard step={step} partColor="bg-[#009f3b]" />
+                <StepCard step={step} partColor="bg-primary" />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -458,7 +458,7 @@ export default function PaymentGuidePage() {
         {/* Part 2 */}
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-[#001506] border border-[#009f3b]/40 flex items-center justify-center text-[#009f3b] text-sm font-bold shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-nfvcb-dark border border-primary/40 flex items-center justify-center text-primary text-sm font-bold shrink-0">
               2
             </div>
             <h2 className="text-2xl font-bold text-foreground">Part 2 — Make Payment</h2>
@@ -466,7 +466,7 @@ export default function PaymentGuidePage() {
           <StaggerContainer className="space-y-4">
             {part2Steps.map((step) => (
               <StaggerItem key={step.number}>
-                <StepCard step={step} partColor="bg-[#001506] border border-[#009f3b]/40" />
+                <StepCard step={step} partColor="bg-nfvcb-dark border border-primary/40" />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -475,7 +475,7 @@ export default function PaymentGuidePage() {
         {/* Pay Online */}
         {/* <AnimatedSection>
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-nfvcb-green flex items-center justify-center text-white text-sm font-bold shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
               ₦
             </div>
             <h2 className="text-2xl font-bold text-foreground">Pay Your Bill Online</h2>

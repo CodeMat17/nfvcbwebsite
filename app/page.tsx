@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowRight, Film, Shield, BookOpen,
-  Globe, Sparkles, Clapperboard, Scale,
+  Globe, Quote, Clapperboard, Scale,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/animated-section";
@@ -13,96 +13,86 @@ import { NewsUpdate } from "@/app/_components/news-grid";
 import { StatsBar } from "@/app/_components/stats-bar";
 import { MissionCinema } from "@/app/_components/mission-cinema";
 
-/* ─── data ─── */
+/* ─── data ───
+   The per-card accent colours (#60a5fa, #c084fc, #f87171, #34d399, blue-500,
+   purple-500) are gone. Six cards in six hues read as six unrelated products;
+   the site's language is green, gold and the neutral ramp. Differentiation
+   now comes from iconography, position and type. */
 const quickLinks = [
-  { label: "Submit a Film",        href: "/industry",           icon: Clapperboard, accent: "#009f3b", tag: "Film" },
-  { label: "Apply for Licence",    href: "/industry/licensing", icon: BookOpen,     accent: "#fea600", tag: "Licence" },
-  { label: "Classification Guide", href: "/policy",             icon: Shield,       accent: "#34d399", tag: "Policy" },
-  { label: "Find a Zone Office",   href: "/zones",              icon: Globe,        accent: "#60a5fa", tag: "Zones" },
-  { label: "Law Enforcement",      href: "/law-enforcement",    icon: Scale,        accent: "#f87171", tag: "Legal" },
-  { label: "Service Charter",      href: "/service-charter",    icon: Sparkles,     accent: "#c084fc", tag: "Charter" },
+  { label: "Submit a Film",        href: "/industry",           icon: Clapperboard, tag: "Film" },
+  { label: "Apply for Licence",    href: "/industry/licensing", icon: BookOpen,     tag: "Licence" },
+  { label: "Classification Guide", href: "/policy",             icon: Shield,       tag: "Policy" },
+  { label: "Find a Zone Office",   href: "/zones",              icon: Globe,        tag: "Zones" },
+  { label: "Law Enforcement",      href: "/law-enforcement",    icon: Scale,        tag: "Legal" },
+  { label: "Service Charter",      href: "/service-charter",    icon: Film,         tag: "Charter" },
 ];
 
 const features = [
-  { icon: Film, title: "Film Classification", desc: "Every film and video work must be classified by NFVCB before distribution or exhibition in Nigeria.", href: "/policy", col: "text-[#009f3b]", accent: "#009f3b" },
-  { icon: Shield, title: "Content Regulation", desc: "Protecting children and communities while preserving artistic freedom — guided by the NFVCB Act 85 of 1993.", href: "/policy", col: "text-blue-500", accent: "#3b82f6" },
-  { icon: BookOpen, title: "Licensing Services", desc: "Online, National, Regional, and Community distributor licences to legalise your film business.", href: "/industry/licensing", col: "text-[#fea600]", accent: "#fea600" },
-  { icon: Globe, title: "Nationwide Presence", desc: "6 zonal offices and 30+ state centres across all six geopolitical zones — regulation at your doorstep.", href: "/zones", col: "text-purple-500", accent: "#a855f7" },
+  { icon: Film, title: "Film Classification", desc: "Every film and video work must be classified by NFVCB before distribution or exhibition in Nigeria.", href: "/policy" },
+  { icon: Shield, title: "Content Regulation", desc: "Protecting children and communities while preserving artistic freedom — guided by the NFVCB Act 85 of 1993.", href: "/policy" },
+  { icon: BookOpen, title: "Licensing Services", desc: "Online, National, Regional, and Community distributor licences to legalise your film business.", href: "/industry/licensing" },
+  { icon: Globe, title: "Nationwide Presence", desc: "6 zonal offices and 30+ state centres across all six geopolitical zones — regulation at your doorstep.", href: "/zones" },
 ];
+
+/* ─── shared section header ─── */
+function SectionHeading({
+  eyebrow,
+  title,
+  id,
+  aside,
+}: {
+  eyebrow: string;
+  title: string;
+  id: string;
+  aside?: string;
+}) {
+  return (
+    <AnimatedSection className="mb-(--space-block) flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p className="eyebrow mb-2">{eyebrow}</p>
+        <h2 id={id} className="text-h2 font-black text-foreground">
+          {title}
+        </h2>
+      </div>
+      {aside && (
+        <p className="max-w-xs text-caption leading-relaxed text-muted-foreground sm:text-right">
+          {aside}
+        </p>
+      )}
+    </AnimatedSection>
+  );
+}
 
 /* ─── sections ─── */
 function QuickServices() {
   return (
-    <section className="relative py-16 overflow-hidden" aria-label="Quick services">
-      {/* layered background */}
-      <div className="absolute inset-0 bg-[#030f05]" aria-hidden />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,#009f3b18,transparent)]" aria-hidden />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#009f3b]/30 to-transparent" aria-hidden />
+    <section className="bg-secondary/60 border-y border-border" aria-labelledby="quick-services-heading">
+      <div className="section section-y">
+        <SectionHeading
+          id="quick-services-heading"
+          eyebrow="Online Portal"
+          title="Quick Services"
+          aside="Access regulatory services without visiting an office"
+        />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* header */}
-        <AnimatedSection className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-10">
-          <div>
-            <div className="flex items-center gap-2.5 mb-2">
-              <span className="block w-4 h-px bg-[#fea600]" aria-hidden />
-              <span className="text-[#fea600] text-[10px] font-extrabold uppercase tracking-[0.25em]">Online Portal</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-              Quick Services
-            </h2>
-          </div>
-          <p className="text-xs text-white/35 max-w-[200px] text-right leading-relaxed hidden sm:block">
-            Access regulatory services without visiting an office
-          </p>
-        </AnimatedSection>
-
-        {/* cards */}
-        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {quickLinks.map(({ label, href, icon: Icon, accent, tag }) => (
+        <StaggerContainer className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {quickLinks.map(({ label, href, icon: Icon, tag }) => (
             <StaggerItem key={href}>
-              <Link href={href} className="group block h-full" aria-label={label}>
-                <div
-                  className="relative h-full overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.04] backdrop-blur-sm flex flex-col gap-5 p-5 transition-all duration-300 hover:-translate-y-1.5 hover:border-white/[0.15] cursor-pointer hover:shadow-[0_12px_40px_-8px_var(--qs-accent)]"
-                  style={{ "--qs-accent": accent } as React.CSSProperties}
-                >
-                  {/* animated top accent bar */}
-                  <div
-                    className="absolute top-0 inset-x-0 h-[2px] rounded-t-2xl transition-all duration-500 group-hover:h-[3px] group-hover:opacity-100 opacity-60"
-                    style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+              <Link href={href} className="group block h-full">
+                <div className="relative flex h-full flex-col gap-5 overflow-hidden rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-3">
+                  <span
+                    className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
                     aria-hidden
                   />
-
-                  {/* subtle corner glow */}
-                  <div
-                    className="absolute -top-8 -right-8 w-20 h-20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl pointer-events-none"
-                    style={{ background: accent }}
-                    aria-hidden
-                  />
-
-                  {/* icon */}
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: `${accent}1a`, border: `1px solid ${accent}35` }}
-                  >
-                    <Icon className="h-5 w-5" style={{ color: accent }} aria-hidden />
+                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
+                    <Icon className="h-5 w-5 text-primary" aria-hidden />
                   </div>
-
-                  {/* text */}
-                  <div className="flex flex-col gap-1.5 flex-1">
-                    <span
-                      className="text-[9px] font-bold uppercase tracking-[0.18em]"
-                      style={{ color: `${accent}99` }}
-                    >
-                      {tag}
-                    </span>
-                    <p className="font-bold text-white text-sm leading-snug">{label}</p>
+                  <div className="flex flex-1 flex-col gap-1.5">
+                    <span className="text-overline uppercase text-muted-foreground">{tag}</span>
+                    <p className="text-caption font-bold leading-snug text-foreground">{label}</p>
                   </div>
-
-                  {/* arrow */}
                   <ArrowRight
-                    className="h-3.5 w-3.5 transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 -translate-x-1"
-                    style={{ color: accent }}
+                    className="h-4 w-4 -translate-x-1 text-primary opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
                     aria-hidden
                   />
                 </div>
@@ -110,7 +100,6 @@ function QuickServices() {
             </StaggerItem>
           ))}
         </StaggerContainer>
-
       </div>
     </section>
   );
@@ -118,31 +107,32 @@ function QuickServices() {
 
 function WhatWeDo() {
   return (
-    <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="what-we-do-heading">
-      <AnimatedSection className="flex items-center gap-3 mb-8 pb-4 border-b border-border">
-        <div className="w-1 h-6 rounded-full bg-[#fea600]" aria-hidden />
-        <h2 id="what-we-do-heading" className="text-lg font-black uppercase tracking-wide text-foreground">What We Do</h2>
-      </AnimatedSection>
+    <section className="section section-y" aria-labelledby="what-we-do-heading">
+      <SectionHeading
+        id="what-we-do-heading"
+        eyebrow="Our Mandate"
+        title="What We Do"
+      />
 
-      <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {features.map(({ icon: Icon, title, desc, href, col, accent }) => (
+      <StaggerContainer className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map(({ icon: Icon, title, desc, href }) => (
           <StaggerItem key={title}>
             <Link href={href} className="group block h-full">
-              <Card className="h-full p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 cursor-pointer relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-0.75" style={{ background: accent }} aria-hidden />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: `linear-gradient(160deg, ${accent}0d 0%, transparent 55%)` }} aria-hidden />
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 mt-2 group-hover:scale-110 transition-transform duration-300"
-                  style={{ background: `${accent}18`, border: `1px solid ${accent}28` }}>
-                  <Icon className={`h-6 w-6 ${col}`} aria-hidden />
+              <Card className="relative h-full overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-3">
+                <span
+                  className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
+                  aria-hidden
+                />
+                <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl border border-primary/20 bg-primary/10 transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-6 w-6 text-primary" aria-hidden />
                 </div>
-                <h3 className="font-black text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">
+                <h3 className="mb-2 text-h4 font-black leading-snug text-foreground transition-colors group-hover:text-primary">
                   {title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">{desc}</p>
-                <div className="mt-4 flex items-center gap-1 text-[11px] text-primary font-bold opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden>
+                <p className="text-caption leading-relaxed text-muted-foreground">{desc}</p>
+                <span className="mt-4 flex items-center gap-1 text-overline uppercase text-primary opacity-0 transition-opacity group-hover:opacity-100" aria-hidden>
                   Learn more <ArrowRight className="h-3 w-3" />
-                </div>
+                </span>
               </Card>
             </Link>
           </StaggerItem>
@@ -154,44 +144,49 @@ function WhatWeDo() {
 
 function DGSpotlight() {
   return (
-    <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-labelledby="dg-heading">
-      <AnimatedSection className="flex items-center gap-3 mb-7 pb-4 border-b border-border">
-        <div className="w-1 h-6 rounded-full bg-[#fea600]" aria-hidden />
-        <h2 id="dg-heading" className="text-lg font-black uppercase tracking-wide text-foreground">Leadership Spotlight</h2>
-      </AnimatedSection>
+    <section className="section section-y" aria-labelledby="dg-heading">
+      <SectionHeading
+        id="dg-heading"
+        eyebrow="Leadership"
+        title="From the Director-General"
+      />
 
       <AnimatedSection>
-        <Card className="overflow-hidden border-border hover:shadow-xl transition-all duration-500">
-          <div className="grid md:grid-cols-3">
-            <div className="relative bg-gradient-to-br from-[#001506] to-[#009f3b]/40 overflow-hidden h-72 sm:h-96 md:h-72 md:aspect-auto lg:h-96 rounded-md m-4">
+        <Card className="overflow-hidden p-0 transition-shadow duration-500 hover:shadow-3">
+          <div className="grid md:grid-cols-5">
+            <div className="relative h-72 overflow-hidden bg-nfvcb-dark sm:h-96 md:col-span-2 md:h-full md:min-h-80">
               <Image
                 src="/management_staff/dr_shaibu.webp"
                 alt="Dr. Shaibu Husseini, Director-General of NFVCB"
                 fill
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 100vw, 40vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" aria-hidden />
-              <div className="absolute left-4 bottom-4 z-10">
-                <p className="text-white font-bold text-sm">Dr. Shaibu Husseini</p>
-                <p className="text-[#fea600] text-xs font-semibold">Director-General, NFVCB</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-nfvcb-dark via-nfvcb-dark/20 to-transparent" aria-hidden />
+              <div className="absolute inset-x-0 bottom-0 z-10 p-5">
+                <p className="text-h4 font-bold text-white">Dr. Shaibu Husseini</p>
+                <p className="text-caption font-semibold text-accent">Director-General, NFVCB</p>
               </div>
             </div>
 
-            <div className="md:col-span-2 p-7 sm:p-9 flex flex-col justify-center">
-              <Sparkles className="h-6 w-6 text-[#fea600] mb-4" aria-hidden />
+            <div className="flex flex-col justify-center p-7 sm:p-9 md:col-span-3">
+              <Quote className="mb-4 h-7 w-7 text-accent" aria-hidden />
               <figure>
-                <blockquote className="text-base sm:text-lg font-semibold text-foreground leading-relaxed mb-5 italic text-balance">
+                <blockquote className="text-body-lg font-semibold leading-relaxed text-balance text-foreground">
                   &ldquo;Nigeria&apos;s film regulatory framework can rank among the best in the world.
                   We have the talent, the legislation, and now the strategy. NFVCB is determined to
                   reduce bureaucracy, embrace technology, and make our services accessible to every
                   stakeholder across Nigeria.&rdquo;
                 </blockquote>
-                <figcaption className="text-sm text-muted-foreground mb-1">
-                  <strong className="text-foreground">Dr. Shaibu Husseini</strong> — Chair, AMAA Selection Committee (16 yrs) · Oxford Blavatnik Alumni · Golden Globes Voter
+                <figcaption className="mt-5 text-caption text-muted-foreground">
+                  <strong className="text-foreground">Dr. Shaibu Husseini</strong> — Chair, AMAA Selection
+                  Committee (16 yrs) · Oxford Blavatnik Alumni · Golden Globes Voter
                 </figcaption>
               </figure>
-              <Link href="/management" className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline uppercase tracking-wider">
+              <Link
+                href="/management"
+                className="mt-6 inline-flex items-center gap-2 text-overline uppercase text-primary transition-all hover:gap-3"
+              >
                 Full Profile <ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </Link>
             </div>

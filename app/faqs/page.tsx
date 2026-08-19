@@ -217,10 +217,10 @@ export default function FaqsPage() {
 
         {/* Hero */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#009f3b]/10 mb-5">
-            <HelpCircle className="h-7 w-7 text-[#009f3b]" aria-hidden />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-5">
+            <HelpCircle className="h-7 w-7 text-primary" aria-hidden />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h1 className="text-h1 font-black text-foreground mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
@@ -234,7 +234,7 @@ export default function FaqsPage() {
           {faqs.map((section) => (
             <section key={section.category}>
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-1 h-6 rounded-full bg-[#009f3b]" aria-hidden />
+                <div className="w-1 h-6 rounded-full bg-primary" aria-hidden />
                 <h2 className="text-base font-black uppercase tracking-wide text-foreground">
                   {section.category}
                 </h2>
@@ -249,7 +249,7 @@ export default function FaqsPage() {
         </div>
 
         {/* Footer note */}
-        <div className="mt-16 rounded-2xl border border-[#009f3b]/25 bg-[#009f3b]/5 px-6 py-5 text-center">
+        <div className="mt-16 rounded-2xl border border-primary/25 bg-primary/5 px-6 py-5 text-center">
           <p className="text-sm text-muted-foreground leading-relaxed">
             The abridged information above has been extracted from the{" "}
             <span className="font-semibold text-foreground">
@@ -260,7 +260,7 @@ export default function FaqsPage() {
               href="https://www.nfvcb.gov.ng"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#009f3b] font-medium hover:underline"
+              className="text-primary font-medium hover:underline"
             >
               www.nfvcb.gov.ng
             </a>

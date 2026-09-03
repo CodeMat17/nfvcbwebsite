@@ -14,6 +14,7 @@ const footerLinks = {
     { label: "Industry Information", href: "/industry" },
     { label: "Licensing", href: "/industry/licensing" },
     { label: "Film Classification", href: "/industry#classification" },
+    { label: "Associations & Guilds", href: "/industry-bodies" },
     { label: "Service Charter", href: "/service-charter" },
     { label: "8-Point Action Plan", href: "/action-plan" },
   ],

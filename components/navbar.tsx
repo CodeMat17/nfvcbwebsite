@@ -40,6 +40,7 @@ const navLinks: NavLink[] = [
       { label: "Industry Information", href: "/industry", desc: "Submitting films for classification" },
       { label: "Licensing", href: "/industry/licensing", desc: "Distributor and exhibitor licences" },
       { label: "Payment Guide", href: "/payment-guide", desc: "Fees and how to pay" },
+      { label: "Associations & Guilds", href: "/industry-bodies", desc: "Registered industry bodies" },
       { label: "Service Charter", href: "/service-charter", desc: "What to expect from us" },
     ],
   },

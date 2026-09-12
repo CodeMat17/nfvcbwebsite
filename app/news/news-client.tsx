@@ -195,7 +195,7 @@ export default function NewsClient({ items }: Props) {
                           <CardDescription className="line-clamp-2 text-xs mb-3">
                             {item.excerpt}
                           </CardDescription>
-                          <div className="flex items-center justify-between text-overline text-muted-foreground">
+                          <div className="flex flex-col gap-1 text-overline text-muted-foreground">
                             <span>{item.author ?? "NFVCB"}</span>
                             <span>
                               {new Date(itemDate(item)).toLocaleDateString("en-NG", {

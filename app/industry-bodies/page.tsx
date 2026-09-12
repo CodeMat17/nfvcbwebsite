@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/animated-section";
 import { Building2 } from "lucide-react";
 import { industryBodies } from "./data";
@@ -32,25 +31,36 @@ export const metadata: Metadata = {
 export default function IndustryBodiesPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-nfvcb-dark py-24">
+      {/* ── Hero ──────────────────────────────────────────────────────────────
+          Dark brand ground with the Board's mark ghosted behind it, plus a soft
+          green wash so the panel reads as lit rather than flat black. */}
+      <section className="film-grain relative overflow-hidden bg-nfvcb-dark py-20 sm:py-28">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.04]"
           aria-hidden
         >
-          <Image src="/logo.webp" alt="" fill className="object-cover object-center" />
+          <Image
+            src="/logo.webp"
+            alt=""
+            fill
+            className="object-cover object-center"
+          />
         </div>
+        <div
+          className="pointer-events-none absolute -top-1/3 left-1/2 size-[36rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl"
+          aria-hidden
+        />
         <div className="section relative z-10">
           <AnimatedSection>
-            <Badge className="mb-4 border-primary/30 bg-primary/20 text-primary">
-              Industry Directory
-            </Badge>
-            <h1 className="text-h1 mb-4 font-black text-white">
-              Registered Professional Associations/Guilds
+            <p className="eyebrow mb-5 text-nfvcb-gold">Industry Directory</p>
+            <h1 className="text-h1 mb-5 max-w-4xl font-black text-balance text-white">
+              Registered Professional Associations &amp; Guilds
             </h1>
-            <p className="max-w-2xl text-lg text-white/60">
-              The associations and guilds below are registered with the National Film and Video
-              Censors Board and represent practitioners across acting, directing, production,
-              distribution, exhibition and film education nationwide.
+            <p className="max-w-2xl text-body-lg text-white/65">
+              The associations and guilds below are registered with the National
+              Film and Video Censors Board and represent practitioners across
+              acting, directing, production, distribution, exhibition and film
+              education nationwide.
             </p>
           </AnimatedSection>
         </div>
@@ -58,15 +68,17 @@ export default function IndustryBodiesPage() {
 
       <div className="section space-y-10 py-14">
         <AnimatedSection>
-          <div className="inline-flex items-center gap-4 rounded-xl border border-border/70 bg-card px-5 py-4">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary/10">
-              <Building2 className="h-5 w-5 text-primary" />
+          <div className="inline-flex items-center gap-4 rounded-xl bg-card px-5 py-4 shadow-1 ring-1 ring-foreground/10">
+            <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-primary/10">
+              <Building2 className="size-5 text-primary" aria-hidden />
             </span>
             <div>
-              <p className="text-2xl font-black leading-none text-foreground">
+              <p className="text-h2 font-black leading-none tabular-nums text-foreground">
                 {industryBodies.length}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">Registered bodies</p>
+              <p className="mt-1.5 text-overline uppercase text-muted-foreground">
+                Registered bodies
+              </p>
             </div>
           </div>
         </AnimatedSection>
@@ -74,10 +86,11 @@ export default function IndustryBodiesPage() {
         <BodiesDirectory bodies={industryBodies} />
 
         <AnimatedSection>
-          <p className="rounded-xl border border-border/70 bg-muted/40 p-5 text-xs leading-relaxed text-muted-foreground">
-            Contact details are provided by the associations themselves and are published for the
-            convenience of practitioners and the public. If your guild&apos;s details have changed,
-            please write to the Board so this directory can be updated.
+          <p className="rounded-xl border-l-2 border-accent bg-muted/40 p-5 text-caption leading-relaxed text-muted-foreground">
+            Contact details are provided by the associations themselves and are
+            published for the convenience of practitioners and the public. If
+            your guild&apos;s details have changed, please write to the Board so
+            this directory can be updated.
           </p>
         </AnimatedSection>
       </div>

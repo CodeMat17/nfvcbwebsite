@@ -29,7 +29,7 @@ export function SeniorManagementSection() {
     <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {staff.map(({ _id, name, designation, imageUrl }) => (
         <StaggerItem key={_id}>
-          <Card className="overflow-hidden border-primary/20 py-0 hover:shadow-md transition-all hover:border-primary/40 hover:-translate-y-0.5">
+          <Card className="overflow-hidden border-primary/20 py-0 hover:shadow-2 transition-all hover:border-primary/40 hover:-translate-y-0.5">
             <div className="relative h-96 bg-gradient-to-br from-nfvcb-dark to-primary/40 overflow-hidden">
               {imageUrl ? (
                 <Image src={imageUrl} alt={name} fill className="object-cover object-top" />

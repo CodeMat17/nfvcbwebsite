@@ -102,7 +102,7 @@ export default function LawEnforcementPage() {
       <div className="section py-16 space-y-14">
         {/* Major infringements */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-3 flex items-center gap-2">
+          <h2 className="text-h3 font-bold text-foreground mb-3 flex items-center gap-2">
             <ShieldAlert className="h-6 w-6 text-destructive" /> Major Areas of Infringement
           </h2>
           <p className="text-muted-foreground text-sm mb-6">
@@ -120,7 +120,7 @@ export default function LawEnforcementPage() {
 
         {/* All infringements */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6">All Types of Infringements</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-6">All Types of Infringements</h2>
           <StaggerContainer className="grid sm:grid-cols-2 gap-3">
             {infringements.map((item, i) => (
               <StaggerItem key={i}>

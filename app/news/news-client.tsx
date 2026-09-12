@@ -102,7 +102,7 @@ export default function NewsClient({ items }: Props) {
               Featured Story
             </h2>
             <Link href={`/news/${featured.slug}`} className="group block">
-              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-400 hover:-translate-y-1 py-0">
+              <Card className="overflow-hidden hover:shadow-4 transition-all duration-400 hover:-translate-y-1 py-0">
                 <div className="grid lg:grid-cols-2">
                   <div className="relative h-64 lg:h-auto min-h-56 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center overflow-hidden">
                     {featured.coverImageUrl ? (
@@ -128,7 +128,7 @@ export default function NewsClient({ items }: Props) {
                     <Badge className={`w-fit mb-3 text-xs ${categoryColor(featured.category)}`}>
                       {categoryLabel(featured.category)}
                     </Badge>
-                    <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors mb-4 leading-snug text-balance">
+                    <h3 className="text-h3 font-bold text-foreground group-hover:text-primary transition-colors mb-4 leading-snug text-balance">
                       {featured.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed mb-6">{featured.excerpt}</p>
@@ -163,7 +163,7 @@ export default function NewsClient({ items }: Props) {
                 {rest.map((item) => (
                   <StaggerItem key={item._id}>
                     <Link href={`/news/${item.slug}`} className="group block h-full">
-                      <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
+                      <Card className="h-full overflow-hidden hover:shadow-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
                         <div className="relative h-44 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center overflow-hidden">
                           {item.coverImageUrl ? (
                             <Image

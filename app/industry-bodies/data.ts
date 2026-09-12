@@ -304,3 +304,45 @@ export const industryBodies: IndustryBody[] = [
     emails: [],
   },
 ];
+
+/* ── Location derivation ────────────────────────────────────────────────────
+   Addresses are free text supplied by the guilds, so the state a body is based
+   in has to be inferred rather than read off a field. The map below is keyed by
+   the cities and states that actually appear in `industryBodies` — it is a
+   lookup for this dataset, not a general Nigerian gazetteer. Order matters:
+   the first key found in the address wins, so city names that imply a state
+   (Ikeja → Lagos) must precede the bare state names they resolve to. */
+const LOCATION_HINTS: ReadonlyArray<readonly [needle: string, state: string]> = [
+  ["ikeja", "Lagos"],
+  ["lekki", "Lagos"],
+  ["surulere", "Lagos"],
+  ["iganmu", "Lagos"],
+  ["egbeda", "Lagos"],
+  ["onitsha", "Anambra"],
+  ["ibadan", "Oyo"],
+  ["asaba", "Delta"],
+  ["otuoke", "Bayelsa"],
+  ["abuja", "FCT"],
+  ["lagos", "Lagos"],
+  ["kano", "Kano"],
+  ["oyo", "Oyo"],
+  ["delta", "Delta"],
+  ["bayelsa", "Bayelsa"],
+  ["anambra", "Anambra"],
+];
+
+/** Best-effort state for a body, from its first address. "Other" when unknown. */
+export function stateOf(body: IndustryBody): string {
+  const haystack = body.addresses.join(" ").toLowerCase();
+  for (const [needle, state] of LOCATION_HINTS) {
+    if (haystack.includes(needle)) return state;
+  }
+  return "Other";
+}
+
+/** Every state present in the directory, alphabetical, for the filter control. */
+export function statesInDirectory(bodies: IndustryBody[]): string[] {
+  const seen = new Set(bodies.map(stateOf));
+  const known = [...seen].filter((s) => s !== "Other").sort();
+  return seen.has("Other") ? [...known, "Other"] : known;
+}

@@ -156,7 +156,7 @@ export default function ClassificationsPage() {
         <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {filmFees.map(({ item, runtime, local, english, foreign }) => (
             <StaggerItem key={item}>
-              <Card className="h-full border-border hover:shadow-md transition-shadow hover:border-primary/30">
+              <Card className="h-full border-border hover:shadow-2 transition-shadow hover:border-primary/30">
                 <CardHeader className="pb-2 pt-5 px-5">
                   <div className="flex items-center justify-between mb-1">
                     <Badge className="bg-primary/10 text-primary border-primary/20 border text-sm font-bold text-center">
@@ -229,7 +229,7 @@ export default function ClassificationsPage() {
             { label: "Foreign Film Trailer", amount: "₦7,500", color: "text-primary", ring: "border-primary/20 bg-primary/5" },
           ].map(({ label, amount, color, ring }) => (
             <StaggerItem key={label}>
-              <Card className={`border ${ring} hover:shadow-md transition-shadow`}>
+              <Card className={`border ${ring} hover:shadow-2 transition-shadow`}>
                 <CardContent className="flex flex-col items-center text-center gap-3 py-7">
                   <Clapperboard className={`h-7 w-7 ${color}`} aria-hidden />
                   <p className="text-sm font-semibold text-muted-foreground">{label}</p>
@@ -258,7 +258,7 @@ export default function ClassificationsPage() {
         <StaggerContainer className="grid sm:grid-cols-3 gap-4 mb-16">
           {otherFees.map(({ category, note }) => (
             <StaggerItem key={category}>
-              <Card className="h-full border-border hover:shadow-md transition-shadow hover:border-primary/30">
+              <Card className="h-full border-border hover:shadow-2 transition-shadow hover:border-primary/30">
                 <CardContent className="flex flex-col gap-3 py-6 px-5 h-full">
                   <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                     <Receipt className="h-4 w-4 text-primary" aria-hidden />
@@ -402,7 +402,7 @@ export default function ClassificationsPage() {
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {symbols.map(({ src, label, title, description }) => (
             <StaggerItem key={label}>
-              <div className="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center gap-4 h-full hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center gap-4 h-full hover:shadow-2 transition-shadow">
                 <div className="relative w-24 h-24 shrink-0">
                   <Image
                     src={src}

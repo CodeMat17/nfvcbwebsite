@@ -124,7 +124,7 @@ export default function ManagementPage() {
               <div className="p-8 md:p-10 lg:p-12 flex flex-col justify-center gap-5">
                 <div className="hidden md:block">
                   <Badge className="bg-accent text-nfvcb-dark font-bold mb-3">Executive Director / CEO</Badge>
-                  <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">Dr. Shaibu Husseini</h2>
+                  <h2 className="text-h1 font-bold text-white leading-tight">Dr. Shaibu Husseini</h2>
                   <p className="text-white/50 text-sm mt-1">PhD, Mass Communication · MNIPR · RPA · FTA · FGOND</p>
                 </div>
 
@@ -149,7 +149,7 @@ export default function ManagementPage() {
                 <div className="pt-2">
                   <Link
                     href="/executive-director"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent hover:bg-accent/90 text-nfvcb-dark font-semibold text-sm transition-all duration-200 shadow-lg shadow-[var(--accent)]/20"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent hover:bg-accent/90 text-nfvcb-dark font-semibold text-sm transition-all duration-200 shadow-3 shadow-[var(--accent)]/20"
                   >
                     Full Profile & Achievements
                     <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -162,7 +162,7 @@ export default function ManagementPage() {
 
         {/* Senior Management */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-8">Senior Management</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-8">Senior Management</h2>
           <SeniorManagementSection />
         </AnimatedSection>
 

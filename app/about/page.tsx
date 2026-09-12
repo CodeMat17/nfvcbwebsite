@@ -96,7 +96,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
               <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">Our History</Badge>
-              <h2 className="text-3xl font-bold text-foreground mb-6">
+              <h2 className="text-h2 font-bold text-foreground mb-6">
                 Nigeria&apos;s Film Regulatory Legacy
               </h2>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 { year: "2010s", event: "Digital content regulation introduced" },
                 { year: "2020s", event: "Streaming & online distribution licensing" },
               ].map(({ year, event }) => (
-                <Card key={year} className="p-5 hover:shadow-md transition-all hover:border-primary/30">
+                <Card key={year} className="p-5 hover:shadow-2 transition-all hover:border-primary/30">
                   <div className="text-2xl font-bold text-primary mb-2">{year}</div>
                   <p className="text-sm text-muted-foreground">{event}</p>
                 </Card>
@@ -141,7 +141,7 @@ export default function AboutPage() {
               <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center mb-5">
                 <Target className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Mission Statement</h3>
+              <h3 className="text-h4 font-bold text-foreground mb-3">Mission Statement</h3>
               <p className="text-muted-foreground leading-relaxed italic text-lg">
                 &ldquo;To contribute to the positive transformation of the Nigerian society through
                 the censorship of films and video works whilst balancing the need to preserve
@@ -154,7 +154,7 @@ export default function AboutPage() {
               <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-5">
                 <Eye className="h-6 w-6 text-nfvcb-dark" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">Our Vision</h3>
+              <h3 className="text-h4 font-bold text-foreground mb-3">Our Vision</h3>
               <p className="text-muted-foreground leading-relaxed italic text-lg">
                 &ldquo;To be recognized as a world-class film and video regulatory agency that
                 institutes best practice in the discharge of its duties.&rdquo;
@@ -165,7 +165,7 @@ export default function AboutPage() {
 
         {/* Functions */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Functions of the Board</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-6">Functions of the Board</h2>
           <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 items-stretch">
             {functions.map((fn, i) => (
               <StaggerItem key={i} className="h-full">
@@ -180,14 +180,14 @@ export default function AboutPage() {
 
         {/* Vision & Goals */}
         <AnimatedSection id="vision" className="scroll-mt-20">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Vision &amp; Goals</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-2">Vision &amp; Goals</h2>
           <p className="text-muted-foreground mb-6">
             Our strategic goals guide every aspect of NFVCB&apos;s operations.
           </p>
           <StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
             {goals.map((goal, i) => (
               <StaggerItem key={i} className="h-full">
-                <div className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border hover:shadow-sm hover:border-primary/20 transition-all h-full">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border hover:shadow-1 hover:border-primary/20 transition-all h-full">
                   <div className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 text-xs font-bold">
                     {i + 1}
                   </div>
@@ -207,7 +207,7 @@ export default function AboutPage() {
             </div>
             <div className="relative z-10 p-8 sm:p-12">
               <Badge className="mb-4 bg-accent/20 text-accent border-accent/30">Our Philosophy</Badge>
-              <h2 className="text-2xl font-bold text-white mb-6">
+              <h2 className="text-h3 font-bold text-white mb-6">
                 Principles Guiding Film Classification
               </h2>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -226,7 +226,7 @@ export default function AboutPage() {
 
         {/* CTA */}
         <AnimatedSection className="text-center">
-          <h3 className="text-xl font-semibold text-foreground mb-4">
+          <h3 className="text-h4 font-semibold text-foreground mb-4">
             Learn More About NFVCB
           </h3>
           <div className="flex flex-wrap justify-center gap-4">

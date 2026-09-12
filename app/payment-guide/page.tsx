@@ -376,7 +376,7 @@ function StepCard({
 }) {
   const Icon = step.icon;
   return (
-    <Card className="border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+    <Card className="border-border hover:border-primary/30 hover:shadow-3 transition-all duration-300">
       <CardHeader className="pb-3">
         <div className="flex items-center gap-3">
           <div
@@ -444,7 +444,7 @@ export default function PaymentGuidePage() {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
               1
             </div>
-            <h2 className="text-2xl font-bold text-foreground">Part 1 — Generate Your Bill</h2>
+            <h2 className="text-h3 font-bold text-foreground">Part 1 — Generate Your Bill</h2>
           </div>
           <StaggerContainer className="space-y-4">
             {part1Steps.map((step) => (
@@ -461,7 +461,7 @@ export default function PaymentGuidePage() {
             <div className="w-8 h-8 rounded-lg bg-nfvcb-dark border border-primary/40 flex items-center justify-center text-primary text-sm font-bold shrink-0">
               2
             </div>
-            <h2 className="text-2xl font-bold text-foreground">Part 2 — Make Payment</h2>
+            <h2 className="text-h3 font-bold text-foreground">Part 2 — Make Payment</h2>
           </div>
           <StaggerContainer className="space-y-4">
             {part2Steps.map((step) => (
@@ -478,14 +478,14 @@ export default function PaymentGuidePage() {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-bold shrink-0">
               ₦
             </div>
-            <h2 className="text-2xl font-bold text-foreground">Pay Your Bill Online</h2>
+            <h2 className="text-h3 font-bold text-foreground">Pay Your Bill Online</h2>
           </div>
           <RevOpPaymentWidget />
         </AnimatedSection> */}
 
         {/* Key Reminders */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Key Reminders</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-6">Key Reminders</h2>
           <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {reminders.map(({ icon: Icon, color, bg, title, desc }) => (
               <StaggerItem key={title}>

@@ -207,7 +207,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       key={r._id}
                       href={`/news/${r.slug}`}
                       className='group block'>
-                      <Card className='overflow-hidden hover:shadow-md transition-all hover:border-primary/30'>
+                      <Card className='overflow-hidden hover:shadow-2 transition-all hover:border-primary/30'>
                         <CardContent className='p-4 flex gap-3'>
                           <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-nfvcb-dark to-primary/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
                             {r.coverImageUrl ? (

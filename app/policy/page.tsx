@@ -229,7 +229,7 @@ export default function PolicyPage() {
 
         {/* Four Main Considerations */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6" id="considerations">
+          <h2 className="text-h3 font-bold text-foreground mb-6" id="considerations">
             Four Main Considerations
           </h2>
           <StaggerContainer className="grid sm:grid-cols-2 gap-4">
@@ -248,7 +248,7 @@ export default function PolicyPage() {
 
         {/* Censorship Criteria */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-3" id="criteria">
+          <h2 className="text-h3 font-bold text-foreground mb-3" id="criteria">
             Censorship Criteria — Section 37, NFVCB Decree No.85 of 1993
           </h2>
           <p className="text-muted-foreground mb-6">
@@ -278,7 +278,7 @@ export default function PolicyPage() {
 
         {/* Classification Ratings */}
         <AnimatedSection id="categories">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Classification Rating System</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-2">Classification Rating System</h2>
           <p className="text-muted-foreground mb-6">
             All films and video works approved by the NFVCB are assigned one of the following
             classification symbols, which must be prominently displayed on all promotional materials

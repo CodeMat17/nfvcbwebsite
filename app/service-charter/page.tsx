@@ -151,11 +151,11 @@ export default function ServiceCharterPage() {
 
         {/* Our Clients */}
         <AnimatedSection>
-          <h2 className='text-2xl font-bold text-foreground mb-5'>
+          <h2 className='text-h3 font-bold text-foreground mb-5'>
             Who This Charter Serves
           </h2>
           <div className='grid sm:grid-cols-2 gap-4'>
-            <Card className='p-6 hover:shadow-md transition-all hover:border-primary/30'>
+            <Card className='p-6 hover:shadow-2 transition-all hover:border-primary/30'>
               <div className='w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4'>
                 <Building2 className='h-5 w-5 text-primary' />
               </div>
@@ -167,7 +167,7 @@ export default function ServiceCharterPage() {
                 video works, and computer games censored/classified.
               </p>
             </Card>
-            <Card className='p-6 hover:shadow-md transition-all hover:border-primary/30'>
+            <Card className='p-6 hover:shadow-2 transition-all hover:border-primary/30'>
               <div className='w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4'>
                 <Users className='h-5 w-5 text-accent' />
               </div>

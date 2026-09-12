@@ -64,7 +64,7 @@ export default function LicensingPage() {
 
       <div className="section py-16 space-y-12">
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-2">Licence Categories</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-2">Licence Categories</h2>
           <p className="text-sm text-muted-foreground mb-8">
             Browse all licence categories below. Click <strong className="text-foreground">View Requirements</strong> on any card to see the full application checklist and fee breakdown.
           </p>

@@ -60,7 +60,7 @@ export function FilmOfTheMonth() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black aspect-video">
+          <div className="relative w-full rounded-2xl overflow-hidden shadow-4 bg-black aspect-video">
             <iframe
               src={film.trailerUrl}
               title={`${film.title} — Official Trailer`}
@@ -79,7 +79,7 @@ export function FilmOfTheMonth() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          <Card className="flex-1 relative overflow-hidden border-accent/30 hover:shadow-xl transition-all duration-500">
+          <Card className="flex-1 relative overflow-hidden border-accent/30 hover:shadow-4 transition-all duration-500">
             {/* Top accent */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary" />
 
@@ -137,7 +137,7 @@ export function FilmOfTheMonth() {
 
               <Link
                 href={`/approved-movies/${post.slug}`}
-                className="mt-1 inline-flex items-center justify-center gap-2 w-full py-2.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-3"
+                className="mt-1 inline-flex items-center justify-center gap-2 w-full py-2.5 bg-primary hover:bg-primary/90 text-white text-xs font-bold rounded-xl transition-all hover:-translate-y-0.5 hover:shadow-3 hover:shadow-3"
               >
                 View Full Approval Details <ArrowRight className="h-3.5 w-3.5" />
               </Link>

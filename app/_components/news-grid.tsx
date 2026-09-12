@@ -41,7 +41,7 @@ export function NewsUpdate() {
           <div className=" flex flex-col gap-5">
             <AnimatedSection>
               <Link href={`/news/${featured.slug}`} className="group block">
-                <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-border pt-0">
+                <Card className="overflow-hidden hover:shadow-4 transition-all duration-500 hover:-translate-y-1 border-border pt-0">
                   <div className="relative h-56 sm:h-72 overflow-hidden bg-linear-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark">
                     {featured.coverImageUrl ? (
                       <Image

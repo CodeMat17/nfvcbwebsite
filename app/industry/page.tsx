@@ -108,12 +108,12 @@ export default function IndustryPage() {
       <div className="section py-16 space-y-16">
         {/* Services */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6">Our Services</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-6">Our Services</h2>
           <StaggerContainer className="grid sm:grid-cols-3 gap-6">
             {services.map(({ icon: Icon, title, description, href, badge, badgeColor }) => (
               <StaggerItem key={title}>
                 <Link href={href} className="group block h-full">
-                  <Card className="h-full p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 cursor-pointer">
+                  <Card className="h-full p-6 hover:shadow-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 cursor-pointer">
                     <Badge className={`${badgeColor} border-0 text- mb-2`}>{badge}</Badge>
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary transition-colors">
                       <Icon className="h-6 w-6 text-primary group-hover:text-white transition-colors" />
@@ -132,7 +132,7 @@ export default function IndustryPage() {
 
         {/* Submission Process */}
         <AnimatedSection>
-          <h2 className="text-2xl font-bold text-foreground mb-6">How to Submit for Classification</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-6">How to Submit for Classification</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {submissionProcess.map(({ step, title, desc }) => (
               <div key={step} className="flex items-start gap-4 p-5 rounded-xl bg-muted/30 border border-border hover:border-primary/30 transition-colors">
@@ -170,7 +170,7 @@ export default function IndustryPage() {
 
         {/* Forms */}
         <AnimatedSection id="forms">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Downloadable Forms</h2>
+          <h2 className="text-h3 font-bold text-foreground mb-2">Downloadable Forms</h2>
           <p className="text-muted-foreground mb-8">
             Download the appropriate form for your submission or application. All forms are in PDF format.
           </p>
@@ -195,7 +195,7 @@ export default function IndustryPage() {
                 <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                   {categoryForms.map(({ name, href }) => (
                     <StaggerItem key={name}>
-                      <Card className="group p-5 flex flex-col gap-4 hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200 h-full">
+                      <Card className="group p-5 flex flex-col gap-4 hover:shadow-2 hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200 h-full">
                         <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0">
                           <span className="text-overline font-bold text-destructive">PDF</span>
                         </div>
@@ -226,7 +226,7 @@ export default function IndustryPage() {
               <Badge className="mb-4 bg-accent/20 text-accent border-accent/30">
                 Get Licensed
               </Badge>
-              <h2 className="text-2xl font-bold text-white mb-3">Ready to Apply for a Licence?</h2>
+              <h2 className="text-h3 font-bold text-white mb-3">Ready to Apply for a Licence?</h2>
               <p className="text-white/60 mb-6 max-w-xl mx-auto text-sm">
                 NFVCB licenses exhibitors, exhibition premises, mobile exhibitors, online exhibitors,
                 and distributors across five categories. Find the right framework for your business

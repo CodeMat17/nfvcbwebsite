@@ -113,7 +113,7 @@ export function ClassificationPanel() {
           href="/classification"
           className="flex items-center gap-1 text-caption font-semibold text-primary transition-all hover:gap-2"
         >
-          All ratings <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+          All ratings 
         </Link>
       </div>
     </div>

@@ -79,7 +79,7 @@ export default function ExecutiveDirectorPage() {
             <motion.h1
               initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="font-playfair text-[2.6rem] sm:text-5xl md:text-8xl lg:text-[96px] font-bold text-white leading-[0.95] tracking-tight"
+              className="text-display font-playfair font-bold text-white"
             >
               Dr. Shaibu
               <br />
@@ -98,7 +98,7 @@ export default function ExecutiveDirectorPage() {
               className="mt-9 flex flex-wrap items-center gap-4"
             >
               <a href="#achievements"
-                className="group inline-flex items-center gap-2 px-3 sm:px-6 py-3 rounded-full bg-accent hover:bg-accent text-black font-semibold text-sm transition-all duration-200 shadow-xl shadow-accent/30">
+                className="group inline-flex items-center gap-2 px-3 sm:px-6 py-3 rounded-full bg-accent hover:bg-accent text-black font-semibold text-sm transition-all duration-200 shadow-4 shadow-accent/30">
                 Key Achievements
                 <ArrowUpRight size={15} className="hidden sm:block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
@@ -151,7 +151,7 @@ export default function ExecutiveDirectorPage() {
             <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-5">
               <Sparkles size={12} /> About
             </div>
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight max-w-2xl">
+            <h2 className="text-h1 font-playfair font-bold leading-[1.1] tracking-tight max-w-2xl">
               A life dedicated to<br />
               <span className="text-accent">culture & film</span>
             </h2>
@@ -255,7 +255,7 @@ export default function ExecutiveDirectorPage() {
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-accent mb-2">
                 What colleagues & friends say
               </p>
-              <h3 className="font-playfair text-2xl md:text-3xl font-bold">In Their Own Words</h3>
+              <h3 className="text-h2 font-playfair font-bold">In Their Own Words</h3>
             </div>
           </FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -292,7 +292,7 @@ export default function ExecutiveDirectorPage() {
               },
             ].map((item, i) => (
               <FadeIn key={i} delay={(i % 3) * 0.1}>
-                <div className="group h-full p-7 rounded-2xl border border-border/60 hover:border-accent/40 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="group h-full p-7 rounded-2xl border border-border/60 hover:border-accent/40 bg-card hover:shadow-4 hover:-translate-y-1 transition-all duration-300">
                   <Quote size={20} className="text-accent/50 mb-4 flex-shrink-0" />
                   <p className="text-sm leading-relaxed text-foreground/80 italic mb-5 flex-1">&ldquo;{item.quote}&rdquo;</p>
                   <div className="pt-4 border-t border-border/60">
@@ -331,7 +331,7 @@ export default function ExecutiveDirectorPage() {
                 <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <GraduationCap size={12} /> Education
                 </div>
-                <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1]">Academic Excellence</h2>
+                <h2 className="text-h1 font-playfair font-bold leading-[1.1]">Academic Excellence</h2>
               </div>
               <p className="text-muted-foreground max-w-sm leading-relaxed">A foundation of rigorous scholarship in Mass Communication, culminating in doctoral research on Nollywood.</p>
             </div>
@@ -344,13 +344,13 @@ export default function ExecutiveDirectorPage() {
               { degree: "PhD", field: "Mass Communication", school: "University of Lagos", thesis: "Structure of Film Production Companies in Nollywood", short: "UNILAG", num: "03" },
             ].map((edu, i) => (
               <FadeIn key={i} delay={i * 0.12}>
-                <div className="group relative h-full p-8 rounded-2xl border border-border/60 hover:border-accent/50 bg-card hover:shadow-2xl hover:shadow-accent/5 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+                <div className="group relative h-full p-8 rounded-2xl border border-border/60 hover:border-accent/50 bg-card hover:shadow-4 hover:shadow-accent/5 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
                   <div className="absolute top-6 right-6 font-playfair text-5xl font-bold text-border/60 dark:text-white/5 group-hover:text-accent/15 transition-colors duration-300 select-none">
                     {edu.num}
                   </div>
                   <div className="relative">
                     <p className="text-xs font-bold text-accent uppercase tracking-[0.15em] mb-3">{edu.field}</p>
-                    <h3 className="font-playfair text-2xl font-bold leading-tight mb-1">{edu.degree}</h3>
+                    <h3 className="text-h3 font-playfair font-bold leading-tight mb-1">{edu.degree}</h3>
                     <p className="text-muted-foreground text-sm">{edu.school}</p>
                     {edu.thesis && (
                       <div className="mt-5 pt-5 border-t border-border/60">
@@ -380,7 +380,7 @@ export default function ExecutiveDirectorPage() {
                       <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                       Current Position
                     </div>
-                    <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    <h2 className="text-h1 font-playfair font-bold text-white leading-tight">
                       Executive Director / CEO<br />
                       <span className="text-white/80">NFVCB, Nigeria</span>
                     </h2>
@@ -389,7 +389,7 @@ export default function ExecutiveDirectorPage() {
                     </p>
                   </div>
                   <a href="https://www.nfvcb.gov.ng" target="_blank" rel="noopener noreferrer"
-                    className="group flex-shrink-0 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 transition-all duration-200 shadow-2xl">
+                    className="group flex-shrink-0 inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-white/90 transition-all duration-200 shadow-4">
                     nfvcb.gov.ng
                     <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </a>
@@ -408,7 +408,7 @@ export default function ExecutiveDirectorPage() {
               <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                 <Briefcase size={12} /> Career History
               </div>
-              <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1]">Three Decades of<br />Distinguished Service</h2>
+              <h2 className="text-h1 font-playfair font-bold leading-[1.1]">Three Decades of<br />Distinguished Service</h2>
             </div>
           </FadeIn>
 
@@ -455,7 +455,7 @@ export default function ExecutiveDirectorPage() {
                 <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <Film size={12} /> Film Industry
                 </div>
-                <h2 className="font-playfair text-4xl md:text-5xl font-bold text-white leading-[1.1]">A Pillar of<br />African Cinema</h2>
+                <h2 className="text-h1 font-playfair font-bold text-white leading-[1.1]">A Pillar of<br />African Cinema</h2>
               </div>
               <p className="text-white/45 max-w-xs leading-relaxed text-sm">
                 Described as <span className="text-white/70 italic">&ldquo;one of the most consistent documentarists of Nollywood&rdquo;</span>
@@ -496,7 +496,7 @@ export default function ExecutiveDirectorPage() {
                 <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <BookOpen size={12} /> Publications
                 </div>
-                <h2 className="font-playfair text-3xl md:text-4xl font-bold">Academic & Literary Work</h2>
+                <h2 className="text-h1 font-playfair font-bold">Academic & Literary Work</h2>
               </FadeIn>
               <div className="space-y-5">
                 {[
@@ -504,11 +504,11 @@ export default function ExecutiveDirectorPage() {
                   { year: "2024", type: "NFVCB Publications", title: "Three Decades of Film Classification", desc: "Contributed to three landmark NFVCB publications marking the board's 30th anniversary, covering Nigeria's classified and censored films." },
                 ].map((pub, i) => (
                   <FadeIn key={i} direction="left" delay={i * 0.1}>
-                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-accent/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card">
+                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-accent/50 hover:shadow-4 hover:-translate-y-1 transition-all duration-300 bg-card">
                       <div className="flex items-start justify-between mb-4">
                         <span className="text-xs font-bold text-accent uppercase tracking-wider">{pub.type} · {pub.year}</span>
                       </div>
-                      <h3 className="font-playfair text-xl font-bold leading-snug mb-3">{pub.title}</h3>
+                      <h3 className="text-h4 font-playfair font-bold leading-snug mb-3">{pub.title}</h3>
                       <p className="text-muted-foreground text-sm leading-relaxed">{pub.desc}</p>
                     </div>
                   </FadeIn>
@@ -521,7 +521,7 @@ export default function ExecutiveDirectorPage() {
                 <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                   <Globe2 size={12} /> Global Leadership
                 </div>
-                <h2 className="font-playfair text-3xl md:text-4xl font-bold">International Programmes</h2>
+                <h2 className="text-h1 font-playfair font-bold">International Programmes</h2>
               </FadeIn>
               <div className="space-y-5">
                 {[
@@ -529,7 +529,7 @@ export default function ExecutiveDirectorPage() {
                   { flag: "🇬🇧", title: "AIG-Public Leaders Programme", org: "Blavatnik School of Governance, University of Oxford", desc: "Advanced leadership training at one of the world's foremost institutions for public policy and governance." },
                 ].map((item, i) => (
                   <FadeIn key={i} direction="right" delay={i * 0.12}>
-                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-accent/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-card">
+                    <div className="group p-7 rounded-2xl border border-border/60 hover:border-accent/50 hover:shadow-4 hover:-translate-y-1 transition-all duration-300 bg-card">
                       <div className="flex gap-4 items-start">
                         <span className="text-4xl flex-shrink-0">{item.flag}</span>
                         <div>
@@ -554,7 +554,7 @@ export default function ExecutiveDirectorPage() {
             <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
               <Trophy size={12} /> Awards & Honours
             </div>
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold">Recognised by Peers<br />& Industry</h2>
+            <h2 className="text-h1 font-playfair font-bold">Recognised by Peers<br />& Industry</h2>
           </FadeIn>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -583,9 +583,9 @@ export default function ExecutiveDirectorPage() {
               },
             ].map((award, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className={`group relative p-8 rounded-2xl h-full border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl
+                <div className={`group relative p-8 rounded-2xl h-full border transition-all duration-300 hover:-translate-y-1.5 hover:shadow-4
                   ${award.featured
-                    ? "border-accent/60 bg-gradient-to-br from-accent to-accent/50 shadow-lg shadow-accent/10"
+                    ? "border-accent/60 bg-gradient-to-br from-accent to-accent/50 shadow-3 shadow-accent/10"
                     : "border-border/60 bg-card hover:border-accent/40 hover:shadow-accent/5"}`}>
                   {award.featured && (
                     <div className="absolute top-5 right-5">
@@ -596,7 +596,7 @@ export default function ExecutiveDirectorPage() {
                   )}
                   <div className="text-4xl mb-5">{award.icon}</div>
                   <p className="text-xs font-bold text-accent uppercase tracking-wider mb-1">{award.org} · {award.date}</p>
-                  <h3 className="font-playfair text-xl font-bold leading-snug mb-3">{award.title}</h3>
+                  <h3 className="text-h4 font-playfair font-bold leading-snug mb-3">{award.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{award.desc}</p>
                 </div>
               </FadeIn>
@@ -613,7 +613,7 @@ export default function ExecutiveDirectorPage() {
               <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
                 <Rocket size={12} /> Achievements
               </div>
-              <h2 className="font-playfair text-4xl md:text-5xl font-bold leading-[1.1]">Transforming Nigeria&apos;s<br />Film Landscape</h2>
+              <h2 className="text-h1 font-playfair font-bold leading-[1.1]">Transforming Nigeria&apos;s<br />Film Landscape</h2>
               <p className="mt-4 text-muted-foreground max-w-lg">Since March 2024, Dr. Husseini has driven sweeping reforms across the NFVCB.</p>
             </div>
           </FadeIn>
@@ -633,7 +633,7 @@ export default function ExecutiveDirectorPage() {
               <FadeIn key={i} delay={(i % 4) * 0.07}
                 className={item.size === "lg" ? "col-span-2" : "col-span-1"}>
                 <motion.div whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="group p-6 md:p-7 rounded-2xl border border-border/60 hover:border-accent/50 bg-card hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 h-full">
+                  className="group p-6 md:p-7 rounded-2xl border border-border/60 hover:border-accent/50 bg-card hover:shadow-4 hover:shadow-accent/5 transition-all duration-300 h-full">
                   <div className="text-2xl mb-4">{item.icon}</div>
                   <h3 className="font-semibold text-sm leading-snug mb-2 group-hover:text-accent dark:group-hover:text-accent transition-colors">{item.title}</h3>
                   <p className="text-muted-foreground text-xs leading-relaxed">{item.desc}</p>
@@ -672,7 +672,7 @@ export default function ExecutiveDirectorPage() {
             <div className="inline-flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-[0.15em] mb-4">
               <Link2 size={12} /> Affiliations
             </div>
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold">Institutional Connections</h2>
+            <h2 className="text-h1 font-playfair font-bold">Institutional Connections</h2>
           </FadeIn>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
@@ -687,7 +687,7 @@ export default function ExecutiveDirectorPage() {
               <FadeIn key={i} delay={i * 0.07}>
                 {aff.url ? (
                   <a href={aff.url} target="_blank" rel="noopener noreferrer"
-                    className="group flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-accent/60 bg-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    className="group flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-accent/60 bg-card hover:shadow-4 hover:-translate-y-1 transition-all duration-300">
                     <div>
                       <h3 className="font-bold text-base group-hover:text-accent dark:group-hover:text-accent transition-colors">{aff.name}</h3>
                       <p className="text-muted-foreground text-xs mt-0.5 leading-snug">{aff.full}</p>
@@ -696,7 +696,7 @@ export default function ExecutiveDirectorPage() {
                     <ArrowUpRight size={15} className="text-muted-foreground/0 group-hover:text-accent flex-shrink-0 mt-0.5 transition-all duration-200" />
                   </a>
                 ) : (
-                  <div className="flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-accent/40 bg-card hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="flex items-start justify-between p-6 rounded-2xl border border-border/60 hover:border-accent/40 bg-card hover:shadow-2 hover:-translate-y-0.5 transition-all duration-300">
                     <div>
                       <h3 className="font-bold text-base">{aff.name}</h3>
                       <p className="text-muted-foreground text-xs mt-0.5 leading-snug">{aff.full}</p>

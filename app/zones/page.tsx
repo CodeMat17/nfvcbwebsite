@@ -378,7 +378,7 @@ export default function ZonesPage() {
           <AnimatedSection key={zone.name}>
             <div className={`border-l-4 ${zone.color} pl-4 mb-4`}>
               <Badge className={`${zone.badge} border-0 text-xs mb-1`}>Zonal Office</Badge>
-              <h2 className="text-xl font-bold text-foreground">{zone.name}</h2>
+              <h2 className="text-h4 font-bold text-foreground">{zone.name}</h2>
               <p className="text-sm text-muted-foreground flex items-center gap-1">
                 <MapPin className="h-3.5 w-3.5" /> {zone.location}
               </p>
@@ -387,7 +387,7 @@ export default function ZonesPage() {
             <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {zone.offices.map(({ name, coordinator, phone, address, state }) => (
                 <StaggerItem key={name}>
-                  <Card className="h-full hover:shadow-md transition-all hover:border-primary/30 hover:-translate-y-0.5">
+                  <Card className="h-full hover:shadow-2 transition-all hover:border-primary/30 hover:-translate-y-0.5">
                     <CardHeader className="pb-2">
                       <div className="flex items-center gap-2">
                         <Building2 className="h-4 w-4 text-primary shrink-0" />

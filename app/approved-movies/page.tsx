@@ -101,7 +101,7 @@ export default async function ApprovedMoviesPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <Film className="h-10 w-10 text-accent mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-3">Submit a Film for Classification</h2>
+            <h2 className="text-h3 font-bold text-white mb-3">Submit a Film for Classification</h2>
             <p className="text-white/60 mb-6 text-sm max-w-xl mx-auto">
               Producers and distributors can submit films for classification and approval through the
               NFVCB Licensing office or the Digital Classification Portal.

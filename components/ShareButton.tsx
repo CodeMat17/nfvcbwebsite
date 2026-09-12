@@ -112,7 +112,7 @@ export function ShareButton({ title, url }: ShareButtonProps) {
           onClick={() => setOpen(false)}
         >
           <div
-            className="bg-background border border-border rounded-t-2xl sm:rounded-2xl w-full sm:max-w-sm p-6 shadow-xl"
+            className="bg-background border border-border rounded-t-2xl sm:rounded-2xl w-full sm:max-w-sm p-6 shadow-4"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-1">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito } from "next/font/google";
+import { Nunito, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
@@ -11,6 +11,18 @@ const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "600", "700", "800", "900"],
+  preload: true,
+});
+
+/* The editorial serif used for display headings and pull quotes. It was
+   already referenced site-wide as `font-playfair` but never actually loaded,
+   so that text silently fell back to Nunito. */
+const playfair = Playfair_Display({
+  variable: "--font-playfair-src",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   preload: true,
 });
 
@@ -195,7 +207,7 @@ export default function RootLayout({
   return (
     <html
       lang="en-NG"
-      className={`${nunito.variable} h-full antialiased`}
+      className={`${nunito.variable} ${playfair.variable} h-full antialiased`}
       suppressHydrationWarning
       data-scroll-behavior="smooth">
       <head>

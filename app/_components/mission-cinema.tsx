@@ -26,7 +26,7 @@ export function MissionCinema() {
 
   return (
     <section
-      className="relative isolate overflow-hidden bg-gradient-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark"
+      className="relative isolate overflow-hidden surface-cinema"
       aria-labelledby="mission-heading"
     >
       <div

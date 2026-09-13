@@ -309,6 +309,25 @@
   .gold-gradient {
     background: linear-gradient(135deg, #fea600 0%, #ff8c00 100%);
   }
+  /* ── Dark media surfaces ──────────────────────────────────────────────────
+     Image placeholders and dark section grounds. Opaque stops on purpose:
+     alpha stops such as via-primary/15 composite against the *page*
+     background, so in light mode the mid-stop washed out to near-white and
+     read as a pale diagonal band under the white text sitting on top. These
+     paint the same dark ground in both themes. */
+  .media-dark {
+    background-color: #001506;
+    background-image: linear-gradient(135deg, #001506 0%, #004c1b 100%);
+  }
+  .media-dark-soft {
+    background-color: #001506;
+    background-image: linear-gradient(135deg, #001506 0%, #003e16 100%);
+  }
+  .surface-cinema {
+    background-color: #001506;
+    background-image: linear-gradient(135deg, #001506 0%, #002a0e 50%, #001506 100%);
+  }
+
   .hero-overlay {
     background: linear-gradient(
       to bottom,

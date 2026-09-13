@@ -83,7 +83,7 @@ export default function ManagementPage() {
             {principalOfficers.map(({ name, title, subtitle, image }) => (
               <StaggerItem key={title}>
                 <Card className="overflow-hidden border-primary/20 py-0">
-                  <div className="relative h-96 bg-gradient-to-br from-nfvcb-dark to-primary/40 overflow-hidden">
+                  <div className="relative h-96 media-dark overflow-hidden">
                     <Image src={image} alt={name} fill className="object-cover object-top" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-4 z-10">

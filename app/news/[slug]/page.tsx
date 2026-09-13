@@ -136,7 +136,7 @@ export default async function NewsDetailPage({ params }: Props) {
           <div className='lg:col-span-2'>
             <AnimatedSection>
               {item.coverImageUrl && (
-                <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center mb-8'>
+                <div className='relative rounded-2xl overflow-hidden h-64 sm:h-80 media-dark flex items-center justify-center mb-8'>
                   <Image
                     src={item.coverImageUrl}
                     alt={item.title}
@@ -209,7 +209,7 @@ export default async function NewsDetailPage({ params }: Props) {
                       className='group block'>
                       <Card className='overflow-hidden hover:shadow-2 transition-all hover:border-primary/30'>
                         <CardContent className='p-4 flex gap-3'>
-                          <div className='w-14 h-14 rounded-lg bg-gradient-to-br from-nfvcb-dark to-primary/30 flex items-center justify-center shrink-0 overflow-hidden relative'>
+                          <div className='w-14 h-14 rounded-lg media-dark-soft flex items-center justify-center shrink-0 overflow-hidden relative'>
                             {r.coverImageUrl ? (
                               <Image
                                 src={r.coverImageUrl}

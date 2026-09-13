@@ -42,7 +42,7 @@ export function NewsUpdate() {
             <AnimatedSection>
               <Link href={`/news/${featured.slug}`} className="group block">
                 <Card className="overflow-hidden hover:shadow-4 transition-all duration-500 hover:-translate-y-1 border-border pt-0">
-                  <div className="relative h-56 sm:h-72 overflow-hidden bg-linear-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark">
+                  <div className="relative h-56 sm:h-72 overflow-hidden surface-cinema">
                     {featured.coverImageUrl ? (
                       <Image
                         src={featured.coverImageUrl}
@@ -52,7 +52,7 @@ export function NewsUpdate() {
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-nfvcb-dark via-primary/15 to-nfvcb-dark">
+                      <div className="absolute inset-0 flex items-center justify-center surface-cinema">
                         <Image
                           src="/logo.webp"
                           alt="NFVCB Logo"

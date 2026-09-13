@@ -104,7 +104,7 @@ export default function NewsClient({ items }: Props) {
             <Link href={`/news/${featured.slug}`} className="group block">
               <Card className="overflow-hidden hover:shadow-4 transition-all duration-400 hover:-translate-y-1 py-0">
                 <div className="grid lg:grid-cols-2">
-                  <div className="relative h-64 lg:h-auto min-h-56 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center overflow-hidden">
+                  <div className="relative h-64 lg:h-auto min-h-56 media-dark flex items-center justify-center overflow-hidden">
                     {featured.coverImageUrl ? (
                       <Image
                         src={featured.coverImageUrl}
@@ -164,7 +164,7 @@ export default function NewsClient({ items }: Props) {
                   <StaggerItem key={item._id}>
                     <Link href={`/news/${item.slug}`} className="group block h-full">
                       <Card className="h-full overflow-hidden hover:shadow-4 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/30 pt-0">
-                        <div className="relative h-44 bg-gradient-to-br from-nfvcb-dark to-primary/40 flex items-center justify-center overflow-hidden">
+                        <div className="relative h-44 media-dark flex items-center justify-center overflow-hidden">
                           {item.coverImageUrl ? (
                             <Image
                               src={item.coverImageUrl}

@@ -9,6 +9,8 @@
  */
 
 import type * as approvedMovies from "../approvedMovies.js";
+import type * as executiveDirector from "../executiveDirector.js";
+import type * as leadership from "../leadership.js";
 import type * as managementStaff from "../managementStaff.js";
 import type * as news from "../news.js";
 import type * as storage from "../storage.js";
@@ -21,6 +23,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   approvedMovies: typeof approvedMovies;
+  executiveDirector: typeof executiveDirector;
+  leadership: typeof leadership;
   managementStaff: typeof managementStaff;
   news: typeof news;
   storage: typeof storage;

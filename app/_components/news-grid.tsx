@@ -25,7 +25,7 @@ function fmtDate(d: string | number) {
 }
 
 export function NewsUpdate() {
-  const items = useQuery(api.news.list);
+  const items = useQuery(api.news.list, { limit: 10 });
   const featured = items?.[0];
 
   return (

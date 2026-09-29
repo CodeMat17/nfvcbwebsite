@@ -7,20 +7,9 @@ import { RatingBadge } from "@/components/rating-badge";
 import { Card } from "@/components/ui/card";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import type { ApprovedMoviesPost, Movie } from "@/lib/approved-movies-data";
-
-
-function findFeaturedFilm(posts: ApprovedMoviesPost[]) {
-  for (const post of posts) {
-    const film = post.movies.find((m: Movie) => m.featured);
-    if (film) return { film, post };
-  }
-  return null;
-}
 
 export function FilmOfTheMonth() {
-  const posts = useQuery(api.approvedMovies.listPostsWithMovies);
-  const result = posts ? findFeaturedFilm(posts) : null;
+  const result = useQuery(api.approvedMovies.featuredFilm);
   if (!result) return null;
 
   const { film, post } = result;

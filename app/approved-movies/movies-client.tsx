@@ -16,13 +16,13 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import type { ApprovedMoviesPost } from "@/lib/approved-movies-data";
+import type { ApprovedMoviesPostSummary } from "@/lib/approved-movies-data";
 import { ArrowRight, Calendar, Film, Search, User, X } from "lucide-react";
 
 const PAGE_SIZE = 9;
 
 interface Props {
-  posts: ApprovedMoviesPost[];
+  posts: ApprovedMoviesPostSummary[];
 }
 
 export function MoviesClient({ posts }: Props) {
@@ -159,8 +159,8 @@ export function MoviesClient({ posts }: Props) {
             className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3"
           >
             {paginated.map((post) => {
-              const filmCount = post.movies.length;
-              const ratings = [...new Set(post.movies.map((f) => f.rating))].sort(
+              const filmCount = post.movieCount;
+              const ratings = Object.keys(post.ratingCounts).sort(
                 (a, b) => RATING_ORDER.indexOf(a) - RATING_ORDER.indexOf(b)
               );
 

@@ -9,6 +9,7 @@ import { ArrowRight, Film } from "lucide-react";
 import { AsideNewsStack } from "@/components/AsideNewsStack";
 import { ClassificationPanel } from "@/components/classification-panel";
 import { MoviesClient } from "./movies-client";
+import { toPostSummary } from "@/lib/approved-movies-data";
 
 export const dynamic = "force-dynamic";
 
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ApprovedMoviesPage() {
-  const posts = await fetchQuery(api.approvedMovies.listPostsWithMovies);
+  const posts = (await fetchQuery(api.approvedMovies.listPosts, {})).map(toPostSummary);
 
   return (
     <>

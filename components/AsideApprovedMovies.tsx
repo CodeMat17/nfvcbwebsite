@@ -5,12 +5,14 @@ import { api } from "@/convex/_generated/api";
 import { ArrowRight, Film } from "lucide-react";
 import Link from "next/link";
 import { RatingBadge, RATING_ORDER } from "@/components/rating-badge";
+import { toPostSummary } from "@/lib/approved-movies-data";
 
 const AsideApprovedMovies = () => {
-  const posts = useQuery(api.approvedMovies.listPostsWithMovies);
+  const posts = useQuery(api.approvedMovies.listPosts, {});
   const loading = posts === undefined;
 
-  const recentApproved = [...(posts ?? [])]
+  const recentApproved = (posts ?? [])
+    .map(toPostSummary)
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, 3);
 
@@ -36,10 +38,7 @@ const AsideApprovedMovies = () => {
       ) : (
         <ul className="flex-1 divide-y divide-border">
           {recentApproved.map((post) => {
-            const ratingCounts = post.movies.reduce<Record<string, number>>((acc, f) => {
-              acc[f.rating] = (acc[f.rating] ?? 0) + 1;
-              return acc;
-            }, {});
+            const { ratingCounts } = post;
 
             return (
               <li key={post.slug} className="py-3 first:pt-0 last:pb-0">
@@ -47,7 +46,7 @@ const AsideApprovedMovies = () => {
                   <p className="text-caption font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
                     {post.month}
                     <span className="ml-1.5 font-normal text-muted-foreground">
-                      · {post.movies.length} film{post.movies.length !== 1 ? "s" : ""}
+                      · {post.movieCount} film{post.movieCount !== 1 ? "s" : ""}
                     </span>
                   </p>
                   <div className="mt-1.5 flex flex-wrap items-center gap-1">

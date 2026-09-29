@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 
 export default async function NewsPage() {
-  const items = await fetchQuery(api.news.list);
+  const items = await fetchQuery(api.news.list, {});
 
   return (
     <>

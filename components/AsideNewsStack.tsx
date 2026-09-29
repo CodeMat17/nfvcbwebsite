@@ -23,7 +23,7 @@ function fmtRelative(d: string | number) {
 }
 
 export function AsideNewsStack() {
-  const items = useQuery(api.news.list);
+  const items = useQuery(api.news.list, { limit: 10 });
   const top4 = items?.slice(0, 4) ?? [];
 
   return (

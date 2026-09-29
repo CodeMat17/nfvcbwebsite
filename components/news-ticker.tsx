@@ -12,7 +12,7 @@ const STATIC_ITEMS = [
 ];
 
 export function NewsTicker() {
-  const news = useQuery(api.news.list);
+  const news = useQuery(api.news.list, { limit: 10 });
   const items = [
     ...(news ?? []).map((n) => ({ text: n.title, href: `/news/${n.slug}` })),
     ...STATIC_ITEMS,

@@ -118,7 +118,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const newsItems = await fetchQuery(api.news.list);
+  const newsItems = await fetchQuery(api.news.list, {});
   const newsRoutes: MetadataRoute.Sitemap = newsItems.map((item) => ({
     url: `${BASE_URL}/news/${item.slug}`,
     lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(item._creationTime),
@@ -126,7 +126,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const movieItems = await fetchQuery(api.approvedMovies.listPosts);
+  const movieItems = await fetchQuery(api.approvedMovies.listPosts, {});
   const movieRoutes: MetadataRoute.Sitemap = movieItems.map((post) => ({
     url: `${BASE_URL}/approved-movies/${post.slug}`,
     lastModified: post.date ? new Date(post.date) : new Date(post._creationTime),

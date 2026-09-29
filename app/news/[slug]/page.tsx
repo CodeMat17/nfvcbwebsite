@@ -64,7 +64,7 @@ export default async function NewsDetailPage({ params }: Props) {
   const { slug } = await params;
   const [item, allItems] = await Promise.all([
     fetchQuery(api.news.getBySlug, { slug }),
-    fetchQuery(api.news.list),
+    fetchQuery(api.news.list, { limit: 4 }),
   ]);
 
   if (!item) notFound();

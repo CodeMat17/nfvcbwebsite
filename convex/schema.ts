@@ -18,6 +18,9 @@ export default defineSchema({
     // Cleared by `news.migrateBodies`; remove once every row is migrated.
     body: v.optional(v.string()),
     coverImageUrl: v.optional(v.string()),
+    // Cloudinary asset behind coverImageUrl.
+    coverImagePublicId: v.optional(v.string()),
+    // Legacy Convex storage file; moved by cloudinary:migrateStorageImages.
     coverImageId: v.optional(v.id("_storage")),
     category: v.optional(v.string()),
     author: v.optional(v.string()),
@@ -38,12 +41,17 @@ export default defineSchema({
   newsBodies: defineTable({
     newsId: v.id("news"),
     body: v.string(),
+    // Cloudinary images referenced in the body, so removed ones get deleted.
+    mediaPublicIds: v.optional(v.array(v.string())),
   }).index("by_newsId", ["newsId"]),
 
   // ─── Management Staff ───────────────────────────────────────────────────────
   managementStaff: defineTable({
     name: v.string(),
     designation: v.string(),
+    // Cloudinary photo; imageId is the legacy Convex storage file.
+    imageUrl: v.optional(v.string()),
+    imagePublicId: v.optional(v.string()),
     imageId: v.optional(v.id("_storage")),
     order: v.number(),
     // Seniority rank: 1 = most senior. Lower numbers are listed first.
@@ -58,6 +66,9 @@ export default defineSchema({
     name: v.string(),
     role: v.string(),
     office: v.string(),
+    // Cloudinary photo; imageId is the legacy Convex storage file.
+    imageUrl: v.optional(v.string()),
+    imagePublicId: v.optional(v.string()),
     imageId: v.optional(v.id("_storage")),
     order: v.number(),
     // 1 = listed first.
@@ -72,6 +83,9 @@ export default defineSchema({
     role: v.string(),
     office: v.string(),
     postNominals: v.string(),
+    // Cloudinary photo; imageId is the legacy Convex storage file.
+    imageUrl: v.optional(v.string()),
+    imagePublicId: v.optional(v.string()),
     imageId: v.optional(v.id("_storage")),
     email: v.string(),
     headOffice: v.string(),

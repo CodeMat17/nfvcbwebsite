@@ -1,10 +1,10 @@
 import { v } from "convex/values";
 import { internalMutation, mutation, query } from "./_generated/server";
+import { deleteProfileImage, mediaFields } from "./lib/media";
 
 const MAX_NAME = 150;
 const MAX_ROLE = 200;
 const MAX_OFFICE = 200;
-const MAX_IMAGE_BYTES = 30 * 1024; // 30 KB
 
 function sanitizeField(value: string, maxLen: number, label: string): string {
   const clean = value
@@ -23,15 +23,6 @@ function sanitizeSeniority(value: number): number {
   return value;
 }
 
-export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (identity === null) throw new Error("Not authenticated");
-    return ctx.storage.generateUploadUrl();
-  },
-});
-
 export const list = query({
   args: {},
   handler: async (ctx) => {
@@ -39,7 +30,7 @@ export const list = query({
     return await Promise.all(
       leaders.map(async (l) => ({
         ...l,
-        imageUrl: l.imageId ? await ctx.storage.getUrl(l.imageId) : null,
+        imageUrl: l.imageUrl ?? (l.imageId ? await ctx.storage.getUrl(l.imageId) : null),
       }))
     );
   },
@@ -50,7 +41,8 @@ export const create = mutation({
     name: v.string(),
     role: v.string(),
     office: v.string(),
-    imageId: v.optional(v.id("_storage")),
+    // Cloudinary public ID from an upload signed by cloudinary.signUpload.
+    imagePublicId: v.optional(v.string()),
     order: v.number(),
     seniority: v.number(),
   },
@@ -58,17 +50,16 @@ export const create = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (identity === null) throw new Error("Not authenticated");
 
-    if (args.imageId) {
-      const meta = await ctx.db.system.get(args.imageId);
-      if (!meta) throw new Error("Image not found in storage.");
-      if (meta.size > MAX_IMAGE_BYTES) throw new Error("Image must be 30 KB or smaller.");
-    }
+    const image = args.imagePublicId
+      ? mediaFields(args.imagePublicId, "leadership")
+      : undefined;
 
     return await ctx.db.insert("leadership", {
       name: sanitizeField(args.name, MAX_NAME, "Name"),
       role: sanitizeField(args.role, MAX_ROLE, "Role"),
       office: sanitizeField(args.office, MAX_OFFICE, "Office"),
-      imageId: args.imageId,
+      imageUrl: image?.url,
+      imagePublicId: image?.publicId,
       order: args.order,
       seniority: sanitizeSeniority(args.seniority),
     });
@@ -81,7 +72,8 @@ export const update = mutation({
     name: v.optional(v.string()),
     role: v.optional(v.string()),
     office: v.optional(v.string()),
-    imageId: v.optional(v.id("_storage")),
+    // Cloudinary public ID from an upload signed by cloudinary.signUpload.
+    imagePublicId: v.optional(v.string()),
     seniority: v.optional(v.number()),
   },
   handler: async (ctx, args) => {
@@ -100,12 +92,12 @@ export const update = mutation({
       patch.office = sanitizeField(fields.office, MAX_OFFICE, "Office");
     if (fields.seniority !== undefined) patch.seniority = sanitizeSeniority(fields.seniority);
 
-    if (fields.imageId !== undefined) {
-      const meta = await ctx.db.system.get(fields.imageId);
-      if (!meta) throw new Error("Image not found in storage.");
-      if (meta.size > MAX_IMAGE_BYTES) throw new Error("Image must be 30 KB or smaller.");
-      if (existing.imageId) await ctx.storage.delete(existing.imageId);
-      patch.imageId = fields.imageId;
+    if (fields.imagePublicId !== undefined) {
+      const image = mediaFields(fields.imagePublicId, "leadership");
+      if (image.publicId !== existing.imagePublicId) await deleteProfileImage(ctx, existing);
+      patch.imageUrl = image.url;
+      patch.imagePublicId = image.publicId;
+      patch.imageId = undefined;
     }
 
     await ctx.db.patch(id, patch);
@@ -120,7 +112,7 @@ export const remove = mutation({
 
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new Error("Leader not found.");
-    if (existing.imageId) await ctx.storage.delete(existing.imageId);
+    await deleteProfileImage(ctx, existing);
     await ctx.db.delete(args.id);
   },
 });

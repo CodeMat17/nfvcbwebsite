@@ -8,6 +8,7 @@ import {
 } from "./_generated/server";
 import { internal } from "./_generated/api";
 import type { Doc, Id } from "./_generated/dataModel";
+import { deleteMediaLater, mediaFields, publicIdsInHtml } from "./lib/media";
 
 const MAX_TITLE = 200;
 const MAX_AUTHOR = 100;
@@ -34,7 +35,6 @@ function validateFields(args: {
   body?: string;
   author?: string;
   category?: string;
-  coverImageUrl?: string;
 }) {
   if (args.title !== undefined) {
     if (!args.title.trim()) throw new Error("Title is required.");
@@ -58,25 +58,7 @@ function validateFields(args: {
   ) {
     throw new Error("Invalid category.");
   }
-  if (args.coverImageUrl !== undefined && args.coverImageUrl !== "") {
-    try {
-      const url = new URL(args.coverImageUrl);
-      if (!["https:", "http:"].includes(url.protocol))
-        throw new Error("Cover image URL must use http or https.");
-    } catch {
-      throw new Error("Cover image URL is not valid.");
-    }
-  }
 }
-
-export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (identity === null) throw new Error("Not authenticated");
-    return await ctx.storage.generateUploadUrl();
-  },
-});
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -110,10 +92,27 @@ async function withBody(ctx: QueryCtx, row: Doc<"news">) {
   };
 }
 
+// Saves the body and deletes Cloudinary images it no longer references.
 async function writeBody(ctx: MutationCtx, newsId: Id<"news">, body: string) {
+  const mediaPublicIds = publicIdsInHtml(body);
   const existing = await getBodyDoc(ctx, newsId);
-  if (existing) await ctx.db.patch(existing._id, { body });
-  else await ctx.db.insert("newsBodies", { newsId, body });
+  if (existing) {
+    await ctx.db.patch(existing._id, { body, mediaPublicIds });
+    await deleteMediaLater(
+      ctx,
+      (existing.mediaPublicIds ?? []).filter((id) => !mediaPublicIds.includes(id))
+    );
+  } else {
+    await ctx.db.insert("newsBodies", { newsId, body, mediaPublicIds });
+  }
+}
+
+// Removes a row's current cover, wherever it is stored.
+async function deleteCover(ctx: MutationCtx, row: Doc<"news">) {
+  if (row.coverImageId) {
+    try { await ctx.storage.delete(row.coverImageId); } catch { /* ignore */ }
+  }
+  await deleteMediaLater(ctx, [row.coverImagePublicId]);
 }
 
 // ─── Queries ─────────────────────────────────────────────────────────────────
@@ -209,8 +208,8 @@ export const create = mutation({
   args: {
     title: v.string(),
     body: v.string(),
-    coverImageUrl: v.optional(v.string()),
-    coverImageId: v.optional(v.id("_storage")),
+    // Cloudinary public ID from an upload signed by cloudinary.signUpload.
+    coverImagePublicId: v.optional(v.string()),
     category: v.optional(v.string()),
     author: v.optional(v.string()),
     featured: v.optional(v.boolean()),
@@ -226,15 +225,11 @@ export const create = mutation({
       body: args.body,
       author: args.author,
       category: args.category,
-      coverImageUrl: args.coverImageUrl,
     });
 
-    if (args.coverImageId) {
-      const meta = await ctx.db.system.get(args.coverImageId);
-      if (meta && meta.size > 300 * 1024) {
-        throw new Error("Cover image must be 300 KB or smaller.");
-      }
-    }
+    const cover = args.coverImagePublicId
+      ? mediaFields(args.coverImagePublicId, "news")
+      : undefined;
 
     const slug = toSlug(args.title);
     const existing = await ctx.db
@@ -249,8 +244,8 @@ export const create = mutation({
       title: args.title.trim(),
       slug,
       excerpt: toExcerpt(args.body),
-      coverImageUrl: args.coverImageUrl || undefined,
-      coverImageId: args.coverImageId,
+      coverImageUrl: cover?.url,
+      coverImagePublicId: cover?.publicId,
       category: args.category,
       author: args.author?.trim() || undefined,
       featured: args.featured,
@@ -267,7 +262,7 @@ export const update = mutation({
     id: v.id("news"),
     title: v.optional(v.string()),
     body: v.optional(v.string()),
-    coverImageId: v.optional(v.id("_storage")),
+    coverImagePublicId: v.optional(v.string()),
     clearCoverImage: v.optional(v.boolean()),
     category: v.optional(v.string()),
     author: v.optional(v.string()),
@@ -279,7 +274,7 @@ export const update = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (identity === null) throw new Error("Not authenticated");
 
-    const { id, clearCoverImage, body, ...fields } = args;
+    const { id, clearCoverImage, body, coverImagePublicId, ...fields } = args;
 
     const existing = await ctx.db.get(id);
     if (!existing) throw new Error("News article not found.");
@@ -293,22 +288,18 @@ export const update = mutation({
 
     const patch: Record<string, unknown> = { ...fields };
 
-    if (fields.coverImageId) {
-      const meta = await ctx.db.system.get(fields.coverImageId);
-      if (meta && meta.size > 300 * 1024) {
-        throw new Error("Cover image must be 300 KB or smaller.");
-      }
-      // Delete old storage file when replacing with a new one
-      if (existing.coverImageId) {
-        try { await ctx.storage.delete(existing.coverImageId); } catch { /* ignore */ }
-      }
+    if (coverImagePublicId) {
+      // Replacing: point at the new upload and delete the old one.
+      const cover = mediaFields(coverImagePublicId, "news");
+      if (cover.publicId !== existing.coverImagePublicId) await deleteCover(ctx, existing);
+      patch.coverImageUrl = cover.url;
+      patch.coverImagePublicId = cover.publicId;
+      patch.coverImageId = undefined;
     } else if (clearCoverImage) {
-      // Explicit image removal
-      if (existing.coverImageId) {
-        try { await ctx.storage.delete(existing.coverImageId); } catch { /* ignore */ }
-      }
+      await deleteCover(ctx, existing);
       patch.coverImageId = undefined;
       patch.coverImageUrl = undefined;
+      patch.coverImagePublicId = undefined;
     }
 
     if (fields.title !== undefined) {
@@ -359,12 +350,12 @@ export const remove = mutation({
 
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new Error("News article not found.");
-    // Delete associated storage file if present
-    if (existing.coverImageId) {
-      await ctx.storage.delete(existing.coverImageId);
-    }
+    await deleteCover(ctx, existing);
     const bodyDoc = await getBodyDoc(ctx, args.id);
-    if (bodyDoc) await ctx.db.delete(bodyDoc._id);
+    if (bodyDoc) {
+      await deleteMediaLater(ctx, bodyDoc.mediaPublicIds ?? []);
+      await ctx.db.delete(bodyDoc._id);
+    }
     await ctx.db.delete(args.id);
   },
 });

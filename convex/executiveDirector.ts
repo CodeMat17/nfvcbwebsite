@@ -1,11 +1,11 @@
 import { v } from "convex/values";
 import { internalMutation, mutation, query } from "./_generated/server";
 import { profileEntry } from "./schema";
+import { deleteProfileImage, mediaFields } from "./lib/media";
 
 const MAX_SHORT = 200;
 const MAX_LONG = 5000;
 const MAX_ITEMS = 50;
-const MAX_IMAGE_BYTES = 100 * 1024; // 100 KB — shown large on the profile page
 
 function clean(value: string, maxLen: number): string {
   return value
@@ -69,28 +69,26 @@ const profileFields = {
   foreword: v.string(),
 };
 
-export const generateUploadUrl = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (identity === null) throw new Error("Not authenticated");
-    return ctx.storage.generateUploadUrl();
-  },
-});
-
 /** The profile, or null if it has not been created yet. */
 export const get = query({
   args: {},
   handler: async (ctx) => {
     const ed = await ctx.db.query("executiveDirector").first();
     if (!ed) return null;
-    return { ...ed, imageUrl: ed.imageId ? await ctx.storage.getUrl(ed.imageId) : null };
+    return {
+      ...ed,
+      imageUrl: ed.imageUrl ?? (ed.imageId ? await ctx.storage.getUrl(ed.imageId) : null),
+    };
   },
 });
 
 /** Creates the profile on first save, replaces it afterwards. */
 export const save = mutation({
-  args: { ...profileFields, imageId: v.optional(v.id("_storage")) },
+  args: {
+    ...profileFields,
+    // Cloudinary public ID from an upload signed by cloudinary.signUpload.
+    imagePublicId: v.optional(v.string()),
+  },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (identity === null) throw new Error("Not authenticated");
@@ -120,22 +118,25 @@ export const save = mutation({
     };
 
     const existing = await ctx.db.query("executiveDirector").first();
-    let imageId = existing?.imageId;
+    let image = {
+      imageUrl: existing?.imageUrl,
+      imagePublicId: existing?.imagePublicId,
+      imageId: existing?.imageId,
+    };
 
-    if (args.imageId !== undefined) {
-      const meta = await ctx.db.system.get(args.imageId);
-      if (!meta) throw new Error("Image not found in storage.");
-      if (meta.size > MAX_IMAGE_BYTES) throw new Error("Image must be 100 KB or smaller.");
-      if (existing?.imageId && existing.imageId !== args.imageId)
-        await ctx.storage.delete(existing.imageId);
-      imageId = args.imageId;
+    if (args.imagePublicId !== undefined) {
+      const media = mediaFields(args.imagePublicId, "executive-director");
+      if (existing && media.publicId !== existing.imagePublicId) {
+        await deleteProfileImage(ctx, existing);
+      }
+      image = { imageUrl: media.url, imagePublicId: media.publicId, imageId: undefined };
     }
 
     if (existing) {
-      await ctx.db.replace(existing._id, { ...doc, imageId });
+      await ctx.db.replace(existing._id, { ...doc, ...image });
       return existing._id;
     }
-    return await ctx.db.insert("executiveDirector", { ...doc, imageId });
+    return await ctx.db.insert("executiveDirector", { ...doc, ...image });
   },
 });
 

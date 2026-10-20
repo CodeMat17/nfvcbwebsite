@@ -136,7 +136,7 @@ export default async function NewsDetailPage({ params }: Props) {
           <div className='lg:col-span-2'>
             <AnimatedSection>
               {item.coverImageUrl && (
-                <div className='relative rounded-2xl overflow-hidden h-96 sm:h-[34rem] lg:h-[48rem] media-dark flex items-center justify-center mb-8'>
+                <div className='relative rounded-2xl overflow-hidden h-96 sm:h-[34rem] lg:h-[42rem] media-dark flex items-center justify-center mb-8'>
                   <Image
                     src={item.coverImageUrl}
                     alt={item.title}

@@ -42,7 +42,7 @@ export function NewsUpdate() {
             <AnimatedSection>
               <Link href={`/news/${featured.slug}`} className="group block">
                 <Card className="overflow-hidden hover:shadow-4 transition-all duration-500 hover:-translate-y-1 border-border pt-0">
-                  <div className="relative h-56 sm:h-72 overflow-hidden surface-cinema">
+                  <div className="relative h-72 sm:h-96 lg:h-104 overflow-hidden surface-cinema">
                     {featured.coverImageUrl ? (
                       <Image
                         src={featured.coverImageUrl}
